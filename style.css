@@ -8,3 +8,5 @@
 
 
 .feedbackGrid{display:grid;grid-template-columns:1.4fr .7fr;gap:14px}.quoteTheme{margin-top:16px}.quoteTheme h4{margin:0 0 10px}.quoteCards{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.quoteCard{border:1px solid var(--line);border-radius:15px;background:var(--soft);padding:14px}.quoteCard p{font-size:14px;margin:8px 0;color:var(--text)}.quoteMeta{display:flex;flex-wrap:wrap;gap:6px}.quoteMeta span{font-size:11px;border:1px solid var(--line);background:#fff;color:var(--muted);border-radius:999px;padding:2px 7px}.quoteAnalysis{font-size:12px;color:var(--muted);margin:8px 0}.quoteCard a{font-size:12px;color:var(--blue)}@media(max-width:860px){.feedbackGrid,.quoteCards{grid-template-columns:1fr}}
+
+.researchNote{border-color:#d7b56d;background:#fff8e8}.researchNote h3{color:var(--amber)}.researchNote p{margin:0;color:#5d4a20;font-size:14px}
