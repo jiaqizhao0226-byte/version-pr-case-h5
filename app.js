@@ -109,5 +109,14 @@ function renderFeedback(c){
 
 
 function renderPlayerJourney(c){
-  return `<div class="playerLayout"><aside class="tagRail"><h3>认知标签</h3>${c.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</aside><div class="analysisBox"><h3>玩家心路历程与诉求</h3><p class="muted">这一页把“玩家为什么爆发”和“玩家真实反馈”合在一起看：先解释心理路径和诉求，再用社区热度与玩家原话证明这些判断。</p><div class="psySteps"><div><b>1 发现异常</b>动作、表情、骑乘、生态与S1不一致。</div><div><b>2 定性暗改</b>变化不是公告得知，而是玩家自己扒出来。</div><div><b>3 翻旧账</b>平衡、回溯、养成、PVE影响一起被激活。</div><div><b>4 信任受损</b>从“改了什么”变成“以后还会不会改”。</div></div><div class="demandGrid"><div class="demand"><b>表层诉求</b><ul>${c.playerNeeds.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="demand"><b>深层诉求</b><ul><li>确认已上线内容不会被无公告修改。</li><li>解释动作调整的需求来源、评估标准和决策链路。</li><li>证明核心玩家长期反馈不会被选择性忽视。</li><li>建立版本分支、需求准入、公告公示和情感资产保护机制。</li><li>用回滚和制度修复信任，而不是只用补偿安抚情绪。</li></ul></div></div><h4>真实损失不是单点功能损失</h4><table class="table"><tr><th>损失类型</th><th>本案体现</th></tr>${c.losses.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table></div></div>${renderFeedback(c)}`;
+  return `<div class="playerLayout"><aside class="tagRail"><h3>认知标签</h3>${c.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</aside><div class="analysisBox"><h3>玩家心路历程与诉求</h3><p class="muted">这一页把“玩家为什么爆发”和“玩家真实反馈”合在一起看：先按阶段还原心理变化，再用对应时间点的证据支撑判断。</p>${renderJourneyStages(c)}<div class="demandGrid"><div class="demand"><b>表层诉求</b><ul>${c.playerNeeds.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="demand"><b>深层诉求</b><ul><li>确认已上线内容不会被无公告修改。</li><li>解释动作调整的需求来源、评估标准和决策链路。</li><li>证明核心玩家长期反馈不会被选择性忽视。</li><li>建立版本分支、需求准入、公告公示和情感资产保护机制。</li><li>用回滚和制度修复信任，而不是只用补偿安抚情绪。</li></ul></div></div><h4>真实损失不是单点功能损失</h4><table class="table"><tr><th>损失类型</th><th>本案体现</th></tr>${c.losses.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table></div></div>${renderFeedback(c)}`;
+}
+
+
+function renderJourneyStages(c){
+  const stages=c.playerJourneyStages||[];
+  if(!stages.length){
+    return `<div class="psySteps"><div><b>1 发现异常</b>动作、表情、骑乘、生态与S1不一致。</div><div><b>2 定性暗改</b>变化不是公告得知，而是玩家自己扒出来。</div><div><b>3 翻旧账</b>平衡、回溯、养成、PVE影响一起被激活。</div><div><b>4 信任受损</b>从“改了什么”变成“以后还会不会改”。</div></div>`;
+  }
+  return `<div class="journeyTrend"><div class="trendHeader"><div><h4>阶段化趋势图：情绪强度 vs 信任水平</h4><p class="muted">每个阶段都对应一个时间窗口、一个核心心理问题和若干证据。红条越长代表情绪强度越高，蓝条越长代表对官方信任越高。</p></div></div>${stages.map((s,i)=>`<article class="journeyStage"><div class="stageIndex">${i+1}</div><div class="stageBody"><div class="stageTop"><div><b>${s.stage}</b><span>${s.time}</span></div><em>${s.emotion}</em></div><div class="stageBars"><label>情绪强度</label><div class="bar"><i class="emotion" style="width:${s.emotionScore}%"></i></div><strong>${s.emotionScore}</strong><label>信任水平</label><div class="bar"><i class="trust" style="width:${s.trustScore}%"></i></div><strong>${s.trustScore}</strong></div><p>${s.psychology}</p><div class="coreQ">核心问题：${s.coreQuestion}</div><div class="stageEvidence">${(s.evidence||[]).map(e=>`<a target="_blank" href="${e.url}"><span>${e.type}</span>${e.text}${e.heat?`<small>${e.heat}</small>`:''}</a>`).join('')}</div></div></article>`).join('')}</div>`;
 }
