@@ -118,5 +118,25 @@ function renderJourneyStages(c){
   if(!stages.length){
     return `<div class="psySteps"><div><b>1 发现异常</b>动作、表情、骑乘、生态与S1不一致。</div><div><b>2 定性暗改</b>变化不是公告得知，而是玩家自己扒出来。</div><div><b>3 翻旧账</b>平衡、回溯、养成、PVE影响一起被激活。</div><div><b>4 信任受损</b>从“改了什么”变成“以后还会不会改”。</div></div>`;
   }
-  return `<div class="journeyTrend"><div class="trendHeader"><div><h4>阶段化趋势图：情绪强度 vs 信任水平</h4><p class="muted">每个阶段都对应一个时间窗口、一个核心心理问题和若干证据。红条越长代表情绪强度越高，蓝条越长代表对官方信任越高。</p></div></div>${stages.map((s,i)=>`<article class="journeyStage"><div class="stageIndex">${i+1}</div><div class="stageBody"><div class="stageTop"><div><b>${s.stage}</b><span>${s.time}</span></div><em>${s.emotion}</em></div><div class="stageBars"><label>情绪强度</label><div class="bar"><i class="emotion" style="width:${s.emotionScore}%"></i></div><strong>${s.emotionScore}</strong><label>信任水平</label><div class="bar"><i class="trust" style="width:${s.trustScore}%"></i></div><strong>${s.trustScore}</strong></div><p>${s.psychology}</p><div class="coreQ">核心问题：${s.coreQuestion}</div><div class="stageEvidence">${(s.evidence||[]).map(e=>`<a target="_blank" href="${e.url}"><div class="evidenceMeta"><span>${e.type}</span>${e.platform?`<b>${e.platform}</b>`:''}${e.time?`<b>${e.time}</b>`:''}${e.sourceType?`<b>${e.sourceType}</b>`:''}</div><strong>${e.text}</strong>${e.sourceTitle?`<small>出处：${e.sourceTitle}</small>`:''}${e.heat?`<small>热度：${e.heat}</small>`:''}</a>`).join('')}</div></div></article>`).join('')}</div>`;
+  return `<div class="journeyTrend"><div class="trendHeader"><div><h4>玩家情绪强度趋势图</h4><p class="muted">横轴为事件阶段，纵轴为玩家情绪强度。折线越高，代表该阶段玩家愤怒、质疑和行动化倾向越强。</p></div></div>${renderEmotionLineChart(stages)}${stages.map((s,i)=>`<article class="journeyStage"><div class="stageIndex">${i+1}</div><div class="stageBody"><div class="stageTop"><div><b>${s.stage}</b><span>${s.time}</span></div><em>${s.emotion}</em></div><div class="stageBars"><label>情绪强度</label><div class="bar"><i class="emotion" style="width:${s.emotionScore}%"></i></div><strong>${s.emotionScore}</strong><label>信任水平</label><div class="bar"><i class="trust" style="width:${s.trustScore}%"></i></div><strong>${s.trustScore}</strong></div><p>${s.psychology}</p><div class="coreQ">核心问题：${s.coreQuestion}</div><div class="stageEvidence">${(s.evidence||[]).map(e=>`<a target="_blank" href="${e.url}"><div class="evidenceMeta"><span>${e.type}</span>${e.platform?`<b>${e.platform}</b>`:''}${e.time?`<b>${e.time}</b>`:''}${e.sourceType?`<b>${e.sourceType}</b>`:''}</div><strong>${e.text}</strong>${e.sourceTitle?`<small>出处：${e.sourceTitle}</small>`:''}${e.heat?`<small>热度：${e.heat}</small>`:''}</a>`).join('')}</div></div></article>`).join('')}</div>`;
+}
+
+
+function renderEmotionLineChart(stages){
+  const W=920,H=300,padL=56,padR=28,padT=28,padB=76;
+  const innerW=W-padL-padR,innerH=H-padT-padB;
+  const x=i=>padL+(stages.length===1?innerW/2:(innerW*i/(stages.length-1)));
+  const y=v=>padT+innerH-(Math.max(0,Math.min(100,v))/100)*innerH;
+  const points=stages.map((s,i)=>`${x(i)},${y(s.emotionScore)}`).join(' ');
+  const area=`${padL},${padT+innerH} ${points} ${padL+innerW},${padT+innerH}`;
+  const grid=[0,25,50,75,100];
+  return `<div class="lineChartWrap"><svg class="emotionLineChart" viewBox="0 0 ${W} ${H}" role="img" aria-label="玩家情绪强度趋势图">
+    <defs><linearGradient id="emotionArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a32d2d" stop-opacity="0.22"/><stop offset="1" stop-color="#a32d2d" stop-opacity="0.02"/></linearGradient></defs>
+    ${grid.map(g=>`<line x1="${padL}" y1="${y(g)}" x2="${padL+innerW}" y2="${y(g)}" class="grid"/><text x="${padL-12}" y="${y(g)+4}" class="axisLabel" text-anchor="end">${g}</text>`).join('')}
+    <line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+innerH}" class="axis"/><line x1="${padL}" y1="${padT+innerH}" x2="${padL+innerW}" y2="${padT+innerH}" class="axis"/>
+    <text x="18" y="${padT+innerH/2}" class="axisTitle" transform="rotate(-90 18 ${padT+innerH/2})">玩家情绪强度</text>
+    <polygon points="${area}" fill="url(#emotionArea)"/>
+    <polyline points="${points}" class="emotionLine" fill="none"/>
+    ${stages.map((s,i)=>`<g class="point"><line x1="${x(i)}" y1="${y(s.emotionScore)}" x2="${x(i)}" y2="${padT+innerH}" class="guide"/><circle cx="${x(i)}" cy="${y(s.emotionScore)}" r="6"/><text x="${x(i)}" y="${y(s.emotionScore)-12}" class="score" text-anchor="middle">${s.emotionScore}</text><text x="${x(i)}" y="${padT+innerH+24}" class="stageLabel" text-anchor="middle">阶段${i+1}</text><text x="${x(i)}" y="${padT+innerH+43}" class="stageTime" text-anchor="middle">${s.time.split('/')[0].trim()}</text></g>`).join('')}
+  </svg><div class="chartLegend">${stages.map((s,i)=>`<span><b>${i+1}</b>${s.stage.replace(/^阶段[一二三四五六七八九十]+：/,'')}</span>`).join('')}</div></div>`;
 }
