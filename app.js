@@ -109,7 +109,7 @@ function renderFeedback(c){
 
 
 function renderPlayerJourney(c){
-  return `<div class="playerLayout"><aside class="tagRail"><h3>认知标签</h3>${c.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</aside><div class="analysisBox"><h3>玩家心路历程与诉求</h3><p class="muted">这一页把“玩家为什么爆发”和“玩家真实反馈”合在一起看：先按阶段还原心理变化，再用对应时间点的证据支撑判断。</p>${renderJourneyStages(c)}<div class="demandGrid"><div class="demand"><b>表层诉求</b><ul>${c.playerNeeds.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="demand"><b>深层诉求</b><ul><li>确认已上线内容不会被无公告修改。</li><li>解释动作调整的需求来源、评估标准和决策链路。</li><li>证明核心玩家长期反馈不会被选择性忽视。</li><li>建立版本分支、需求准入、公告公示和情感资产保护机制。</li><li>用回滚和制度修复信任，而不是只用补偿安抚情绪。</li></ul></div></div><h4>真实损失不是单点功能损失</h4><table class="table"><tr><th>损失类型</th><th>本案体现</th></tr>${c.losses.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table></div></div>${renderFeedback(c)}`;
+  return `<div class="analysisBox fullWidth"><h3>玩家心路历程与诉求</h3><p class="muted">这一页把“玩家为什么爆发”和“玩家真实反馈”合在一起看：先按阶段还原心理变化，再用对应时间点的证据支撑判断。</p>${renderJourneyStages(c)}<div class="demandGrid"><div class="demand"><b>表层诉求</b><ul>${c.playerNeeds.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="demand"><b>深层诉求</b><ul><li>确认已上线内容不会被无公告修改。</li><li>解释动作调整的需求来源、评估标准和决策链路。</li><li>证明核心玩家长期反馈不会被选择性忽视。</li><li>建立版本分支、需求准入、公告公示和情感资产保护机制。</li><li>用回滚和制度修复信任，而不是只用补偿安抚情绪。</li></ul></div></div><h4>真实损失不是单点功能损失</h4><table class="table"><tr><th>损失类型</th><th>本案体现</th></tr>${c.losses.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table></div>${renderFeedback(c)}`;
 }
 
 
