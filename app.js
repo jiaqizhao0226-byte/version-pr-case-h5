@@ -138,7 +138,7 @@ function renderEmotionLineChart(stages){
     <polygon points="${area}" fill="url(#emotionArea)"/>
     <polyline points="${points}" class="emotionLine" fill="none"/>
     ${stages.map((s,i)=>`<g class="point"><line x1="${x(i)}" y1="${y(s.emotionScore)}" x2="${x(i)}" y2="${padT+innerH}" class="guide"/><circle cx="${x(i)}" cy="${y(s.emotionScore)}" r="6"/><text x="${x(i)}" y="${y(s.emotionScore)-12}" class="score" text-anchor="middle">${s.emotionScore}</text>${renderChartStageCallout(s,i,x(i),y(s.emotionScore),padT,padT+innerH)}<text x="${x(i)}" y="${padT+innerH+28}" class="stageLabel" text-anchor="middle">阶段${i+1}</text><text x="${x(i)}" y="${padT+innerH+48}" class="stageTime" text-anchor="middle">${s.time.split('/')[0].trim()}</text></g>`).join('')}
-  </svg><div class="chartLegend">${stages.map((s,i)=>`<span><b>${i+1}</b>${chartStageLabel(s.stage).join('，')}</span>`).join('')}</div></div>`;
+  </svg></div>`;
 }
 
 
