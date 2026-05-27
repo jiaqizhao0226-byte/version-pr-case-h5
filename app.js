@@ -89,13 +89,21 @@ function renderTab(c,id){
   if(id==='players')return renderPlayerJourney(c);
   if(id==='official')return `<div class="block"><h3>官方处置复盘</h3><p class="muted">这次官方处置可以分成两个阶段看：5月22日第一次回应负责“止血”，但没有解释清楚为什么暗改、为什么不直接回退，因此被认为避重就轻；5月24日主策公开信才真正开始回答“为什么发生、谁负责、后续机制怎么改”，所以才让部分玩家愿意继续观察。</p><h4>第一次回应为何失败</h4><table class="table"><tr><th>玩家真正关心</th><th>首次回应</th><th>为什么不买账</th></tr>${c.responseFail.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td><td>${x[2]}</td></tr>`).join('')}</table><h4>官方做对了什么</h4><ul>${c.officialRight.map(x=>`<li>${x}</li>`).join('')}</ul><h4>官方做错了什么</h4><ul>${c.officialWrong.map(x=>`<li>${x}</li>`).join('')}</ul><div class="quote">核心判断：官方后续的主策公开信和补偿加码确实改善了一部分玩家情绪，但第一次回应没有接住玩家真正的不满，导致舆情从“动作争议”继续升级为“信任与解释权危机”。</div></div>`;
   if(id==='data')return `<div class="grid2"><div><div class="block"><h3>B站高赞评论</h3><table class="table"><tr><th>评论</th><th>点赞</th><th>反映心态</th></tr>${c.quotes.map(q=>`<tr><td>${q[0]}</td><td>${q[1]}</td><td>${q[2]}</td></tr>`).join('')}</table></div></div><aside><div class="block"><h3>声量-伤害矩阵</h3><div class="matrix"><div><b>声量</b><p>${c.volume}</p></div><div><b>伤害</b><p>${c.damage}</p></div><div><b>状态</b><p>${c.status}</p></div><div><b>样本</b><p>674条热门评论</p></div></div></div><div class="block source"><h3>来源</h3>${(c.sourceNotes||[]).map(s=>`<div class="sourceItem"><a target="_blank" href="${s.url}">${s.name}</a><p>${s.usage}</p></div>`).join('')||c.sources.map(x=>`<a target="_blank" href="${x}">${x}</a>`).join('')}</div></aside></div>`;
-  if(id==='insight')return `<div class="block"><h3>案例启发：玩家认知变化与未来治理</h3><p class="muted">这一页把“玩家如何重新理解事件”和“未来应该如何预防/处理”放在一起看，避免把洞察和行动拆散。</p><h4>玩家认知变化</h4>${c.cognition.map(x=>`<div class="quote">${x}</div>`).join('')}<h4>被破坏的默认契约</h4><div class="chips">${c.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div><h4>未来启发与治理清单</h4><ul>${c.lessons.map(x=>`<li>${x}</li>`).join('')}</ul>${c.templateValue?`<h4>作为样板案例的价值</h4><table class="table"><tr><th>分析点</th><th>价值</th></tr>${c.templateValue.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table>`:''}<div class="quote">核心判断：本案的启发不是“动作不要改”，而是任何会影响已上线内容、情感资产和玩家解释权的调整，都必须前置公告、说明决策链，并优先准备共存方案。</div></div>`;
+  if(id==='insight')return `<div class="block"><h3>案例启发：玩家认知变化与未来治理</h3><p class="muted">这里承接玩家心路历程，提炼可迁移的认知变化和治理启发。</p>${c.cognitionConclusions?`<h4>玩家认知结论</h4><div class="conclusionGrid">${c.cognitionConclusions.map(x=>`<article><b>${x.title}</b><p>${x.text}</p></article>`).join('')}</div>`:''}<h4>玩家认知变化</h4>${c.cognition.map(x=>`<div class="quote">${x}</div>`).join('')}<h4>被破坏的默认契约</h4><div class="chips">${c.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div><h4>未来启发与治理清单</h4><ul>${c.lessons.map(x=>`<li>${x}</li>`).join('')}</ul>${c.templateValue?`<h4>作为样板案例的价值</h4><table class="table"><tr><th>分析点</th><th>价值</th></tr>${c.templateValue.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table>`:''}<div class="quote">核心判断：本案的启发不是“动作不要改”，而是任何会影响已上线内容、情感资产和玩家解释权的调整，都必须前置公告、说明决策链，并优先准备共存方案。</div></div>`;
 }
 
 init().catch(err=>{
   document.body.innerHTML=`<div class="app"><div class="block"><h3>页面加载失败</h3><p>请通过本地服务器或线上GitHub Pages访问，直接打开file://时浏览器可能会阻止JSON读取。</p><p class="muted">${err.message}</p></div></div>`;
 });
 
+
+
+function renderDemandFunnel(c){
+  const f=c.playerDemandFunnel||{};
+  if(!f.surface&&!f.middle&&!f.deep) return '';
+  const groups=[['表层诉求','玩家直接说出口的要求',f.surface||[]],['中层诉求','玩家希望官方真正解决的问题',f.middle||[]],['深层诉求','玩家想重新确认的关系与契约',f.deep||[]]];
+  return `<div class="demandFunnel"><h4>玩家诉求三层漏斗</h4><div class="funnelGrid">${groups.map((g,i)=>`<section class="funnelLevel level${i+1}"><div class="funnelHead"><b>${g[0]}</b><span>${g[1]}</span></div><ul>${g[2].map(x=>`<li>${x}</li>`).join('')}</ul></section>`).join('')}</div></div>`;
+}
 
 function renderFeedback(c){
   const f=c.feedbackEvidence||{};
@@ -109,8 +117,9 @@ function renderFeedback(c){
 
 
 function renderPlayerJourney(c){
-  return `<div class="analysisBox fullWidth"><h3>玩家心路历程与诉求</h3><p class="muted">这一页把“玩家为什么爆发”和“玩家真实反馈”合在一起看：先按阶段还原心理变化，再用对应时间点的证据支撑判断。</p>${renderJourneyStages(c)}<div class="demandGrid"><div class="demand"><b>表层诉求</b><ul>${c.playerNeeds.map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="demand"><b>深层诉求</b><ul><li>确认已上线内容不会被无公告修改。</li><li>解释动作调整的需求来源、评估标准和决策链路。</li><li>证明核心玩家长期反馈不会被选择性忽视。</li><li>建立版本分支、需求准入、公告公示和情感资产保护机制。</li><li>用回滚和制度修复信任，而不是只用补偿安抚情绪。</li></ul></div></div><h4>真实损失不是单点功能损失</h4><table class="table"><tr><th>损失类型</th><th>本案体现</th></tr>${c.losses.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table></div>${renderFeedback(c)}`;
+  return `<div class="analysisBox fullWidth"><h3>玩家心路历程与诉求</h3><p class="muted">这一页只回答一个问题：玩家情绪为什么一步步升级，又为什么在公开信后只是部分回落。结论性认知放在“案例启发”页，这里聚焦阶段、诉求和证据。</p>${renderJourneyStages(c)}${renderDemandFunnel(c)}<h4>真实损失不是单点功能损失</h4><table class="table"><tr><th>损失类型</th><th>本案体现</th></tr>${c.losses.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table></div>`;
 }
+
 
 
 function renderJourneyStages(c){
@@ -118,8 +127,9 @@ function renderJourneyStages(c){
   if(!stages.length){
     return `<div class="psySteps"><div><b>1 发现异常</b>动作、表情、骑乘、生态与S1不一致。</div><div><b>2 定性暗改</b>变化不是公告得知，而是玩家自己扒出来。</div><div><b>3 翻旧账</b>平衡、回溯、养成、PVE影响一起被激活。</div><div><b>4 信任受损</b>从“改了什么”变成“以后还会不会改”。</div></div>`;
   }
-  return `<div class="journeyTrend"><div class="trendHeader"><div><h4>玩家情绪强度趋势图</h4><p class="muted">横轴为事件阶段，纵轴为玩家情绪强度。折线越高，代表该阶段玩家愤怒、质疑和行动化倾向越强。</p></div></div>${renderEmotionLineChart(stages)}${stages.map((s,i)=>`<article class="journeyStage"><div class="stageIndex">${i+1}</div><div class="stageBody"><div class="stageTop"><div><b>${s.stage}</b><span>${s.time}</span></div><em>${s.emotion}</em></div><div class="stageBars"><label>情绪强度</label><div class="bar"><i class="emotion" style="width:${s.emotionScore}%"></i></div><strong>${s.emotionScore}</strong><label>信任水平</label><div class="bar"><i class="trust" style="width:${s.trustScore}%"></i></div><strong>${s.trustScore}</strong></div><p>${s.psychology}</p><div class="coreQ">核心问题：${s.coreQuestion}</div><div class="stageEvidence">${(s.evidence||[]).map(e=>`<a target="_blank" href="${e.url}"><div class="evidenceMeta"><span>${e.type}</span>${e.platform?`<b>${e.platform}</b>`:''}${e.time?`<b>${e.time}</b>`:''}${e.sourceType?`<b>${e.sourceType}</b>`:''}</div><strong>${e.text}</strong>${e.sourceTitle?`<small>出处：${e.sourceTitle}</small>`:''}${e.heat?`<small>热度：${e.heat}</small>`:''}</a>`).join('')}</div></div></article>`).join('')}</div>`;
+  return `<div class="journeyTrend"><div class="trendHeader"><div><h4>玩家情绪强度趋势图</h4><p class="muted">横轴为事件阶段，纵轴为玩家情绪强度。折线越高，代表该阶段玩家愤怒、质疑和行动化倾向越强。</p></div></div>${renderEmotionLineChart(stages)}<div class="stageCards">${stages.map((s,i)=>`<article class="journeyStage structured"><div class="stageIndex">${i+1}</div><div class="stageBody"><div class="stageTop"><div><b>${s.stage}</b><span>${s.time}</span></div><em>${s.emotion}</em></div><div class="stageFields"><div><label>核心心理问题</label><p>${s.coreQuestion}</p></div><div><label>触发因素</label><p>${s.trigger||''}</p></div><div><label>主要诉求</label><p>${s.playerDemand||''}</p></div><div><label>阶段分析</label><p>${s.psychology}</p></div><div><label>阶段小结</label><p>${s.stageSummary||''}</p></div></div><div class="stageEvidence"><h5>对应证据</h5>${(s.evidence||[]).map(e=>`<a target="_blank" href="${e.url}"><div class="evidenceMeta"><span>${e.type}</span>${e.platform?`<b>${e.platform}</b>`:''}${e.time?`<b>${e.time}</b>`:''}${e.sourceType?`<b>${e.sourceType}</b>`:''}</div><strong>${e.text}</strong>${e.sourceTitle?`<small>出处：${e.sourceTitle}</small>`:''}${e.heat?`<small>热度：${e.heat}</small>`:''}</a>`).join('')}</div></div></article>`).join('')}</div></div>`;
 }
+
 
 
 function renderEmotionLineChart(stages){
