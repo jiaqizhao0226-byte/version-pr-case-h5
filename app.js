@@ -99,10 +99,18 @@ init().catch(err=>{
 
 
 
+
+function renderEvidenceCard(e){
+  const identity=e.playerId||e.playerName||'公开评论用户';
+  const meta=[e.platform,e.time,e.sourceType].filter(Boolean).join('｜');
+  const source=[e.sourceTitle?`出处：${e.sourceTitle}`:'',e.note?`说明：${e.note}`:''].filter(Boolean).join('｜');
+  return `<a class="commentShot" target="_blank" href="${e.url||'#'}"><div class="commentShotTop"><span class="avatar">${(e.platform||'评').slice(0,1)}</span><div><b>${identity}</b><small>${meta}</small></div></div><div class="commentShotText">${e.text||''}</div>${source?`<div class="commentShotMeta">${source}</div>`:''}<div class="commentShotFoot"><span>${e.heat||'热度待补'}</span><span>点击查看来源</span></div></a>`;
+}
+
 function renderGenderConflict(c){
   const g=c.genderConflictAnalysis;
   if(!g) return '';
-  return `<div class="majorDivider"><span>专题补充</span></div><section class="genderModule"><div class="moduleEyebrow">玩家代表性与社区治理</div><h4>${g.title}</h4><p>${g.summary}</p><div class="genderChain">${(g.chain||[]).map(x=>`<article><b>${x.label}</b><span>${x.text}</span></article>`).join('')}</div><div class="genderTakeaway">${g.keyTakeaway}</div><div class="genderEvidence"><h5>关键证据</h5>${(g.evidence||[]).map(e=>`<a target="_blank" href="${e.url}" class="commentShot"><div class="commentShotTop"><span class="avatar">${(e.platform||'评').slice(0,1)}</span><div><b>${e.playerId||'公开来源'}</b><small>${[e.platform,e.time,e.sourceType].filter(Boolean).join('｜')}</small></div></div><div class="commentShotText">${e.text}</div><div class="commentShotFoot"><span>${e.heat||''}</span><span>查看来源</span></div></a>`).join('')}</div></section><div class="majorDivider bottom"><span>回到玩家诉求归纳</span></div>`;
+  return `<div class="majorDivider"><span>专题补充</span></div><section class="genderModule"><div class="moduleEyebrow">玩家代表性与社区治理</div><h4>${g.title}</h4><p>${g.summary}</p><div class="genderChain">${(g.chain||[]).map(x=>`<article><b>${x.label}</b><span>${x.text}</span></article>`).join('')}</div><div class="genderTakeaway">${g.keyTakeaway}</div><div class="genderEvidence"><h5>关键证据</h5>${(g.evidence||[]).map(e=>renderEvidenceCard(e)).join('')}</div></section><div class="majorDivider bottom"><span>回到玩家诉求归纳</span></div>`;
 }
 
 function renderDemandFunnel(c){
@@ -134,7 +142,7 @@ function renderJourneyStages(c){
   if(!stages.length){
     return `<div class="psySteps"><div><b>1 发现异常</b>动作、表情、骑乘、生态与S1不一致。</div><div><b>2 定性暗改</b>变化不是公告得知，而是玩家自己扒出来。</div><div><b>3 翻旧账</b>平衡、回溯、养成、PVE影响一起被激活。</div><div><b>4 信任受损</b>从“改了什么”变成“以后还会不会改”。</div></div>`;
   }
-  return `<div class="journeyTrend"><div class="trendHeader"><div><h4>玩家情绪强度趋势图</h4><p class="muted">横轴为事件阶段，纵轴为玩家情绪强度。折线越高，代表该阶段玩家愤怒、质疑和行动化倾向越强。</p></div></div>${renderEmotionLineChart(stages)}<div class="stageStoryList">${stages.map((s,i)=>`<article class="stageStory"><header><span>阶段${i+1}</span><div><h4>${s.stage.replace(/^阶段[一二三四五六七八九十]+：/,'')}</h4><p>${s.time}｜${s.emotion}</p></div></header><section class="storyMain"><div class="storyPoint">${s.stageSummary||s.coreQuestion}</div><p><b>玩家怎么想：</b>${s.psychology}</p><p><b>玩家要什么：</b>${s.playerDemand||''}</p><p><b>触发因素：</b>${s.trigger||''}</p></section><section class="storyEvidence"><h5>玩家反馈截图 / 摘录</h5>${(s.evidence||[]).map(e=>`<a class="commentShot" target="_blank" href="${e.url}"><div class="commentShotTop"><span class="avatar">${(e.platform||'评').slice(0,1)}</span><div><b>${e.playerId||'公开评论用户'}</b><small>${[e.platform,e.time,e.sourceType].filter(Boolean).join('｜')}</small></div></div><div class="commentShotText">${e.text}</div><div class="commentShotMeta">${[e.sourceTitle?`出处：${e.sourceTitle}`:'',e.note?`说明：${e.note}`:''].filter(Boolean).join('｜')}</div><div class="commentShotFoot"><span>${e.heat||'热度待补'}</span><span>点击查看来源</span></div></a>`).join('')}</section></article>`).join('')}</div></div>`;
+  return `<div class="journeyTrend"><div class="trendHeader"><div><h4>玩家情绪强度趋势图</h4><p class="muted">横轴为事件阶段，纵轴为玩家情绪强度。折线越高，代表该阶段玩家愤怒、质疑和行动化倾向越强。</p></div></div>${renderEmotionLineChart(stages)}<div class="stageStoryList">${stages.map((s,i)=>`<article class="stageStory"><header><span>阶段${i+1}</span><div><h4>${s.stage.replace(/^阶段[一二三四五六七八九十]+：/,'')}</h4><p>${s.time}｜${s.emotion}</p></div></header><section class="storyMain"><div class="storyPoint">${s.stageSummary||s.coreQuestion}</div><p><b>玩家怎么想：</b>${s.psychology}</p><p><b>玩家要什么：</b>${s.playerDemand||''}</p><p><b>触发因素：</b>${s.trigger||''}</p></section><section class="storyEvidence"><h5>玩家反馈截图 / 摘录</h5>${(s.evidence||[]).map(e=>renderEvidenceCard(e)).join('')}</section></article>`).join('')}</div></div>`;
 }
 
 
