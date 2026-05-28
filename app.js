@@ -113,6 +113,15 @@ function renderGenderConflict(c){
   return `<div class="majorDivider"><span>专题补充</span></div><section class="genderModule"><div class="moduleEyebrow">玩家代表性与社区治理</div><h4>${g.title}</h4><p>${g.summary}</p><div class="genderChain">${(g.chain||[]).map(x=>`<article><b>${x.label}</b><span>${x.text}</span></article>`).join('')}</div><div class="genderTakeaway">${g.keyTakeaway}</div><div class="genderEvidence"><h5>关键证据</h5>${(g.evidence||[]).map(e=>renderEvidenceCard(e)).join('')}</div></section><div class="majorDivider bottom"><span>回到玩家诉求归纳</span></div>`;
 }
 
+
+function renderEmotionSynthesis(c){
+  const s=c.emotionSynthesis||{};
+  const timeline=s.timeline||[];
+  const sources=s.emotionSources||[];
+  const losses=s.lossSummary||(c.losses||[]).map(x=>({type:x[0],text:x[1]}));
+  return `<div class="majorDivider bottom"><span>阶段情绪与诉求归纳</span></div><section class="synthesisModule"><h4>按时间线看：玩家情绪为什么逐步升级</h4><div class="phaseSummaryList">${timeline.map(x=>`<article><div class="phaseMeta"><b>${x.phase}</b><span>${x.time}</span></div><h5>${x.title}</h5><p>${x.summary}</p><em>${x.emotion}</em></article>`).join('')}</div><h4>玩家情绪来源归纳</h4><div class="emotionSourceGrid">${sources.map(x=>`<article><b>${x.name}</b><p>${x.text}</p></article>`).join('')}</div><h4>玩家认为自己损失了什么</h4><div class="lossGrid">${losses.map(x=>`<article><b>${x.type}</b><p>${x.text}</p></article>`).join('')}</div></section>`;
+}
+
 function renderDemandFunnel(c){
   const f=c.playerDemandFunnel||{};
   if(!f.surface&&!f.middle&&!f.deep) return '';
@@ -132,7 +141,7 @@ function renderFeedback(c){
 
 
 function renderPlayerJourney(c){
-  return `<div class="analysisBox fullWidth"><h3>玩家心路历程与诉求</h3><p class="muted">这一页只回答一个问题：玩家情绪为什么一步步升级，又为什么在公开信后只是部分回落。结论性认知放在“案例启发”页，这里聚焦阶段、诉求和证据。</p>${renderJourneyStages(c)}${renderGenderConflict(c)}${renderDemandFunnel(c)}<h4>真实损失不是单点功能损失</h4><table class="table"><tr><th>损失类型</th><th>本案体现</th></tr>${c.losses.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table></div>`;
+  return `<div class="analysisBox fullWidth"><h3>玩家心路历程与诉求</h3><p class="muted">这一页只回答一个问题：玩家情绪为什么一步步升级，又为什么在公开信后只是部分回落。结论性认知放在“案例启发”页，这里聚焦阶段、诉求和证据。</p>${renderJourneyStages(c)}${renderGenderConflict(c)}${renderEmotionSynthesis(c)}</div>`;
 }
 
 
