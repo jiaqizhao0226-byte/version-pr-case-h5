@@ -90,11 +90,20 @@ function tab(id){
 }
 
 function renderTab(c,id){
-  if(id==='timeline')return `<div class="block"><h3>T-window 时间线</h3><div class="timeline">${c.timeline.map(e=>`<div class="event ${e.side}"><div class="time"><span class="side">${e.side==='official'?'官方动作':'玩家动作'}</span>${e.phase} / ${e.time}</div><div class="name">${e.event}</div><div class="impact">${e.impact}</div>${e.links&&e.links.length?`<div class="eventLinks"><span>来源</span>${e.links.map(l=>`<a target="_blank" href="${l.url}">${l.label}</a>`).join('')}</div>`:''}</div>`).join('')}</div></div><div class="block"><h3>T-window记录规则</h3><p class="muted">所有官方单独动作都要拆开：前瞻、上线/热更新、首次回应、修复/回滚、高层公开信、补偿加码、后续机制承诺均单列。玩家侧反应、扒改动、质疑、翻旧账、是否原谅等也要单列到玩家动作侧，不能写在官方动作卡片里。</p></div>`;
+  if(id==='timeline'){
+    const timeline = c.timeline || [];
+    return `<div class="block"><h3>T-window 时间线</h3><div class="timeline">${timeline.map(e=>`<div class="event ${e.side}"><div class="time"><span class="side">${e.side==='official'?'官方动作':'玩家动作'}</span>${e.phase} / ${e.time}</div><div class="name">${e.event}</div><div class="impact">${e.impact}</div>${e.links&&e.links.length?`<div class="eventLinks"><span>来源</span>${e.links.map(l=>`<a target="_blank" href="${l.url}">${l.label}</a>`).join('')}</div>`:''}</div>`).join('')}</div></div><div class="block"><h3>T-window记录规则</h3><p class="muted">所有官方单独动作都要拆开：前瞻、上线/热更新、首次回应、修复/回滚、高层公开信、补偿加码、后续机制承诺均单列。玩家侧反应、扒改动、质疑、翻旧账、是否原谅等也要单列到玩家动作侧，不能写在官方动作卡片里。</p></div>`;
+  }
   if(id==='players')return renderPlayerJourney(c);
   if(id==='official')return renderOfficialResponse(c);
   if(id==='data')return renderImpactQuantification(c);
-  if(id==='insight')return `<div class="block"><h3>案例启发：玩家认知变化与未来治理</h3><p class="muted">这里承接玩家心路历程，提炼可迁移的认知变化和治理启发。</p>${c.cognitionConclusions?`<h4>玩家认知结论</h4><div class="conclusionGrid">${c.cognitionConclusions.map(x=>`<article><b>${x.title}</b><p>${x.text}</p></article>`).join('')}</div>`:''}<h4>玩家认知变化</h4>${c.cognition.map(x=>`<div class="quote">${x}</div>`).join('')}<h4>被破坏的默认契约</h4><div class="chips">${c.tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div><h4>未来启发与治理清单</h4><ul>${c.lessons.map(x=>`<li>${x}</li>`).join('')}</ul>${c.templateValue?`<h4>作为样板案例的价值</h4><table class="table"><tr><th>分析点</th><th>价值</th></tr>${c.templateValue.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table>`:''}<div class="quote">核心判断：本案的启发不是“动作不要改”，而是任何会影响已上线内容、情感资产和玩家解释权的调整，都必须前置公告、说明决策链，并优先准备共存方案。</div></div>`;
+  if(id==='insight'){
+    const cognition=c.cognition||[];
+    const lessons=c.lessons||[];
+    const tags=c.tags||[];
+    const templateValue=c.templateValue||[];
+    return `<div class="block"><h3>案例启发：玩家认知变化与未来治理</h3><p class="muted">这里承接玩家心路历程，提炼可迁移的认知变化和治理启发。</p>${c.cognitionConclusions?`<h4>玩家认知结论</h4><div class="conclusionGrid">${c.cognitionConclusions.map(x=>`<article><b>${x.title}</b><p>${x.text}</p></article>`).join('')}</div>`:''}<h4>玩家认知变化</h4>${cognition.length?cognition.map(x=>`<div class="quote">${x}</div>`).join(''):`<p class="muted">暂无补充认知变化。</p>`}<h4>被破坏的默认契约</h4><div class="chips">${tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div><h4>未来启发与治理清单</h4>${lessons.length?`<ul>${lessons.map(x=>`<li>${x}</li>`).join('')}</ul>`:`<p class="muted">暂无治理清单。</p>`}${templateValue.length?`<h4>作为样板案例的价值</h4><table class="table"><tr><th>分析点</th><th>价值</th></tr>${templateValue.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table>`:''}<div class="quote">核心判断：本案的启发不是“动作不要改”，而是任何会影响已上线内容、情感资产和玩家解释权的调整，都必须前置公告、说明决策链，并优先准备共存方案。</div></div>`;
+  }
 }
 
 init().catch(err=>{
