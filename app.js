@@ -97,13 +97,30 @@ function renderTab(c,id){
   if(id==='players')return renderPlayerJourney(c);
   if(id==='official')return renderOfficialResponse(c);
   if(id==='data')return renderImpactQuantification(c);
-  if(id==='insight'){
-    const cognition=c.cognition||[];
-    const lessons=c.lessons||[];
-    const tags=c.tags||[];
-    const templateValue=c.templateValue||[];
-    return `<div class="block"><h3>案例启发：玩家认知变化与未来治理</h3><p class="muted">这里承接玩家心路历程，提炼可迁移的认知变化和治理启发。</p>${c.cognitionConclusions?`<h4>玩家认知结论</h4><div class="conclusionGrid">${c.cognitionConclusions.map(x=>`<article><b>${x.title}</b><p>${x.text}</p></article>`).join('')}</div>`:''}<h4>玩家认知变化</h4>${cognition.length?cognition.map(x=>`<div class="quote">${x}</div>`).join(''):`<p class="muted">暂无补充认知变化。</p>`}<h4>被破坏的默认契约</h4><div class="chips">${tags.map(t=>`<span class="chip">${t}</span>`).join('')}</div><h4>未来启发与治理清单</h4>${lessons.length?`<ul>${lessons.map(x=>`<li>${x}</li>`).join('')}</ul>`:`<p class="muted">暂无治理清单。</p>`}${templateValue.length?`<h4>作为样板案例的价值</h4><table class="table"><tr><th>分析点</th><th>价值</th></tr>${templateValue.map(x=>`<tr><td>${x[0]}</td><td>${x[1]}</td></tr>`).join('')}</table>`:''}<div class="quote">核心判断：本案的启发不是“动作不要改”，而是任何会影响已上线内容、情感资产和玩家解释权的调整，都必须前置公告、说明决策链，并优先准备共存方案。</div></div>`;
+  if(id==='insight')return renderInsight(c);
+}
+
+function renderInsight(c){
+  const insight = c.insight || null;
+  if(!insight){
+    const cognition=(c.cognitionConclusions||[]).concat((c.cognition||[]).map(x=>({title:'玩家认知变化',text:x})));
+    const lessons=(c.lessons||[]).map(x=>({title:x,text:''}));
+    const templateValue=(c.templateValue||[]).map(x=>({scenario:x[0],value:x[1]}));
+    return renderInsightContent({
+      coreTakeaway:'本案启发仍使用旧字段渲染，建议补充 insight 结构以减少重复。',
+      playerCognitionChanges:cognition,
+      operationLessons:lessons,
+      transferableValue:templateValue
+    });
   }
+  return renderInsightContent(insight);
+}
+
+function renderInsightContent(insight){
+  const playerChanges = insight.playerCognitionChanges || [];
+  const operationLessons = insight.operationLessons || [];
+  const transferableValue = insight.transferableValue || [];
+  return `<div class="block insightPage"><h3>案例启发：核心判断、玩家认知与治理启发</h3><p class="muted">这一页只保留可迁移的结论，避免重复描述事件经过、玩家情绪和官方处置。</p><div class="quote"><b>核心启发：</b>${insight.coreTakeaway||'暂无核心启发。'}</div><h4>玩家认知变化</h4><div class="conclusionGrid">${playerChanges.map(x=>`<article><b>${x.title}</b><p>${x.text}</p></article>`).join('')}</div><h4>运营治理启发</h4><div class="conclusionGrid">${operationLessons.map(x=>`<article><b>${x.title}</b><p>${x.text}</p></article>`).join('')}</div><h4>可迁移模板价值</h4><table class="table"><tr><th>适用场景</th><th>复用价值</th></tr>${transferableValue.map(x=>`<tr><td>${x.scenario}</td><td>${x.value}</td></tr>`).join('')}</table></div>`;
 }
 
 init().catch(err=>{
