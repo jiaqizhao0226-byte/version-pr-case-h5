@@ -132,7 +132,7 @@ function renderDetail(c){
   const tabs=[
     ['timeline','T-Window 时间线'],
     ['players','核心矛盾与玩家痛点'],
-    ['insight','官方动作复盘与事后诸葛亮']
+    ['insight','官方动作复盘与应对启发']
   ];
   $('tabs').innerHTML=tabs.map((x,i)=>`<button class="tab ${i===0?'active':''}" onclick="tab('${x[0]}')">${x[1]}</button>`).join('');
   $('tabContent').innerHTML=tabs.map((x,i)=>`<section class="tabPanel ${i===0?'active':''}" id="tab-${x[0]}">${renderTab(c,x[0])}</section>`).join('');
@@ -141,7 +141,7 @@ function renderDetail(c){
 function tab(id){
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.tabPanel').forEach(x=>x.classList.remove('active'));
-  const names={timeline:'T-Window 时间线',players:'核心矛盾与玩家痛点',insight:'官方动作复盘与事后诸葛亮'};
+  const names={timeline:'T-Window 时间线',players:'核心矛盾与玩家痛点',insight:'官方动作复盘与应对启发'};
   [...document.querySelectorAll('.tab')].find(x=>x.textContent===names[id]).classList.add('active');
   $(`tab-${id}`).classList.add('active');
 }
@@ -193,7 +193,7 @@ function renderInsight(c){
          </div>
        </div>
 
-       <h3 style="margin-bottom: 16px;">PR应对建议 (事后诸葛亮) 与核心启发</h3>
+       <h3 style="margin-bottom: 16px;">PR 应对建议与核心启发</h3>
        <div class="conclusionGrid" style="display:grid; gap:16px;">
          ${c.analysis.takeaways.map((x,i)=>`<article style="background:var(--soft); padding:16px; border-radius:12px; border:1px solid var(--line);"><b>💡 启发 ${i+1}</b><p style="margin-top:8px; margin-bottom:0; font-size:15px;">${x.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</p></article>`).join('')}
        </div>
