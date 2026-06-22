@@ -149,7 +149,7 @@ function tab(id){
 function renderTab(c,id){
   if(id==='timeline'){
     const timeline = c.timeline || [];
-    return `<div class="block"><h3>时间线还原</h3><div class="timeline">${timeline.map(e=>`<div class="event both" style="width:100%; margin-left:0; max-width:800px;"><div class="time">${e.date||''}</div><div class="name">${e.event}</div><div class="impact" style="margin-top:8px;">${e.description||''}</div></div>`).join('')}</div></div>`;
+    return `<div class="block"><h3>时间线还原 (官方 vs 玩家动作)</h3><div class="timeline">${timeline.map(e=>`<div class="event ${e.side||'player'}"><div class="time"><span class="side" style="margin-right:8px; font-weight:bold; color:${e.side==='official'?'var(--red)':'var(--blue)'}">${e.side==='official'?'官方动作':'玩家动作'}</span>${e.date||''}</div><div class="name">${e.event}</div><div class="impact" style="margin-top:8px;">${e.description||''}</div></div>`).join('')}</div></div>`;
   }
   if(id==='players') return renderPlayerJourney(c);
   if(id==='insight') return renderInsight(c);
