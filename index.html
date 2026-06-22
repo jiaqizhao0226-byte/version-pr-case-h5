@@ -9,6 +9,7 @@
 <body>
 <div class="app">
   
+  
   <header class="top">
     <div class="brand">
       <div class="logo"></div>
@@ -19,6 +20,27 @@
     </div>
     <div class="pill">Dashboard / case detail / H5</div>
   </header>
+
+  <nav class="mainNav">
+    <button onclick="switchMainTab('dashboard')" id="nav-dashboard" class="active">案例库大盘</button>
+    <button onclick="switchMainTab('mapping')" id="nav-mapping">全部案例 Mapping</button>
+    <button onclick="switchMainTab('conclusions')" id="nav-conclusions">结论与标签梳理</button>
+  </nav>
+
+  <main id="mapping" style="display:none">
+    <section class="card heroMain" style="margin-bottom:20px;">
+      <h2>全部案例 Mapping (伤害与声量分布)</h2>
+      <p class="muted">预留空间：后续将在这里填入案例的声量与伤害分布矩阵、玩家真实声音与噪音的区分、以及核心体验影响度分析。</p>
+    </section>
+  </main>
+
+  <main id="conclusions" style="display:none">
+    <section class="card heroMain" style="margin-bottom:20px;">
+      <h2>结论梳理与核心矛盾标签</h2>
+      <p class="muted">预留空间：后续将在这里梳理提炼出的公关标签（如“核心资产剥夺”、“性别争议”等），并针对官方实际PR动作进行“得与失”的横向对比与总结。</p>
+    </section>
+  </main>
+
 
   <nav class="mainNav">
     <button onclick="switchMainTab('dashboard')" id="nav-dashboard" class="active">案例库大盘</button>
@@ -58,6 +80,12 @@
         <select id="type" class="control"><option value="">全部类型</option></select>
         <select id="cognition" class="control"><option value="">全部认知标签</option></select>
       </div>
+    </section>
+
+    
+    <div class="sectionTitle"><h2>现有案例 Mapping 与公关应对评判</h2></div>
+    <section class="mappingTableWrap" style="overflow-x:auto; margin-bottom: 24px;">
+      <table class="table" id="mappingTable" style="background:#fff; border-radius:12px; overflow:hidden;"></table>
     </section>
 
     <div class="sectionTitle"><h2>案例格子</h2><div class="count" id="resultCount"></div></div>

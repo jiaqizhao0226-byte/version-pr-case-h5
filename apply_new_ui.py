@@ -1,54 +1,61 @@
-let caseSummaries=[];
-let currentCase=null;
+import re
 
-const $=id=>document.getElementById(id);
-const uniq=a=>[...new Set(a.filter(Boolean))].sort();
-const splitType=v=>(v||'').split('/').map(x=>x.trim()).filter(Boolean);
-const sevClass=v=>(v||'').includes('S')?'s':((v||'').includes('A')?'a':'s');
+# 1. Update index.html
+with open('/tmp/version-pr-case-h5/index.html', 'r') as f:
+    html = f.read()
 
-async function loadJson(url){
-  const res=await fetch(url,{cache:'no-store'});
-  if(!res.ok) throw new Error(`${url} ${res.status}`);
-  return res.json();
-}
+new_header = """
+  <header class="top">
+    <div class="brand">
+      <div class="logo"></div>
+      <div>
+        <h1>游戏版本舆情洞察与案例库</h1>
+        <div class="sub">14 个典型游戏舆情案例深挖与公关复盘</div>
+      </div>
+    </div>
+    <div class="pill">Dashboard / case detail / H5</div>
+  </header>
 
-async function init(){
-  caseSummaries=await loadJson('./data/cases.json');
-  fillFilters();
-  bindFilters();
-  route();
-  addEventListener('hashchange',route);
-}
+  <nav class="mainNav">
+    <button onclick="switchMainTab('dashboard')" id="nav-dashboard" class="active">案例库大盘</button>
+    <button onclick="switchMainTab('mapping')" id="nav-mapping">全部案例 Mapping</button>
+    <button onclick="switchMainTab('conclusions')" id="nav-conclusions">结论与标签梳理</button>
+  </nav>
 
-function fillFilters(){
-  const groups=[['market',uniq(caseSummaries.map(c=>c.market))],['type',uniq(caseSummaries.flatMap(c=>splitType(c.type)))],['cognition',uniq(caseSummaries.flatMap(c=>c.tags||[]))]];
-  groups.forEach(([id,items])=>{
-    const el=$(id);
-    items.forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;el.appendChild(o)});
-  });
-}
+  <main id="mapping" style="display:none">
+    <section class="card heroMain" style="margin-bottom:20px;">
+      <h2>全部案例 Mapping (伤害与声量分布)</h2>
+      <p class="muted">预留空间：后续将在这里填入案例的声量与伤害分布矩阵、玩家真实声音与噪音的区分、以及核心体验影响度分析。</p>
+    </section>
+  </main>
 
-function bindFilters(){['q','market','type','cognition'].forEach(id=>$(id).addEventListener('input',renderGrid));}
+  <main id="conclusions" style="display:none">
+    <section class="card heroMain" style="margin-bottom:20px;">
+      <h2>结论梳理与核心矛盾标签</h2>
+      <p class="muted">预留空间：后续将在这里梳理提炼出的公关标签（如“核心资产剥夺”、“性别争议”等），并针对官方实际PR动作进行“得与失”的横向对比与总结。</p>
+    </section>
+  </main>
+"""
 
-function filtered(){
-  const q=$('q').value.trim().toLowerCase(),m=$('market').value,t=$('type').value,cg=$('cognition').value;
-  return caseSummaries.filter(c=>{
-    const hay=[c.title,c.game,c.company,c.market,c.type,c.summary,...(c.tags||[])].join(' ').toLowerCase();
-    return(!q||hay.includes(q))&&(!m||c.market===m)&&(!t||splitType(c.type).includes(t))&&(!cg||(c.tags||[]).includes(cg));
-  });
-}
+# Replace existing header
+html = re.sub(r'<header class="top">[\s\S]*?</header>', new_header, html)
+# Add mapping table into dashboard
+mapping_table = """
+    <div class="sectionTitle"><h2>现有案例 Mapping 与公关应对评判</h2></div>
+    <section class="mappingTableWrap" style="overflow-x:auto; margin-bottom: 24px;">
+      <table class="table" id="mappingTable" style="background:#fff; border-radius:12px; overflow:hidden;"></table>
+    </section>
+"""
+html = re.sub(r'<div class="sectionTitle"><h2>案例格子</h2><div class="count" id="resultCount"></div></div>', mapping_table + '\n    <div class="sectionTitle"><h2>案例格子</h2><div class="count" id="resultCount"></div></div>', html)
 
-function renderStats(){
-  const list = filtered();
-  const totalSamples = list.reduce((acc, c) => {
-    if (c.id === 'luoke-s2') return acc + 674;
-    if (c.id === 'sanjiaozhou-jail') return acc + 200; // approximate validated sample comments for Delta
-    return acc;
-  }, 0);
-  $('stats').innerHTML=`<div class="stat"><b>${caseSummaries.length}</b><span>当前展示案例</span></div><div class="stat"><b>S</b><span>最高声量</span></div><div class="stat"><b>${totalSamples || '--'}</b><span>已校回评样本</span></div><div class="stat"><b>5</b><span>分析维度页签</span></div>`;
-}
+with open('/tmp/version-pr-case-h5/index.html', 'w') as f:
+    f.write(html)
 
+# 2. Update app.js
+with open('/tmp/version-pr-case-h5/app.js', 'r') as f:
+    js = f.read()
 
+app_patch = """
 function switchMainTab(tabId) {
   document.querySelectorAll('.mainNav button').forEach(b => b.classList.remove('active'));
   const btn = document.getElementById('nav-' + tabId);
@@ -158,7 +165,7 @@ function renderPlayerJourney(c){
        </div>
        <h3>玩家痛点剖析</h3>
        <div class="emotionSourceGrid" style="grid-template-columns: 1fr;">
-         ${c.analysis.player_mindset.map(x=>`<article style="padding:16px;"><p style="font-size:15px; margin:0;">${x.replace(/\*\*(.*?)\*\*/g, '<b style="color:var(--red);">$1</b>')}</p></article>`).join('')}
+         ${c.analysis.player_mindset.map(x=>`<article style="padding:16px;"><p style="font-size:15px; margin:0;">${x.replace(/\\*\\*(.*?)\\*\\*/g, '<b style="color:var(--red);">$1</b>')}</p></article>`).join('')}
        </div>
      </div>`;
   }
@@ -185,7 +192,7 @@ function renderInsight(c){
 
        <h3 style="margin-bottom: 16px;">PR应对建议 (事后诸葛亮) 与核心启发</h3>
        <div class="conclusionGrid" style="display:grid; gap:16px;">
-         ${c.analysis.takeaways.map((x,i)=>`<article style="background:var(--soft); padding:16px; border-radius:12px; border:1px solid var(--line);"><b>💡 启发 ${i+1}</b><p style="margin-top:8px; margin-bottom:0; font-size:15px;">${x.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')}</p></article>`).join('')}
+         ${c.analysis.takeaways.map((x,i)=>`<article style="background:var(--soft); padding:16px; border-radius:12px; border:1px solid var(--line);"><b>💡 启发 ${i+1}</b><p style="margin-top:8px; margin-bottom:0; font-size:15px;">${x.replace(/\\*\\*(.*?)\\*\\*/g, '<b>$1</b>')}</p></article>`).join('')}
        </div>
      </div>`;
   }
@@ -195,3 +202,53 @@ function renderInsight(c){
 init().catch(err=>{
   document.body.innerHTML=`<div class="app"><div class="block"><h3>页面加载失败</h3><p class="muted">${err.message}</p></div></div>`;
 });
+"""
+
+# Replace from renderGrid downwards
+js = re.sub(r'function renderGrid\(\)[\s\S]*', app_patch, js)
+
+with open('/tmp/version-pr-case-h5/app.js', 'w') as f:
+    f.write(js)
+
+# 3. Update style.css to include nav styles
+with open('/tmp/version-pr-case-h5/style.css', 'r') as f:
+    css = f.read()
+
+nav_style = """
+/* Top Navigation Bar */
+.mainNav {
+  display: flex;
+  gap: 16px;
+  background: var(--panel);
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+.mainNav button {
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: 0.2s all;
+}
+.mainNav button:hover {
+  background: var(--soft);
+  color: var(--text);
+}
+.mainNav button.active {
+  background: var(--blueBg);
+  color: var(--blue);
+}
+"""
+css += nav_style
+
+with open('/tmp/version-pr-case-h5/style.css', 'w') as f:
+    f.write(css)
+
