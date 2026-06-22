@@ -20,53 +20,74 @@ async function init(){
   addEventListener('hashchange',route);
 }
 
+
 function fillFilters(){
-  const groups=[['market',uniq(caseSummaries.map(c=>c.market))],['type',uniq(caseSummaries.flatMap(c=>splitType(c.type)))],['cognition',uniq(caseSummaries.flatMap(c=>c.tags||[]))]];
-  groups.forEach(([id,items])=>{
-    const el=$(id);
-    items.forEach(x=>{const o=document.createElement('option');o.value=x;o.textContent=x;el.appendChild(o)});
+  // Matrix
+  const matrixEl = $('matrix');
+  ['高伤害 + 高声量 (核心危机)', '低伤害 + 高声量 (舆论风暴)', '高伤害 + 低声量 (隐性流失)'].forEach(x => {
+    const o=document.createElement('option');o.value=x;o.textContent=x;matrixEl.appendChild(o);
+  });
+  
+  // Voice Nature
+  const voiceNatures = uniq(caseSummaries.map(c => {
+     let v = (c.mapping && c.mapping.voice_nature) || '';
+     if(v.includes('真实痛点')) return '真实痛点';
+     if(v.includes('圈层')) return '圈层噪音/带节奏';
+     return v;
+  }).filter(Boolean));
+  const vnEl = $('voice_nature');
+  voiceNatures.forEach(x => {
+     const o=document.createElement('option');o.value=x;o.textContent=x;vnEl.appendChild(o);
+  });
+
+  // Core Tags
+  const tags = uniq(caseSummaries.flatMap(c => c.tags || []));
+  const tagEl = $('core_tag');
+  tags.forEach(x => {
+     const o=document.createElement('option');o.value=x;o.textContent=x;tagEl.appendChild(o);
   });
 }
 
-function bindFilters(){['q','market','type','cognition'].forEach(id=>$(id).addEventListener('input',renderGrid));}
+function bindFilters(){
+  ['q','matrix','voice_nature','core_tag'].forEach(id=>$(id).addEventListener('input',renderGrid));
+}
 
 function filtered(){
-  const q=$('q').value.trim().toLowerCase(),m=$('market').value,t=$('type').value,cg=$('cognition').value;
+  const q=$('q').value.trim().toLowerCase();
+  const mx=$('matrix').value;
+  const vn=$('voice_nature').value;
+  const ct=$('core_tag').value;
+  
   return caseSummaries.filter(c=>{
     const hay=[c.title,c.game,c.company,c.market,c.type,c.summary,...(c.tags||[])].join(' ').toLowerCase();
-    return(!q||hay.includes(q))&&(!m||c.market===m)&&(!t||splitType(c.type).includes(t))&&(!cg||(c.tags||[]).includes(cg));
+    
+    // Text search
+    if (q && !hay.includes(q)) return false;
+
+    // Matrix check
+    if (mx) {
+      const highVol = c.volume.includes('S') || c.volume.includes('A');
+      // A/S, S, A are high damage. B/A, B are low damage.
+      const highDmg = c.damage.includes('S') || c.damage === 'A';
+      if (mx === '高伤害 + 高声量 (核心危机)' && !(highVol && highDmg)) return false;
+      if (mx === '低伤害 + 高声量 (舆论风暴)' && !(highVol && !highDmg)) return false;
+      if (mx === '高伤害 + 低声量 (隐性流失)' && !(!highVol && highDmg)) return false;
+    }
+
+    // Voice nature check
+    if (vn) {
+      let cvn = (c.mapping && c.mapping.voice_nature) || '';
+      if(cvn.includes('真实痛点')) cvn = '真实痛点';
+      else if(cvn.includes('圈层')) cvn = '圈层噪音/带节奏';
+      if (cvn !== vn) return false;
+    }
+
+    // Core tag check
+    if (ct && !(c.tags || []).includes(ct)) return false;
+
+    return true;
   });
 }
-
-function renderStats(){
-  const list = filtered();
-  const totalSamples = list.reduce((acc, c) => {
-    if (c.id === 'luoke-s2') return acc + 674;
-    if (c.id === 'sanjiaozhou-jail') return acc + 200; // approximate validated sample comments for Delta
-    return acc;
-  }, 0);
-  $('stats').innerHTML=`<div class="stat"><b>${caseSummaries.length}</b><span>当前展示案例</span></div><div class="stat"><b>S</b><span>最高声量</span></div><div class="stat"><b>${totalSamples || '--'}</b><span>已校回评样本</span></div><div class="stat"><b>5</b><span>分析维度页签</span></div>`;
-}
-
-
-function switchMainTab(tabId) {
-  document.querySelectorAll('.mainNav button').forEach(b => b.classList.remove('active'));
-  const btn = document.getElementById('nav-' + tabId);
-  if (btn) btn.classList.add('active');
-  
-  document.getElementById('dashboard').style.display = 'none';
-  if(document.getElementById('mapping')) document.getElementById('mapping').style.display = 'none';
-  if(document.getElementById('conclusions')) document.getElementById('conclusions').style.display = 'none';
-  document.getElementById('detail').style.display = 'none';
-  
-  if (tabId === 'dashboard') {
-    location.hash = '';
-    document.getElementById('dashboard').style.display = 'block';
-  } else {
-    document.getElementById(tabId).style.display = 'block';
-  }
-}
-
 
 function renderGrid(){
   renderStats();
