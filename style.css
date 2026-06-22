@@ -72,3 +72,43 @@
 
 /* typography normalization: keep headings hierarchical, unify body copy */
 :root{--copySize:14px;--copyLine:1.7}body{font-size:var(--copySize)}main p,main li,main td,main th,.heroMain p,.notice,.desc,.muted,.quote,.sourceItem p,.quoteCard p,.quoteAnalysis,.researchNote p,.stageBody p,.coreQ,.stageFields p,.stageFocus p,.stageTwoCol p,.stageTrigger,.stageLead,.stageNarrative p,.storyPoint,.storyMain p,.storyEvidence q,.commentShotText,.genderModule>p,.genderChain span,.genderTakeaway,.phaseSummaryList p,.emotionSourceGrid p,.lossGrid p,.officialIntro p,.officialJudgement,.officialQuoteBlock p,.officialValueGrid li,.officialEffect,.officialDeep .block li,.impactIntro p,.impactMetricGrid p,.impactTimeline p,.damageGrid p,.signalGrid li,.conclusionGrid p,.dataPrinciples span{font-size:var(--copySize)!important;line-height:var(--copyLine)!important}main table{font-size:var(--copySize)}.stageTop span,.stageTop em,.stageBars label,.stageBars strong,.evidenceMeta span,.evidenceMeta b,.commentShotTop small,.commentShotMeta,.commentShotFoot,.phaseMeta span,.impactTimeline em,.damageGrid em,.chartLegend span,.eventLinks a,.eventLinks span,.quoteMeta span,.moduleEyebrow,.majorDivider span{font-size:12px!important;line-height:1.45!important}main h1,main h2,main h3,main h4,main h5,.detailHero h2,.heroMain h2,.sectionTitle h2,.stageStory header h4,.genderModule h4,.synthesisModule h4,.officialStageHead h4,.impactDeep .block h4{line-height:1.28}
+
+/* Top Navigation Bar */
+.mainNav {
+  display: flex;
+  gap: 16px;
+  background: var(--panel);
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+  margin-bottom: 24px;
+  overflow-x: auto;
+}
+.mainNav button {
+  background: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: 0.2s all;
+}
+.mainNav button:hover {
+  background: var(--soft);
+  color: var(--text);
+}
+.mainNav button.active {
+  background: var(--blueBg);
+  color: var(--blue);
+}
+
+/* Beautiful card touches */
+.card, .panel, .block {
+  transition: box-shadow 0.3s ease;
+}
+.card:hover, .panel:hover {
+  box-shadow: 0 12px 40px rgba(44,44,42,0.12);
+}
