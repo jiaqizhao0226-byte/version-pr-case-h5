@@ -125,7 +125,7 @@ function renderDetail(c){
   const tabs=[
     ['timeline','T-Window 时间线'],
     ['players','核心矛盾与玩家痛点'],
-    ['insight','事后诸葛亮与PR复盘']
+    ['insight','官方动作复盘与事后诸葛亮']
   ];
   $('tabs').innerHTML=tabs.map((x,i)=>`<button class="tab ${i===0?'active':''}" onclick="tab('${x[0]}')">${x[1]}</button>`).join('');
   $('tabContent').innerHTML=tabs.map((x,i)=>`<section class="tabPanel ${i===0?'active':''}" id="tab-${x[0]}">${renderTab(c,x[0])}</section>`).join('');
@@ -134,7 +134,7 @@ function renderDetail(c){
 function tab(id){
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.tabPanel').forEach(x=>x.classList.remove('active'));
-  const names={timeline:'T-Window 时间线',players:'核心矛盾与玩家痛点',insight:'事后诸葛亮与PR复盘'};
+  const names={timeline:'T-Window 时间线',players:'核心矛盾与玩家痛点',insight:'官方动作复盘与事后诸葛亮'};
   [...document.querySelectorAll('.tab')].find(x=>x.textContent===names[id]).classList.add('active');
   $(`tab-${id}`).classList.add('active');
 }
