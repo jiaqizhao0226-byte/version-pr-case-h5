@@ -98,17 +98,23 @@ async function route(){
   }
 }
 
+
 function renderDetail(c){
-  $('detailHero').innerHTML=`<div class="sub">${c.game} / ${c.company}</div><h2>${c.title}</h2><p class="muted">${c.oneLine}</p><div class="meta"><span>${c.market}</span><span>${c.time}</span><span>${c.lifecycle}</span><span>声量 ${c.volume}</span><span>伤害 ${c.damage}</span><span>${c.status}</span></div>`;
-  const tabs=[['timeline','时间线'],['players','玩家心路历程'],['official','官方处置'],['data','影响量化'],['insight','案例启发']];
-  $('tabs').innerHTML=tabs.map((x,i)=>`<button class="tab ${i?'':'active'}" onclick="tab('${x[0]}')">${x[1]}</button>`).join('');
-  $('tabContent').innerHTML=tabs.map((x,i)=>`<section class="tabPanel ${i?'':'active'}" id="tab-${x[0]}">${renderTab(c,x[0])}</section>`).join('');
+  $('detailHero').innerHTML=`<div class="sub">${c.game} / ${c.company}</div><h2>${c.title}</h2><div class="meta"><span>${c.market}</span><span>${c.time}</span><span>${c.lifecycle}</span><span>声量 <strong style="color:var(--red);">${c.volume}</strong></span><span>伤害 <strong style="color:var(--red);">${c.damage}</strong></span></div>`;
+  const tabs=[
+    ['timeline','T-Window 时间线'],
+    ['players','核心矛盾与玩家痛点'],
+    ['insight','事后诸葛亮与PR复盘']
+  ];
+  $('tabs').innerHTML=tabs.map((x,i)=>`<button class="tab ${i===0?'active':''}" onclick="tab('${x[0]}')">${x[1]}</button>`).join('');
+  $('tabContent').innerHTML=tabs.map((x,i)=>`<section class="tabPanel ${i===0?'active':''}" id="tab-${x[0]}">${renderTab(c,x[0])}</section>`).join('');
 }
+
 
 function tab(id){
   document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.tabPanel').forEach(x=>x.classList.remove('active'));
-  const names={timeline:'时间线',players:'玩家心路历程',official:'官方处置',data:'影响量化',insight:'案例启发'};
+  const names={timeline:'T-Window 时间线',players:'核心矛盾与玩家痛点',insight:'事后诸葛亮与PR复盘'};
   [...document.querySelectorAll('.tab')].find(x=>x.textContent===names[id]).classList.add('active');
   $(`tab-${id}`).classList.add('active');
 }
