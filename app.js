@@ -87,7 +87,14 @@ function filtered(){
   });
 }
 
+
+function renderStats(){
+  const list = filtered();
+  $('stats').innerHTML=`<div class="stat"><b>${list.length}</b><span>当前展示案例</span></div><div class="stat"><b>S</b><span>最高声量</span></div><div class="stat"><b>14</b><span>收录案例数</span></div><div class="stat"><b>3</b><span>深度复盘维度</span></div>`;
+}
+
 function renderGrid(){
+
   renderStats();
   const list=filtered();
   $('resultCount').textContent=`${list.length} / ${caseSummaries.length} 个案例`;
