@@ -18,11 +18,21 @@ async function loadJson(url){
 }
 
 async function init(){
-  caseSummaries=await loadJson('./data/cases.json');
-  fillFilters();
-  bindFilters();
-  route();
-  addEventListener('hashchange',route);
+  try {
+    caseSummaries=await loadJson('./data/cases.json');
+    fillFilters();
+    bindFilters();
+    route();
+    addEventListener('hashchange',route);
+    
+    // Fallback manual render if route fails to call it
+    if ($('caseGrid') && $('caseGrid').innerHTML.trim() === '') {
+       renderGrid();
+    }
+  } catch (err) {
+    console.error("Init Error:", err);
+    throw err;
+  }
 }
 
 
