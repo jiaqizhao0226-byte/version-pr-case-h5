@@ -148,13 +148,13 @@
 /* 2x2 Matrix Chart Styles */
 .matrix-chart-wrap {
   display: flex;
-  margin-top: 10px;
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 16px;
   padding: 16px 24px 12px 12px;
   box-shadow: var(--shadow);
-  max-height: 500px;
+  height: calc(100vh - 280px); /* Fit within screen */
+  min-height: 400px;
 }
 .matrix-y-axis {
   display: flex;
@@ -206,8 +206,8 @@
   background: #fff;
   padding: 16px;
   display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
   position: relative;
   overflow-y: auto;
