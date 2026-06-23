@@ -1,43 +1,9 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260623-1035" />
-</head>
-<body>
-<div class="app">
-  
-  
-  <header class="top">
-    <div class="brand">
-      <div class="logo"></div>
-      <div>
-        <h1>游戏版本舆情洞察与案例库</h1>
-        <div class="sub">14 个典型游戏舆情案例深挖与公关复盘</div>
-      </div>
-    </div>
-    <div class="pill">Dashboard / case detail / H5</div>
-  </header>
+import re
 
-  <nav class="mainNav">
-    <button onclick="switchMainTab('dashboard')" id="nav-dashboard" class="active">案例库大盘</button>
-    <button onclick="switchMainTab('mapping')" id="nav-mapping">全部案例 Mapping</button>
-    <button onclick="switchMainTab('conclusions')" id="nav-conclusions">结论与标签梳理</button>
-  </nav>
+with open('/tmp/version-pr-case-h5/index.html', 'r') as f:
+    html = f.read()
 
-  <main id="mapping" style="display:none">
-    <section class="card heroMain" style="margin-bottom:20px;">
-      <h2>全部案例 Mapping (伤害与声量分布)</h2>
-      <p class="muted">预留空间：后续将在这里填入案例的声量与伤害分布矩阵、玩家真实声音与噪音的区分、以及核心体验影响度分析。</p>
-    </section>
-    <section id="mappingTableContainer" style="overflow-x:auto; margin-bottom: 24px; box-shadow: var(--shadow); border-radius: 12px; border: 1px solid var(--line);"></section>
-  </main>
-
-
-
-
+conclusions_html = """
   <main id="conclusions" style="display:none">
     <section class="card heroMain" style="margin-bottom:20px;">
       <h2>结论梳理与核心矛盾标签</h2>
@@ -104,38 +70,9 @@
 
     </div>
   </main>
+"""
 
+html = re.sub(r'<main id="conclusions" style="display:none">[\s\S]*?</main>', conclusions_html.strip(), html)
 
-    <main id="dashboard">
-    <section class="hero">
-      <div class="card heroMain">
-        <h2>版本舆情案例Dashboard</h2>
-        <p>当前首页已接入多个已深挖案例，用于验证信息架构、对比阅读体验与跨案例复盘逻辑。后续可继续按同一模板扩展更多案例。</p>
-        <div class="notice">筛选器与案例卡片均已支持多案例浏览；后续扩展时，只需要新增 cases/*.json 并更新 data/cases.json。</div>
-      </div>
-      <div class="stats" id="stats"></div>
-    </section>
-
-    <section class="panel filters">
-      <div class="filterGrid">
-        <input id="q" class="control" placeholder="搜索案例、标签、游戏名" />
-        <select id="matrix" class="control"><option value="">全部声量与伤害</option></select>
-        <select id="voice_nature" class="control"><option value="">全部声音性质</option></select>
-        <select id="core_tag" class="control"><option value="">全部核心矛盾标签</option></select>
-      </div>
-    </section>
-
-    <div class="sectionTitle"><h2>案例格子</h2><div class="count" id="resultCount"></div></div>
-    <section class="caseGrid" id="caseGrid"></section>
-  </main>
-
-  <main id="detail" class="detail">
-    <button class="back" onclick="goHome()">返回Dashboard</button>
-    <section class="card detailHero" id="detailHero"></section>
-    <nav class="tabs" id="tabs"></nav>
-    <section id="tabContent"></section>
-  </main>
-</div>
-<script src="./app.js?v=20260623-1035"></script>
-</body>
-</html>
+with open('/tmp/version-pr-case-h5/index.html', 'w') as f:
+    f.write(html)
