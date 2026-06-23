@@ -183,14 +183,13 @@ function renderMatrixChart(list) {
   list.forEach(c => {
     const vol = c.volume || '';
     const dmg = c.damage || '';
-    const highVol = vol.includes('S') || vol.includes('A');
-    const highDmg = dmg.includes('S') || dmg === 'A' || dmg === 'A/S';
     
-    // Y-axis = Damage, X-axis = Volume
-    // Top-Left (Q2): High Dmg, Low Vol (隐性流失)
-    // Top-Right (Q1): High Dmg, High Vol (核心危机)
-    // Bottom-Left (Q4): Low Dmg, Low Vol (常规客诉)
-    // Bottom-Right (Q3): Low Dmg, High Vol (舆论风暴)
+    // To create a meaningful distribution out of our 14 major cases:
+    // Volume S -> High Vol, Volume A/B -> Low Vol
+    // Damage S or A/S -> High Dmg, Damage A/B -> Low Dmg
+    
+    const highVol = vol.includes('S'); 
+    const highDmg = dmg.includes('S') || dmg === 'A/S';
     
     if (highDmg && highVol) q1.push(c);
     else if (highDmg && !highVol) q2.push(c);
