@@ -7,9 +7,14 @@ const splitType=v=>(v||'').split('/').map(x=>x.trim()).filter(Boolean);
 const sevClass=v=>typeof v==='string'?(v.includes('S')?'s':(v.includes('A')?'a':'s')):'s';
 
 async function loadJson(url){
-  const res=await fetch(url,{cache:'no-store'});
-  if(!res.ok) throw new Error(`${url} ${res.status}`);
-  return res.json();
+  try {
+    const res=await fetch(url,{cache:'no-store'});
+    if(!res.ok) throw new Error(`${url} returned status ${res.status}`);
+    return await res.json();
+  } catch (err) {
+    console.error("Failed to load: " + url, err);
+    throw err;
+  }
 }
 
 async function init(){
@@ -258,5 +263,6 @@ function renderInsight(c){
 }
 
 init().catch(err=>{
-  document.body.innerHTML=`<div class="app"><div class="block"><h3>页面加载失败</h3><p class="muted">${err.message}</p></div></div>`;
+  console.error("Initialization error:", err);
+  document.body.innerHTML=`<div class="app"><div class="block"><h3 style="color:red;">页面加载失败</h3><p class="muted">如果在本地访问，请使用 HTTP 服务器 (如 VSCode Live Server) 打开，直接双击文件会因为 CORS 被拦截。</p><p style="color:red; font-family:monospace; background:#f5f5f5; padding:10px;">${err.message}</p><p>请打开 F12 控制台查看详细报错。</p></div></div>`;
 });
