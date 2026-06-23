@@ -74,12 +74,44 @@ function fillFilters(){
      const o=document.createElement('option');o.value=x;o.textContent=x;vnEl.appendChild(o);
   });
 
-  // Core Tags
-  const tags = uniq(caseSummaries.flatMap(c => c.tags || []));
+  // Core Tags grouped
+  const tagCategories = {
+    '💰 利益受损 (硬核矛盾)': ['核心资产剥夺', '底层契约撕毁', '教玩家玩游戏', '预期管理失败', '产品硬伤', '逼氪背刺', '商业化暴雷', '商业欺诈', '变相削弱', '数值造假', '战令经济学', '强制法币氪金', '无差别削弱', '剥夺爽感', '资产清零焦虑', '暗改难度', '玩法契约破坏'],
+    '🎭 情感与价值观 (文化冲突)': ['价值观冲突', '情感背叛/OOC', '性别争议', '性别对立', '破圈反噬', '男凝争议', '软色情争议', '违背初心', '区域区别对待', '信任危机', '平民与硬核分歧'],
+    '⚔️ 公关应对与玩家反制': ['光速滑跪', '滑跪标杆', '天价补偿', '冷处理傲慢', '公关装死', '发疯反噬', '差评轰炸', '全球差评轰炸', '律师函维权', '全额退款', '法律风险', '按闹分配', '粗暴执法封号', '直播道歉', '光速改底座']
+  };
+
   const tagEl = $('core_tag');
-  tags.forEach(x => {
-     const o=document.createElement('option');o.value=x;o.textContent=x;tagEl.appendChild(o);
-  });
+  tagEl.innerHTML = '<option value="">全部核心矛盾标签</option>'; // reset
+  
+  // To collect all unique tags from cases
+  const allTags = uniq(caseSummaries.flatMap(c => c.tags || []));
+  let placedTags = new Set();
+
+  for (const [groupName, groupTags] of Object.entries(tagCategories)) {
+    const optgroup = document.createElement('optgroup');
+    optgroup.label = groupName;
+    let added = false;
+    groupTags.forEach(t => {
+      if (allTags.includes(t)) {
+        const o=document.createElement('option');o.value=t;o.textContent=t;optgroup.appendChild(o);
+        placedTags.add(t);
+        added = true;
+      }
+    });
+    if (added) tagEl.appendChild(optgroup);
+  }
+
+  // Handle any orphan tags that didn't match the dictionary
+  const orphanTags = allTags.filter(t => !placedTags.has(t));
+  if (orphanTags.length > 0) {
+    const optgroup = document.createElement('optgroup');
+    optgroup.label = '📌 其他标签';
+    orphanTags.forEach(t => {
+      const o=document.createElement('option');o.value=t;o.textContent=t;optgroup.appendChild(o);
+    });
+    tagEl.appendChild(optgroup);
+  }
 }
 
 function bindFilters(){
