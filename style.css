@@ -283,3 +283,35 @@
   .matrix-x-axis, .matrix-y-axis { display: none; }
   .matrix-chart-wrap { padding: 12px; }
 }
+
+/* Bubble Colors by Voice Nature */
+.bubble-real { background: #fff5f5; color: #c53030; border-color: #feb2b2; }
+.bubble-real:hover { background: #c53030; color: #fff; }
+
+.bubble-noise { background: #f5f3ff; color: #553c9a; border-color: #d6bcfa; }
+.bubble-noise:hover { background: #553c9a; color: #fff; }
+
+.bubble-other { background: #f7fafc; color: #4a5568; border-color: #e2e8f0; }
+.bubble-other:hover { background: #718096; color: #fff; }
+
+.matrix-legend {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1px solid;
+}
+.legend-color.real { background: #fff5f5; border-color: #feb2b2; }
+.legend-color.noise { background: #f5f3ff; border-color: #d6bcfa; }
