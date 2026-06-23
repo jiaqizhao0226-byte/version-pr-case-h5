@@ -6,6 +6,25 @@ const uniq=a=>[...new Set(a.filter(Boolean))].sort();
 const splitType=v=>(v||'').split('/').map(x=>x.trim()).filter(Boolean);
 const sevClass=v=>typeof v==='string'?(v.includes('S')?'s':(v.includes('A')?'a':'s')):'s';
 
+function switchMainTab(tabId) {
+  document.querySelectorAll('.mainNav button').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('nav-' + tabId);
+  if (btn) btn.classList.add('active');
+  
+  if(document.getElementById('dashboard')) document.getElementById('dashboard').style.display = 'none';
+  if(document.getElementById('mapping')) document.getElementById('mapping').style.display = 'none';
+  if(document.getElementById('conclusions')) document.getElementById('conclusions').style.display = 'none';
+  if(document.getElementById('detail')) document.getElementById('detail').style.display = 'none';
+  
+  if (tabId === 'dashboard') {
+    location.hash = '';
+    if(document.getElementById('dashboard')) document.getElementById('dashboard').style.display = 'block';
+  } else {
+    if(document.getElementById(tabId)) document.getElementById(tabId).style.display = 'block';
+  }
+}
+
+
 async function loadJson(url){
   try {
     const res=await fetch(url,{cache:'no-store'});
