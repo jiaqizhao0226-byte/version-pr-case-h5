@@ -16,9 +16,9 @@ function switchMainTab(tabId) {
   if(document.getElementById('conclusions')) document.getElementById('conclusions').style.display = 'none';
   if(document.getElementById('detail')) document.getElementById('detail').style.display = 'none';
   
-  if (tabId === 'dashboard') {
+  if (tabId === 'mapping') {
     location.hash = '';
-    if(document.getElementById('dashboard')) document.getElementById('dashboard').style.display = 'block';
+    if(document.getElementById('mapping')) document.getElementById('mapping').style.display = 'block';
   } else {
     if(document.getElementById(tabId)) document.getElementById(tabId).style.display = 'block';
   }
@@ -247,7 +247,7 @@ function renderGrid(){
 function openCase(id){location.hash=`case=${id}`;}
 function goHome(){
   location.hash='';
-  switchMainTab('dashboard');
+  switchMainTab('mapping');
 }
 
 async function route(){
@@ -269,7 +269,7 @@ async function route(){
     renderDetail(currentCase);
     scrollTo(0,0);
   }else{
-    switchMainTab('dashboard');
+    switchMainTab('mapping');
     renderGrid();
   }
 }

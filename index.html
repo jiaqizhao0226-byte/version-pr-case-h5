@@ -22,12 +22,12 @@
   </header>
 
   <nav class="mainNav">
-    <button onclick="switchMainTab('dashboard')" id="nav-dashboard" class="active">案例库大盘</button>
-    <button onclick="switchMainTab('mapping')" id="nav-mapping">全部案例 Mapping</button>
+    <button onclick="switchMainTab('mapping')" id="nav-mapping" class="active">全部案例 Mapping</button>
+    <button onclick="switchMainTab('dashboard')" id="nav-dashboard">案例库大盘</button>
     <button onclick="switchMainTab('conclusions')" id="nav-conclusions">结论与标签梳理</button>
   </nav>
 
-  <main id="mapping" style="display:none">
+  <main id="mapping">
     <section class="card heroMain" style="margin-bottom:20px;">
       <h2>全部案例 Mapping (伤害与声量 2x2 矩阵)</h2>
       <p class="muted">横轴代表舆情声量（低 -> 高），纵轴代表商业伤害（低 -> 高）。点击气泡可直接进入案例详情复盘。</p>
@@ -107,7 +107,7 @@
   </main>
 
 
-    <main id="dashboard">
+    <main id="dashboard" style="display:none">
     <section class="hero">
       <div class="card heroMain">
         <h2>版本舆情案例Dashboard</h2>
