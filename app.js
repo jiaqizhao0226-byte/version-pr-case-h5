@@ -142,7 +142,10 @@ function renderGrid(){
 
 
 function openCase(id){location.hash=`case=${id}`;}
-function goHome(){location.hash='';}
+function goHome(){
+  location.hash='';
+  switchMainTab('dashboard');
+}
 
 async function route(){
   const id=(location.hash.match(/case=([^&]+)/)||[])[1];
