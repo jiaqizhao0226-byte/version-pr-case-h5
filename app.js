@@ -58,7 +58,7 @@ async function init(){
 function fillFilters(){
   // Matrix
   const matrixEl = $('matrix');
-  ['高伤害 + 高声量 (核心危机)', '低伤害 + 高声量 (舆论风暴)', '高伤害 + 低声量 (隐性流失)'].forEach(x => {
+  ['高伤害 + 高声量 (核心危机)', '低伤害 + 高声量 (舆论风暴)', '高伤害 + 低声量 (隐性流失)', '低伤害 + 低声量 (常规客诉)'].forEach(x => {
     const o=document.createElement('option');o.value=x;o.textContent=x;matrixEl.appendChild(o);
   });
   
@@ -149,6 +149,7 @@ function filtered(){
       if (mx === '高伤害 + 高声量 (核心危机)' && !(highVol && highDmg)) return false;
       if (mx === '低伤害 + 高声量 (舆论风暴)' && !(highVol && !highDmg)) return false;
       if (mx === '高伤害 + 低声量 (隐性流失)' && !(!highVol && highDmg)) return false;
+      if (mx === '低伤害 + 低声量 (常规客诉)' && !(!highVol && !highDmg)) return false;
     }
 
     if (vn) {
