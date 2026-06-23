@@ -4,7 +4,7 @@ let currentCase=null;
 const $=id=>document.getElementById(id);
 const uniq=a=>[...new Set(a.filter(Boolean))].sort();
 const splitType=v=>(v||'').split('/').map(x=>x.trim()).filter(Boolean);
-const sevClass=v=>(v||'').includes('S')?'s':((v||'').includes('A')?'a':'s');
+const sevClass=v=>typeof v==='string'?(v.includes('S')?'s':(v.includes('A')?'a':'s')):'s';
 
 async function loadJson(url){
   const res=await fetch(url,{cache:'no-store'});
@@ -53,28 +53,27 @@ function bindFilters(){
 }
 
 function filtered(){
-  const q=$('q').value.trim().toLowerCase();
-  const mx=$('matrix').value;
-  const vn=$('voice_nature').value;
-  const ct=$('core_tag').value;
+  const q=$('q')?$('q').value.trim().toLowerCase():'';
+  const mx=$('matrix')?$('matrix').value:'';
+  const vn=$('voice_nature')?$('voice_nature').value:'';
+  const ct=$('core_tag')?$('core_tag').value:'';
   
   return caseSummaries.filter(c=>{
-    const hay=[c.title,c.game,c.company,c.market,c.type,c.summary,...(c.tags||[])].join(' ').toLowerCase();
+    const hay=[c.title||'',c.game||'',c.company||'',c.market||'',c.type||'',c.summary||'',...(c.tags||[])].join(' ').toLowerCase();
     
-    // Text search
     if (q && !hay.includes(q)) return false;
 
-    // Matrix check
     if (mx) {
-      const highVol = c.volume.includes('S') || c.volume.includes('A');
-      // A/S, S, A are high damage. B/A, B are low damage.
-      const highDmg = c.damage.includes('S') || c.damage === 'A';
+      const vol = c.volume || '';
+      const dmg = c.damage || '';
+      const highVol = vol.includes('S') || vol.includes('A');
+      const highDmg = dmg.includes('S') || dmg === 'A' || dmg === 'A/S';
+      
       if (mx === '高伤害 + 高声量 (核心危机)' && !(highVol && highDmg)) return false;
       if (mx === '低伤害 + 高声量 (舆论风暴)' && !(highVol && !highDmg)) return false;
       if (mx === '高伤害 + 低声量 (隐性流失)' && !(!highVol && highDmg)) return false;
     }
 
-    // Voice nature check
     if (vn) {
       let cvn = (c.mapping && c.mapping.voice_nature) || '';
       if(cvn.includes('真实痛点')) cvn = '真实痛点';
@@ -82,7 +81,6 @@ function filtered(){
       if (cvn !== vn) return false;
     }
 
-    // Core tag check
     if (ct && !(c.tags || []).includes(ct)) return false;
 
     return true;
