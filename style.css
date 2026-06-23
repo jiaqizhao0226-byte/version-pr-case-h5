@@ -206,11 +206,13 @@
   background: #fff;
   padding: 16px;
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  gap: 12px;
   position: relative;
-  overflow-y: auto;
+  overflow: hidden;
 }
 .q-bg-label {
   position: absolute;
