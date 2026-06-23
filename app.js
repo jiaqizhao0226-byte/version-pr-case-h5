@@ -171,38 +171,79 @@ function renderStats(){
   $('stats').innerHTML=`<div class="stat"><b>${list.length}</b><span>当前展示案例</span></div><div class="stat"><b>S</b><span>最高声量</span></div><div class="stat"><b>14</b><span>收录案例数</span></div><div class="stat"><b>3</b><span>深度复盘维度</span></div>`;
 }
 
-function renderGrid(){
+function renderMatrixChart(list) {
+  const container = document.getElementById('matrixChartContainer');
+  if (!container) return;
 
+  const q1 = []; // 核心危机 (High Dmg, High Vol)
+  const q2 = []; // 隐性流失 (High Dmg, Low Vol)
+  const q3 = []; // 舆论风暴 (Low Dmg, High Vol)
+  const q4 = []; // 常规客诉 (Low Dmg, Low Vol)
+
+  list.forEach(c => {
+    const vol = c.volume || '';
+    const dmg = c.damage || '';
+    const highVol = vol.includes('S') || vol.includes('A');
+    const highDmg = dmg.includes('S') || dmg === 'A' || dmg === 'A/S';
+    
+    // Y-axis = Damage, X-axis = Volume
+    // Top-Left (Q2): High Dmg, Low Vol (隐性流失)
+    // Top-Right (Q1): High Dmg, High Vol (核心危机)
+    // Bottom-Left (Q4): Low Dmg, Low Vol (常规客诉)
+    // Bottom-Right (Q3): Low Dmg, High Vol (舆论风暴)
+    
+    if (highDmg && highVol) q1.push(c);
+    else if (highDmg && !highVol) q2.push(c);
+    else if (!highDmg && highVol) q3.push(c);
+    else q4.push(c);
+  });
+
+  const bubble = (c, color) => `<div class="matrix-bubble ${color}" onclick="openCase('${c.id}')" title="伤害 ${c.damage} / 声量 ${c.volume}&#10;${c.game}">${c.title}</div>`;
+
+  container.innerHTML = `
+    <div class="matrix-chart-wrap">
+      <div class="matrix-y-axis"><span>高<br>伤<br>害</span><span>低<br>伤<br>害</span></div>
+      <div class="matrix-content">
+        <div class="matrix-chart">
+          
+          <!-- Top Left: High Damage, Low Volume -->
+          <div class="matrix-quad q2">
+            <div class="q-bg-label">隐性流失</div>
+            ${q2.map(c=>bubble(c, 'b-blue')).join('')}
+          </div>
+          
+          <!-- Top Right: High Damage, High Volume -->
+          <div class="matrix-quad q1">
+            <div class="q-bg-label">核心危机</div>
+            ${q1.map(c=>bubble(c, 'b-red')).join('')}
+          </div>
+
+          <!-- Bottom Left: Low Damage, Low Volume -->
+          <div class="matrix-quad q4">
+            <div class="q-bg-label">常规客诉</div>
+            ${q4.map(c=>bubble(c, 'b-gray')).join('')}
+          </div>
+
+          <!-- Bottom Right: Low Damage, High Volume -->
+          <div class="matrix-quad q3">
+            <div class="q-bg-label">舆论风暴</div>
+            ${q3.map(c=>bubble(c, 'b-amber')).join('')}
+          </div>
+
+        </div>
+        <div class="matrix-x-axis"><span style="padding-left:20px;">低声量</span><span style="padding-right:20px;">高声量</span></div>
+      </div>
+    </div>
+  `;
+}
+
+function renderGrid(){
   renderStats();
+  renderMatrixChart(filtered());
   const list=filtered();
   $('resultCount').textContent=`${list.length} / ${caseSummaries.length} 个案例`;
   $('caseGrid').innerHTML=list.map(c=>`<article class="card caseCard" onclick="openCase('${c.id}')"><div class="caseHead"><div><div class="caseTitle">${c.title}</div><div class="game">${c.game} / ${c.company}</div></div><span class="badge ${sevClass(c.damage)}" title="伤害等级">伤害 ${c.damage}</span></div><div class="desc">${c.summary}</div><div class="chips">${(c.tags||[]).map(t=>`<span class="chip">${t}</span>`).join('')}</div><div class="foot"><span>${c.market}</span><span>${c.time}</span></div></article>`).join('');
-  
-  // Render mapping table inside the dedicated mapping tab if it exists
-  const mappingTableWrap = document.getElementById('mappingTableContainer');
-  if (mappingTableWrap) {
-    const tableHtml = `<table class="table" style="background:#fff; border-radius:12px; overflow:hidden; width:100%;"><tr>
-      <th>案例名称</th>
-      <th>伤害 / 声量</th>
-      <th>声音性质</th>
-      <th>影响核心体验</th>
-      <th>核心矛盾 Tag</th>
-      <th>PR 实际应对与评判</th>
-    </tr>` + list.map(c => {
-      const m = c.mapping || {};
-      return `<tr>
-        <td style="font-weight:bold; cursor:pointer; color:#0052d9;" onclick="openCase('${c.id}')">${c.title}</td>
-        <td><span class="badge ${sevClass(c.damage)}" title="伤害等级">伤害 ${c.damage}</span> / <span class="badge ${sevClass(c.volume)}">${c.volume}</span></td>
-        <td>${m.voice_nature || '-'}</td>
-        <td>${m.core_exp || '-'}</td>
-        <td>${m.core_tag || '-'}</td>
-        <td>${m.pr_eval || '-'}</td>
-      </tr>`;
-    }).join('') + `</table>`;
-    mappingTableWrap.innerHTML = tableHtml;
-  }
 }
-
 
 function openCase(id){location.hash=`case=${id}`;}
 function goHome(){
