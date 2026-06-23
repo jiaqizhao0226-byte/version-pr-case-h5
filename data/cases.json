@@ -34,7 +34,7 @@
     "lifecycle": "公测第一年稳定运营期",
     "type": "宣发实装契约+付费资产受损",
     "volume": "S",
-    "damage": "A",
+    "damage": "S",
     "status": "已深挖样例",
     "tags": [
       "核心资产剥夺/暗改",
@@ -60,7 +60,7 @@
     "lifecycle": "公测第一年稳定运营期",
     "type": "文化/身份节奏主导",
     "volume": "S",
-    "damage": "A",
+    "damage": "B",
     "status": "已深挖样例",
     "tags": [
       "价值观/圈层冲突",
@@ -85,7 +85,7 @@
     "time": "2024-07",
     "lifecycle": "公测开服期",
     "type": "规则解释/资产继承焦虑 & 付费权益受损",
-    "volume": "S",
+    "volume": "A",
     "damage": "A",
     "status": "已深挖样例",
     "tags": [
@@ -111,7 +111,7 @@
     "lifecycle": "公测半年后 / “召唤之王”版本",
     "type": "付费/商业化利益受损",
     "volume": "S",
-    "damage": "A",
+    "damage": "S",
     "status": "已深挖样例",
     "tags": [
       "商业契约撕毁/逼氪",
@@ -161,8 +161,8 @@
     "time": "2025-08",
     "lifecycle": "稳定运营期",
     "type": "实质玩法削弱/平衡调整 & 测试运营公平问题",
-    "volume": "S",
-    "damage": "A",
+    "volume": "A",
+    "damage": "B/A",
     "status": "已深挖样例",
     "tags": [
       "教玩家玩游戏 (削弱爽感)",
@@ -215,7 +215,7 @@
     "lifecycle": "上线初期 (S1第一赛季前)",
     "type": "实质玩法削弱/节奏变慢",
     "volume": "S",
-    "damage": "A",
+    "damage": "S",
     "status": "已深挖样例",
     "tags": [
       "教玩家玩游戏 (削弱爽感)",
@@ -266,7 +266,7 @@
     "lifecycle": "成熟衰退期 (第22赛季前)",
     "type": "付费/战令经济规则受损",
     "volume": "S",
-    "damage": "A",
+    "damage": "S",
     "status": "已深挖样例",
     "tags": [
       "商业契约撕毁/逼氪",
@@ -291,8 +291,8 @@
     "time": "2026-01",
     "lifecycle": "公测初期（上线约2个月）",
     "type": "实质产品/数值问题+付费利益受损",
-    "volume": "S",
-    "damage": "A",
+    "volume": "A",
+    "damage": "S",
     "status": "已深挖样例",
     "tags": [
       "核心资产剥夺/暗改",
@@ -344,7 +344,7 @@
     "lifecycle": "成熟稳定期（四周年后）",
     "type": "文化/身份节奏主导",
     "volume": "S",
-    "damage": "A",
+    "damage": "S",
     "status": "已深挖样例",
     "tags": [
       "情感背叛/OOC",
@@ -368,8 +368,8 @@
     "time": "2025-02",
     "lifecycle": "公测初期 (新版本职业调整)",
     "type": "实质玩法削弱/平衡调整",
-    "volume": "S",
-    "damage": "A",
+    "volume": "A",
+    "damage": "B/A",
     "status": "已深挖样例",
     "tags": [
       "教玩家玩游戏 (削弱爽感)",
@@ -395,7 +395,7 @@
     "lifecycle": "上线半年后 (周年庆期间)",
     "type": "文化/身份节奏主导",
     "volume": "S",
-    "damage": "A",
+    "damage": "B",
     "status": "已深挖样例",
     "tags": [
       "价值观/圈层冲突",
