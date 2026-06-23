@@ -18,7 +18,13 @@
       "性别争议"
     ],
     "summary": "S2上线后大量未公告调整叠加版本分支/回退问题，被玩家理解为透明度、情感资产与版本管理能力同时失守。",
-    "caseFile": "./cases/luoke-s2.json"
+    "caseFile": "./cases/luoke-s2.json",
+    "mapping": {
+      "voice_nature": "真实痛点",
+      "core_exp": "是",
+      "core_tag": "核心机制剥夺, 透明度缺失",
+      "pr_eval": "较差 (补偿失效，回应避重就轻)"
+    }
   },
   {
     "id": "sanjiaozhou-jail",
@@ -38,6 +44,12 @@
       "冷处理傲慢"
     ],
     "summary": "国庆期间官方用撤离点5人限制和深蓝削弱瓦解玩家自发共享监狱生态，争议从单纯功能调整升级为玩家共创玩法与官方控制权的剧烈冲突。",
-    "caseFile": "./cases/sanjiaozhou-jail.json"
+    "caseFile": "./cases/sanjiaozhou-jail.json",
+    "mapping": {
+      "voice_nature": "真实痛点",
+      "core_exp": "是",
+      "core_tag": "玩法契约破坏, 官方教玩游戏",
+      "pr_eval": "较差 (冷处理导致不信任)"
+    }
   }
 ]
