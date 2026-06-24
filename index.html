@@ -24,7 +24,7 @@
   <nav class="mainNav">
     <button onclick="switchMainTab('mapping')" id="nav-mapping" class="active">全部案例 Mapping</button>
     <button onclick="switchMainTab('dashboard')" id="nav-dashboard">案例库大盘</button>
-    <button onclick="switchMainTab('conclusions')" id="nav-conclusions">结论与标签梳理</button>
+    <button onclick="switchMainTab('conclusions')" id="nav-conclusions">结论页</button>
   </nav>
 
   <main id="mapping">
@@ -41,66 +41,80 @@
 
   <main id="conclusions" style="display:none">
     <section class="card heroMain" style="margin-bottom:20px;">
-      <h2>结论梳理与核心矛盾标签</h2>
-      <p class="muted">在深度复盘了 14 个典型游戏舆情案例后，我们摒弃了过于零散的口语化标签，将所有危机合并同类项，提炼出这 10 个高频爆发的“底层雷区”。</p>
+      <h2>游戏舆情公关应对：7 大核心结论</h2>
+      <p class="muted">基于对 14 起典型重度舆情案例的深度复盘，我们剥离了零散的表象标签，直接为您提炼出最具实操指导意义的“底层公关防坑法则”。</p>
     </section>
 
-    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; margin-bottom: 40px;">
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 40px;">
       
-      <!-- Category 1 -->
-      <article class="card" style="padding:20px; border-top: 4px solid var(--red);">
-        <h3 style="margin-top:0; color:var(--red);">💰 利益受损 (硬核矛盾)</h3>
-        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:16px;">
-          **共性归纳**：玩家感受到“真金白银、时间投入或数字资产”遭到掠夺。这是最致命的商业红线，极易引爆核心危机。
+      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 核心资产贬值是绝对红线</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          一旦涉及玩家真金白银抽取的角色强度或数值，绝对不能以“修复Bug”为由进行暗改或削弱。若为了长线生态必须改，请准备极其昂贵的“血包”（如10连抽、自选五星）开道。
         </p>
-        <div class="chips" style="margin-bottom:12px;">
-          <span class="chip" style="background:var(--redBg); color:var(--red); border-color:var(--red);">核心资产剥夺/暗改</span>
-          <span class="chip" style="background:var(--redBg); color:var(--red); border-color:var(--red);">商业契约撕毁/逼氪</span>
-          <span class="chip" style="background:var(--redBg); color:var(--red); border-color:var(--red);">教玩家玩游戏 (削弱爽感)</span>
-          <span class="chip" style="background:var(--redBg); color:var(--red); border-color:var(--red);">体验硬伤/预期管理失败</span>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">典型案例：原神那维莱特、枫之谷数值造假</span>
         </div>
-        <ul style="font-size:13px; color:var(--text); padding-left:16px; margin:0;">
-          <li style="margin-bottom:6px;"><b>核心资产剥夺/暗改</b>：原神龙王转圈削弱、枫之谷数值造假。玩家对已购资产贬值零容忍。</li>
-          <li style="margin-bottom:6px;"><b>商业契约撕毁/逼氪</b>：世界之外突击涨价、Apex战令改美金。打破了玩家习惯的低保安全感。</li>
-          <li style="margin-bottom:6px;"><b>教玩家玩游戏</b>：暗黑4全员大砍、三角洲限制监狱。为了控制消耗速度牺牲玩家割草爽感。</li>
-          <li><b>体验硬伤</b>：鸣潮开服卡顿Bug、原神一周年抠门。交付质量与心理预期严重错位。</li>
-        </ul>
       </article>
 
-      <!-- Category 2 -->
-      <article class="card" style="padding:20px; border-top: 4px solid var(--amber);">
-        <h3 style="margin-top:0; color:var(--amber);">🎭 情感与价值观 (文化冲突)</h3>
-        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:16px;">
-          **共性归纳**：未触及直接经济利益，但冒犯了玩家的身份认同、性别立场或对角色的精神寄托。极易引发剧烈的全网对立撕扯。
+      <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 公告透明度是免死金牌</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          不要替玩家做决定。长线游戏中任何习惯、生态、动作或数值的改动，哪怕是修一个无关紧要的动作Bug，也必须白纸黑字写在更新说明里。<b>“说出来是被骂，不说出来被扒出就是欺诈”</b>。
         </p>
-        <div class="chips" style="margin-bottom:12px;">
-          <span class="chip" style="background:var(--amberBg); color:var(--amber); border-color:var(--amber);">情感背叛/OOC</span>
-          <span class="chip" style="background:var(--amberBg); color:var(--amber); border-color:var(--amber);">性别与擦边议题</span>
-          <span class="chip" style="background:var(--amberBg); color:var(--amber); border-color:var(--amber);">价值观/圈层冲突</span>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">典型案例：洛克王国S2暗改风波</span>
         </div>
-        <ul style="font-size:13px; color:var(--text); padding-left:16px; margin:0;">
-          <li style="margin-bottom:6px;"><b>情感背叛/OOC</b>：崩坏3兔女郎外服跳舞。打破了二游玩家最看重的“排他性精神契约”。</li>
-          <li style="margin-bottom:6px;"><b>性别与擦边议题</b>：恋与深空夏以昼露肉、燕云十六声飞白成诗内衣化。在“女凝”与“媚男”的极端对立中夹缝求生。</li>
-          <li><b>价值观/圈层冲突</b>：鸣潮“你怎么还在”嘲讽玩家、美化逃跑将军。违背了大众朴素的正邪/尊重观。</li>
-        </ul>
       </article>
 
-      <!-- Category 3 -->
-      <article class="card" style="padding:20px; border-top: 4px solid var(--blue);">
-        <h3 style="margin-top:0; color:var(--blue);">⚔️ 公关应对与玩家反制</h3>
-        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:16px;">
-          **共性归纳**：舆情爆发后第二战场的博弈机制。展示了极端的玩家反制手段，以及官方“装死”或“滑跪”的最终疗效。
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 用“草台班子”阻断“主观作恶”</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          当玩家极度怀疑官方在“恶意暗改逼氪”时，最好的公关自救方法是承认“代码管理太菜出了事故”或“我们搞砸了”。玩家通常愿意原谅技术的无能，但绝不原谅资本的贪婪与傲慢。
         </p>
-        <div class="chips" style="margin-bottom:12px;">
-          <span class="chip" style="background:var(--blueBg); color:var(--blue); border-color:var(--blue);">光速滑跪/天价补偿</span>
-          <span class="chip" style="background:var(--blueBg); color:var(--blue); border-color:var(--blue);">公关装死/傲慢</span>
-          <span class="chip" style="background:var(--blueBg); color:var(--blue); border-color:var(--blue);">破圈反噬/极端维权</span>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">典型案例：暗黑4篝火夜谈、洛克王国主策出镜</span>
         </div>
-        <ul style="font-size:13px; color:var(--text); padding-left:16px; margin:0;">
-          <li style="margin-bottom:6px;"><b>破圈反噬/极端维权</b>：指舆情突破了游戏社区本身，演变为社会性事件或使用非常规手段降维打击。例如：诉诸 12315/消保委/律师函 (恋与深空/枫之谷)；组织跨平台的 App Store/Steam 全球差评轰炸 (原神一周年/Apex)；或者因内容尺度过大引来圈外路人的道德审判与监管危机 (恋与深空夏以昼)。这是玩家逼迫官方就范的终极武器。</li>
-          <li style="margin-bottom:6px;"><b>公关装死/傲慢</b>：世界之外直言“想赚钱”、崩坏3装死一个月。导致矛盾升级不可调和。</li>
-          <li><b>光速滑跪/天价补偿</b>：原神10连、鸣潮送五星自选。证明了在绝对的利益面前，道歉与“血包”是切断危机的唯一解药。</li>
-        </ul>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">4. 大节点决不能“精算福利”</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          周年庆、春节等关键时间点是玩家情绪结算期。厂商宁可平时抠，大节点也必须体现出仪式感与慷慨。由于福利落差导致的愤怒，极易引发难以控制的跨平台差评轰炸（Review Bombing）。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">典型案例：原神一周年差评轰炸</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">5. 视频露脸比长篇小作文更有穿透力</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          在触及底盘的巨大信任危机面前，冰冷的蓝底白字公告往往会被逐句挑刺。主策划以不修边幅、诚恳认错的姿态发布直面玩家的视频，能最大程度消耗掉社区戾气，把“对抗”强行拉回“对话”。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">典型案例：暴雪S1直播道歉、洛克开水哥视频</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">6. 警惕“一般向”陷阱与粉红反噬</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          试图用一套内容同时讨好“男性性感需求”和“女性得体需求”是不可能的。如果游戏立下“女性友好”的牌坊，就决不能为了短期流水触碰擦边媚男红线，一旦越界必将引发极其惨烈的性别对立战。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">典型案例：燕云十六声时装争议、恋与深空PV</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">7. 永远不要与玩家的“涌现乐趣”为敌</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          当玩家自发创造出一种受大众欢迎的非预设玩法时，即便它破坏了原有的经济系统，官方也应该顺水推舟将其“官方化、规范化”，而不是直接一刀切死。切忌在节假日等在线高峰期搞“休克疗法”。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">典型案例：三角洲共享监狱</span>
+        </div>
       </article>
 
     </div>
