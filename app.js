@@ -16,6 +16,7 @@ function switchMainTab(tabId) {
   const btn = document.getElementById('nav-' + tabId);
   if (btn) btn.classList.add('active');
   
+  if(document.getElementById('overview')) document.getElementById('overview').style.display = 'none';
   if(document.getElementById('dashboard')) document.getElementById('dashboard').style.display = 'none';
   if(document.getElementById('mapping')) document.getElementById('mapping').style.display = 'none';
   if(document.getElementById('conclusions')) document.getElementById('conclusions').style.display = 'none';
@@ -24,6 +25,9 @@ function switchMainTab(tabId) {
   if (tabId === 'mapping') {
     location.hash = '';
     if(document.getElementById('mapping')) document.getElementById('mapping').style.display = 'block';
+  } else if (tabId === 'overview') {
+    location.hash = '';
+    if(document.getElementById('overview')) document.getElementById('overview').style.display = 'block';
   } else {
     if(document.getElementById(tabId)) document.getElementById(tabId).style.display = 'block';
   }
@@ -330,7 +334,7 @@ function renderGrid(){
 function openCase(id){location.hash=`case=${id}`;}
 function goHome(){
   location.hash='';
-  switchMainTab('mapping');
+  switchMainTab('overview');
 }
 
 async function route(){
@@ -343,6 +347,7 @@ async function route(){
     currentCase = rawCase.data ? { ...summary, ...rawCase.data } : { ...summary, ...rawCase };
     
     $('dashboard').style.display='none';
+    if($('overview')) $('overview').style.display='none';
     if($('mapping')) $('mapping').style.display='none';
     if($('conclusions')) $('conclusions').style.display='none';
     $('detail').style.display='block';
@@ -352,7 +357,7 @@ async function route(){
     renderDetail(currentCase);
     scrollTo(0,0);
   }else{
-    switchMainTab('mapping');
+    switchMainTab('overview');
     renderGrid();
   }
 }

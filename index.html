@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260630-6" />
+  <link rel="stylesheet" href="./style.css?v=20260701-1" />
 </head>
 <body>
 <div class="app">
@@ -15,19 +15,176 @@
       <div class="logo"></div>
       <div>
         <h1>游戏版本舆情洞察与案例库</h1>
-        <div class="sub">20 个典型游戏舆情案例深挖与公关复盘</div>
+        <div class="sub">31 个典型游戏舆情案例深挖与公关复盘</div>
       </div>
     </div>
     <div class="pill">Dashboard / case detail / H5</div>
   </header>
 
   <nav class="mainNav">
-    <button onclick="switchMainTab('mapping')" id="nav-mapping" class="active">全部案例 Mapping</button>
+    <button onclick="switchMainTab('overview')" id="nav-overview" class="active">研究概况</button>
+    <button onclick="switchMainTab('mapping')" id="nav-mapping">全部案例 Mapping</button>
     <button onclick="switchMainTab('dashboard')" id="nav-dashboard">案例库大盘</button>
     <button onclick="switchMainTab('conclusions')" id="nav-conclusions">结论页</button>
   </nav>
 
-  <main id="mapping">
+  <main id="overview">
+    <section class="card heroMain" style="margin-bottom:20px;">
+      <h2 style="font-size:24px; line-height:1.3; margin:0 0 12px;">游戏版本舆情洞察与公关复盘：20+ 典型案例的声量、伤害与应对拆解</h2>
+      <p class="muted">本案例库对 2020–2026 年国内游戏行业 31 起具有代表性的版本舆情危机进行结构化拆解，以「声量 × 伤害」二维矩阵为分级框架，结合玩家声音定性与官方应对复盘，提炼可复用的判断与执行参考。</p>
+    </section>
+
+    <!-- 一、研究目的 -->
+    <div style="margin:8px 2px 12px;">
+      <h2 style="font-size:18px; margin:0 0 4px;">一、研究目的</h2>
+      <p class="muted" style="font-size:13px; margin:0;">把「骂得凶」和「真伤钱」分开看，给版本运营和公关团队一套可复用的判断框架。</p>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; margin-bottom: 32px;">
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 一场舆情到底有多严重？</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0;">用「声量 × 伤害」二维定位，而不是只看热搜——声量高不等于真伤到流水留存。</p>
+      </article>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 官方该怎么应对？</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0;">先识别「承重墙有没有动」，再决定是光速滑跪还是冷处理——而不是按情绪烈度拍板。</p>
+      </article>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 哪些品类最容易踩哪些雷？</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0;">按品类区分雷区——乙游盯情感契约、竞技盯公平契约、情怀IP盯定位偏离，而不是一刀切。</p>
+      </article>
+    </div>
+
+    <!-- 二、研究方法 -->
+    <div style="margin:8px 2px 12px;">
+      <h2 style="font-size:18px; margin:0 0 4px;">二、研究方法</h2>
+      <p class="muted" style="font-size:13px; margin:0;">四个维度拆解每个案例，保证跨案例可比性。</p>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; margin-bottom: 32px;">
+      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
+        <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--red); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">维度 1</span>
+        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">声量 × 伤害矩阵</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0;">横轴声量（讨论热度 / 破圈程度），纵轴伤害（是否动到付费留存根基），分四象限：核心危机 / 舆论风暴 / 隐性流失 / 常规客诉。</p>
+      </article>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--amber); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">维度 2</span>
+        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">玩家声音定性</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0;">区分「真实痛点」（数值、金钱、体验受损）和「圈层噪音 / 道德审判」（性别对立、云玩家抵制），决定该顺从还是切割。</p>
+      </article>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--blue); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">维度 3</span>
+        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">核心矛盾标签体系</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0;">统一打标：核心资产剥夺 / 情感背叛 OOC / 底层契约撕毁 / 教玩家玩游戏 / 价值观冲突。</p>
+      </article>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
+        <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--green); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">维度 4</span>
+        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">官方应对复盘</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0;">按「认错时效 / 透明度 / 是否回退 / 补偿力度」四要素，评估每场公关是止血还是放大损伤。</p>
+      </article>
+    </div>
+    <section class="card" style="padding:16px 20px; margin-bottom:32px; background:var(--soft);">
+      <p style="font-size:13px; color:var(--muted); margin:0; line-height:1.7;">
+        <strong style="color:var(--text);">数据来源：</strong>玩家社区原话（B站 / NGA / 贴吧）、官方公告与公开信、媒体复盘报道。
+        <strong style="color:var(--red);">禁止编造玩家原话和流水数据</strong>，未核到的字段标「待补」，不臆断。
+      </p>
+    </section>
+
+    <!-- 三、案例 Scope -->
+    <div style="margin:8px 2px 12px;">
+      <h2 style="font-size:18px; margin:0 0 4px;">三、案例 Scope</h2>
+      <p class="muted" style="font-size:13px; margin:0;">基于 31 个案例的统计覆盖范围。</p>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; margin-bottom: 32px;">
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">时间</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0;">2020–2026，其中 2024–2026 占 22 个，以近年为主。</p>
+        <div style="display:flex; gap:4px; flex-wrap:wrap; margin-top:10px;">
+          <span class="chip" style="background:#f5f5f5;">2020: 2</span>
+          <span class="chip" style="background:#f5f5f5;">2021: 4</span>
+          <span class="chip" style="background:#f5f5f5;">2023: 3</span>
+          <span class="chip" style="background:#e6f1fb;">2024: 8</span>
+          <span class="chip" style="background:#e6f1fb;">2025: 9</span>
+          <span class="chip" style="background:#e6f1fb;">2026: 5</span>
+        </div>
+      </article>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">品类</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0;">二次元抽卡(9)、乙女向(4)、情怀IP(4)、竞技射击(3)、武侠开放世界(3)、刷子ARPG(2)、买断制(2) 等。</p>
+        <div style="display:flex; gap:4px; flex-wrap:wrap; margin-top:10px;">
+          <span class="chip" style="background:#faeeda;">二次元抽卡 9</span>
+          <span class="chip" style="background:#faeeda;">乙女向 4</span>
+          <span class="chip" style="background:#faeeda;">情怀IP 4</span>
+          <span class="chip" style="background:#faeeda;">竞技射击 3</span>
+          <span class="chip" style="background:#faeeda;">武侠开放世界 3</span>
+        </div>
+      </article>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">市场</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0;">国内厂商×国内(14)、国内厂商×全球(11)、海外厂商×全球(4)、代理×国内(1)。</p>
+        <div style="display:flex; gap:4px; flex-wrap:wrap; margin-top:10px;">
+          <span class="chip" style="background:#e1f5ee;">国内×国内 14</span>
+          <span class="chip" style="background:#e1f5ee;">国内×全球 11</span>
+          <span class="chip" style="background:#e1f5ee;">海外×全球 4</span>
+        </div>
+      </article>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">声量 × 伤害</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0;">声量：S 级 16 个、A 级 15 个（均为高声量案例）。伤害：S 级 7、A 级 5、B 级 19。</p>
+        <div style="display:flex; gap:4px; flex-wrap:wrap; margin-top:10px;">
+          <span class="chip" style="background:#fcebeb;">声量 S: 16</span>
+          <span class="chip" style="background:#fcebeb;">声量 A: 15</span>
+          <span class="chip" style="background:#fcebeb;">伤害 S: 7</span>
+          <span class="chip" style="background:#fcebeb;">伤害 A: 5</span>
+          <span class="chip" style="background:#fcebeb;">伤害 B: 19</span>
+        </div>
+      </article>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">公关应对</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0;">光速滑跪+回退(9)、认错+整改(8)、冷处理装死(6)、敷衍回应(4)、被迫补偿(3)。</p>
+        <div style="display:flex; gap:4px; flex-wrap:wrap; margin-top:10px;">
+          <span class="chip" style="background:#e6f1fb;">滑跪+回退 9</span>
+          <span class="chip" style="background:#e6f1fb;">认错+整改 8</span>
+          <span class="chip" style="background:#e6f1fb;">冷处理 6</span>
+          <span class="chip" style="background:#e6f1fb;">敷衍回应 4</span>
+        </div>
+      </article>
+    </div>
+    <section class="card" style="padding:16px 20px; margin-bottom:32px; background:var(--amberBg); border-color:var(--amber);">
+      <p style="font-size:13px; color:var(--text); margin:0; line-height:1.7;">
+        <strong>样本局限：</strong>声量多为 A/S 级（偏重大舆情），低声量「隐性流失」类样本不足；品类上放置 / 生存 / 单机买断样本较少，暂不单独成结论。
+      </p>
+    </section>
+
+    <!-- 四、核心发现速览 -->
+    <div style="margin:8px 2px 12px;">
+      <h2 style="font-size:18px; margin:0 0 4px;">四、核心发现速览</h2>
+      <p class="muted" style="font-size:13px; margin:0;">基于全部案例的横向复盘，提炼出 3 条可复用的规律性判断。</p>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(360px, 1fr)); gap: 16px; margin-bottom: 40px;">
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 声量普遍高于伤害</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0;">19 / 31 案例伤害为 B 级，但声量多为 A/S——情绪向议题吵得凶却很少真动流水与留存。</p>
+        <div class="chips" style="margin-top:10px;">
+          <span class="chip" style="background:#f5f5f5;">声量 ≠ 伤害</span>
+        </div>
+      </article>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 情感 / 价值观向舆情集中在特定品类</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0;">性别议题、角色 OOC、内容尺度类舆情几乎只出现在乙游 / 二游 / 情怀 IP。</p>
+        <div class="chips" style="margin-top:10px;">
+          <span class="chip" style="background:#f5f5f5;">乙游 / 二游 / 情怀 IP 更易出情感向舆情</span>
+        </div>
+      </article>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 性别议题相关案例集中在 2025 年后</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0;">2020–2023 未见此类案例，反映近一两年该议题在国内游戏舆论场的热度上升。</p>
+        <div class="chips" style="margin-top:10px;">
+          <span class="chip" style="background:#f5f5f5;">性别议题相关案例集中在 2025 年后</span>
+        </div>
+      </article>
+    </div>
+  </main>
+
+  <main id="mapping" style="display:none">
     <section class="card heroMain" style="margin-bottom:20px;">
       <h2>全部案例 Mapping (声量 × 伤害 分布)</h2>
       <p class="muted">横轴为舆情声量（低 → 高），纵轴为商业伤害（低 → 高），按四象限分色。每个点的相对位置依据声量 / 伤害估计排布，越往右上越接近“核心危机”。点击可进入案例复盘。本图始终展示全部案例，不随下方筛选变化。</p>
@@ -212,6 +369,6 @@
     <section id="tabContent"></section>
   </main>
 </div>
-<script src="./app.js?v=20260630-6"></script>
+<script src="./app.js?v=20260701-1"></script>
 </body>
 </html>
