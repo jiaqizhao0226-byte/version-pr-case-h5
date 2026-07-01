@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260701-7" />
+  <link rel="stylesheet" href="./style.css?v=20260701-8" />
 </head>
 <body>
 <div class="app">
@@ -60,19 +60,68 @@
 
       <h3>三、案例 Scope</h3>
       <p>基于 31 个案例的统计覆盖范围：</p>
-      <table class="docTable">
-        <thead>
-          <tr><th>维度</th><th>覆盖情况</th></tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>时间</strong></td><td>2020–2026，其中 2024–2026 占 22 个，以近年为主（2020: 2、2021: 4、2023: 3、2024: 8、2025: 9、2026: 5）</td></tr>
-          <tr><td><strong>品类</strong></td><td>二次元抽卡(9)、乙女向(4)、情怀IP(4)、竞技射击(3)、武侠开放世界(3)、刷子ARPG(2)、买断制(2) 等</td></tr>
-          <tr><td><strong>市场</strong></td><td>国内厂商×国内(14)、国内厂商×全球(11)、海外厂商×全球(4)、代理×国内(1)</td></tr>
-          <tr><td><strong>声量</strong></td><td>S 级 16 个、A 级 15 个（均为高声量案例）</td></tr>
-          <tr><td><strong>伤害</strong></td><td>S 级 7、A 级 5、B 级 19</td></tr>
-          <tr><td><strong>公关应对</strong></td><td>光速滑跪+回退(9)、认错+整改(8)、冷处理装死(6)、敷衍回应(4)、被迫补偿(3)</td></tr>
-        </tbody>
-      </table>
+
+      <div class="scopeCharts">
+        <div class="scopeGroup">
+          <div class="scopeGroupTitle">时间分布 <span class="scopeTotal">31 个案例 · 2020–2026</span></div>
+          <div class="scopeBars">
+            <div class="scopeBar"><span class="scopeLabel">2020</span><div class="scopeTrack"><div class="scopeFill" style="width:22%;background:var(--blue)"></div></div><span class="scopeVal">2</span></div>
+            <div class="scopeBar"><span class="scopeLabel">2021</span><div class="scopeTrack"><div class="scopeFill" style="width:44%;background:var(--blue)"></div></div><span class="scopeVal">4</span></div>
+            <div class="scopeBar"><span class="scopeLabel">2023</span><div class="scopeTrack"><div class="scopeFill" style="width:33%;background:var(--blue)"></div></div><span class="scopeVal">3</span></div>
+            <div class="scopeBar"><span class="scopeLabel">2024</span><div class="scopeTrack"><div class="scopeFill" style="width:89%;background:var(--amber)"></div></div><span class="scopeVal">8</span></div>
+            <div class="scopeBar"><span class="scopeLabel">2025</span><div class="scopeTrack"><div class="scopeFill" style="width:100%;background:var(--amber)"></div></div><span class="scopeVal">9</span></div>
+            <div class="scopeBar"><span class="scopeLabel">2026</span><div class="scopeTrack"><div class="scopeFill" style="width:56%;background:var(--amber)"></div></div><span class="scopeVal">5</span></div>
+          </div>
+          <p class="scopeHint">其中 2024–2026 占 22 个，以近年为主。</p>
+        </div>
+
+        <div class="scopeGroup">
+          <div class="scopeGroupTitle">品类分布 <span class="scopeTotal">Top 6</span></div>
+          <div class="scopeBars">
+            <div class="scopeBar"><span class="scopeLabel">二次元抽卡</span><div class="scopeTrack"><div class="scopeFill" style="width:100%;background:var(--amber)"></div></div><span class="scopeVal">9</span></div>
+            <div class="scopeBar"><span class="scopeLabel">乙女向</span><div class="scopeTrack"><div class="scopeFill" style="width:44%;background:var(--red)"></div></div><span class="scopeVal">4</span></div>
+            <div class="scopeBar"><span class="scopeLabel">情怀IP</span><div class="scopeTrack"><div class="scopeFill" style="width:44%;background:var(--amber)"></div></div><span class="scopeVal">4</span></div>
+            <div class="scopeBar"><span class="scopeLabel">竞技射击</span><div class="scopeTrack"><div class="scopeFill" style="width:33%;background:var(--blue)"></div></div><span class="scopeVal">3</span></div>
+            <div class="scopeBar"><span class="scopeLabel">武侠开放世界</span><div class="scopeTrack"><div class="scopeFill" style="width:33%;background:var(--green)"></div></div><span class="scopeVal">3</span></div>
+            <div class="scopeBar"><span class="scopeLabel">刷子ARPG / 买断制</span><div class="scopeTrack"><div class="scopeFill" style="width:22%;background:var(--muted)"></div></div><span class="scopeVal">2 / 2</span></div>
+          </div>
+          <p class="scopeHint">放置 / 生存 / 单机买断等样本较少，暂不单独成结论。</p>
+        </div>
+
+        <div class="scopeGroup">
+          <div class="scopeGroupTitle">市场分布</div>
+          <div class="scopeBars">
+            <div class="scopeBar"><span class="scopeLabel">国内×国内</span><div class="scopeTrack"><div class="scopeFill" style="width:100%;background:var(--green)"></div></div><span class="scopeVal">14</span></div>
+            <div class="scopeBar"><span class="scopeLabel">国内×全球</span><div class="scopeTrack"><div class="scopeFill" style="width:79%;background:var(--blue)"></div></div><span class="scopeVal">11</span></div>
+            <div class="scopeBar"><span class="scopeLabel">海外×全球</span><div class="scopeTrack"><div class="scopeFill" style="width:29%;background:var(--amber)"></div></div><span class="scopeVal">4</span></div>
+            <div class="scopeBar"><span class="scopeLabel">代理×国内</span><div class="scopeTrack"><div class="scopeFill" style="width:7%;background:var(--muted)"></div></div><span class="scopeVal">1</span></div>
+          </div>
+        </div>
+
+        <div class="scopeGroup">
+          <div class="scopeGroupTitle">声量 × 伤害</div>
+          <div class="scopeBars">
+            <div class="scopeBar"><span class="scopeLabel">声量 S</span><div class="scopeTrack"><div class="scopeFill" style="width:100%;background:var(--red)"></div></div><span class="scopeVal">16</span></div>
+            <div class="scopeBar"><span class="scopeLabel">声量 A</span><div class="scopeTrack"><div class="scopeFill" style="width:94%;background:var(--amber)"></div></div><span class="scopeVal">15</span></div>
+            <div class="scopeBar"><span class="scopeLabel">伤害 S</span><div class="scopeTrack"><div class="scopeFill" style="width:44%;background:var(--red)"></div></div><span class="scopeVal">7</span></div>
+            <div class="scopeBar"><span class="scopeLabel">伤害 A</span><div class="scopeTrack"><div class="scopeFill" style="width:31%;background:var(--amber)"></div></div><span class="scopeVal">5</span></div>
+            <div class="scopeBar"><span class="scopeLabel">伤害 B</span><div class="scopeTrack"><div class="scopeFill" style="width:100%;background:var(--green)"></div></div><span class="scopeVal">19</span></div>
+          </div>
+          <p class="scopeHint">声量均为 A/S 级（高声量），但 19/31 伤害为 B 级——声量普遍高于伤害。</p>
+        </div>
+
+        <div class="scopeGroup">
+          <div class="scopeGroupTitle">公关应对分布</div>
+          <div class="scopeBars">
+            <div class="scopeBar"><span class="scopeLabel">光速滑跪+回退</span><div class="scopeTrack"><div class="scopeFill" style="width:100%;background:var(--green)"></div></div><span class="scopeVal">9</span></div>
+            <div class="scopeBar"><span class="scopeLabel">认错+整改</span><div class="scopeTrack"><div class="scopeFill" style="width:89%;background:var(--blue)"></div></div><span class="scopeVal">8</span></div>
+            <div class="scopeBar"><span class="scopeLabel">冷处理装死</span><div class="scopeTrack"><div class="scopeFill" style="width:67%;background:var(--muted)"></div></div><span class="scopeVal">6</span></div>
+            <div class="scopeBar"><span class="scopeLabel">敷衍回应</span><div class="scopeTrack"><div class="scopeFill" style="width:44%;background:var(--amber)"></div></div><span class="scopeVal">4</span></div>
+            <div class="scopeBar"><span class="scopeLabel">被迫补偿</span><div class="scopeTrack"><div class="scopeFill" style="width:33%;background:var(--red)"></div></div><span class="scopeVal">3</span></div>
+          </div>
+        </div>
+      </div>
+
       <p class="docNote"><strong>样本局限：</strong>声量多为 A/S 级（偏重大舆情），低声量「隐性流失」类样本不足；品类上放置 / 生存 / 单机买断样本较少，暂不单独成结论。</p>
 
       <hr class="docSep"/>
