@@ -325,7 +325,7 @@ function renderMatrixChart() {
 function renderPrChart() {
   const counter = {};
   (caseSummaries||[]).forEach(c => { const k = c.pr || '其他'; counter[k] = (counter[k]||0)+1; });
-  renderBarChart('prChart', counter, ['#0f6e56','#185fa5','#6e6a62','#854f0b','#a32d2d','#9c5bbf']);
+  renderBarChart('prChart', counter, ['#5B7B9A','#2C3E5C','#6C7B8B','#8B6F47','#B85450','#7B6B8A']);
 }
 
 // 时间线分布
@@ -386,9 +386,9 @@ function renderYearTrendChart() {
     return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:760px;height:auto"><g>${header}${rowEls}</g></svg>`;
   }
 
-  // 颜色渐变函数：intensity 0-1 → 浅到深
-  function redScale(i) { return `rgba(163,45,45,${0.15 + i * 0.85})`; }
-  function blueScale(i) { return `rgba(24,95,165,${0.15 + i * 0.85})`; }
+  // 颜色渐变函数：intensity 0-1 → 浅到深（咨询风低饱和度）
+  function redScale(i) { return `rgba(184,84,80,${0.12 + i * 0.78})`; }
+  function blueScale(i) { return `rgba(44,62,92,${0.12 + i * 0.78})`; }
 
   // 矛盾构成热力图
   const tagMax = Math.max(...topTags.map(t => Math.max(...years.map(y => yearMap[y].tags[t]||0))), 1);
@@ -443,10 +443,10 @@ function renderQuadrantChart() {
   });
   // 按声量分组，每组堆叠伤害分布
   const groups = [
-    {label:'声量 S', filter:k=>k.startsWith('声量S'), color:'#a32d2d'},
-    {label:'声量 A', filter:k=>k.startsWith('声量A'), color:'#854f0b'},
+    {label:'声量 S', filter:k=>k.startsWith('声量S'), color:'#B85450'},
+    {label:'声量 A', filter:k=>k.startsWith('声量A'), color:'#8B6F47'},
   ];
-  const damageColors = {'S':'#a32d2d','A':'#854f0b','B':'#0f6e56'};
+  const damageColors = {'S':'#B85450','A':'#8B6F47','B':'#5B7B9A'};
   const total = all.length;
   wrap.innerHTML = `<div class="quadStack">${groups.map(g => {
     const keys = Object.keys(combos).filter(g.filter);
@@ -460,7 +460,7 @@ function renderQuadrantChart() {
     return `<div class="quadStackRow"><div class="quadStackLabel">${g.label}</div><div class="quadStackBar">${segs}</div><div class="quadStackVal">${groupTotal}</div></div>`;
   }).join('')}</div>`;
   // 图例
-  const legend = `<div style="display:flex;gap:14px;margin-top:14px;font-size:12px;color:var(--muted)"><span><span style="display:inline-block;width:10px;height:10px;background:#a32d2d;border-radius:2px;margin-right:4px"></span>伤害 S</span><span><span style="display:inline-block;width:10px;height:10px;background:#854f0b;border-radius:2px;margin-right:4px"></span>伤害 A</span><span><span style="display:inline-block;width:10px;height:10px;background:#0f6e56;border-radius:2px;margin-right:4px"></span>伤害 B</span></div>`;
+  const legend = `<div style="display:flex;gap:14px;margin-top:14px;font-size:12px;color:var(--muted)"><span><span style="display:inline-block;width:10px;height:10px;background:#B85450;border-radius:2px;margin-right:4px"></span>伤害 S</span><span><span style="display:inline-block;width:10px;height:10px;background:#8B6F47;border-radius:2px;margin-right:4px"></span>伤害 A</span><span><span style="display:inline-block;width:10px;height:10px;background:#5B7B9A;border-radius:2px;margin-right:4px"></span>伤害 B</span></div>`;
   wrap.innerHTML += legend;
 }
 
@@ -481,14 +481,14 @@ function renderBarChart(containerId, counter, maxColors) {
 function renderGenreChart() {
   const counter = {};
   (caseSummaries||[]).forEach(c => (c.genre||[]).forEach(g => counter[g] = (counter[g]||0)+1));
-  renderBarChart('genreChart', counter, ['#854f0b','#185fa5','#a32d2d','#0f6e56','#6e6a62','#9c5bbf','#b5651d','#4a7c8c']);
+  renderBarChart('genreChart', counter, ['#8B6F47','#2C3E5C','#B85450','#5B7B9A','#6C7B8B','#7B6B8A','#9C7A5A','#5A8B8B']);
 }
 
 // 核心矛盾聚类条形图
 function renderTagsChart() {
   const counter = {};
   (caseSummaries||[]).forEach(c => (c.tags||[]).forEach(t => counter[t] = (counter[t]||0)+1));
-  renderBarChart('tagsChart', counter, ['#a32d2d','#854f0b','#185fa5','#0f6e56','#6e6a62','#9c5bbf']);
+  renderBarChart('tagsChart', counter, ['#B85450','#8B6F47','#2C3E5C','#5B7B9A','#6C7B8B','#7B6B8A']);
 }
 
 function renderGrid(){
@@ -640,7 +640,7 @@ function renderEmotionTrend(stages){
   const pts=stages.map((s,i)=>`${x(i)},${y(s.emotionScore||0)}`).join(' ');
   const area=`${padL},${padT+ih} ${pts} ${padL+iw},${padT+ih}`;
   const grid=[0,25,50,75,100];
-  return `<div class="trendWrap"><svg class="emoTrend" viewBox="0 0 ${W} ${H}" role="img" aria-label="玩家情感强度趋势"><defs><linearGradient id="emoArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a32d2d" stop-opacity="0.18"/><stop offset="1" stop-color="#a32d2d" stop-opacity="0.02"/></linearGradient></defs>${grid.map(g=>`<line x1="${padL}" y1="${y(g)}" x2="${padL+iw}" y2="${y(g)}" class="tGrid"/><text x="${padL-12}" y="${y(g)+4}" class="tAxis" text-anchor="end">${g}</text>`).join('')}<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+ih}" class="tAxisLine"/><line x1="${padL}" y1="${padT+ih}" x2="${padL+iw}" y2="${padT+ih}" class="tAxisLine"/><text x="22" y="${padT+ih/2}" class="tAxisTitle" transform="rotate(-90 22 ${padT+ih/2})">玩家情感强度</text><polygon points="${area}" fill="url(#emoArea)"/><polyline points="${pts}" class="tLine" fill="none"/>${stages.map((s,i)=>{const sc=s.emotionScore||0;const cy=y(sc);const ly=sc>=75?cy+28:cy-26;return `<g class="tPoint" onclick="openStage(${i})"><line x1="${x(i)}" y1="${cy}" x2="${x(i)}" y2="${padT+ih}" class="tGuide"/><circle cx="${x(i)}" cy="${cy}" r="7"/><text x="${x(i)}" y="${cy-13}" class="tScore" text-anchor="middle">${esc(sc)}</text><text x="${x(i)}" y="${ly}" class="tCallout" text-anchor="middle">${esc(s.label)}</text><text x="${x(i)}" y="${padT+ih+26}" class="tStageNo" text-anchor="middle">阶段${sno(s,i)}</text><text x="${x(i)}" y="${padT+ih+45}" class="tDate" text-anchor="middle">${esc(s.chartDate||sd(s.time))}</text></g>`;}).join('')}</svg><div class="tHint">点击趋势图节点展开对应阶段（每次只展开一个）↓</div></div>`;
+  return `<div class="trendWrap"><svg class="emoTrend" viewBox="0 0 ${W} ${H}" role="img" aria-label="玩家情感强度趋势"><defs><linearGradient id="emoArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B85450" stop-opacity="0.18"/><stop offset="1" stop-color="#B85450" stop-opacity="0.02"/></linearGradient></defs>${grid.map(g=>`<line x1="${padL}" y1="${y(g)}" x2="${padL+iw}" y2="${y(g)}" class="tGrid"/><text x="${padL-12}" y="${y(g)+4}" class="tAxis" text-anchor="end">${g}</text>`).join('')}<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+ih}" class="tAxisLine"/><line x1="${padL}" y1="${padT+ih}" x2="${padL+iw}" y2="${padT+ih}" class="tAxisLine"/><text x="22" y="${padT+ih/2}" class="tAxisTitle" transform="rotate(-90 22 ${padT+ih/2})">玩家情感强度</text><polygon points="${area}" fill="url(#emoArea)"/><polyline points="${pts}" class="tLine" fill="none"/>${stages.map((s,i)=>{const sc=s.emotionScore||0;const cy=y(sc);const ly=sc>=75?cy+28:cy-26;return `<g class="tPoint" onclick="openStage(${i})"><line x1="${x(i)}" y1="${cy}" x2="${x(i)}" y2="${padT+ih}" class="tGuide"/><circle cx="${x(i)}" cy="${cy}" r="7"/><text x="${x(i)}" y="${cy-13}" class="tScore" text-anchor="middle">${esc(sc)}</text><text x="${x(i)}" y="${ly}" class="tCallout" text-anchor="middle">${esc(s.label)}</text><text x="${x(i)}" y="${padT+ih+26}" class="tStageNo" text-anchor="middle">阶段${sno(s,i)}</text><text x="${x(i)}" y="${padT+ih+45}" class="tDate" text-anchor="middle">${esc(s.chartDate||sd(s.time))}</text></g>`;}).join('')}</svg><div class="tHint">点击趋势图节点展开对应阶段（每次只展开一个）↓</div></div>`;
 }
 
 function openStage(i){
