@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260701-16" />
+  <link rel="stylesheet" href="./style.css?v=20260701-17" />
 </head>
 <body>
 <div class="app">
@@ -121,16 +121,16 @@
       <section id="matrixChartContainer" class="mapCard"></section>
     </div>
 
-    <!-- 第二排：公关应对环形图 + 核心矛盾聚类 -->
+    <!-- 第二排：核心矛盾聚类 + 公关应对环形图 -->
     <div class="mapRow">
+      <section class="mapCard">
+        <div class="mapCardTitle">核心矛盾聚类（Top 10 标签）</div>
+        <div id="tagsChart" class="mapBars"></div>
+      </section>
       <section class="mapCard">
         <div class="mapCardTitle">公关应对分布</div>
         <div id="prDonut"></div>
         <div id="prLegend" class="donutLegend"></div>
-      </section>
-      <section class="mapCard">
-        <div class="mapCardTitle">核心矛盾聚类（Top 10 标签）</div>
-        <div id="tagsChart" class="mapBars"></div>
       </section>
     </div>
 
