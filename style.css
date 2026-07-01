@@ -890,6 +890,7 @@
 
 /* === 全部案例 Mapping · 量化分析仪表盘 === */
 .mapRow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.mapRowSingle{grid-template-columns:1fr}
 .mapCard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);min-height:200px}
 .mapCardTitle{font-size:15px;font-weight:600;color:var(--text);margin-bottom:14px}
 @media(max-width:860px){.mapRow{grid-template-columns:1fr}}

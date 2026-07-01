@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260701-11" />
+  <link rel="stylesheet" href="./style.css?v=20260701-12" />
 </head>
 <body>
 <div class="app">
@@ -116,22 +116,26 @@
       <p class="muted">基于 31 个案例的多维度量化分析。包含声量×伤害矩阵、时间线分布、品类与矛盾聚类、公关应对占比。所有图表基于全量案例，不随下方筛选变化。</p>
     </section>
 
-    <!-- 第一排：2x2 矩阵 + 公关应对环形图 -->
-    <div class="mapRow">
+    <!-- 第一排：2x2 矩阵（单独占一行） -->
+    <div class="mapRow mapRowSingle">
       <section id="matrixChartContainer" class="mapCard"></section>
+    </div>
+
+    <!-- 第二排：公关应对环形图 + 时间线 -->
+    <div class="mapRow">
       <section class="mapCard">
         <div class="mapCardTitle">公关应对分布</div>
         <div id="prDonut"></div>
         <div id="prLegend" class="donutLegend"></div>
       </section>
-    </div>
-
-    <!-- 第二排：时间线 + 核心矛盾聚类 -->
-    <div class="mapRow">
       <section class="mapCard">
         <div class="mapCardTitle">案例时间线分布</div>
         <div id="timelineChart"></div>
       </section>
+    </div>
+
+    <!-- 第三排：核心矛盾聚类 -->
+    <div class="mapRow">
       <section class="mapCard">
         <div class="mapCardTitle">核心矛盾聚类（Top 10 标签）</div>
         <div id="tagsChart" class="mapBars"></div>
