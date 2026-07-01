@@ -515,11 +515,11 @@ function renderCrossTagPrChart() {
 
   const maxVal = Math.max(...matrix.flatMap(r => r.values), 1);
 
-  // 颜色渐变：深靛蓝
+  // 颜色渐变：暖棕色（区别于上面的红色和深靛蓝）
   function cellColor(v) {
     if (v === 0) return 'transparent';
     const i = v / maxVal;
-    return `rgba(44,62,92,${0.12 + i * 0.78})`;
+    return `rgba(139,111,71,${0.12 + i * 0.78})`;
   }
 
   // SVG 渲染
@@ -550,7 +550,7 @@ function renderCrossTagPrChart() {
   }).join('');
 
   // 图例
-  const legendStops = [0.12, 0.3, 0.5, 0.7, 0.9].map(i => `<span style="display:inline-block;width:14px;height:10px;background:rgba(44,62,92,${i})"></span>`).join('');
+  const legendStops = [0.12, 0.3, 0.5, 0.7, 0.9].map(i => `<span style="display:inline-block;width:14px;height:10px;background:rgba(139,111,71,${i})"></span>`).join('');
 
   wrap.innerHTML = `
     <div class="ytHeatWrap" style="justify-content:center">
