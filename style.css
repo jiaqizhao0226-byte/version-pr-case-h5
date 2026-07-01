@@ -946,3 +946,8 @@
 .ytLegend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;font-size:11px}
 .ytLegendItem{display:inline-flex;align-items:center;gap:5px;color:var(--muted)}
 .ytDot{display:inline-block;width:9px;height:9px;border-radius:2px}
+
+/* 热力图图例 */
+.ytHeatWrap{overflow-x:auto;margin-bottom:10px}
+.heatLegend{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:11px;color:var(--muted)}
+.heatLegend span{display:inline-block}

@@ -360,7 +360,7 @@ function renderPrDonut() {
 }
 
 // 时间线分布
-// 年度趋势分析：多折线图（矛盾构成 × 公关应对）
+// 年度趋势分析：热力图矩阵（矛盾构成 × 公关应对）
 function renderYearTrendChart() {
   const wrap = document.getElementById('yearTrendChart');
   if (!wrap) return;
@@ -383,81 +383,76 @@ function renderYearTrendChart() {
   const tagTotal = {};
   all.forEach(c => (c.tags||[]).forEach(t => tagTotal[t]=(tagTotal[t]||0)+1));
   const topTags = Object.entries(tagTotal).sort((a,b)=>b[1]-a[1]).slice(0,6).map(e=>e[0]);
-  const tagColors = ['#a32d2d','#854f0b','#185fa5','#0f6e56','#9c5bbf','#6e6a62'];
 
   // 公关应对
   const prOrder = ['光速滑跪+回退','认错+整改方案','冷处理+沉默装死','敷衍回应+部分调整','被迫补偿+被动合规','仅公示+处置事故'];
-  const prColors = {'光速滑跪+回退':'#0f6e56','认错+整改方案':'#185fa5','冷处理+沉默装死':'#6e6a62','敷衍回应+部分调整':'#854f0b','被迫补偿+被动合规':'#a32d2d','仅公示+处置事故':'#9c5bbf'};
 
-  // SVG 折线图渲染函数
-  // series: [{label, color, values:[n1,n2,...]}]，years: ['2020','2021',...]
-  function drawLineChart(series, years, colors, maxVal) {
-    const W = 620, H = 240, padL = 40, padR = 20, padT = 20, padB = 36;
-    const plotW = W - padL - padR;
-    const plotH = H - padT - padB;
-    const xStep = years.length > 1 ? plotW / (years.length - 1) : 0;
-    const yMax = Math.max(maxVal, 1);
-    const yTicks = [0, Math.ceil(yMax/2), yMax];
-    // y 轴刻度
-    const yTickLines = yTicks.map(v => {
-      const y = padT + plotH - (v/yMax)*plotH;
-      return `<line x1="${padL}" y1="${y}" x2="${W-padR}" y2="${y}" stroke="var(--line)" stroke-width="0.5" stroke-dasharray="2,3"/><text x="${padL-6}" y="${y+3}" text-anchor="end" font-size="10" fill="var(--muted)">${v}</text>`;
+  // 热力图渲染函数
+  // rows: [{label, values:[n1,n2,...]}], years, maxVal
+  function drawHeatmap(rows, years, maxVal, colorScale) {
+    const cellW = 70, cellH = 34, padL = 160, padT = 28;
+    const W = padL + years.length * cellW + 10;
+    const H = padT + rows.length * cellH + 10;
+    // 年份表头
+    const header = years.map((y, i) => {
+      const x = padL + i * cellW;
+      return `<text x="${x + cellW/2}" y="18" text-anchor="middle" font-size="12" fill="var(--muted)">${y}</text>`;
     }).join('');
-    // x 轴刻度
-    const xTicks = years.map((y, i) => {
-      const x = padL + i * xStep;
-      return `<text x="${x}" y="${H-padB+16}" text-anchor="middle" font-size="11" fill="var(--muted)">${y}</text>`;
-    }).join('');
-    // 折线
-    const lines = series.map(s => {
-      if (!s.values.some(v=>v>0)) return '';
-      const pts = s.values.map((v, i) => {
-        const x = padL + i * xStep;
-        const y = padT + plotH - (v/yMax)*plotH;
-        return `${x},${y}`;
-      }).join(' ');
-      // 数据点
-      const dots = s.values.map((v, i) => {
-        if (v === 0) return '';
-        const x = padL + i * xStep;
-        const y = padT + plotH - (v/yMax)*plotH;
-        return `<circle cx="${x}" cy="${y}" r="3" fill="${s.color}"><title>${esc(s.label)} · ${years[i]}: ${v}</title></circle>`;
+    // 行
+    const rowEls = rows.map((r, ri) => {
+      const y = padT + ri * cellH;
+      // 行标签
+      const label = `<text x="${padL - 10}" y="${y + cellH/2 + 4}" text-anchor="end" font-size="11" fill="var(--text)">${esc(r.label)}</text>`;
+      // 单元格
+      const cells = r.values.map((v, ci) => {
+        const x = padL + ci * cellW;
+        const intensity = maxVal > 0 ? v / maxVal : 0;
+        const bg = v === 0 ? 'transparent' : colorScale(intensity);
+        const textColor = intensity > 0.5 ? '#fff' : 'var(--text)';
+        const border = v === 0 ? 'var(--line)' : 'transparent';
+        return `<rect x="${x+2}" y="${y+2}" width="${cellW-4}" height="${cellH-4}" rx="5" fill="${bg}" stroke="${border}" stroke-width="0.5"><title>${esc(r.label)} · ${years[ci]}: ${v}</title></rect>${v > 0 ? `<text x="${x + cellW/2}" y="${y + cellH/2 + 4}" text-anchor="middle" font-size="13" font-weight="600" fill="${textColor}">${v}</text>` : ''}`;
       }).join('');
-      return `<polyline points="${pts}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>${dots}`;
+      return label + cells;
     }).join('');
-    return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:680px;height:auto"><g>${yTickLines}${xTicks}${lines}</g></svg>`;
+    return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:760px;height:auto"><g>${header}${rowEls}</g></svg>`;
   }
 
-  // 矛盾构成折线图
-  const tagMax = Math.max(...topTags.map(t => Math.max(...years.map(y => yearMap[y].tags[t]||0))));
-  const tagSeries = topTags.map((t, i) => ({
+  // 颜色渐变函数：intensity 0-1 → 浅到深
+  function redScale(i) { return `rgba(163,45,45,${0.15 + i * 0.85})`; }
+  function blueScale(i) { return `rgba(24,95,165,${0.15 + i * 0.85})`; }
+
+  // 矛盾构成热力图
+  const tagMax = Math.max(...topTags.map(t => Math.max(...years.map(y => yearMap[y].tags[t]||0))), 1);
+  const tagRows = topTags.map(t => ({
     label: t,
-    color: tagColors[i],
     values: years.map(y => yearMap[y].tags[t]||0)
   }));
-  const tagChart = drawLineChart(tagSeries, years, tagColors, tagMax);
-  const tagLegend = topTags.map((t,i)=>`<span class="ytLegendItem"><span class="ytDot" style="background:${tagColors[i]}"></span>${esc(t)}</span>`).join('');
+  const tagHeatmap = drawHeatmap(tagRows, years, tagMax, redScale);
 
-  // 公关应对折线图
-  const prMax = Math.max(...prOrder.map(p => Math.max(...years.map(y => yearMap[y].pr[p]||0))));
-  const prSeries = prOrder.map(p => ({
+  // 公关应对热力图
+  const prMax = Math.max(...prOrder.map(p => Math.max(...years.map(y => yearMap[y].pr[p]||0))), 1);
+  const prRows = prOrder.map(p => ({
     label: p,
-    color: prColors[p],
     values: years.map(y => yearMap[y].pr[p]||0)
   }));
-  const prChart = drawLineChart(prSeries, years, prColors, prMax);
-  const prLegend = prOrder.map(p=>`<span class="ytLegendItem"><span class="ytDot" style="background:${prColors[p]}"></span>${esc(p)}</span>`).join('');
+  const prHeatmap = drawHeatmap(prRows, years, prMax, blueScale);
+
+  // 颜色图例
+  function legendBar(color, label) {
+    const stops = [0.15, 0.3, 0.5, 0.7, 1].map(i => `<span style="display:inline-block;width:14px;height:10px;background:${color(i)}"></span>`).join('');
+    return `<div class="heatLegend"><span style="font-size:11px;color:var(--muted)">${label}：</span>少${stops}多</div>`;
+  }
 
   wrap.innerHTML = `
     <div class="ytSection">
-      <div class="ytSectionTitle">矛盾构成年度趋势</div>
-      ${tagChart}
-      <div class="ytLegend">${tagLegend}</div>
+      <div class="ytSectionTitle">矛盾构成热力图</div>
+      <div class="ytHeatWrap">${tagHeatmap}</div>
+      ${legendBar(redScale, '案例数')}
     </div>
     <div class="ytSection">
-      <div class="ytSectionTitle">公关应对年度趋势</div>
-      ${prChart}
-      <div class="ytLegend">${prLegend}</div>
+      <div class="ytSectionTitle">公关应对热力图</div>
+      <div class="ytHeatWrap">${prHeatmap}</div>
+      ${legendBar(blueScale, '案例数')}
     </div>
   `;
 }
