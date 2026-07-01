@@ -933,7 +933,7 @@
 .quadStackVal{text-align:right;font-weight:600;color:var(--text);font-size:13px}
 
 /* === 年度趋势分析 堆叠条形图 === */
-.ytSection{margin-bottom:28px}
+.ytSection{margin-bottom:28px;text-align:center}
 .ytSection:last-child{margin-bottom:0}
 .ytSectionTitle{font-size:14px;font-weight:600;color:var(--text);margin-bottom:14px}
 .ytRows{display:flex;flex-direction:column;gap:10px}
@@ -948,6 +948,6 @@
 .ytDot{display:inline-block;width:9px;height:9px;border-radius:2px}
 
 /* 热力图图例 */
-.ytHeatWrap{overflow-x:auto;margin-bottom:10px}
-.heatLegend{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:11px;color:var(--muted)}
+.ytHeatWrap{overflow-x:auto;margin-bottom:10px;display:flex;justify-content:center}
+.heatLegend{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:6px;font-size:11px;color:var(--muted)}
 .heatLegend span{display:inline-block}
