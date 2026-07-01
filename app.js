@@ -459,8 +459,6 @@ function renderGrid(){
   renderMatrixChart();
   renderPrDonut();
   renderTimelineChart();
-  renderQuadrantChart();
-  renderGenreChart();
   renderTagsChart();
   const list=filtered();
   $('resultCount').textContent=`${list.length} / ${caseSummaries.length} 个案例`;
