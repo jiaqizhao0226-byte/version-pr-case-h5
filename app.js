@@ -360,33 +360,101 @@ function renderPrDonut() {
 }
 
 // 时间线分布
-function renderTimelineChart() {
-  const wrap = document.getElementById('timelineChart');
+// 年度趋势分析：矛盾构成 + 公关应对 堆叠条形图
+function renderYearTrendChart() {
+  const wrap = document.getElementById('yearTrendChart');
   if (!wrap) return;
   const all = caseSummaries || [];
-  // 按时间排序，解析 YYYY-MM
-  const sorted = all.filter(c => c.time).map(c => ({...c, ts: new Date(c.time+'-01')})).sort((a,b)=>a.ts-b.ts);
-  if (!sorted.length) { wrap.innerHTML = '<p class="muted">无时间数据</p>'; return; }
-  const minT = sorted[0].ts.getTime();
-  const maxT = sorted[sorted.length-1].ts.getTime();
-  const span = Math.max(1, maxT - minT);
-  // 年份刻度
-  const years = [...new Set(sorted.map(c => c.time.slice(0,4)))].sort();
-  const yearMarks = years.map(y => {
-    const t = new Date(y+'-01-01').getTime();
-    const pct = (t - minT) / span * 100;
-    return `<span style="left:${pct}%">${y}</span>`;
+
+  // 按年份分组
+  const yearMap = {};
+  all.forEach(c => {
+    const y = (c.time||'').slice(0,4);
+    if (!y) return;
+    if (!yearMap[y]) yearMap[y] = { tags:{}, pr:{} };
+    (c.tags||[]).forEach(t => yearMap[y].tags[t] = (yearMap[y].tags[t]||0)+1);
+    const p = c.pr || '其他';
+    yearMap[y].pr[p] = (yearMap[y].pr[p]||0)+1;
+  });
+  const years = Object.keys(yearMap).sort();
+
+  // Top 6 标签 + 其他
+  const tagTotal = {};
+  all.forEach(c => (c.tags||[]).forEach(t => tagTotal[t]=(tagTotal[t]||0)+1));
+  const topTags = Object.entries(tagTotal).sort((a,b)=>b[1]-a[1]).slice(0,6).map(e=>e[0]);
+
+  // 标签颜色
+  const tagColors = ['#a32d2d','#854f0b','#185fa5','#0f6e56','#9c5bbf','#6e6a62','#bbb'];
+  // 公关应对颜色（复用环形图）
+  const prColors = {
+    '光速滑跪+回退':'#0f6e56',
+    '认错+整改方案':'#185fa5',
+    '冷处理+沉默装死':'#6e6a62',
+    '敷衍回应+部分调整':'#854f0b',
+    '被迫补偿+被动合规':'#a32d2d',
+    '仅公示+处置事故':'#9c5bbf',
+  };
+
+  // 每年案例数（取 max 做归一化）
+  const yearTotals = years.map(y => all.filter(c=>(c.time||'').slice(0,4)===y).length);
+  const maxTotal = Math.max(...yearTotals, 1);
+
+  // 渲染上半：矛盾构成
+  const tagRows = years.map(y => {
+    const data = yearMap[y].tags;
+    const total = yearTotals[years.indexOf(y)];
+    let acc = 0;
+    const segs = topTags.map((t, i) => {
+      const n = data[t]||0;
+      if (!n) return '';
+      const w = n/total*100;
+      const seg = `<div class="ytSeg" style="width:${w}%;background:${tagColors[i]}" title="${esc(t)}: ${n}"></div>`;
+      return seg;
+    }).join('');
+    // 其他标签
+    const otherN = Object.entries(data).filter(([t])=>!topTags.includes(t)).reduce((s,[,n])=>s+n,0);
+    const otherSeg = otherN ? `<div class="ytSeg" style="width:${otherN/total*100}%;background:${tagColors[6]}" title="其他: ${otherN}"></div>` : '';
+    return `<div class="ytRow">
+      <div class="ytYear">${y}</div>
+      <div class="ytBar"><div class="ytBarInner" style="width:${total/maxTotal*100}%">${segs}${otherSeg}</div></div>
+      <div class="ytCount">${total}</div>
+    </div>`;
   }).join('');
-  // 品类颜色映射
-  const genreColors = {'二次元抽卡':'#854f0b','乙女向':'#a32d2d','情怀IP':'#854f0b','竞技射击':'#185fa5','武侠开放世界':'#0f6e56','刷子ARPG':'#6e6a62','买断制':'#9c5bbf','PVE射击':'#185fa5','FPS':'#185fa5','MOBA':'#185fa5','开放世界':'#0f6e56','开放世界生存':'#0f6e56','宠物养成':'#854f0b','放置':'#6e6a62','横版格斗MMO':'#185fa5','大IP衍生':'#854f0b','社交养成':'#854f0b','卡牌RPG':'#854f0b','策略RPG':'#0f6e56','塔防卡牌':'#854f0b','MMORPG':'#0f6e56','二次元RPG':'#854f0b','复古抽卡RPG':'#854f0b','恋爱养成':'#a32d2d'};
-  const dots = sorted.map((c, i) => {
-    const pct = (c.ts.getTime() - minT) / span * 100;
-    const g = (c.genre||[])[0] || '';
-    const color = genreColors[g] || '#6e6a62';
-    const sub = (c.title||'').split('-').slice(1).join('-') || c.title;
-    return `<div class="tlDot" style="left:${pct}%;background:${color}" onclick="openCase('${c.id}')"><div class="tlTooltip">${esc(c.game)} · ${esc(sub.slice(0,20))}</div></div>`;
+
+  // 渲染下半：公关应对
+  const prOrder = Object.keys(prColors);
+  const prRows = years.map(y => {
+    const data = yearMap[y].pr;
+    const total = yearTotals[years.indexOf(y)];
+    const segs = prOrder.map((p, i) => {
+      const n = data[p]||0;
+      if (!n) return '';
+      const w = n/total*100;
+      return `<div class="ytSeg" style="width:${w}%;background:${prColors[p]}" title="${esc(p)}: ${n}"></div>`;
+    }).join('');
+    return `<div class="ytRow">
+      <div class="ytYear">${y}</div>
+      <div class="ytBar"><div class="ytBarInner" style="width:${total/maxTotal*100}%">${segs}</div></div>
+      <div class="ytCount">${total}</div>
+    </div>`;
   }).join('');
-  wrap.innerHTML = `<div class="timelineWrap"><div class="timelineAxis">${yearMarks}</div><div class="timelineDots">${dots}</div></div>`;
+
+  // 图例
+  const tagLegend = topTags.map((t,i)=>`<span class="ytLegendItem"><span class="ytDot" style="background:${tagColors[i]}"></span>${esc(t)}</span>`).join('') + `<span class="ytLegendItem"><span class="ytDot" style="background:${tagColors[6]}"></span>其他</span>`;
+  const prLegend = prOrder.map(p=>`<span class="ytLegendItem"><span class="ytDot" style="background:${prColors[p]}"></span>${esc(p)}</span>`).join('');
+
+  wrap.innerHTML = `
+    <div class="ytSection">
+      <div class="ytSectionTitle">矛盾构成（按年度）</div>
+      <div class="ytRows">${tagRows}</div>
+      <div class="ytLegend">${tagLegend}</div>
+    </div>
+    <div class="ytSection">
+      <div class="ytSectionTitle">公关应对（按年度）</div>
+      <div class="ytRows">${prRows}</div>
+      <div class="ytLegend">${prLegend}</div>
+    </div>
+  `;
 }
 
 // 象限堆叠条
@@ -458,7 +526,7 @@ function renderGrid(){
   renderStats();
   renderMatrixChart();
   renderPrDonut();
-  renderTimelineChart();
+  renderYearTrendChart();
   renderTagsChart();
   const list=filtered();
   $('resultCount').textContent=`${list.length} / ${caseSummaries.length} 个案例`;

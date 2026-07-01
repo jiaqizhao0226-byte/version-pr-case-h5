@@ -931,3 +931,18 @@
 .quadStackBar{height:24px;background:var(--soft);border-radius:6px;overflow:hidden;border:1px solid var(--line);display:flex}
 .quadStackSeg{height:100%;transition:width .4s}
 .quadStackVal{text-align:right;font-weight:600;color:var(--text);font-size:13px}
+
+/* === 年度趋势分析 堆叠条形图 === */
+.ytSection{margin-bottom:28px}
+.ytSection:last-child{margin-bottom:0}
+.ytSectionTitle{font-size:14px;font-weight:600;color:var(--text);margin-bottom:14px}
+.ytRows{display:flex;flex-direction:column;gap:10px}
+.ytRow{display:grid;grid-template-columns:50px 1fr 32px;align-items:center;gap:12px;font-size:13px}
+.ytYear{color:var(--text);font-weight:600;font-size:13px}
+.ytBar{height:26px;background:var(--soft);border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.ytBarInner{height:100%;display:flex;border-radius:5px;overflow:hidden;min-width:2px}
+.ytSeg{height:100%;transition:width .4s}
+.ytCount{text-align:right;font-weight:600;color:var(--text);font-size:13px}
+.ytLegend{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;font-size:11px}
+.ytLegendItem{display:inline-flex;align-items:center;gap:5px;color:var(--muted)}
+.ytDot{display:inline-block;width:9px;height:9px;border-radius:2px}

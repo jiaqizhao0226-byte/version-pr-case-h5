@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260701-12" />
+  <link rel="stylesheet" href="./style.css?v=20260701-13" />
 </head>
 <body>
 <div class="app">
@@ -121,7 +121,7 @@
       <section id="matrixChartContainer" class="mapCard"></section>
     </div>
 
-    <!-- 第二排：公关应对环形图 + 时间线 -->
+    <!-- 第二排：公关应对环形图 + 核心矛盾聚类 -->
     <div class="mapRow">
       <section class="mapCard">
         <div class="mapCardTitle">公关应对分布</div>
@@ -129,16 +129,16 @@
         <div id="prLegend" class="donutLegend"></div>
       </section>
       <section class="mapCard">
-        <div class="mapCardTitle">案例时间线分布</div>
-        <div id="timelineChart"></div>
+        <div class="mapCardTitle">核心矛盾聚类（Top 10 标签）</div>
+        <div id="tagsChart" class="mapBars"></div>
       </section>
     </div>
 
-    <!-- 第三排：核心矛盾聚类 -->
-    <div class="mapRow">
+    <!-- 第三排：年度趋势分析（满宽） -->
+    <div class="mapRow mapRowSingle">
       <section class="mapCard">
-        <div class="mapCardTitle">核心矛盾聚类（Top 10 标签）</div>
-        <div id="tagsChart" class="mapBars"></div>
+        <div class="mapCardTitle">年度趋势分析：矛盾构成 × 公关应对</div>
+        <div id="yearTrendChart"></div>
       </section>
     </div>
   </main>
@@ -320,6 +320,6 @@
     <section id="tabContent"></section>
   </main>
 </div>
-<script src="./app.js?v=20260701-11"></script>
+<script src="./app.js?v=20260701-13"></script>
 </body>
 </html>
