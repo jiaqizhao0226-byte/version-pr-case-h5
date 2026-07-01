@@ -491,12 +491,82 @@ function renderTagsChart() {
   renderBarChart('tagsChart', counter, ['#B85450','#8B6F47','#2C3E5C','#5B7B9A','#6C7B8B','#7B6B8A']);
 }
 
+// 矛盾类型 × 公关应对 交叉热力图
+function renderCrossTagPrChart() {
+  const wrap = document.getElementById('crossTagPrChart');
+  if (!wrap) return;
+  const all = caseSummaries || [];
+
+  // 公关应对列
+  const prOrder = ['光速滑跪+回退','认错+整改方案','冷处理+沉默装死','敷衍回应+部分调整','被迫补偿+被动合规','仅公示+处置事故'];
+
+  // Top 8 矛盾标签（行）
+  const tagTotal = {};
+  all.forEach(c => (c.tags||[]).forEach(t => tagTotal[t]=(tagTotal[t]||0)+1));
+  const topTags = Object.entries(tagTotal).sort((a,b)=>b[1]-a[1]).slice(0,8).map(e=>e[0]);
+
+  // 交叉统计：每个 tag × 每个 pr 的案例数
+  const matrix = topTags.map(tag => {
+    const row = prOrder.map(pr => {
+      return all.filter(c => (c.tags||[]).includes(tag) && (c.pr||'') === pr).length;
+    });
+    return { label: tag, values: row };
+  });
+
+  const maxVal = Math.max(...matrix.flatMap(r => r.values), 1);
+
+  // 颜色渐变：深靛蓝
+  function cellColor(v) {
+    if (v === 0) return 'transparent';
+    const i = v / maxVal;
+    return `rgba(44,62,92,${0.12 + i * 0.78})`;
+  }
+
+  // SVG 渲染
+  const cellW = 90, cellH = 36, padL = 180, padT = 50;
+  const W = padL + prOrder.length * cellW + 10;
+  const H = padT + matrix.length * cellH + 10;
+
+  // 列头（公关应对）
+  const header = prOrder.map((p, i) => {
+    const x = padL + i * cellW;
+    // 简化标签：取核心词
+    const short = p.replace('+','\n').split('\n')[0];
+    return `<text x="${x + cellW/2}" y="20" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(short)}</text>`;
+  }).join('');
+
+  // 行
+  const rows = matrix.map((r, ri) => {
+    const y = padT + ri * cellH;
+    const label = `<text x="${padL - 10}" y="${y + cellH/2 + 4}" text-anchor="end" font-size="11" fill="var(--text)">${esc(r.label)}</text>`;
+    const cells = r.values.map((v, ci) => {
+      const x = padL + ci * cellW;
+      const bg = cellColor(v);
+      const border = v === 0 ? 'var(--line)' : 'transparent';
+      const textColor = (v / maxVal) > 0.5 ? '#fff' : 'var(--text)';
+      return `<rect x="${x+2}" y="${y+2}" width="${cellW-4}" height="${cellH-4}" rx="5" fill="${bg}" stroke="${border}" stroke-width="0.5"><title>${esc(r.label)} × ${esc(prOrder[ci])}: ${v}</title></rect>${v > 0 ? `<text x="${x + cellW/2}" y="${y + cellH/2 + 4}" text-anchor="middle" font-size="13" font-weight="600" fill="${textColor}">${v}</text>` : ''}`;
+    }).join('');
+    return label + cells;
+  }).join('');
+
+  // 图例
+  const legendStops = [0.12, 0.3, 0.5, 0.7, 0.9].map(i => `<span style="display:inline-block;width:14px;height:10px;background:rgba(44,62,92,${i})"></span>`).join('');
+
+  wrap.innerHTML = `
+    <div class="ytHeatWrap" style="justify-content:center">
+      <svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:820px;height:auto"><g>${header}${rows}</g></svg>
+    </div>
+    <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
+  `;
+}
+
 function renderGrid(){
   renderStats();
   renderMatrixChart();
   renderPrChart();
   renderYearTrendChart();
   renderTagsChart();
+  renderCrossTagPrChart();
   const list=filtered();
   $('resultCount').textContent=`${list.length} / ${caseSummaries.length} 个案例`;
   $('caseGrid').innerHTML=list.map(c=>`<article class="card caseCard" onclick="openCase('${c.id}')"><div class="caseHead"><div><div class="caseTitle">${c.title}</div><div class="game">${c.game} / ${c.company}${(c.genre||[]).length?' / '+(c.genre||[]).join(' · '):''}</div></div><div class="caseBadges"><span class="badge ${levelClass(c.volume)}" title="声量等级">声量 ${gradeLevel(c.volume)}</span><span class="badge ${levelClass(c.damage)}" title="伤害等级">伤害 ${gradeLevel(c.damage)}</span></div></div><div class="desc">${c.summary}</div><div class="chips">${(c.tags||[]).map(t=>`<span class="chip chip-conflict">${t}</span>`).join('')}${c.pr?`<span class="chip chip-pr">${c.pr}</span>`:''}</div><div class="foot"><span>${c.market}</span><span>${c.time}</span></div></article>`).join('');
