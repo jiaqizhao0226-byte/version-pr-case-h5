@@ -22,15 +22,11 @@ function switchMainTab(tabId) {
   if(document.getElementById('conclusions')) document.getElementById('conclusions').style.display = 'none';
   if(document.getElementById('detail')) document.getElementById('detail').style.display = 'none';
   
-  if (tabId === 'mapping') {
-    location.hash = '';
-    if(document.getElementById('mapping')) document.getElementById('mapping').style.display = 'block';
-  } else if (tabId === 'overview') {
-    location.hash = '';
-    if(document.getElementById('overview')) document.getElementById('overview').style.display = 'block';
-  } else {
-    if(document.getElementById(tabId)) document.getElementById(tabId).style.display = 'block';
+  // 用 hash 记住当前 tab，刷新后能恢复
+  if (location.hash.indexOf('case=') === -1) {
+    location.hash = 'tab=' + tabId;
   }
+  if(document.getElementById(tabId)) document.getElementById(tabId).style.display = 'block';
 }
 
 
@@ -508,7 +504,6 @@ function renderGrid(){
 
 function openCase(id){location.hash=`case=${id}`;}
 function goHome(){
-  location.hash='';
   switchMainTab('overview');
 }
 
@@ -532,7 +527,9 @@ async function route(){
     renderDetail(currentCase);
     scrollTo(0,0);
   }else{
-    switchMainTab('overview');
+    // 读取 #tab=xxx 恢复之前所在 tab，没有则默认 overview
+    const tabId=(location.hash.match(/tab=([^&]+)/)||[])[1] || 'overview';
+    switchMainTab(tabId);
     renderGrid();
   }
 }
