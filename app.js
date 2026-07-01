@@ -326,37 +326,10 @@ function renderMatrixChart() {
 // === 量化分析仪表盘：5 个图表 ===
 
 // 公关应对环形图
-function renderPrDonut() {
-  const wrap = document.getElementById('prDonut');
-  const legend = document.getElementById('prLegend');
-  if (!wrap || !legend) return;
-  const all = caseSummaries || [];
-  const prColors = {
-    '光速滑跪+回退': '#0f6e56',
-    '认错+整改方案': '#185fa5',
-    '冷处理+沉默装死': '#6e6a62',
-    '敷衍回应+部分调整': '#854f0b',
-    '被迫补偿+被动合规': '#a32d2d',
-    '仅公示+处置事故': '#9c5bbf',
-  };
-  const counts = {};
-  all.forEach(c => { const k = c.pr || '其他'; counts[k] = (counts[k]||0)+1; });
-  const total = all.length;
-  const entries = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
-  let acc = 0;
-  const segs = entries.map(([k,n]) => {
-    const color = prColors[k] || '#bbb';
-    const start = acc/total*100;
-    acc += n;
-    const end = acc/total*100;
-    return {k, n, color, start, end};
-  });
-  const grad = segs.map(s => `${s.color} ${s.start}% ${s.end}%`).join(', ');
-  wrap.innerHTML = `<div class="donutWrap"><div class="donutChart" style="background:conic-gradient(${grad})"><div class="donutCenter"><b>${total}</b>案例</div></div></div>`;
-  legend.innerHTML = entries.map(([k,n]) => {
-    const color = prColors[k] || '#bbb';
-    return `<div class="donutLegendItem"><span class="dot" style="background:${color}"></span><span>${esc(k)}</span><span class="val">${n} · ${Math.round(n/total*100)}%</span></div>`;
-  }).join('');
+function renderPrChart() {
+  const counter = {};
+  (caseSummaries||[]).forEach(c => { const k = c.pr || '其他'; counter[k] = (counter[k]||0)+1; });
+  renderBarChart('prChart', counter, ['#0f6e56','#185fa5','#6e6a62','#854f0b','#a32d2d','#9c5bbf']);
 }
 
 // 时间线分布
@@ -525,7 +498,7 @@ function renderTagsChart() {
 function renderGrid(){
   renderStats();
   renderMatrixChart();
-  renderPrDonut();
+  renderPrChart();
   renderYearTrendChart();
   renderTagsChart();
   const list=filtered();
