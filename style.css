@@ -859,7 +859,7 @@
 
 /* === 研究概况 · 文档式排版 === */
 .docProse{padding:8px 4px 40px}
-.docProse .docTitle{font-size:26px;line-height:1.3;letter-spacing:-.01em;margin:0 0 14px;color:var(--text)}
+.docProse .docTitle{font-size:26px;line-height:1.3;letter-spacing:-.01em;margin:0 0 14px;color:var(--text);text-align:center}
 .docProse .docLead{font-size:15px;color:var(--muted);line-height:1.7;margin:0 0 32px}
 .docProse h3{font-size:19px;margin:36px 0 10px;color:var(--text);letter-spacing:-.005em}
 .docProse p{font-size:15px;line-height:1.8;color:var(--text);margin:0 0 16px}
