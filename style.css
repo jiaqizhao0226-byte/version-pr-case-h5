@@ -856,3 +856,14 @@
 .vnFilter .vnChip.active{background:#fbf2e3;color:#7a4b16;border-color:#caa53d;font-weight:700}
 
 .v1deep .compVerdict .ratePill{margin-left:auto}
+
+/* === 研究概况 · 文档式排版 === */
+.docProse{max-width:760px;margin:0 auto;padding:8px 4px 40px}
+.docProse .docTitle{font-size:26px;line-height:1.3;letter-spacing:-.01em;margin:0 0 14px;color:var(--text)}
+.docProse .docLead{font-size:15px;color:var(--muted);line-height:1.7;margin:0 0 32px}
+.docProse h3{font-size:19px;margin:36px 0 10px;color:var(--text);letter-spacing:-.005em}
+.docProse p{font-size:15px;line-height:1.8;color:var(--text);margin:0 0 16px}
+.docProse ol,.docProse ul{font-size:15px;line-height:1.8;color:var(--text);margin:0 0 16px;padding-left:24px}
+.docProse ol li,.docProse ul li{margin-bottom:8px}
+.docProse .docNote{font-size:13px;color:var(--muted);line-height:1.7;padding:12px 16px;background:var(--soft);border-left:3px solid var(--line);border-radius:0 8px 8px 0;margin:20px 0 24px}
+.docProse strong{color:var(--text);font-weight:600}
