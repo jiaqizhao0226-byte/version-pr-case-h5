@@ -951,3 +951,18 @@
 .ytHeatWrap{overflow-x:auto;margin-bottom:10px;display:flex;justify-content:center}
 .heatLegend{display:flex;align-items:center;justify-content:center;gap:6px;margin-top:6px;font-size:11px;color:var(--muted)}
 .heatLegend span{display:inline-block}
+
+/* === 品类 × 声量/伤害分布 双条 === */
+.gdRows{display:flex;flex-direction:column;gap:18px;max-width:820px;margin:0 auto}
+.gdRow{display:grid;grid-template-columns:140px 1fr;gap:16px;align-items:center}
+.gdGenre{font-size:13px;font-weight:600;color:var(--text)}
+.gdCount{font-size:11px;color:var(--muted);font-weight:400;margin-left:4px}
+.gdBars{display:flex;flex-direction:column;gap:6px}
+.gdBarLine{display:grid;grid-template-columns:40px 1fr 100px;align-items:center;gap:10px;font-size:12px}
+.gdBarLabel{color:var(--muted);font-size:11px}
+.gdBar{height:18px;background:var(--soft);border:1px solid var(--line);border-radius:5px;overflow:hidden;display:flex;min-width:2px}
+.gdSeg{height:100%;transition:width .4s}
+.gdBarVal{font-size:11px;color:var(--muted);font-weight:600;text-align:right}
+.gdLegend{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:18px;font-size:11px}
+.gdLegendItem{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
+.gdDot{display:inline-block;width:10px;height:10px;border-radius:2px}

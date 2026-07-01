@@ -560,6 +560,85 @@ function renderCrossTagPrChart() {
   `;
 }
 
+// 品类 × 声量/伤害高低分布（双条并排）
+function renderGenreDamageChart() {
+  const wrap = document.getElementById('genreDamageChart');
+  if (!wrap) return;
+  const all = caseSummaries || [];
+
+  // 按品类统计：声量高低、伤害高低
+  // 声量 S=高，A=低；伤害 S+A=高，B=低
+  const genreData = {};
+  all.forEach(c => {
+    (c.genre||[]).forEach(g => {
+      if (!genreData[g]) genreData[g] = { volHigh:0, volLow:0, dmgHigh:0, dmgLow:0, total:0 };
+      genreData[g].total++;
+      const v = c.volume || '';
+      if (/S/.test(v)) genreData[g].volHigh++; else genreData[g].volLow++;
+      const d = c.damage || '';
+      if (/S/.test(d) || /A/.test(d)) genreData[g].dmgHigh++; else genreData[g].dmgLow++;
+    });
+  });
+
+  // 按案例数排序，取案例数>=2的品类
+  const genres = Object.entries(genreData)
+    .filter(([,d]) => d.total >= 2)
+    .sort((a,b) => b[1].total - a[1].total);
+
+  if (!genres.length) { wrap.innerHTML = '<p class="muted">无数据</p>'; return; }
+  const maxTotal = Math.max(...genres.map(([,d]) => d.total));
+
+  // 颜色
+  const volHighColor = '#2C3E5C'; // 深靛蓝
+  const volLowColor = '#A8B5C5';  // 浅蓝灰
+  const dmgHighColor = '#B85450'; // 砖红
+  const dmgLowColor = '#D8B5B0';  // 浅粉灰
+
+  const rows = genres.map(([g, d]) => {
+    const barWidth = d.total / maxTotal * 100;
+    // 声量条
+    const volHighW = d.total ? d.volHigh / d.total * 100 : 0;
+    const volLowW = d.total ? d.volLow / d.total * 100 : 0;
+    // 伤害条
+    const dmgHighW = d.total ? d.dmgHigh / d.total * 100 : 0;
+    const dmgLowW = d.total ? d.dmgLow / d.total * 100 : 0;
+
+    return `<div class="gdRow">
+      <div class="gdGenre">${esc(g)} <span class="gdCount">${d.total}</span></div>
+      <div class="gdBars">
+        <div class="gdBarLine">
+          <span class="gdBarLabel">声量</span>
+          <div class="gdBar" style="width:${barWidth}%">
+            <div class="gdSeg" style="width:${volHighW}%;background:${volHighColor}" title="声量高(S): ${d.volHigh}"></div>
+            <div class="gdSeg" style="width:${volLowW}%;background:${volLowColor}" title="声量低(A): ${d.volLow}"></div>
+          </div>
+          <span class="gdBarVal">${d.volHigh}高 / ${d.volLow}低</span>
+        </div>
+        <div class="gdBarLine">
+          <span class="gdBarLabel">伤害</span>
+          <div class="gdBar" style="width:${barWidth}%">
+            <div class="gdSeg" style="width:${dmgHighW}%;background:${dmgHighColor}" title="伤害高(S+A): ${d.dmgHigh}"></div>
+            <div class="gdSeg" style="width:${dmgLowW}%;background:${dmgLowColor}" title="伤害低(B): ${d.dmgLow}"></div>
+          </div>
+          <span class="gdBarVal">${d.dmgHigh}高 / ${d.dmgLow}低</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+
+  // 图例
+  const legend = `
+    <div class="gdLegend">
+      <span class="gdLegendItem"><span class="gdDot" style="background:${volHighColor}"></span>声量高(S)</span>
+      <span class="gdLegendItem"><span class="gdDot" style="background:${volLowColor}"></span>声量低(A)</span>
+      <span class="gdLegendItem"><span class="gdDot" style="background:${dmgHighColor}"></span>伤害高(S+A)</span>
+      <span class="gdLegendItem"><span class="gdDot" style="background:${dmgLowColor}"></span>伤害低(B)</span>
+    </div>
+  `;
+
+  wrap.innerHTML = `<div class="gdRows">${rows}</div>${legend}`;
+}
+
 function renderGrid(){
   renderStats();
   renderMatrixChart();
@@ -567,6 +646,7 @@ function renderGrid(){
   renderYearTrendChart();
   renderTagsChart();
   renderCrossTagPrChart();
+  renderGenreDamageChart();
   const list=filtered();
   $('resultCount').textContent=`${list.length} / ${caseSummaries.length} 个案例`;
   $('caseGrid').innerHTML=list.map(c=>`<article class="card caseCard" onclick="openCase('${c.id}')"><div class="caseHead"><div><div class="caseTitle">${c.title}</div><div class="game">${c.game} / ${c.company}${(c.genre||[]).length?' / '+(c.genre||[]).join(' · '):''}</div></div><div class="caseBadges"><span class="badge ${levelClass(c.volume)}" title="声量等级">声量 ${gradeLevel(c.volume)}</span><span class="badge ${levelClass(c.damage)}" title="伤害等级">伤害 ${gradeLevel(c.damage)}</span></div></div><div class="desc">${c.summary}</div><div class="chips">${(c.tags||[]).map(t=>`<span class="chip chip-conflict">${t}</span>`).join('')}${c.pr?`<span class="chip chip-pr">${c.pr}</span>`:''}</div><div class="foot"><span>${c.market}</span><span>${c.time}</span></div></article>`).join('');
