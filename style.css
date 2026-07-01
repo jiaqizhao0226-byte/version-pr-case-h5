@@ -887,3 +887,46 @@
 .scopeFill{height:100%;border-radius:5px;transition:width .4s ease}
 .scopeVal{color:var(--text);font-weight:600;font-size:13px;text-align:right}
 .scopeHint{font-size:12px;color:var(--muted);margin:12px 0 0;line-height:1.5}
+
+/* === 全部案例 Mapping · 量化分析仪表盘 === */
+.mapRow{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.mapCard{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:var(--shadow);min-height:200px}
+.mapCardTitle{font-size:15px;font-weight:600;color:var(--text);margin-bottom:14px}
+@media(max-width:860px){.mapRow{grid-template-columns:1fr}}
+
+/* 环形图 */
+.donutWrap{display:flex;align-items:center;gap:18px}
+.donutChart{width:160px;height:160px;border-radius:50%;flex:0 0 auto;position:relative}
+.donutChart:after{content:"";position:absolute;top:28%;left:28%;width:44%;height:44%;background:var(--panel);border-radius:50%}
+.donutCenter{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;z-index:2;font-size:13px;color:var(--text)}
+.donutCenter b{font-size:22px;display:block}
+.donutLegend{display:flex;flex-direction:column;gap:7px;font-size:12px;flex:1;min-width:0}
+.donutLegendItem{display:flex;align-items:center;gap:8px;color:var(--text)}
+.donutLegendItem .dot{width:10px;height:10px;border-radius:3px;flex:0 0 auto}
+.donutLegendItem .val{margin-left:auto;color:var(--muted);font-weight:600}
+
+/* 时间线 */
+.timelineWrap{position:relative;padding:30px 8px 36px}
+.timelineAxis{position:relative;height:2px;background:var(--line);margin:0 10px}
+.timelineAxis span{position:absolute;top:-20px;transform:translateX(-50%);font-size:11px;color:var(--muted)}
+.timelineDots{position:absolute;top:-7px;left:0;right:0}
+.tlDot{position:absolute;width:14px;height:14px;border-radius:50%;border:2px solid #fff;cursor:pointer;transform:translateX(-50%);box-shadow:0 2px 6px rgba(0,0,0,.25);transition:transform .15s}
+.tlDot:hover{transform:translateX(-50%) scale(1.3);z-index:5}
+.tlTooltip{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);background:var(--text);color:#fff;padding:6px 10px;border-radius:8px;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;z-index:10}
+.tlDot:hover .tlTooltip{opacity:1}
+
+/* 条形图（复用 scopeBars 风格） */
+.mapBars{display:flex;flex-direction:column;gap:8px}
+.mapBar{display:grid;grid-template-columns:1fr 32px;align-items:center;gap:10px;font-size:13px}
+.mapBarTrack{height:20px;background:var(--soft);border-radius:5px;overflow:hidden;border:1px solid var(--line)}
+.mapBarFill{height:100%;border-radius:4px}
+.mapBarVal{text-align:right;font-weight:600;color:var(--text);font-size:12px}
+.mapBarLabel{font-size:12px;color:var(--text);margin-bottom:2px;display:block}
+
+/* 象限堆叠条 */
+.quadStack{display:flex;flex-direction:column;gap:14px}
+.quadStackRow{display:grid;grid-template-columns:90px 1fr 28px;align-items:center;gap:10px;font-size:12px}
+.quadStackLabel{color:var(--text);font-weight:500}
+.quadStackBar{height:24px;background:var(--soft);border-radius:6px;overflow:hidden;border:1px solid var(--line);display:flex}
+.quadStackSeg{height:100%;transition:width .4s}
+.quadStackVal{text-align:right;font-weight:600;color:var(--text);font-size:13px}

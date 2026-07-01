@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260701-9" />
+  <link rel="stylesheet" href="./style.css?v=20260701-10" />
 </head>
 <body>
 <div class="app">
@@ -112,10 +112,43 @@
 
   <main id="mapping" style="display:none">
     <section class="card heroMain" style="margin-bottom:20px;">
-      <h2>全部案例 Mapping (声量 × 伤害 分布)</h2>
-      <p class="muted">横轴为舆情声量（低 → 高），纵轴为商业伤害（低 → 高），按四象限分色。每个点的相对位置依据声量 / 伤害估计排布，越往右上越接近“核心危机”。点击可进入案例复盘。本图始终展示全部案例，不随下方筛选变化。</p>
+      <h2>全部案例量化分析</h2>
+      <p class="muted">基于 31 个案例的多维度量化分析。包含声量×伤害矩阵、时间线分布、品类与矛盾聚类、公关应对占比。所有图表基于全量案例，不随下方筛选变化。</p>
     </section>
-    <section id="matrixChartContainer" style="margin-bottom: 24px;"></section>
+
+    <!-- 第一排：2x2 矩阵 + 公关应对环形图 -->
+    <div class="mapRow">
+      <section id="matrixChartContainer" class="mapCard"></section>
+      <section class="mapCard">
+        <div class="mapCardTitle">公关应对分布</div>
+        <div id="prDonut"></div>
+        <div id="prLegend" class="donutLegend"></div>
+      </section>
+    </div>
+
+    <!-- 第二排：时间线 + 象限堆叠 -->
+    <div class="mapRow">
+      <section class="mapCard">
+        <div class="mapCardTitle">案例时间线分布</div>
+        <div id="timelineChart"></div>
+      </section>
+      <section class="mapCard">
+        <div class="mapCardTitle">声量 × 伤害 象限分布</div>
+        <div id="quadrantChart"></div>
+      </section>
+    </div>
+
+    <!-- 第三排：品类 + 核心矛盾 -->
+    <div class="mapRow">
+      <section class="mapCard">
+        <div class="mapCardTitle">品类分布</div>
+        <div id="genreChart" class="mapBars"></div>
+      </section>
+      <section class="mapCard">
+        <div class="mapCardTitle">核心矛盾聚类（Top 10 标签）</div>
+        <div id="tagsChart" class="mapBars"></div>
+      </section>
+    </div>
   </main>
 
 
@@ -295,6 +328,6 @@
     <section id="tabContent"></section>
   </main>
 </div>
-<script src="./app.js?v=20260701-5"></script>
+<script src="./app.js?v=20260701-10"></script>
 </body>
 </html>

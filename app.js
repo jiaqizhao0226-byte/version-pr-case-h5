@@ -323,9 +323,145 @@ function renderMatrixChart() {
   `;
 }
 
+// === 量化分析仪表盘：5 个图表 ===
+
+// 公关应对环形图
+function renderPrDonut() {
+  const wrap = document.getElementById('prDonut');
+  const legend = document.getElementById('prLegend');
+  if (!wrap || !legend) return;
+  const all = caseSummaries || [];
+  const prColors = {
+    '光速滑跪+回退': '#0f6e56',
+    '认错+整改方案': '#185fa5',
+    '冷处理+沉默装死': '#6e6a62',
+    '敷衍回应+部分调整': '#854f0b',
+    '被迫补偿+被动合规': '#a32d2d',
+    '仅公示+处置事故': '#9c5bbf',
+  };
+  const counts = {};
+  all.forEach(c => { const k = c.pr || '其他'; counts[k] = (counts[k]||0)+1; });
+  const total = all.length;
+  const entries = Object.entries(counts).sort((a,b)=>b[1]-a[1]);
+  let acc = 0;
+  const segs = entries.map(([k,n]) => {
+    const color = prColors[k] || '#bbb';
+    const start = acc/total*100;
+    acc += n;
+    const end = acc/total*100;
+    return {k, n, color, start, end};
+  });
+  const grad = segs.map(s => `${s.color} ${s.start}% ${s.end}%`).join(', ');
+  wrap.innerHTML = `<div class="donutWrap"><div class="donutChart" style="background:conic-gradient(${grad})"><div class="donutCenter"><b>${total}</b>案例</div></div></div>`;
+  legend.innerHTML = entries.map(([k,n]) => {
+    const color = prColors[k] || '#bbb';
+    return `<div class="donutLegendItem"><span class="dot" style="background:${color}"></span><span>${esc(k)}</span><span class="val">${n} · ${Math.round(n/total*100)}%</span></div>`;
+  }).join('');
+}
+
+// 时间线分布
+function renderTimelineChart() {
+  const wrap = document.getElementById('timelineChart');
+  if (!wrap) return;
+  const all = caseSummaries || [];
+  // 按时间排序，解析 YYYY-MM
+  const sorted = all.filter(c => c.time).map(c => ({...c, ts: new Date(c.time+'-01')})).sort((a,b)=>a.ts-b.ts);
+  if (!sorted.length) { wrap.innerHTML = '<p class="muted">无时间数据</p>'; return; }
+  const minT = sorted[0].ts.getTime();
+  const maxT = sorted[sorted.length-1].ts.getTime();
+  const span = Math.max(1, maxT - minT);
+  // 年份刻度
+  const years = [...new Set(sorted.map(c => c.time.slice(0,4)))].sort();
+  const yearMarks = years.map(y => {
+    const t = new Date(y+'-01-01').getTime();
+    const pct = (t - minT) / span * 100;
+    return `<span style="left:${pct}%">${y}</span>`;
+  }).join('');
+  // 品类颜色映射
+  const genreColors = {'二次元抽卡':'#854f0b','乙女向':'#a32d2d','情怀IP':'#854f0b','竞技射击':'#185fa5','武侠开放世界':'#0f6e56','刷子ARPG':'#6e6a62','买断制':'#9c5bbf','PVE射击':'#185fa5','FPS':'#185fa5','MOBA':'#185fa5','开放世界':'#0f6e56','开放世界生存':'#0f6e56','宠物养成':'#854f0b','放置':'#6e6a62','横版格斗MMO':'#185fa5','大IP衍生':'#854f0b','社交养成':'#854f0b','卡牌RPG':'#854f0b','策略RPG':'#0f6e56','塔防卡牌':'#854f0b','MMORPG':'#0f6e56','二次元RPG':'#854f0b','复古抽卡RPG':'#854f0b','恋爱养成':'#a32d2d'};
+  const dots = sorted.map((c, i) => {
+    const pct = (c.ts.getTime() - minT) / span * 100;
+    const g = (c.genre||[])[0] || '';
+    const color = genreColors[g] || '#6e6a62';
+    const sub = (c.title||'').split('-').slice(1).join('-') || c.title;
+    return `<div class="tlDot" style="left:${pct}%;background:${color}" onclick="openCase('${c.id}')"><div class="tlTooltip">${esc(c.game)} · ${esc(sub.slice(0,20))}</div></div>`;
+  }).join('');
+  wrap.innerHTML = `<div class="timelineWrap"><div class="timelineAxis">${yearMarks}</div><div class="timelineDots">${dots}</div></div>`;
+}
+
+// 象限堆叠条
+function renderQuadrantChart() {
+  const wrap = document.getElementById('quadrantChart');
+  if (!wrap) return;
+  const all = caseSummaries || [];
+  // 组合：声量(S/A) × 伤害(S/A/B)
+  const combos = {};
+  all.forEach(c => {
+    const v = c.volume || '';
+    const d = c.damage || '';
+    const vl = /S/.test(v) ? 'S' : 'A';
+    let dl = /S/.test(d) ? 'S' : (/A/.test(d) ? 'A' : 'B');
+    const key = `声量${vl}+伤害${dl}`;
+    combos[key] = (combos[key]||0)+1;
+  });
+  // 按声量分组，每组堆叠伤害分布
+  const groups = [
+    {label:'声量 S', filter:k=>k.startsWith('声量S'), color:'#a32d2d'},
+    {label:'声量 A', filter:k=>k.startsWith('声量A'), color:'#854f0b'},
+  ];
+  const damageColors = {'S':'#a32d2d','A':'#854f0b','B':'#0f6e56'};
+  const total = all.length;
+  wrap.innerHTML = `<div class="quadStack">${groups.map(g => {
+    const keys = Object.keys(combos).filter(g.filter);
+    const groupTotal = keys.reduce((s,k)=>s+combos[k],0);
+    const segs = keys.map(k => {
+      const dl = k.split('伤害')[1];
+      const n = combos[k];
+      const w = groupTotal ? n/groupTotal*100 : 0;
+      return `<div class="quadStackSeg" style="width:${w}%;background:${damageColors[dl]}" title="${k}: ${n}"></div>`;
+    }).join('');
+    return `<div class="quadStackRow"><div class="quadStackLabel">${g.label}</div><div class="quadStackBar">${segs}</div><div class="quadStackVal">${groupTotal}</div></div>`;
+  }).join('')}</div>`;
+  // 图例
+  const legend = `<div style="display:flex;gap:14px;margin-top:14px;font-size:12px;color:var(--muted)"><span><span style="display:inline-block;width:10px;height:10px;background:#a32d2d;border-radius:2px;margin-right:4px"></span>伤害 S</span><span><span style="display:inline-block;width:10px;height:10px;background:#854f0b;border-radius:2px;margin-right:4px"></span>伤害 A</span><span><span style="display:inline-block;width:10px;height:10px;background:#0f6e56;border-radius:2px;margin-right:4px"></span>伤害 B</span></div>`;
+  wrap.innerHTML += legend;
+}
+
+// 通用水平条形图
+function renderBarChart(containerId, counter, maxColors) {
+  const wrap = document.getElementById(containerId);
+  if (!wrap) return;
+  const entries = Object.entries(counter).sort((a,b)=>b[1]-a[1]).slice(0, 10);
+  const max = Math.max(...entries.map(e=>e[1]));
+  wrap.innerHTML = entries.map(([k,n], i) => {
+    const w = max ? n/max*100 : 0;
+    const color = maxColors[i % maxColors.length];
+    return `<div><span class="mapBarLabel">${esc(k)}</span><div class="mapBar"><div class="mapBarTrack"><div class="mapBarFill" style="width:${w}%;background:${color}"></div></div><span class="mapBarVal">${n}</span></div></div>`;
+  }).join('');
+}
+
+// 品类分布条形图
+function renderGenreChart() {
+  const counter = {};
+  (caseSummaries||[]).forEach(c => (c.genre||[]).forEach(g => counter[g] = (counter[g]||0)+1));
+  renderBarChart('genreChart', counter, ['#854f0b','#185fa5','#a32d2d','#0f6e56','#6e6a62','#9c5bbf','#b5651d','#4a7c8c']);
+}
+
+// 核心矛盾聚类条形图
+function renderTagsChart() {
+  const counter = {};
+  (caseSummaries||[]).forEach(c => (c.tags||[]).forEach(t => counter[t] = (counter[t]||0)+1));
+  renderBarChart('tagsChart', counter, ['#a32d2d','#854f0b','#185fa5','#0f6e56','#6e6a62','#9c5bbf']);
+}
+
 function renderGrid(){
   renderStats();
   renderMatrixChart();
+  renderPrDonut();
+  renderTimelineChart();
+  renderQuadrantChart();
+  renderGenreChart();
+  renderTagsChart();
   const list=filtered();
   $('resultCount').textContent=`${list.length} / ${caseSummaries.length} 个案例`;
   $('caseGrid').innerHTML=list.map(c=>`<article class="card caseCard" onclick="openCase('${c.id}')"><div class="caseHead"><div><div class="caseTitle">${c.title}</div><div class="game">${c.game} / ${c.company}${(c.genre||[]).length?' / '+(c.genre||[]).join(' · '):''}</div></div><div class="caseBadges"><span class="badge ${levelClass(c.volume)}" title="声量等级">声量 ${gradeLevel(c.volume)}</span><span class="badge ${levelClass(c.damage)}" title="伤害等级">伤害 ${gradeLevel(c.damage)}</span></div></div><div class="desc">${c.summary}</div><div class="chips">${(c.tags||[]).map(t=>`<span class="chip chip-conflict">${t}</span>`).join('')}${c.pr?`<span class="chip chip-pr">${c.pr}</span>`:''}</div><div class="foot"><span>${c.market}</span><span>${c.time}</span></div></article>`).join('');
