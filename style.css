@@ -966,3 +966,12 @@
 .gdLegend{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:18px;font-size:11px}
 .gdLegendItem{display:inline-flex;align-items:center;gap:6px;color:var(--muted)}
 .gdDot{display:inline-block;width:10px;height:10px;border-radius:2px}
+
+/* === 声量分级标准表格 === */
+.gradeTable{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0}
+.gradeTable th,.gradeTable td{padding:12px 14px;border:1px solid var(--line);vertical-align:top;text-align:left}
+.gradeTable th{background:var(--soft);color:var(--muted);font-weight:600;font-size:12px}
+.gradeTable td{color:var(--text);line-height:1.5}
+.gradeTable .gradeS{font-size:20px;font-weight:700;color:#B85450;text-align:center;background:var(--redBg);width:40px}
+.gradeTable .gradeA{font-size:20px;font-weight:700;color:#8B6F47;text-align:center;background:var(--amberBg);width:40px}
+.gradeTable .gradeB{font-size:20px;font-weight:700;color:#6C7B8B;text-align:center;background:var(--blueBg);width:40px}
