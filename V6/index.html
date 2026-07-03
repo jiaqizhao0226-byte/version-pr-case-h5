@@ -1,0 +1,614 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>游戏版本舆情洞察与案例库</title>
+  <link rel="stylesheet" href="./style.css?v=20260702-1" />
+</head>
+<body>
+<div class="app">
+  
+  
+  <header class="top">
+        <div class="brand" style="cursor: pointer;" onclick="goHome()">
+      <div class="logo"></div>
+      <div>
+        <h1>游戏版本舆情洞察与案例库</h1>
+        <div class="sub">31 个典型游戏舆情案例深挖与公关复盘</div>
+      </div>
+    </div>
+    <div class="pill">Dashboard / case detail / H5</div>
+  </header>
+
+  <nav class="mainNav">
+    <button onclick="switchMainTab('overview')" id="nav-overview" class="active">研究概况</button>
+    <button onclick="switchMainTab('mapping')" id="nav-mapping">全部案例 Mapping</button>
+    <button onclick="switchMainTab('dashboard')" id="nav-dashboard">案例库大盘</button>
+    <button onclick="switchMainTab('conclusions')" id="nav-conclusions">结论页</button>
+  </nav>
+
+  <main id="overview">
+    <article class="docProse">
+
+      <h2 class="docTitle">游戏版本舆情洞察与公关复盘</h2>
+      <p class="docLead">本案例库对 2020–2026 年国内游戏行业 31 起具有代表性的版本舆情危机进行结构化拆解，以「声量 × 伤害」二维矩阵为分级框架，结合玩家声音定性与官方应对复盘，提炼可复用的判断与执行参考。</p>
+
+      <hr class="docSep"/>
+
+      <h3>一、研究目的</h3>
+      <p>把「骂得凶」和「真伤钱」分开看，给版本运营和公关团队一套可复用的判断框架。具体回答三个问题：</p>
+      <ol>
+        <li><strong>一场舆情到底有多严重？</strong>用「声量 × 伤害」二维定位，而不是只看热搜——声量高不等于真伤到流水留存。</li>
+        <li><strong>官方该怎么应对？</strong>先识别「承重墙有没有动」，再决定是光速滑跪还是冷处理——而不是按情绪烈度拍板。</li>
+        <li><strong>哪些品类最容易踩哪些雷？</strong>按品类区分雷区——乙游盯情感契约、竞技盯公平契约、情怀IP盯定位偏离，而不是一刀切。</li>
+      </ol>
+
+      <hr class="docSep"/>
+
+      <h3>二、研究方法</h3>
+      <p>四个维度拆解每个案例，保证跨案例可比性：</p>
+      <ol>
+        <li><strong>声量 × 伤害矩阵</strong>：横轴声量（讨论热度 / 破圈程度），纵轴伤害（是否动到付费留存根基），按高 / 中 / 低伤害拆成六格，避免把中伤害误判为高伤害。</li>
+        <li><strong>玩家声音定性</strong>：区分「真实痛点」（数值、金钱、体验受损）和「圈层噪音 / 道德审判」（性别对立、云玩家抵制），决定该顺从还是切割。</li>
+        <li><strong>核心矛盾标签体系</strong>：统一打标——核心资产剥夺 / 情感背叛 OOC / 底层契约撕毁 / 教玩家玩游戏 / 价值观冲突。</li>
+        <li><strong>官方应对复盘</strong>：按「认错时效 / 透明度 / 是否回退 / 补偿力度」四要素，评估每场公关是止血还是放大损伤。</li>
+      </ol>
+      <p class="docNote">数据来源：玩家社区原话（B站 / NGA / 贴吧）、官方公告与公开信、媒体复盘报道。</p>
+
+      <hr class="docSep"/>
+
+      <h3>三、案例 Scope</h3>
+      <p>基于 31 个案例的统计覆盖范围：</p>
+
+      <div class="scopeCharts">
+        <div class="scopeGroup">
+          <div class="scopeGroupTitle">时间分布 <span class="scopeTotal">31 个案例 · 2020–2026</span></div>
+          <div class="scopeBars">
+            <div class="scopeBar"><span class="scopeLabel">2020</span><div class="scopeTrack"><div class="scopeFill" style="width:22%;background:var(--blue)"></div></div><span class="scopeVal">2</span></div>
+            <div class="scopeBar"><span class="scopeLabel">2021</span><div class="scopeTrack"><div class="scopeFill" style="width:44%;background:var(--blue)"></div></div><span class="scopeVal">4</span></div>
+            <div class="scopeBar"><span class="scopeLabel">2023</span><div class="scopeTrack"><div class="scopeFill" style="width:33%;background:var(--blue)"></div></div><span class="scopeVal">3</span></div>
+            <div class="scopeBar"><span class="scopeLabel">2024</span><div class="scopeTrack"><div class="scopeFill" style="width:89%;background:var(--amber)"></div></div><span class="scopeVal">8</span></div>
+            <div class="scopeBar"><span class="scopeLabel">2025</span><div class="scopeTrack"><div class="scopeFill" style="width:100%;background:var(--amber)"></div></div><span class="scopeVal">9</span></div>
+            <div class="scopeBar"><span class="scopeLabel">2026</span><div class="scopeTrack"><div class="scopeFill" style="width:56%;background:var(--amber)"></div></div><span class="scopeVal">5</span></div>
+          </div>
+          <p class="scopeHint">其中 2024–2026 占 22 个，以近年为主。</p>
+        </div>
+
+        <div class="scopeGroup">
+          <div class="scopeGroupTitle">品类分布 <span class="scopeTotal">Top 6</span></div>
+          <div class="scopeBars">
+            <div class="scopeBar"><span class="scopeLabel">二次元抽卡</span><div class="scopeTrack"><div class="scopeFill" style="width:100%;background:var(--amber)"></div></div><span class="scopeVal">9</span></div>
+            <div class="scopeBar"><span class="scopeLabel">乙女向</span><div class="scopeTrack"><div class="scopeFill" style="width:44%;background:var(--red)"></div></div><span class="scopeVal">4</span></div>
+            <div class="scopeBar"><span class="scopeLabel">情怀IP</span><div class="scopeTrack"><div class="scopeFill" style="width:44%;background:var(--amber)"></div></div><span class="scopeVal">4</span></div>
+            <div class="scopeBar"><span class="scopeLabel">竞技射击</span><div class="scopeTrack"><div class="scopeFill" style="width:33%;background:var(--blue)"></div></div><span class="scopeVal">3</span></div>
+            <div class="scopeBar"><span class="scopeLabel">武侠开放世界</span><div class="scopeTrack"><div class="scopeFill" style="width:33%;background:var(--green)"></div></div><span class="scopeVal">3</span></div>
+            <div class="scopeBar"><span class="scopeLabel">刷子ARPG / 买断制</span><div class="scopeTrack"><div class="scopeFill" style="width:22%;background:var(--muted)"></div></div><span class="scopeVal">2 / 2</span></div>
+          </div>
+          <p class="scopeHint">放置 / 生存 / 单机买断等样本较少，暂不单独成结论。</p>
+        </div>
+
+        <div class="scopeGroup">
+          <div class="scopeGroupTitle">市场分布</div>
+          <div class="scopeBars">
+            <div class="scopeBar"><span class="scopeLabel">国内×国内</span><div class="scopeTrack"><div class="scopeFill" style="width:100%;background:var(--green)"></div></div><span class="scopeVal">14</span></div>
+            <div class="scopeBar"><span class="scopeLabel">国内×全球</span><div class="scopeTrack"><div class="scopeFill" style="width:79%;background:var(--blue)"></div></div><span class="scopeVal">11</span></div>
+            <div class="scopeBar"><span class="scopeLabel">海外×全球</span><div class="scopeTrack"><div class="scopeFill" style="width:29%;background:var(--amber)"></div></div><span class="scopeVal">4</span></div>
+            <div class="scopeBar"><span class="scopeLabel">代理×国内</span><div class="scopeTrack"><div class="scopeFill" style="width:7%;background:var(--muted)"></div></div><span class="scopeVal">1</span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <hr class="docSep"/>
+
+      <h3>四、标签判定标准</h3>
+      <p>案例库对每个案例统一打四类标签，量化维度与判定口径如下——<strong>声量</strong>（骂得多不多）、<strong>伤害</strong>（真伤没伤到根基）、<strong>核心矛盾</strong>（到底在气什么）、<strong>官方应对</strong>（怎么处理的）。四类标签共同支撑全站的矩阵、交叉图与结论。</p>
+
+      <h4>4.1　声量分级标准</h4>
+      <p>按「平台覆盖 × UGC 产出 × 破圈程度」三维度，将舆情声量分为 高 / 中 / 低 三档：</p>
+      <table class="gradeTable">
+        <thead>
+          <tr><th>等级</th><th>平台覆盖</th><th>UGC 产出</th><th>破圈程度</th><th>典型特征</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="gradeS">高</td>
+            <td>3+ 平台全网发酵<br>（B站 + 微博 + 贴吧 + 抖音…）</td>
+            <td>大量二创 + 梗传播<br>长文分析 / 复盘视频</td>
+            <td>主流财经 / 社会媒体报道<br>（环球网、新浪财经、观察者网…）<br>消协 / 律师函 / 警方介入</td>
+            <td>「出圈」事件<br>圈外人也知道</td>
+          </tr>
+          <tr>
+            <td class="gradeA">中</td>
+            <td>2-3 平台<br>（B站 + 微博 / 贴吧）</td>
+            <td>中等 UGC<br>有长文复盘</td>
+            <td>游戏媒体 + 科技媒体报道<br>（17173、游民星空、GameLook…）</td>
+            <td>圈内大事件<br>圈外偶尔听说</td>
+          </tr>
+          <tr>
+            <td class="gradeB">低</td>
+            <td>单平台为主<br>（贴吧 / NGA）</td>
+            <td>少量吐槽帖</td>
+            <td>无外部媒体报道</td>
+            <td>圈内小范围吐槽</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="docNote"><strong>说明：</strong>本案例库 31 个案例均为 中 / 高声量舆情，暂无「低声量」样本。低声量案例因传播范围窄、系统性记录不足，不纳入本次分析。分析结论适用于「中 / 高声量舆情」场景，对低声量「隐性流失」类不适用。</p>
+
+      <h4>4.2　伤害分级标准</h4>
+      <p>伤害看的是「承重墙动没动」——舆情是否真正伤到<strong>收入、活跃、产品存续</strong>，而非骂声大小。按对流水 / 活跃 / 结局的实际冲击分 高 / 中 / 低 三档：</p>
+      <table class="gradeTable">
+        <thead>
+          <tr><th>等级</th><th>收入 / 流水</th><th>活跃 / 留存</th><th>结局信号</th><th>典型特征</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="gradeS">高</td>
+            <td>跌幅深且跨版本 / 多次活动持续<br>后续收入不及同期预期<br>不随道歉补偿回升</td>
+            <td>DAU 肉眼可见下降<br>处理后未回补</td>
+            <td>停服 / 停运<br>大规模退款潮<br>永久砍产品线<br>（命中任一即判高）</td>
+            <td>影响不可逆<br>或根因在产品定位 / 设定层</td>
+          </tr>
+          <tr>
+            <td class="gradeA">中</td>
+            <td>爆发期环比明显下降<br>或下个卡池 / 角色收入走低<br>补偿·下版本后回升</td>
+            <td>基本无变化<br>影响主要落在收入侧</td>
+            <td>无高档硬信号<br>短期内即修复回归</td>
+            <td>影响可逆<br>不跨版本</td>
+          </tr>
+          <tr>
+            <td class="gradeB">低</td>
+            <td>数据上看不出影响<br>或仅轻微波动很快回归<br>甚至逢周年庆仍处峰值</td>
+            <td>无变化</td>
+            <td>无任何持续 / 不可逆信号<br>处理前后曲线基本重合</td>
+            <td>仅口碑波动<br>大盘数据无感</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="docNote"><strong>说明：</strong>部分案例因数据源不覆盖事件期或未纳入量化收录，伤害记为「无数据 / 未收录」，以定性判定为准，不参与伤害档统计。<strong>声量 ≠ 伤害</strong>是本库的核心命题：高声量可能只是「低」档噪声，低声量也可能是「高」档隐性失血。</p>
+
+      <h4>4.3　核心矛盾标签体系</h4>
+      <p>核心矛盾，是剥开情绪与声量后玩家真正在意的那个「被侵犯的东西」——它回答的不是「发生了什么事」，而是「这件事动了玩家的哪一样东西」。据此归为 <strong>4 大类 9 个标签</strong>，每个案例可打一个或多个。全库统一的划分主线是<strong>按「被侵犯的对象」切，而非按表面导火索切</strong>：同一个动作（如「削弱」），削的是你花钱买的东西即归付费类，削的是大众游戏机制即归数值类。</p>
+      <table class="gradeTable">
+        <thead>
+          <tr><th>大类</th><th>标签</th><th>定义</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="tagGroupCell" rowspan="2"><span class="tagGroupName">💰 商业化 / 付费</span><span class="tagGroupJudge">「我花的钱 / 要花的钱被坑了」</span></td>
+            <td class="tagName">付费内容贬值/不实</td>
+            <td class="tagDef">指玩家已付费所得内容，因后续改动或宣传不符而缩水、贬值的争议。<span class="tagIncl">（限定卡缩水、限定变常驻、付费战令武器被砍、宣传与实物不符）</span></td>
+          </tr>
+          <tr>
+            <td class="tagName">商业化契约/动机争议</td>
+            <td class="tagDef">指厂商的收费方式或恰钱姿态本身引发的信任争议。<span class="tagIncl">（涨价逼氪、「想赚钱」式表态、付费设计动机被质疑、吃相难看）</span></td>
+          </tr>
+          <tr>
+            <td class="tagGroupCell" rowspan="3"><span class="tagGroupName">🎮 数值 / 玩法 / 体验</span><span class="tagGroupJudge">「我玩的东西 / 花的精力被搞坏了」</span></td>
+            <td class="tagName">数值/平衡争议</td>
+            <td class="tagDef">指游戏机制层的强度、平衡与公平性争议。<span class="tagIncl">（强度失衡、逼氪数值、全职业平衡补丁、削弱补偿不到位）</span></td>
+          </tr>
+          <tr>
+            <td class="tagName">体验/质量争议</td>
+            <td class="tagDef">指基础品质与服务层面「做得烂 / 坏了」的争议。<span class="tagIncl">（性能卡顿、bug、优化差、闪退、客服失灵）</span></td>
+          </tr>
+          <tr>
+            <td class="tagName">自创玩法管控争议</td>
+            <td class="tagDef">指官方限制或管控玩家自创玩法、被批「教玩家玩游戏」的自由度争议。<span class="tagIncl">（强制玩法、封禁自创流派、管控二创 / 玩法自由）</span></td>
+          </tr>
+          <tr>
+            <td class="tagGroupCell" rowspan="2"><span class="tagGroupName">🎭 内容与价值观</span><span class="tagGroupJudge">「我认同的角色 / 价值观被冒犯了」</span></td>
+            <td class="tagName">情感/价值观争议</td>
+            <td class="tagDef">指剧情、角色或价值观输出冒犯玩家情感认同、击穿内部情感契约的争议。<span class="tagIncl">（OOC、角色崩坏、暧昧剧情、价值观输出翻车）</span></td>
+          </tr>
+          <tr>
+            <td class="tagName">内容尺度/合规争议</td>
+            <td class="tagDef">指内容擦边、尺度或联动触碰监管与大众道德线的争议。<span class="tagIncl">（擦边立绘、联动踩线、尺度越界、涉监管举报）</span></td>
+          </tr>
+          <tr>
+            <td class="tagGroupCell" rowspan="2"><span class="tagGroupName">👥 圈层矛盾</span><span class="tagGroupJudge">「这是在针对 / 撕裂我们这群人」</span></td>
+            <td class="tagName">圈层矛盾-性别</td>
+            <td class="tagDef">指争议主线演变成男女玩家立场对立的冲突形态。<span class="tagIncl">（性别对立、男女立场互撕、拉踩引战）</span></td>
+          </tr>
+          <tr>
+            <td class="tagName">圈层矛盾-竞品</td>
+            <td class="tagDef">指争议演变成粉丝 / 竞品阵营站队互撕的冲突形态。<span class="tagIncl">（竞品阵营对立、粉丝站队、云玩家抵制）</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="docNote"><strong>说明：</strong>核心矛盾标签<strong>可叠加</strong>——一个事件常同时侵犯多样东西（如「擦边联动」既踩合规线又撕性别圈层）。打标时先抓<strong>最主要的被侵犯对象</strong>定主标签，再补叠加标签。「圈层矛盾」两个标签多为<strong>叠加态</strong>，它标记冲突「打成了什么形态」，而非最初「因什么而起」。应对上，「真实痛点」（付费 / 数值 / 体验 / 情感契约）通常需顺应，「圈层噪音 / 道德审判」则需审慎切割、避免被裹挟。</p>
+
+      <h4>4.4　官方应对分类</h4>
+      <p>官方应对按<strong>认错时效 × 诚意 / 有效性</strong>归为 4 类，从高到低排序——它决定一场舆情是被止血还是被放大：</p>
+      <table class="gradeTable">
+        <thead>
+          <tr><th>类型</th><th>行为特征</th><th>适用 / 效果</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="prName prSlide">立刻滑跪</td>
+            <td>第一时间认错、快速回退 / 加码补偿，姿态低、动作快</td>
+            <td>面对已击穿契约的高伤害舆情，及时止血、争取回血窗口</td>
+          </tr>
+          <tr>
+            <td class="prName prNormal">正常处理</td>
+            <td>按常规节奏公告说明、给出方案，不卑不亢</td>
+            <td>矛盾可控、诉求明确时的标准动作，多数能平稳平息</td>
+          </tr>
+          <tr>
+            <td class="prName prMix">前期冷处理<br>+后期滑跪</td>
+            <td>初期观望 / 沉默，舆情升级后被迫认错回退</td>
+            <td>误判烈度导致错过最佳窗口，滑跪成本被抬高</td>
+          </tr>
+          <tr>
+            <td class="prName prCold">冷处理</td>
+            <td>不回应 / 淡化 / 拖过热度，等舆情自然消退</td>
+            <td>对圈层噪音 / 道德审判类可用；若用错在真实痛点上会放大损伤</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="docNote"><strong>说明：</strong>应对方式无绝对优劣，关键是<strong>匹配</strong>——先识别「承重墙动没动」，再决定滑跪还是冷处理。数据上存在<strong>选择效应</strong>：立刻滑跪的案例往往伤害更高，并非「滑跪导致伤害」，而是「伤害大到不得不跪」。</p>
+
+      <p class="docNote"><strong>样本局限：</strong>声量多为中 / 高档（偏重大舆情），低声量「隐性流失」类样本不足；品类上放置 / 生存 / 单机买断样本较少，暂不单独成结论。</p>
+
+      <hr class="docSep"/>
+
+      <h3>五、核心发现速览</h3>
+      <p class="docNote" style="font-style:italic;">TBD</p>
+
+    </article>
+  </main>
+
+  <main id="mapping" style="display:none">
+    <section class="card heroMain" style="margin-bottom:20px;">
+      <h2>全部案例 Mapping</h2>
+      <p class="muted">基于 31 个案例的横向 Mapping。重点不只统计“有多少”，而是通过 品类 × 核心矛盾 × 伤害、公关应对 × 时间 × 伤害 等三维图，识别哪些矛盾更容易伤大盘、哪些应对更常出现在高风险场景。所有图表基于全量案例，不随下方筛选变化。</p>
+    </section>
+
+    <div class="mapFlowIntro">
+      <b>阅读顺序</b>
+      <span>先判断伤害落点，再看最伤大盘的矛盾，随后拆到品类、破圈、公关应对和时间趋势。</span>
+    </div>
+
+    <div class="mapSectionLabel">案例概览：先看样本由什么构成</div>
+    <div class="mapRow mapRowOverview">
+      <section class="overviewMiniCard" id="overviewTimeCard"></section>
+      <section class="overviewMiniCard" id="overviewGenreCard"></section>
+      <section class="overviewMiniCard" id="overviewMarketCard"></section>
+      <section class="overviewMiniCard" id="overviewTagCard"></section>
+      <section class="overviewMiniCard" id="overviewPrCard"></section>
+    </div>
+
+    <div class="mapSectionLabel">一、先定严重度：哪些不是普通吵架</div>
+    <div class="mapRow mapRowSingle">
+      <section id="matrixChartContainer" class="mapCard"></section>
+    </div>
+
+    <div class="mapRow mapRowSingle">
+      <section class="mapCard">
+        <div class="mapCardTitle">核心矛盾 × 伤害（哪些矛盾最伤大盘）<span>用途：给版本风险优先级排序，是后续所有交叉图的主判断</span></div>
+        <div id="tagDamageChart"></div>
+      </section>
+    </div>
+
+    <div class="mapSectionLabel">二、再拆品类：同一种矛盾在不同游戏里风险不同</div>
+    <div class="mapRow mapRowSingle">
+      <section class="mapCard">
+        <div class="mapCardTitle">品类 × 核心矛盾 × 伤害<span>用途：识别不同品类最容易踩中的高风险矛盾</span></div>
+        <div id="genreDamageChart"></div>
+      </section>
+    </div>
+
+    <div class="mapSectionLabel">三、再看传播：破圈不等于真伤，但会抬高公关难度</div>
+    <div class="mapRow mapRowSingle">
+      <section class="mapCard">
+        <div class="mapCardTitle">声量范围 × 核心矛盾 × 伤害<span>用途：区分破圈热度和真实伤害</span></div>
+        <div id="scopeTagChart"></div>
+      </section>
+    </div>
+
+    <div class="mapSectionLabel">四、再看官方：处置方式是结果，也是风险识别能力的体现</div>
+    <div class="mapRow mapRowSingle">
+      <section class="mapCard">
+        <div class="mapCardTitle">核心矛盾 × 公关应对 × 伤害<span>用途：判断不同矛盾下官方处置与实际伤害的关系</span></div>
+        <div id="crossTagPrChart"></div>
+      </section>
+    </div>
+
+    <div class="mapRow mapRowSingle">
+      <section class="mapCard">
+        <div class="mapCardTitle">公关应对 × 伤害结构（含选择效应）<span>用途：防止把处置动作误读成伤害原因</span></div>
+        <div id="prDamageChart"></div>
+      </section>
+    </div>
+
+    <div class="mapRow mapRowSingle">
+      <section class="mapCard">
+        <div class="mapCardTitle">公关应对 × 时间 × 伤害<span>用途：观察近年处置动作与风险级别是否同步变化</span></div>
+        <div id="prTimeChart"></div>
+      </section>
+    </div>
+
+    <div class="mapSectionLabel">五、年度趋势分析</div>
+    <div class="mapRow mapRowSingle">
+      <section class="mapCard">
+        <div class="mapCardTitle">年度趋势分析：矛盾构成 × 公关应对<span>用途：观察不同年份的议题和处置结构变化</span></div>
+        <div id="yearTrendChart"></div>
+      </section>
+    </div>
+
+  </main>
+
+
+
+
+  <main id="conclusions" style="display:none">
+    <section class="card heroMain" style="margin-bottom:20px;">
+      <h2>跨案例结论</h2>
+      <p class="muted">基于全部已收录案例的横向复盘，提炼可复用的判断与执行参考。分三层：① 偏宏观的规律性结论；② 少而精的执行 tips；③ 不同品类游戏的运营启发。结论以“机制与模式”为主，不作频率/趋势类断言。</p>
+    </section>
+
+    <!-- 板块一 · 宏观结论 -->
+    <div style="margin:8px 2px 12px;">
+      <h2 style="font-size:18px; margin:0 0 4px;">一、宏观结论</h2>
+      <p class="muted" style="font-size:13px; margin:0;">关于“舆情到底意味着什么”的几条规律——本篇重点。</p>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 舆情声量普遍高于实际伤害</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          多数高声量舆情来自情感、价值观、暗改这类“情绪向”议题，吵得凶却很少真动流水与留存；因为它们伤的是信任与口碑（多可恢复），而非付费与活跃这堵“承重墙”。所以判断要不要紧急止损，应把“讨论热度”与“对承重墙的实际伤害”分开评估，不要把声量直接当成伤害。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">声量 ≠ 伤害</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 情感 / 价值观向舆情，高度集中在特定品类</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          性别议题、角色 OOC、内容尺度、情感背刺类舆情，几乎只出现在乙游 / 二游 / 情怀 IP；因为这些产品的核心盘与角色、价值观深度绑定，情感冲突更易被触发、烈度也更高。所以这些品类应把“情感 / 价值观风险”前置纳入版本评审，而非当作普通体验问题处理。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">乙游 / 二游 / 情怀 IP 更易出情感向舆情</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 性别议题相关舆情，集中在近两年</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          性别议题相关案例（约 5 例）最早见于 2024 年中、集中在 2025–2026，2020–2023 未见，且都落在强角色绑定品类——更可能反映近一两年该类议题在国内游戏舆论场的热度上升。强角色品类应对此类敏感信号保持更高警觉。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">性别议题相关案例集中在 2025 年后</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- 板块二 · 执行 tips -->
+    <div style="margin:8px 2px 12px;">
+      <h2 style="font-size:18px; margin:0 0 4px;">二、执行 tips</h2>
+      <p class="muted" style="font-size:13px; margin:0;">少而精、跨多个案例成立的处置参考。</p>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 透明度 / 时效 / 直接沟通才是核心要素，补偿仅为道歉附加诚意</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          有效道歉通常需要四件事同时到位：① 认错不甩锅 ② 解释原因 / 决策链 ③ 实际回退或修复动作 ④ 补偿。其中透明度、时效与直接沟通（高层实名、公开信、直播认错、CEO 担责）才是玩家是否买账的关键，比匿名公告更有穿透力。补偿只是附带的诚意，单靠补偿、不认错不解释，往往被读成用福利换沉默，显得敷衍甚至傲慢。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">参考：洛克补偿两次未平息、公开信才转折</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. “承重墙”决定冷处理 vs 快速道歉的安全边界</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          关键是看反弹的是不是核心付费 / 留存盘、有没有平替：承重墙真在反弹时，冷处理会放大伤害，应快速道歉止损；若只是非承重墙的“真噪声”，冷处理代价才低。先识别“谁在闹、动没动到承重墙”，再决定要不要滑跪。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">先识别承重墙，再定处置力度</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 改版优先级需考虑“玩家解读”，而非只看工作量与数值收益</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          排改动不能只按工作量和数值收益排。有些功能上很小的改动，会被玩家解读成官方的“立场表态”（如迎合某圈层、改变角色定位）。这种“会被误读”的信号风险必须单列、前置评估——尤其在品牌定调期，它决定玩家对整个版本走向的信任，比改动本身的体验影响大得多。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">信号风险单列评估，重于体验收益</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">4. 商业争议叠加红线会瞬间破圈</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          当付费/资源分配争议叠加性别、民族历史或价值观红线时，事件会迅速脱离圈内语境，进入公共舆论场；若仍按普通商业争议处理，只做补偿、解释或冷处理，可能错过止血窗口，严重时相关角色、联动或版本方向会被迫下架、回退甚至直接掐断。上线前需做红线审查，爆发后优先正面认错、整改并切断风险源。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">红线先定性，再谈商业补偿</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- 板块三 · 分品类启发 -->
+    <div style="margin:8px 2px 12px;">
+      <h2 style="font-size:18px; margin:0 0 4px;">三、分品类启发</h2>
+      <p class="muted" style="font-size:13px; margin:0;">不同品类对应不同玩家群体，运营需要盯的“雷区”各有侧重。此处只收录库内样本充足、可下结论的四类；放置 / 生存 / 单机买断等样本不足，暂不单独成结论。</p>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 40px;">
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--amber); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">情怀 IP</span>
+        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">玩家为“情怀”付费，擅改或偏离原作易触雷</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0 0 12px;">
+          已上线的命名、美术、动作、角色都是玩家的“情感资产”——动的不是数据，是记忆。这群人沉没成本高、不易流失，伤害多落在信任层，可恢复但会累积；可一旦产品定位偏离原作（如幼态化、性别议题改造），就从“信任受损”升级为“信任崩塌”。<br>
+          <strong style="color:var(--text);">雷区：</strong>暗改既有内容、合规阉割、产品定位偏离。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">洛克 / DNF端游 / 摩尔 / 哈利 / 射雕</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
+        <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--red); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">乙游</span>
+        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">“付费 + 情感”双重契约，催生粘性最强、维权最组织化的核心盘</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0 0 12px;">
+          对纸片人有“情感专属”预期，男主 OOC、暧昧他人、尺度收缩都会被读作背叛。核心盘粘性极强，维权也最极端——律师函、集体停氪、组织化控评。其中“付费数值不实 / 突击涨价”这类硬伤，比情感争议更容易真打到流水。<br>
+          <strong style="color:var(--text);">雷区：</strong>突击涨价、PV 与实装不符、男主 OOC / 尺度。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">恋与深空 / 世界之外</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--blue); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">竞技 / 射击</span>
+        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">玩家在意公平、契约与荣誉</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0 0 12px;">
+          玩家把“竞技公平、付费契约、自创玩法”当资产，对数值削弱、战令 / 经济规则变更、荣誉贬值极敏感；“教玩家怎么玩”“按闹分配”是高频导火索。涌现玩法宜引导转化而非一刀切。<br>
+          <strong style="color:var(--text);">雷区：</strong>平衡削弱、改既定契约、战令 / 经济规则变更。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">三角洲 / Apex / 暗黑4 / 王者 / Helldivers</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
+        <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--green); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">二游抽卡 / 卡牌</span>
+        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">玩家高净值，把角色当成已付费的“资产”</h3>
+        <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0 0 12px;">
+          角色的数值、强度、人设都是已付费资产，对“实装后才改”零容忍——变相削弱、福利落差、OOC、区别对待都是雷区。头部（原神等）出事多快速道歉 + 大额“血包”（自选五星、原石）挽尊，止血力强；非头部容错空间小得多。<br>
+          <strong style="color:var(--text);">雷区：</strong>实装后变更 / 暗改、变相削弱、角色 OOC。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">原神 / 鸣潮 / 明日方舟 / 崩坏3 / 哈利</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- 板块四 · 主线模块：从起点到凉凉 -->
+    <div style="margin:32px 2px 12px;">
+      <h2 style="font-size:18px; margin:0 0 4px;">四、从起点到凉凉：一次舆情如何决定游戏生死</h2>
+      <p class="muted" style="font-size:13px; margin:0;">发行/关键节点的舆情走向，由两个变量决定：<b>根因是"设定级"还是"治理级"</b>（决定能不能救）× <b>官方应对质量</b>（决定救没救回）。下半部聚焦最惨的一格——把"凉凉"用硬标准晒出来拆解。</p>
+    </div>
+
+    <!-- 上半：走向四象限 -->
+    <section class="card" style="padding:22px; margin-bottom:20px;">
+      <div class="trajGrid">
+        <div class="trajCorner">根因 ↓ ＼ 应对 →</div>
+        <div class="trajColHead trajBad">应对差（傲慢 / 迟缓）</div>
+        <div class="trajColHead trajGood">应对好（及时 / 诚恳）</div>
+
+        <div class="trajRowHead">设定级根因<span>先天 · 立项/定位/付费模型</span></div>
+        <div class="trajCell tc-die">
+          <div class="tcTag">必死格</div>
+          <div class="tcDesc">设定问题本就难救，叠加傲慢应对＝直接判死。</div>
+          <div class="tcCases"><span>世界之外</span><span>尘白</span><span>射雕</span></div>
+        </div>
+        <div class="trajCell tc-hard">
+          <div class="tcTag">难救格</div>
+          <div class="tcDesc">即便认错整改、砸情怀，先天设定伤害仍在慢性失血。</div>
+          <div class="tcCases"><span>哈利波特</span><span>少女前线2/黛烟</span></div>
+        </div>
+
+        <div class="trajRowHead">治理级根因<span>后天 · bug/数值/机制/客服</span></div>
+        <div class="trajCell tc-drag">
+          <div class="tcTag">拖伤格</div>
+          <div class="tcDesc">问题可修，但应对迟缓/傲慢会把小事拖大、情怀转差评。</div>
+          <div class="tcCases"><span>摩尔庄园</span></div>
+        </div>
+        <div class="trajCell tc-save">
+          <div class="tcTag">抢救成功</div>
+          <div class="tcDesc">治理红线只要够快够诚，滑跪后活跃/口碑基本能回血。</div>
+          <div class="tcCases"><span>暗黑4</span><span>绝地潜兵2</span><span>七日世界</span></div>
+        </div>
+      </div>
+      <p class="mapNote" style="margin-top:16px;"><b>先天决定生死，后天决定快慢；傲慢是把"难救"变"必死"的催化剂；情怀是缓冲垫不是安全垫。</b>（对角线上射雕/哈利/少女=设定级，摩尔=治理级，正好是四个典型样本。走向框架为人工核定归类，鸣潮1.0 因 2.0 翻盘不计入凉凉。）</p>
+    </section>
+
+    <!-- 下半：凉凉标准 + 案例晒盘 -->
+    <section class="card" style="padding:22px; margin-bottom:40px;">
+      <h3 style="margin:0 0 6px; font-size:16px; color:var(--text);">凉凉标准 · 案例晒盘</h3>
+      <p class="muted" style="font-size:13px; margin:0 0 14px;">用<b>可证伪的硬指标</b>分级，命中才算凉——分急性（确定死亡/实质凉透）与慢性（情怀吊命回不到巅峰）两级，并附"急性翻车但抢救成功"的对照组。</p>
+      <table class="coldTable">
+        <thead><tr><th>档位</th><th>硬标准（命中任一）</th><th>命中案例</th><th>教训点</th></tr></thead>
+        <tbody>
+          <tr class="ct-die">
+            <td><b>急性 · 确定死亡</b></td>
+            <td>停运 / 停服整改 / 回炉停运</td>
+            <td><span class="ctCase">射雕</span><span class="ctCase">尘白</span></td>
+            <td>定位红线 + 合规红线，神仙难救</td>
+          </tr>
+          <tr class="ct-die">
+            <td><b>急性 · 实质凉透</b></td>
+            <td>流水暴跌且未恢复</td>
+            <td><span class="ctCase">世界之外</span></td>
+            <td>傲慢应对压垮情感契约</td>
+          </tr>
+          <tr class="ct-slow">
+            <td><b>慢性 · 失血</b></td>
+            <td>长期低迷、情怀吊命、回不到巅峰（无翻盘版本）</td>
+            <td><span class="ctCase">哈利波特</span><span class="ctCase">摩尔庄园</span><span class="ctCase">少女前线2</span></td>
+            <td>情怀是缓冲垫不是安全垫</td>
+          </tr>
+          <tr class="ct-save">
+            <td><b>对照 · 抢救成功</b></td>
+            <td>急性翻车但及时止损 → 回血</td>
+            <td><span class="ctCase">绝地潜兵2</span><span class="ctCase">暗黑4</span><span class="ctCase">七日世界</span></td>
+            <td>治理红线够快够诚就能救</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="redlineRow">
+        <div class="redlineCard rl-attitude"><div class="rlName">世界之外</div><div class="rlLine">背叛信任（态度红线）</div><div class="rlWhy">"想赚钱"公告撕毁乙女向情感契约，信仰崩塌不可重建。</div></div>
+        <div class="redlineCard rl-position"><div class="rlName">射雕</div><div class="rlLine">定位崩坏（定位红线）</div><div class="rlWhy">幼态 BJD 建模 × 武侠写实是立项定位错位，回炉重做仍救不回。</div></div>
+        <div class="redlineCard rl-policy"><div class="rlName">尘白</div><div class="rlLine">踩政策线（合规红线）</div><div class="rlWhy">邮政联动擦边触监管，外部强制停服整改，厂商无法自救。</div></div>
+      </div>
+      <p class="mapNote" style="margin-top:14px;">三条红线里，只有<b>合规红线</b>是"外部强制、厂商无法自救"的绝对死线；态度红线与定位红线本可通过更早、更真诚的应对挽回——这正是"凉凉"就是走向框架里<b>设定问题 + 傲慢应对</b>那一格的深度拆解。</p>
+    </section>
+  </main>
+
+
+    <main id="dashboard" style="display:none">
+    <section class="hero">
+      <div class="card heroMain">
+        <h2>版本舆情案例Dashboard</h2>
+        <p>当前首页已接入多个已深挖案例，用于验证信息架构、对比阅读体验与跨案例复盘逻辑。后续可继续按同一模板扩展更多案例。</p>
+        <div class="notice">筛选器与案例卡片均已支持多案例浏览；后续扩展时，只需要新增 cases/*.json 并更新 data/cases.json。</div>
+      </div>
+      <div class="stats" id="stats"></div>
+    </section>
+
+    <section class="panel filters">
+      <div class="filterGrid">
+        <input id="q" class="control" placeholder="搜索案例、标签、游戏名" />
+        <select id="matrix" class="control"><option value="">全部声量与伤害</option></select>
+        <div id="voiceNature" class="control vnFilter" title="声音构成（可多选）"></div>
+        <select id="core_tag" class="control"><option value="">全部核心矛盾</option></select>
+        <select id="pr" class="control"><option value="">全部公关应对</option></select>
+      </div>
+    </section>
+
+    <div class="sectionTitle"><h2>案例格子</h2><div class="count" id="resultCount"></div></div>
+    <section class="caseGrid" id="caseGrid"></section>
+  </main>
+
+  <main id="detail" class="detail">
+    <button class="back" onclick="goHome()">返回Dashboard</button>
+    <section class="card detailHero" id="detailHero"></section>
+    <nav class="tabs" id="tabs"></nav>
+    <section id="tabContent"></section>
+  </main>
+</div>
+<script src="./app.js?v=20260702-1"></script>
+</body>
+</html>

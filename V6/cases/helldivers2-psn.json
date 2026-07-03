@@ -1,0 +1,649 @@
+{
+ "id": "helldivers2-psn",
+ "title": "绝地潜兵2-强制绑定PSN账号风波",
+ "data": {
+  "recap": {
+   "background": "《Helldivers 2》是 Arrowhead 开发、索尼发行的 PVE 合作射击买断制游戏，2024 年初 Steam 上线后爆红（截至 3 月销量约 800 万份）。2024-05 索尼要求 Steam 玩家强制绑定 PSN 账号才能继续游玩，而 PSN 仅在约 70 个国家/地区开放、170 余国无法注册，引爆 Steam 史上最快差评潮之一。",
+   "timeline": [
+    {
+     "segment": "① 事发前 · 铺垫",
+     "phase": "T-90至T-1",
+     "side": "official",
+     "time": "2024-02 起",
+     "name": "登录即火爆但关闭了账号绑定",
+     "event": "游戏 2 月上线即爆款，因服务器崩溃 Arrowhead 在发行时临时关闭了 PSN 账号强制绑定，PC 玩家无需 PSN 即可游玩。",
+     "impact": "为后续「先放开、再强制」的契约变更埋下落差。",
+     "tags": [
+      "买断制爆款",
+      "账号绑定临时关闭"
+     ]
+    },
+    {
+     "segment": "② 爆发与升级",
+     "phase": "T0",
+     "side": "official",
+     "time": "2024-05-03",
+     "name": "宣布强制绑定 PSN",
+     "event": "索尼宣布自 5/6 起新玩家、5/30 起存量玩家必须将 Steam 账号绑定 PSN 才能继续游玩；而 PSN 在 170 余国不可注册。",
+     "impact": "大量国区玩家面临已购游戏「无法继续游玩」，点燃众怒。",
+     "tags": [
+      "强制绑定",
+      "可玩性门槛"
+     ],
+     "links": [
+      {
+       "label": "The Verge·Sony reverses unpopular Helldivers 2 decision",
+       "url": "https://www.theverge.com/24150327/sony-helldivers-2-review-bombing-psn-login"
+      }
+     ]
+    },
+    {
+     "segment": "② 爆发与升级",
+     "phase": "T0",
+     "side": "player",
+     "time": "2024-05-03/05",
+     "name": "Steam 史上最快差评潮 + 177 国下架",
+     "event": "宣布数小时内涌入逾 1.4 万条差评，两天内突破 20 万条，评价从「特别好评」翻转为「差评如潮」；SteamDB 显示游戏在约 177 个 PSN 不支持国区被下架，部分玩家获超期退款。",
+     "impact": "差评轰炸 + 大规模下架，事件破圈至全球游戏与科技媒体。",
+     "tags": [
+      "差评轰炸",
+      "国区下架"
+     ],
+     "links": [
+      {
+       "label": "IGN·PlayStation Reverses Course on PSN Requirement",
+       "url": "https://uk.ign.com/articles/playstation-reverses-course-on-helldivers-2-psn-account-requirement"
+      }
+     ]
+    },
+    {
+     "segment": "③ 官方处置与玩家观察",
+     "phase": "T0",
+     "side": "official",
+     "time": "2024-05-06",
+     "name": "索尼撤回强制绑定决定",
+     "event": "索尼官方在 X 宣布 5/6 的账号绑定更新「不再推进」，PC 玩家无需绑定 PSN 即可继续游玩；游戏在被下架国区陆续恢复上架。",
+     "impact": "数日内快速撤回止损，差评开始回流为好评。",
+     "tags": [
+      "撤回决定",
+      "快速止损"
+     ],
+     "links": [
+      {
+       "label": "VideoGamer·players will no longer need PSN account",
+       "url": "https://www.videogamer.com/news/sony-says-helldivers-2-players-will-no-longer-need-to-connect-a-psn-account/"
+      }
+     ]
+    },
+    {
+     "segment": "③ 官方处置与玩家观察",
+     "phase": "T0",
+     "side": "official",
+     "time": "2024-05-05/06",
+     "name": "Arrowhead CEO 自省担责",
+     "event": "CEO Johan Pilestedt 公开表示「关闭账号绑定是我的决定，我没有确保玩家知晓绑定要求、也没有充分沟通」，并称重启绑定是来自 PlayStation 的合规/审核要求、只能照办。",
+     "impact": "开发商主动揽责、解释决策链，缓和玩家对工作室的迁怒。",
+     "tags": [
+      "CEO担责",
+      "解释决策链"
+     ],
+     "links": [
+      {
+       "label": "IGN·Pilestedt admits account linking decision",
+       "url": "https://uk.ign.com/articles/playstation-reverses-course-on-helldivers-2-psn-account-requirement"
+      }
+     ]
+    },
+    {
+     "segment": "③ 官方处置与玩家观察",
+     "phase": "T0之后",
+     "side": "player",
+     "time": "撤回后 观察期",
+     "name": "好评回流、迁怒平息",
+     "event": "撤回后玩家陆续把差评改回好评，近期评价回升至「褒贬不一」并继续向好；社区呼吁不要迁怒 Arrowhead，称其只是履行合约义务。",
+     "impact": "快速撤回有效止血，长期商业伤害被控制。",
+     "tags": [
+      "好评回流",
+      "情绪平息"
+     ]
+    }
+   ]
+  },
+  "cause": {
+   "catalysts": [
+    "已购买断制游戏被追加强制绑定 PSN，构成「先放开后强制」的契约变更",
+    "PSN 仅约 70 国可用、170 余国无法注册，大量玩家面临付费游戏「无法继续游玩」",
+    "Steam 买断制玩家高效组织差评维权，社区管理者一度公开鼓励差评施压"
+   ],
+   "journey": [
+    {
+     "label": "事发前",
+     "stageNo": "0",
+     "title": "存量底色：爆款好评 + 绑定被临时关闭",
+     "time": "2024-02 起",
+     "chartDate": "2024-02",
+     "emotion": "高满意·爆款",
+     "emotionScore": 25,
+     "summary": "游戏上线即爆款、口碑极高，发行时因服务器崩溃临时关闭了 PSN 强制绑定，玩家默认「无需 PSN 即可玩」——这放大了后续强制绑定的契约落差。",
+     "econ": [
+      {
+       "title": "口碑与销量",
+       "text": "买断制爆款，截至 3 月销量约 800 万份。"
+      },
+      {
+       "title": "落差风险",
+       "text": "绑定被临时关闭，玩家形成「无需 PSN」的既定预期。"
+      }
+     ],
+     "nature": "海外厂商×全球市场（含 Steam 国区）：声量主体是全球真实付费玩家，因可玩性受损而维权，非单纯围观。",
+     "platform": "Steam（差评主战场）+ Reddit/X（组织与扩散）+ 全球游戏/科技媒体（破圈）。"
+    },
+    {
+     "label": "落差爆发",
+     "stageNo": "一",
+     "title": "强制绑定击穿「可玩性」底线",
+     "time": "2024-05-03",
+     "chartDate": "05-03",
+     "emotion": "愤怒·维权",
+     "emotionScore": 82,
+     "summary": "强制绑定 PSN 而 PSN 在 170 余国不可用，等于让已付费玩家「无法继续游玩」，触碰买断制最敏感的可玩性与契约底线，差评在数小时内爆发。",
+     "coreQuestion": "我买断的游戏，凭什么要我绑一个我所在国家根本注册不了的 PSN 才能玩？",
+     "psychology": "核心痛点是「已购买断制商品的可玩性被事后追加门槛剥夺」，叠加大量国区玩家客观上无法满足门槛，愤怒迅速转为有组织的差评维权。",
+     "playerDemand": "撤回强制绑定，保障已付费玩家在所有国区的可玩性。",
+     "trigger": "强制绑定公告 + 170 余国 PSN 不可用 + 国区下架。",
+     "evidence": [
+      {
+       "platform": "Discord",
+       "time": "2024-05",
+       "sourceType": "媒体引述",
+       "playerId": "社区经理 Spitz",
+       "text": "I want people to make their displeasure known in a place where it might actually make a difference. Steam reviews and refund requests will do that.（我希望玩家把不满表达在真正能起作用的地方——Steam 差评和退款申请就能做到。）",
+       "heat": "多平台头条",
+       "url": "https://www.theverge.com/24150327/sony-helldivers-2-review-bombing-psn-login",
+       "note": "原话经 The Verge 报道引述，附中文释义。"
+      }
+     ]
+    },
+    {
+     "label": "止损期",
+     "stageNo": "二",
+     "title": "数日撤回：维权胜利、好评回流",
+     "time": "2024-05-06",
+     "chartDate": "05-06",
+     "emotion": "胜利·缓和",
+     "emotionScore": 38,
+     "summary": "索尼数日内撤回强制绑定、游戏恢复上架，CEO 主动担责并解释决策链，玩家把差评改回好评、迁怒平息，被视为危机快速止损的典型。",
+     "coreQuestion": "既然你们能撤回，为什么当初不先想清楚国区可玩性？",
+     "psychology": "诉求被满足后情绪迅速缓和；玩家区分「索尼的发行决策」与「Arrowhead 的被动履约」，迁怒被部分化解。",
+     "playerDemand": "保持承诺、未来变更前充分评估全球可玩性与玩家沟通。",
+     "trigger": "索尼撤回公告 + CEO 担责声明 + 恢复上架。",
+     "evidence": [
+      {
+       "platform": "X（PlayStation 官方）",
+       "time": "2024-05-06",
+       "sourceType": "官方声明",
+       "playerId": "PlayStation",
+       "text": "The May 6 update, which would have required Steam and PlayStation Network account linking for new players and for current players beginning May 30, will not be moving forward.（5/6 的账号绑定更新将不再推进。）",
+       "heat": "全球头条",
+       "url": "https://uk.ign.com/articles/playstation-reverses-course-on-helldivers-2-psn-account-requirement"
+      }
+     ]
+    }
+   ],
+   "demandFunnel": {
+    "surface": [
+     {
+      "t": "撤回强制绑定",
+      "d": "取消必须绑定 PSN 才能游玩的要求。"
+     },
+     {
+      "t": "恢复国区可玩",
+      "d": "在被下架的 170 余国恢复上架与游玩。"
+     }
+    ],
+    "middle": [
+     {
+      "t": "保障已购权益",
+      "d": "买断制商品不应被事后追加门槛剥夺可玩性。"
+     },
+     {
+      "t": "尊重全球玩家",
+      "d": "变更前评估 PSN 全球覆盖，别让部分国区玩家被锁死。"
+     }
+    ],
+    "deep": [
+     {
+      "t": "契约稳定",
+      "d": "购买时的游玩条件应被稳定兑现，不被单方追加。"
+     },
+     {
+      "t": "平台尊严",
+      "d": "PC/Steam 玩家不愿被强行导入主机账号生态。"
+     }
+    ]
+   },
+   "ownership": "买断制玩家对「一次付费、永久可玩」抱有强烈的契约所有权——他们认为购买时的游玩条件不应被事后单方追加门槛，对损害可玩性的变更会以高效的差评维权强烈反弹。",
+   "topics": [
+    {
+     "eyebrow": "买断制×全球发行",
+     "title": "强制绑定 PSN：海外发行的「可玩性门槛」如何引爆全球差评",
+     "lead": "本案声量主体是全球真实付费玩家，核心不是数值或商业化，而是「已购买断制游戏被追加账号门槛、部分国区直接无法游玩」的契约与可玩性问题。",
+     "chain": [
+      {
+       "name": "门槛追加",
+       "text": "强制绑定 PSN，部分国区客观无法满足。"
+      },
+      {
+       "name": "维权爆发",
+       "text": "Steam 玩家高效组织差评，两天破 20 万条 + 177 国下架。"
+      },
+      {
+       "name": "快速撤回",
+       "text": "索尼数日内撤回、恢复上架，好评回流。"
+      }
+     ],
+     "takeaway": "海外发行涉及账号生态/可玩性的变更，必须前置评估全球覆盖与玩家契约，否则买断制玩家会以极快速度差评维权；快速撤回是有效止损手段。",
+     "evidence": [
+      {
+       "platform": "The Verge",
+       "time": "2024-05",
+       "sourceType": "媒体报道",
+       "playerId": "The Verge",
+       "text": "Helldivers 2's Steam reviews went from 'overwhelmingly positive' to 'overwhelmingly negative' in just three days.（三天内评价从特别好评翻转为差评如潮。）",
+       "heat": "全球头条",
+       "url": "https://www.theverge.com/24150327/sony-helldivers-2-review-bombing-psn-login"
+      }
+     ]
+    }
+   ],
+   "coreConflicts": [
+    {
+     "title": "商业契约变更",
+     "desc": "已购买断制游戏被事后追加「强制绑定 PSN 才能游玩」的门槛，且发行时曾临时关闭绑定，构成购买条件被单方变更，触碰买断制玩家最敏感的契约稳定性。"
+    },
+    {
+     "title": "合规问题",
+     "desc": "PSN 仅约 70 国可用、170 余国无法注册，强制绑定等于让大量已付费玩家「无法继续游玩」，并导致游戏在约 177 国被下架，是可玩性被门槛直接剥夺的争议。"
+    }
+   ],
+   "cognitionLead": "Helldivers 2 是 Steam 买断制 PVE 射击游戏：玩家把「一次付费、全球可玩」视为契约底线，对损害可玩性的账号门槛极度敏感，并具备高效的差评维权组织能力。",
+   "cognitionTraits": [
+    {
+     "trait": "差评维权高效组织（Steam 买断制玩家特征）",
+     "type": "新强化",
+     "text": "Steam 买断制玩家把差评与退款视为对厂商最直接的施压杠杆，组织化、反应极快——本案数小时破万、两天破 20 万差评，是 Steam 买断制玩家群体的典型维权特征。"
+    },
+    {
+     "trait": "可玩性门槛零容忍（全球买断制玩家特征）",
+     "type": "新强化",
+     "text": "买断制玩家对「已付费却因账号/区域门槛无法游玩」零容忍，尤其当门槛覆盖大量国区时反弹烈度极高。这是全球发行买断制游戏玩家的衍生特征。"
+    }
+   ]
+  },
+  "official": {
+   "summary": "面对强制绑定 PSN 引爆的史上最快差评潮，索尼在数日内（5/6）撤回绑定要求、恢复被下架国区上架；Arrowhead CEO Pilestedt 主动揽责，坦承「关闭绑定是我的决定、未充分告知玩家」，并解释重启绑定是来自 PlayStation 的合规/审核要求。处置以「快速撤回 + 担责沟通」为核心，止血迅速、好评回流，是危机快速止损的正面范本；但起因是发行方对全球账号覆盖与玩家契约的评估失位。",
+   "keyJudgement": "快速撤回 + 主动担责是本案有效止损的关键；但真正的教训在触发端——海外发行涉及账号生态/可玩性的变更，必须前置评估全球覆盖与玩家契约，避免「先放开后强制」。",
+   "turnElements": [
+    {
+     "tag": "快速撤回",
+     "text": "数日内撤回强制绑定、恢复上架，直接满足核心诉求。"
+    },
+    {
+     "tag": "主动担责",
+     "text": "CEO 公开揽责、解释决策链，缓和对工作室的迁怒。"
+    },
+    {
+     "tag": "倾听反馈",
+     "text": "官方明示「你们的反馈非常宝贵」，把对抗拉回沟通。"
+    }
+   ],
+   "stages": [
+    {
+     "kind": "触发动作",
+     "quality": "bad",
+     "qualityLabel": "点燃众怒 · 可玩性门槛",
+     "name": "宣布强制绑定 PSN",
+     "time": "2024-05-03",
+     "source": "The Verge",
+     "sourceUrl": "https://www.theverge.com/24150327/sony-helldivers-2-review-bombing-psn-login",
+     "elements": [
+      "新玩家 5/6、存量玩家 5/30 起强制绑定 PSN",
+      "PSN 在 170 余国不可注册，部分国区直接无法游玩"
+     ],
+     "officialExcerpt": [
+      "账号绑定一直是计划内的要求，但发行时因服务器问题临时关闭。"
+     ],
+     "valuable": [
+      "无——属损害可玩性的契约变更。"
+     ],
+     "lowValue": [
+      "未前置评估 PSN 全球覆盖",
+      "已购买断制商品被事后追加门槛"
+     ],
+     "effect": "差评数小时破万、两天破 20 万，177 国下架，事件破圈。"
+    },
+    {
+     "kind": "正式回应",
+     "quality": "good",
+     "qualityLabel": "快速止损 · 撤回担责",
+     "name": "撤回绑定 + CEO 担责",
+     "time": "2024-05-06",
+     "source": "IGN",
+     "sourceUrl": "https://uk.ign.com/articles/playstation-reverses-course-on-helldivers-2-psn-account-requirement",
+     "elements": [
+      "官方宣布绑定更新「不再推进」、恢复上架",
+      "CEO 揽责并解释重启绑定来自 PS 合规要求",
+      "强调玩家反馈宝贵、继续探索 PC 玩家方案"
+     ],
+     "officialExcerpt": [
+      "The May 6 update ... will not be moving forward.（5/6 绑定更新不再推进。）",
+      "it was my decision to disable account linking at launch ... we didn't talk about it enough.（关闭绑定是我的决定……我们沟通得不够。）"
+     ],
+     "valuable": [
+      "数日内快速撤回、直接满足诉求",
+      "CEO 主动担责、解释决策链",
+      "恢复被下架国区上架"
+     ],
+     "lowValue": [
+      "事前评估失位才是根因，撤回属事后补救",
+      "未即时承诺未来变更的全球可玩性评估机制"
+     ],
+     "effect": "止血迅速，差评回流好评、迁怒平息。"
+    }
+   ],
+   "caution": "本案以撤回为主、未涉及实质补偿；快速止损成功不等于长期信任零损耗，玩家对「未来是否会再度强制」仍存观望，需以稳定的发行政策兑现。",
+   "pros": [
+    {
+     "group": "处置",
+     "sub": "止损速度",
+     "items": [
+      {
+       "tag": "快速撤回",
+       "text": "数日内撤回强制绑定、恢复上架，直接满足核心诉求。"
+      },
+      {
+       "tag": "主动担责",
+       "text": "CEO 揽责、解释决策链，缓和对工作室迁怒。"
+      }
+     ]
+    },
+    {
+     "group": "沟通",
+     "sub": "姿态",
+     "items": [
+      {
+       "tag": "倾听反馈",
+       "text": "明示玩家反馈宝贵，把对抗拉回沟通。"
+      }
+     ]
+    }
+   ],
+   "cons": [
+    {
+     "group": "触发",
+     "sub": "点燃众怒的原始动作",
+     "items": [
+      {
+       "tag": "评估失位",
+       "text": "未前置评估 PSN 全球覆盖，导致 170 余国玩家被门槛锁死。"
+      },
+      {
+       "tag": "契约变更",
+       "text": "对已购买断制商品事后追加强制绑定门槛，触碰契约底线。"
+      }
+     ]
+    }
+   ]
+  },
+  "impact": {
+   "headline": "强制绑定 PSN 引爆 Steam 史上最快差评潮之一（两天破 20 万差评、177 国下架），索尼数日内撤回止损、好评回流；长期商业伤害因快速撤回而被控制，待数据核验",
+   "headlineSub": "声量极高且全球破圈，声量主体是因可玩性受损的真实付费玩家；快速撤回有效止血，实质留存/流水伤害待核。",
+   "volumeLevel": "S",
+   "volumeConfidence": "待核（先给倾向，等数据定）",
+   "volumeMetrics": [
+    {
+     "value": "20 万+ 差评",
+     "label": "Steam 差评规模",
+     "note": "数小时破 1.4 万、两天破 20 万条差评，评价翻转为「差评如潮」（媒体报道，具体峰值待核）"
+    },
+    {
+     "value": "约 177 国下架",
+     "label": "PSN 不支持国区下架数",
+     "note": "SteamDB 显示约 177 个 PSN 不可用国区被下架，部分玩家获超期退款（待核精确数）"
+    },
+    {
+     "value": "全球 · 头条",
+     "label": "媒体破圈",
+     "note": "The Verge、IGN、Eurogamer、PCGamer、VideoGamer 等全球游戏与科技媒体密集头条报道"
+    }
+   ],
+   "emotionAction": {
+    "summary": "声量主体是因可玩性受损的全球真实付费玩家，情绪由强制绑定引爆的愤怒与高效差评维权，撤回后迅速转为「胜利、缓和」并回流好评。",
+    "phases": [
+     {
+      "phase": "爆发",
+      "tone": "hot",
+      "name": "可玩性被剥夺的愤怒",
+      "tag": "差评轰炸 + 退款",
+      "quotes": [
+       "I want people to make their displeasure known ... Steam reviews and refund requests will do that.（让不满表达在能起作用的地方——差评和退款。）"
+      ],
+      "actions": [
+       "数小时破万、两天破 20 万差评",
+       "申请退款、社区组织维权"
+      ]
+     },
+     {
+      "phase": "撤回后",
+      "tone": "calm",
+      "name": "维权胜利、好评回流",
+      "tag": "情绪平息",
+      "quotes": [
+       "They ended up in the crossfire ... it wasn't fair to them.（Arrowhead 是被卷入交火，对他们不公平。）"
+      ],
+      "actions": [
+       "把差评改回好评",
+       "呼吁不要迁怒 Arrowhead"
+      ]
+     }
+    ],
+    "note": "社区经理 Spitz 与玩家原话经 The Verge/IGN 报道引述，附中文释义；其余逐字高赞原话暂留待补，禁止编造。",
+    "caution": "声量极高且全球破圈，但因索尼数日内撤回、好评回流，实质长期留存/流水伤害大概率被控制——具体须开发/发行方内部数据核验，先给伤害中低倾向、存疑。"
+   },
+   "productImpact": [
+    {
+     "name": "短期口碑",
+     "level": "高",
+     "text": "差评翻转 + 全球负面头条，短期口碑与品牌形象受冲击。"
+    },
+    {
+     "name": "玩家信任",
+     "level": "中",
+     "text": "快速撤回 + CEO 担责接住情绪，迁怒被化解、好评回流，信任损耗被控制。"
+    },
+    {
+     "name": "商业数据伤害（留存/流水）",
+     "level": "内部待补充",
+     "text": "下架与退款带来短期损失，但撤回后恢复上架、好评回流，长期伤害需发行方内部 DAU/留存/流水核验。"
+    }
+   ],
+   "quadrant": {
+    "axis1": "声量极高、全球破圈至游戏与科技媒体",
+    "axis2": "声量主体是因可玩性受损的真实付费玩家——是真实信号而非纯噪音",
+    "axis3": "快速撤回止损、好评回流，长期商业伤害被控制（待核）",
+    "result": "声量来自真实可玩性受损、维权诉求正当，但因索尼快速撤回，长期伤害被有效控制——短期信任赤字、可控存疑",
+    "resultCell": "crisis",
+    "doubt": true
+   },
+   "sideEvidence": [
+    "索尼数日内撤回强制绑定、恢复 177 国上架",
+    "CEO Pilestedt 主动揽责并解释决策链",
+    "玩家把差评改回好评、呼吁不要迁怒 Arrowhead"
+   ],
+   "valueConclusion": "本案是「可玩性门槛类危机的快速止损范本」：触发端的评估失位（强制绑定 170 余国不可用的 PSN）点燃 Steam 史上最快差评潮之一，但索尼数日内撤回 + CEO 担责，使诉求被满足、好评回流、迁怒平息。它证明——当争议根因是「单一可撤回的政策决定」时，快速撤回是性价比最高的止损手段；声量虽达 S 级，但因撤回及时，长期商业伤害大概率可控，须以数据核验。",
+   "audience": {
+    "from": "全球真实付费玩家为主，尤以 PSN 不支持国区（含 Steam 国区）玩家为核心受害群。",
+    "why": "被触犯的核心利益：已购买断制游戏的可玩性与契约稳定性，部分玩家客观上将彻底无法游玩。",
+    "verdict": "真实付费用户（核心受害盘）；快速撤回后长期伤害被控制，需数据定档。"
+   },
+   "dataSection": {
+    "caption": "脱敏相对趋势：纵轴为相对值（峰值≈100）、非真实数值，仅示意整体走向；数据源 SteamDB（Steam 在线人数），月粒度。",
+    "rangeStart": "2024/3",
+    "rangeEnd": "2025/2",
+    "markers": [
+     {
+      "idx": 2,
+      "label": "强制绑定 PSN·差评轰炸",
+      "date": "2024/5",
+      "kind": "event"
+     }
+    ],
+    "verdict": "PSN 绑定引爆、可玩性受损——高伤害",
+    "charts": [
+     {
+      "metric": "Steam 在线人数（月峰值）",
+      "values": [
+       100,
+       88,
+       30,
+       23,
+       19,
+       21,
+       22,
+       23,
+       20,
+       42,
+       30,
+       29
+      ],
+      "eventIdx": 2
+     }
+    ],
+    "damage": {
+     "grade": "S",
+     "tone": "hot",
+     "note": "高：PSN 强绑定引爆全球差评轰炸、可玩性受损，构成高伤害(索尼后撤回止损，但事件期伤害确凿)。"
+    },
+    "barEvents": [
+     {
+      "idx": 2,
+      "date": "2024/5",
+      "label": "强制绑定 PSN（差评潮）"
+     },
+     {
+      "idx": 9,
+      "date": "2024/12",
+      "label": "新战线更新（小幅回升）"
+     }
+    ],
+    "monthTicks": [
+     {
+      "idx": 0,
+      "label": "2024/3"
+     },
+     {
+      "idx": 4,
+      "label": "7月"
+     },
+     {
+      "idx": 9,
+      "label": "12月"
+     },
+     {
+      "idx": 11,
+      "label": "2025/2"
+     }
+    ],
+    "whyParts": [
+     {
+      "label": "流水",
+      "text": "本案无 Sensor Tower 收入脱敏图，不编造收入序列；但强制绑定 PSN 引爆两天破 20 万差评、177 国被迫下架，直接切断销量与新增付费，收入短期受损确凿——伤害以下方 Steam 在线人数作可玩性/规模的代理指标，收入侧仅作定性判断。"
+     },
+     {
+      "label": "活跃",
+      "text": "SteamDB 在线人数在事件前（2024/3）处于峰值≈100，PSN 强绑公告（idx2, 5月）后一个月内直接跌到≈30、并在 7 月见底≈19（较峰值 -80%），此后长期低位徘徊、仅 12 月新战线更新带来一次回升至≈42 便再度回落。索尼虽数日内撤回强绑止血，但玩家规模并未回到事发前水平——可玩性与在线规模受实质、且长期未修复的伤害，判高伤害。"
+     }
+    ]
+   },
+   "volumeVerdict": "声量极高、全球破圈，Steam 史上最快差评潮之一",
+   "cardTags": {
+    "vol": {
+     "tag": "极高声量 · 全球破圈",
+     "tone": "hot"
+    },
+    "player": {
+     "tag": "真实付费玩家维权",
+     "tone": "warn"
+    },
+    "data": {
+     "tag": "差评轰炸 · 高伤害",
+     "tone": "hot"
+    }
+   },
+   "compensation": {
+    "strength": "无",
+    "tone": "warn",
+    "tag": "无补偿 · 以撤回止损",
+    "summary": "本案未发放实质补偿，处置以撤回强制绑定、恢复上架为主；部分受影响玩家获 Steam 超期退款。",
+    "text": "争议根因是单一可撤回的政策决定，索尼选择直接撤回 + 恢复可玩性来满足核心诉求，而非发放补偿。这类「门槛型争议」撤回门槛本身即是最有效的处置，补偿并非必要项。",
+    "value": "无",
+    "valueNote": "未见官方面向全体玩家的补偿；仅部分玩家获超期退款，属退款而非补偿。补偿力度判定为「无」。"
+   }
+  },
+  "insight": {
+   "keyInsights": [
+    {
+     "title": "可玩性是买断制不可触碰的红线",
+     "text": "买断制玩家把「一次付费、全球可玩」视为契约底线。对已购商品事后追加账号/区域门槛，尤其当门槛覆盖大量国区时，会触发最高烈度的差评维权——海外发行任何涉及账号生态、可玩性的变更，都必须前置评估全球覆盖与玩家契约。"
+    },
+    {
+     "title": "单一政策型争议，快速撤回是最优止损",
+     "text": "当争议根因是「一个可撤回的政策决定」而非产品质量或长期商业模式时，快速撤回 + 主动担责的止损效率极高：本案数日撤回即让差评回流、迁怒平息。这是产品/运营层面的处置规律——能撤回的伤害，越早撤回越省。"
+    }
+   ],
+   "coreInsight": "本案的核心风险是「发行决策与全球玩家可玩性的错配」：强制绑定一个 170 余国不可用的账号体系，把买断制最敏感的可玩性与契约底线一次性击穿，引爆 S 级声量。但因根因是单一可撤回的政策，快速撤回 + 担责让长期伤害被有效控制——这是「高声量但可控伤害」的典型，关键变量是处置速度而非声量本身。",
+   "cognitionCoordinate": "2024 / 海外厂商×全球市场 / Steam 买断制玩家",
+   "cognitionTraits": [
+    {
+     "trait": "差评维权高效组织（Steam 买断制玩家特征）",
+     "type": "新强化",
+     "text": "Steam 买断制玩家把差评与退款视为对厂商最直接的施压杠杆，组织化、反应极快——本案数小时破万、两天破 20 万差评，是 Steam 买断制玩家群体的典型维权特征。"
+    },
+    {
+     "trait": "可玩性门槛零容忍（全球买断制玩家特征）",
+     "type": "新强化",
+     "text": "买断制玩家对「已付费却因账号/区域门槛无法游玩」零容忍，尤其当门槛覆盖大量国区时反弹烈度极高。这是全球发行买断制游戏玩家的衍生特征。"
+    }
+   ],
+   "governance": [
+    {
+     "name": "账号/可玩性变更前置评估",
+     "text": "涉及账号生态、区域可玩性的发行变更，须前置评估全球覆盖（如 PSN 国家清单）与已购玩家契约，避免「先放开后强制」。"
+    },
+    {
+     "name": "可撤回争议的快速止损机制",
+     "text": "对单一政策型争议建立快速评估与撤回通道，能撤回的尽早撤回，配合主动担责沟通，最大化止损效率。"
+    }
+   ],
+   "transferable": [
+    {
+     "scenario": "海外发行账号绑定/区域门槛变更",
+     "value": "适合分析账号生态、区域可玩性变更如何触发买断制玩家的高烈度维权。"
+    },
+    {
+     "scenario": "单一政策型危机的快速止损",
+     "value": "适合分析「快速撤回 + 主动担责」在可撤回争议中的止损效率与适用边界。"
+    }
+   ],
+   "crossCase": "与「绝地潜兵2-武器削弱争议」同属本作、同为 Steam 差评轰炸，但本案根因是单一可撤回的发行政策、可快速止损；削弱案根因是付费内容贬值与平衡哲学，需更长周期的产品调整。本案为「海外×全球市场×买断制」提供数据点：可玩性门槛是该品类不可触碰的红线，差评维权高效组织是其衍生特征。",
+   "profile": {
+    "trigger": "强制绑定 PSN，而 PSN 在 170 余国不可用，已购买断制玩家面临无法继续游玩。",
+    "voiceFrom": "全球真实付费玩家为主，PSN 不支持国区为核心受害群。",
+    "voiceScope": "极高声量、全球破圈，Steam 史上最快差评潮之一。",
+    "damageProfile": "短期口碑/品牌受冲击，但快速撤回 + 好评回流，长期留存/流水伤害被控制（待核）。",
+    "summary": "本次事件主要围绕海外发行强制绑定 PSN 引发的可玩性与契约争议。声量主体是因可玩性受损的全球真实付费玩家；索尼数日内撤回强制绑定、恢复上架，CEO 主动担责，止血迅速、好评回流。作为单一可撤回的政策型争议，长期商业伤害大概率可控，待数据验证。",
+    "headline": "真危机：S 级声量来自真实可玩性受损、PSN 强绑定引爆全球差评轰炸，构成高伤害；索尼后撤回止损，但事件期伤害确凿"
+   }
+  }
+ }
+}
