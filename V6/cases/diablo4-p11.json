@@ -1,0 +1,448 @@
+{
+ "id": "diablo4-p11",
+ "title": "暗黑破坏神4-Patch 1.1全员大削弱争议",
+ "data": {
+  "recap": {
+   "background": "《暗黑破坏神4》是暴雪2023-06上线、创其史上最快销量纪录的ARPG刷子游戏。2023-07-18 第一赛季开启前两天，官方发布最大平衡补丁1.1.0对全职业近乎无差别削弱（暴击/易伤/冷却等核心词缀约-30%、降经验、提高开箱成本），直接削弱了刷子玩家的割草爽感，恰逢赛季开局引爆大规模抗议。",
+   "timeline": [
+    {
+     "segment": "① 上线与铺垫",
+     "phase": "T-60天",
+     "side": "official",
+     "time": "2023-06 (D4正式发售)",
+     "name": "D4发售，创暴雪最快销量纪录",
+     "event": "《暗黑破坏神4》正式发售，6月内逾1000万人游玩，成为暴雪史上最快销量游戏。但always-online、刷子节奏偏慢、毕业循环单调等存量不满已在社区积累。",
+     "impact": "庞大且高度活跃的ARPG核心玩家盘形成，对「爽感/割草」的预期极高，为后续削弱争议埋下条件。",
+     "tags": [
+      "现象级销量",
+      "存量节奏不满"
+     ]
+    },
+    {
+     "segment": "② 爆发与升级",
+     "phase": "T0",
+     "side": "official",
+     "time": "2023-07-18 (赛季1前两天)",
+     "name": "补丁1.1.0全职业大削弱实装",
+     "event": "官方发布上线以来最大平衡补丁，对全职业无差别削弱：下调暴击伤害、易伤伤害、冷却缩减约30%、武器主属性加成减半，并降低高层击杀经验、提高神秘宝箱成本。补丁说明称这些调整「对游戏整体健康是必要的」。",
+     "impact": "玩家原本轻松通关的构筑瞬间变脆、刮痧，刷子游戏的核心爽感被大幅削弱，被读作「为拖长养成时长而强行喂屎」。",
+     "tags": [
+      "全员削弱",
+      "爽感剥夺"
+     ],
+     "links": [
+      {
+       "label": "IGN：玩家痛斥削弱补丁",
+       "url": "https://atlasrc.www.ign.com/articles/diablo-4-players-slam-latest-nerf-patch-blizzard-promises-to-address-backlash"
+      }
+     ]
+    },
+    {
+     "segment": "② 爆发与升级",
+     "phase": "T0当天起",
+     "side": "player",
+     "time": "2023-07-18 至 07-19",
+     "name": "Metacritic评分崩塌，删游潮与万级声讨",
+     "event": "舆论瞬间爆炸：Metacritic用户评分被刷至2.x（IGN记2.4、80.lv记2.0）的历史低位级别，r/diablo4高赞帖痛斥游戏变成「苦差（slog/chore）」，单帖赞数破1.9万。大量玩家宣布卸载，怒火波及其他暴雪游戏社区。",
+     "impact": "声量24小时内冲高，Metacritic差评轰炸、Reddit万级声讨与删游喊话齐发，事件破圈至各大游戏媒体。",
+     "tags": [
+      "评分轰炸",
+      "删游潮",
+      "破圈报道"
+     ],
+     "links": [
+      {
+       "label": "IGN：D4遭差评轰炸",
+       "url": "https://www.ign.com/articles/diablo-4-review-bombing-is-in-full-effect-but-season-1-still-sparks-long-queue-times"
+      }
+     ]
+    },
+    {
+     "segment": "③ 官方处置",
+     "phase": "T+1",
+     "side": "official",
+     "time": "2023-07-19",
+     "name": "官方预告将开「篝火夜谈」直播",
+     "event": "社区开发总监Adam Fletcher在推特表态「我们听到了玩家关于1.1.0部分改动的反馈」，宣布将于本周五（07-21）举办Campfire Chat直播详谈。",
+     "impact": "释放将正面回应的信号，但削弱本身尚未回退，玩家持观望与施压态度。",
+     "tags": [
+      "预告直播",
+      "承诺回应"
+     ]
+    },
+    {
+     "segment": "③ 官方处置",
+     "phase": "T+3",
+     "side": "official",
+     "time": "2023-07-21 (篝火夜谈直播)",
+     "name": "直播认错：「绝不再发这样的补丁」",
+     "event": "暴雪开发团队开启紧急Campfire Chat直播，直白认错：「我们不打算再做这样的补丁，我们清楚地听到了你们的声音」「我们知道这很糟，知道它不好玩」。游戏总监Joe Shely强调ARPG的核心是权力幻想，并确立新纲领：「在没有提供有吸引力的替代流派前，我们不能削弱超模流派」。同时公布1.1.1路线图：加强法师/野蛮人、提高怪物密度、降重置金币约40%、增加仓库页等，多数两周内落地。",
+     "impact": "态度真诚直接、无公关套话，确立「Buff弱势而非一刀切Nerf全员」原则，并改进未来补丁的预告/直播透明度。",
+     "tags": [
+      "真诚认错",
+      "新平衡纲领",
+      "无物质补偿"
+     ],
+     "links": [
+      {
+       "label": "Dexerto：暴雪认错「绝不再犯」",
+       "url": "https://www.dexerto.com/gaming/blizzard-admits-mistakes-with-diablo-4-season-1-patch-vows-never-again-2221484/"
+      }
+     ]
+    },
+    {
+     "segment": "③ 官方处置",
+     "phase": "T+3后",
+     "side": "player",
+     "time": "2023-07-21 之后",
+     "name": "态度被认可，但削弱未即时回退，长尾流失",
+     "event": "玩家普遍认可直播的坦诚与新纲领，但1.1.0的削弱并未即时全部回退，需等1.1.1逐步加强；赛季1（07-20）启动虽仍有排队，但部分玩家对刷子节奏失望，活跃在后续逐步下滑。",
+     "impact": "情绪部分缓和、信任有所修复，但养成爽感与节奏的失望转化为长尾活跃流失（内部数据待核）。",
+     "tags": [
+      "态度认可",
+      "长尾流失"
+     ]
+    }
+   ]
+  },
+  "cause": {
+   "catalysts": [
+    "ARPG刷子游戏核心 = 权力幻想/割草爽感",
+    "全职业无差别削弱，且砍CD、降经验、提高开箱成本",
+    "时点踩在赛季1开局前两天，叠加养成成果被毁",
+    "「为整体健康」的官方措辞与玩家「教玩家玩游戏」的归因落差"
+   ],
+   "journey": [
+    {
+     "label": "存量底色",
+     "stageNo": "0",
+     "title": "存量底色：刷子爽感契约与偏慢节奏的旧账",
+     "time": "事件前 / 长期",
+     "chartDate": "事件前",
+     "emotion": "高预期下的潜在不满",
+     "emotionScore": 45,
+     "summary": "D4作为现象级ARPG，核心玩家对「割草、构筑超模流派、数百小时养成成果」的爽感预期极高；同时游戏本身节奏偏慢、毕业循环单调的存量不满已在积累，这层底色决定了削弱爆发的烈度。",
+     "econ": [
+      {
+       "title": "权力幻想是刷子游戏的核心商品",
+       "text": "Hack & Slash品类的本质是Power Fantasy：玩家花数百小时构筑流派、追求割草快感，养成成果等同于其投入价值。无差别削弱直接没收这份成果。"
+      },
+      {
+       "title": "节奏偏慢的存量怨气",
+       "text": "D4上线后即有「节奏偏慢、毕业循环单调」的不满。补丁不仅没缓解，反而进一步砍经验、提高开箱成本，把潜在怨气一次点爆。"
+      },
+      {
+       "title": "官方意图与玩家归因的落差",
+       "text": "官方称削弱是「为游戏整体健康」的平衡需要；玩家则归因为「为拖长在线时长、维持日活而恶心人」。两者落差是情绪失控核心。"
+      }
+     ],
+     "nature": "官方设计与平衡决策失误；PVE环境下单方面削弱玩家爽感。",
+     "platform": "主要在Reddit（r/diablo4）、Metacritic用户评分、推特/X发酵，并经IGN、Dexerto、80.lv等媒体广泛报道破圈。"
+    },
+    {
+     "label": "削弱定性",
+     "stageNo": "一",
+     "title": "削弱定性：全员大削被读作「教玩家玩游戏」",
+     "time": "2023-07-18 至 07-19",
+     "chartDate": "07-18",
+     "emotion": "震惊、被剥夺、愤怒",
+     "emotionScore": 92,
+     "summary": "补丁实装后玩家发现自己的构筑瞬间变废、刮痧，迅速把无差别削弱理解为官方为拖延毕业时间而「教玩家玩游戏」，而非中性的平衡调整。",
+     "coreQuestion": "PVE游戏里，凭什么一刀切砍废所有人的爽感，还砍经验、提开箱成本？",
+     "psychology": "在没有PVP压力的环境，玩家的爽感是第一位的。削弱伤害尚可解释为平衡，但同时砍冷却、降经验、提高开箱成本，被一眼看穿是「为拖延毕业、维持日活」。玩家的不满从对数值的不满升级为对官方设计动机的判断。",
+     "playerDemand": "回退削弱、恢复爽感；若要平衡，应Buff弱势流派而非Nerf全员；并给出明确的修改时间表。",
+     "trigger": "全职业无差别削弱 + 砍经验/提开箱成本 + 赛季开局时点，叠加引爆。",
+     "evidence": [
+      {
+       "platform": "Reddit",
+       "time": "2023-07-18",
+       "sourceType": "媒体引述高赞帖",
+       "playerId": "r/diablo4 玩家 TheMorals",
+       "text": "It is not like this game was lightning fast to begin with, but now it is a proper slog.（这游戏本来就不算快，现在彻底变成了一种苦差。）",
+       "heat": "1.9万+赞",
+       "url": "https://atlasrc.www.ign.com/articles/diablo-4-players-slam-latest-nerf-patch-blizzard-promises-to-address-backlash"
+      },
+      {
+       "platform": "Reddit",
+       "time": "2023-07-19",
+       "sourceType": "媒体引述高赞评论",
+       "playerId": "r/diablo4 高赞玩家",
+       "text": "I just don't understand why they want to make this game more of a chore. Who approves these changes??（我就是不懂他们为什么想让这游戏变成苦工活。这些改动是谁批准的？？）",
+       "heat": "1万+赞",
+       "url": "http://gamerdigest.com/diablo-iv-players-are-angry-about-new-update/"
+      }
+     ]
+    },
+    {
+     "label": "认错后缓和",
+     "stageNo": "二",
+     "title": "缓和期：篝火夜谈坦诚认错换回部分信任",
+     "time": "2023-07-21 之后",
+     "chartDate": "07-21",
+     "emotion": "认可态度、保留观望",
+     "emotionScore": 58,
+     "summary": "07-21篝火夜谈直播，主创团队直白认错、确立「不一刀切削弱」的新纲领并公布1.1.1加强路线，玩家情绪明显缓和，但削弱未即时全部回退，仍有失望者流失。",
+     "coreQuestion": "态度认了、纲领也对，但被毁的爽感什么时候真正回来？",
+     "psychology": "玩家认可直播无公关套话、直面问题的姿态，也接受「Buff弱势优于Nerf全员」的方向；但情绪缓和不等于损失补回——削弱要等1.1.1才逐步回退，部分对节奏失望的玩家选择离开。",
+     "playerDemand": "尽快落地1.1.1加强、兑现新纲领；未来补丁提前预告、不再无预期大削。",
+     "trigger": "主创直播坦诚认错 + 明确新平衡纲领 + 1.1.1两周路线图。",
+     "evidence": [
+      {
+       "platform": "直播",
+       "time": "2023-07-21",
+       "sourceType": "官方直播原话（媒体转述）",
+       "playerId": "游戏总监 Joe Shely",
+       "text": "ARPG games are about power fantasy... we need to make sure we're not punishing players for doing that.（ARPG的核心是权力幻想……我们必须确保不会因为玩家这么玩而惩罚他们。）",
+       "heat": "官方表态",
+       "url": "https://www.dexerto.com/gaming/blizzard-admits-mistakes-with-diablo-4-season-1-patch-vows-never-again-2221484/"
+      }
+     ]
+    }
+   ],
+   "coreConflicts": [
+    {
+     "title": "数值/平衡调整争议",
+     "desc": "在没有PVP压力的PVE刷子游戏里，玩家的核心商品是割草爽感与权力幻想。官方以「游戏整体健康」为由对全职业无差别削弱，并叠加砍冷却、降经验、提高开箱成本，被玩家读作「为拖长养成时长、维持日活而教玩家怎么玩」。矛盾核心：官方主张这是必要的平衡调整，玩家主张这是单方面剥夺其数百小时养成成果与爽感——分歧不在该不该平衡，而在是否该一刀切Nerf全员、是否该用拖时长的手段对待没有竞技压力的PVE玩家。"
+    }
+   ],
+   "cognitionLead": "暗黑4属ARPG刷子（Hack & Slash）品类：玩家把构筑超模流派、割草爽感与数百小时养成成果视为核心体验，对削弱（尤其无差别削弱）极度敏感；PVE环境下没有竞技平衡压力，爽感优先级高于数值严谨。",
+   "cognitionTraits": [
+    {
+     "trait": "把养成成果与爽感视为核心商品",
+     "text": "刷子游戏玩家投入数百小时构筑流派，追求割草与权力幻想；养成成果等同于其付出价值，一旦被无差别削弱，等于没收劳动成果，极难接受。",
+     "type": "稳态"
+    },
+    {
+     "trait": "对「拖时长式」设计高度警惕",
+     "text": "削弱伤害尚可被理解为平衡，但砍冷却、降经验、提高开箱成本等拉长养成的改动，会被玩家一眼归因为「为维持日活而恶心人」，迅速升级为对官方动机的不信任。",
+     "type": "新强化"
+    }
+   ]
+  },
+  "official": {
+   "stages": [
+    {
+     "kind": "触发动作",
+     "quality": "bad",
+     "qualityLabel": "点燃舆情 · 全员大削",
+     "name": "补丁1.1.0全职业无差别削弱",
+     "time": "2023-07-18",
+     "source": "官方1.1.0补丁说明",
+     "sourceUrl": "https://www.icy-veins.com/d4/news/diablo-4-patch-1-1-and-season-1-notes-are-huge",
+     "elements": [
+      "全员削弱",
+      "砍经验/提开箱成本",
+      "赛季开局时点"
+     ],
+     "officialExcerpt": [
+      "In general, we prefer build-specific changes to be bonuses instead of decreases, but we feel these changes are necessary for the overall health of the game.（总体上我们更愿意用加强而非削弱，但我们认为这些改动对游戏整体健康是必要的。）"
+     ],
+     "valuable": [
+      "无明显有效部分，属单方面的大规模削弱条目。"
+     ],
+     "lowValue": [
+      "PVE环境下对全职业无差别削弱，直接没收玩家养成成果与爽感",
+      "叠加砍冷却、降经验、提高开箱成本，被读作「为拖时长而恶心人」",
+      "时点踩在赛季1开局前两天，放大养成成果被毁的挫败感"
+     ],
+     "effect": "玩家集体暴怒，Metacritic用户分崩至2.x，Reddit万级声讨与删游潮，事件破圈至各大媒体。"
+    },
+    {
+     "kind": "正式回应",
+     "quality": "good",
+     "qualityLabel": "有效缓解 · 坦诚认错",
+     "name": "篝火夜谈直播认错并立新纲领",
+     "time": "2023-07-21",
+     "source": "官方Campfire Chat直播",
+     "sourceUrl": "https://www.dexerto.com/gaming/blizzard-admits-mistakes-with-diablo-4-season-1-patch-vows-never-again-2221484/",
+     "elements": [
+      "直面认错",
+      "确立新平衡纲领",
+      "1.1.1加强路线图"
+     ],
+     "officialExcerpt": [
+      "We don't plan on doing a patch like this ever again. We hear you loud and clear.（我们不打算再做这样的补丁。我们清楚地听到了你们的声音。）",
+      "We know it is bad. We know it is not fun.（我们知道这很糟，知道它不好玩。）",
+      "We can't nerf those overpowered builds without providing compelling alternatives for players to pursue.（在没有提供有吸引力的替代流派前，我们不能削弱那些超模流派。）"
+     ],
+     "valuable": [
+      "主创团队露脸直播、无公关套话，直面承认设计意图失败",
+      "确立「Buff弱势优于一刀切Nerf全员」的新平衡纲领，命中玩家核心诉求方向",
+      "公布1.1.1两周加强路线图，并承诺未来补丁配开发者直播、提前预告"
+     ],
+     "lowValue": [
+      "1.1.0的削弱未即时全部回退，需等1.1.1逐步加强，缓和后仍有长尾流失"
+     ],
+     "effect": "玩家普遍认可坦诚姿态与新纲领，情绪明显缓和、信任部分修复；但养成爽感的失望转化为后续活跃下滑。"
+    }
+   ],
+   "pros": [
+    {
+     "group": "态度",
+     "sub": "姿态与沟通",
+     "items": [
+      {
+       "tag": "主创露脸直面认错",
+       "text": "开发团队以直播形式坦诚承认「搞砸了」、不甩锅、不用公关套话，是面对游戏性实质暴雷时重建信任最快的方式。"
+      },
+      {
+       "tag": "立可迁移的新纲领",
+       "text": "确立「削弱超模流派前必须先提供有吸引力的替代流派」原则，把一次性危机转化为长期平衡方法论。"
+      }
+     ]
+    },
+    {
+     "group": "改进",
+     "sub": "实际动作与透明度",
+     "items": [
+      {
+       "tag": "给具体时间表",
+       "text": "公布1.1.1加强路线图（法师/野蛮人加强、降重置金币、提怪物密度等），多数两周内落地，用具体计划而非空话回应。"
+      }
+     ]
+    }
+   ],
+   "cons": [
+    {
+     "group": "触发",
+     "sub": "点燃舆情的原始动作",
+     "items": [
+      {
+       "tag": "PVE全员削弱误判爽感",
+       "text": "内部测试过度关注Excel上的数值溢出，忽略玩家在无竞技压力PVE环境下的情绪体验，对全职业一刀切削弱。"
+      },
+      {
+       "tag": "拖时长式改动叠加",
+       "text": "在削弱伤害之外又砍冷却、降经验、提高开箱成本，强化「为维持日活而恶心人」的诛心解读。"
+      }
+     ]
+    },
+    {
+     "group": "回应",
+     "sub": "处置中的遗留",
+     "items": [
+      {
+       "tag": "削弱未即时回退",
+       "text": "认错态度到位，但1.1.0削弱需等1.1.1才逐步回退，情绪缓和期内仍有对节奏失望的玩家流失。"
+      }
+     ]
+    }
+   ]
+  },
+  "impact": {
+   "headline": "全员大削引发Metacritic用户分崩塌至2.x、Reddit万级声讨与删游潮，赛季1启动仍有排队但活跃在认错后逐步下滑（内部数据待核）",
+   "volumeLevel": "S",
+   "volumeConfidence": "高，公开可见",
+   "volumeMetrics": [
+    {
+     "value": "2.x 分",
+     "label": "Metacritic用户评分崩塌",
+     "note": "补丁后Metacritic用户评分被差评轰炸至2.x历史低位（IGN记2.4、80.lv记2.0、gamerdigest记4.6/10），绝大多数近期差评直指1.1.0削弱"
+    },
+    {
+     "value": "1.9 万+赞",
+     "label": "Reddit代表性声讨帖热度",
+     "note": "r/diablo4 玩家TheMorals痛斥「proper slog」的帖子破1.9万赞，另有「Who approves these changes??」等万级赞评论；主玩家平台为Reddit与官方论坛（D4核心讨论聚集地）"
+    },
+    {
+     "value": "多平台 · 媒体破圈",
+     "label": "平台分布与破圈",
+     "note": "Reddit、Metacritic、推特/X多平台联动，并波及其他暴雪游戏社区；IGN、Dexerto、80.lv、PCGamer等多家媒体报道，完成破圈"
+    }
+   ],
+   "productImpact": [
+    {
+     "name": "玩家信任伤害",
+     "level": "偏高",
+     "text": "全员削弱+拖时长改动严重伤及刷子玩家的爽感契约与对设计动机的信任；篝火夜谈坦诚认错+新纲领修复了部分信任，但属需后续兑现才能愈合的损伤。"
+    },
+    {
+     "name": "商业数据伤害（活跃/留存/流水）",
+     "level": "待核",
+     "text": "赛季1启动仍有排队，但补丁后D4活跃在公开观感上逐步下滑（精确数列无公开口径）；是否转化为留存/流水实质流失依赖内部数据，最终伤害定档待核。"
+    }
+   ],
+   "quadrant": {
+    "axis1": "声量高、强抗议、已破圈（核心ARPG玩家 + 媒体广泛报道）",
+    "axis2": "倾向承重墙——抗议主力是刷子游戏的核心活跃/付费玩家，需内部数据复核",
+    "axis3": "Metacritic 2.x、删游喊话属声量；补丁后活跃下滑为公开旁证但无精确口径，是否回弹待核",
+    "result": "倾向真危机：声量来自核心玩家、且有补丁后活跃下滑的公开旁证；但最终是否动到留存/流水依赖内部数据复核。",
+    "resultCell": "crisis",
+    "doubt": true
+   },
+   "valueConclusion": "本案声量来自ARPG刷子游戏的核心玩家（倾向承重墙）：全员削弱直接没收其养成成果与爽感，Metacritic评分崩塌、Reddit万级声讨与删游潮齐发并破圈，伤害倾向偏重。官方在三天内以篝火夜谈坦诚认错、确立新平衡纲领并给出1.1.1加强路线图，情绪明显缓和；但削弱未即时回退，叠加节奏失望，活跃在后续逐步下滑。倾向判断为真危机，但是否转化为留存/流水实质损失缺乏公开口径，最终落点待内部数据定档。",
+   "dataSection": {
+    "caption": "《暗黑破坏神4》2023/10 才登陆 Steam，事件期(2023/7)缺乏可用的第三方销量/在线数据，无脱敏曲线可展示。",
+    "rangeStart": "",
+    "rangeEnd": "",
+    "markers": [],
+    "verdict": "数据源不覆盖事件期，伤害无法量化",
+    "charts": [
+     {
+      "metric": "周流水",
+      "values": [],
+      "eventIdx": 0
+     },
+     {
+      "metric": "周活跃",
+      "values": [],
+      "eventIdx": 0
+     }
+    ],
+    "damage": {
+     "grade": "无数据",
+     "tone": "mute",
+     "note": "无数据：2023 年 10 月才登陆 Steam，事件期(2023/7)缺乏可用第三方销量/在线数据，伤害无法量化。"
+    },
+    "barEvents": [],
+    "monthTicks": [],
+    "whyParts": []
+   },
+   "volumeVerdict": "声量高、强抗议、已破圈",
+   "cardTags": {
+    "vol": {
+     "tag": "强抗议 · 评分崩塌",
+     "tone": "hot"
+    },
+    "player": {
+     "tag": "倾向承重墙·待核",
+     "tone": "hot"
+    },
+    "data": {
+     "tag": "无数据 · 无法量化",
+     "tone": "mute"
+    }
+   },
+   "compensation": {
+    "strength": "无",
+    "tone": "cool",
+    "tag": "无直接补偿",
+    "summary": "无物质补偿，承诺1.1.1回退削弱并加强弱势职业",
+    "text": "暴雪未向玩家发放游戏内道具或货币补偿，而是通过篝火夜谈坦诚认错，并在1.1.1中回退部分削弱、加强法师/野蛮人、降低重置金币约40%、增加仓库页等。属「以修正与改进代替物质补偿」，无可量化的补偿市值。",
+    "value": "无",
+    "valueNote": "无物质补偿，故无估算市值；价值体现在后续版本的实际修正与平衡改进"
+   }
+  },
+  "insight": {
+   "keyInsights": [
+    {
+     "title": "PVE削弱需谨慎：优先Buff弱势而非Nerf全员",
+     "text": "在没有PVP竞技压力的刷子/PVE游戏里，玩家的爽感优先级高于数值严谨。若存在超模流派，通过加强弱势流派来收敛差距，通常比一刀切砍废所有人更易被接受——后者会被读作直接没收养成成果。涉及全局削弱的改动需高度谨慎并做预期管理。"
+    },
+    {
+     "title": "拖时长式改动易被诛心解读",
+     "text": "削弱伤害尚可解释为平衡，但同时砍冷却、降经验、提高养成成本等拉长游戏时长的改动，容易被玩家归因为「为维持日活而恶心人」。这类改动会把对数值的不满迅速升级为对官方动机的不信任，捆绑发布需谨慎。"
+    },
+    {
+     "title": "实质暴雷时，主创直面沟通优于冰冷公告",
+     "text": "面对游戏性的实质性争议，几百字的冷公告往往火上浇油。让主创团队露脸、坦诚承认错误、给出具体修改时间表（甚至展示草案），是重建信任较快的方式。本案篝火夜谈在三天内有效缓和情绪，可作为危机沟通的参考。"
+    }
+   ],
+   "coreInsight": "在刷子/PVE游戏里，玩家的养成成果与割草爽感等同于其投入价值；PVE环境没有竞技平衡的硬约束，全局削弱会被读作单方面没收成果、甚至「为拖时长而恶心人」。可行的解法是优先Buff弱势流派、做足预期管理，一旦失手则需主创坦诚、快速、带时间表地认错与修正。",
+   "profile": {
+    "summary": "本次事件由官方在赛季1开局前发布全职业无差别削弱补丁1.1.0引发，被刷子游戏核心玩家读作「教玩家玩游戏、剥夺爽感」。声量高、强抗议并破圈：Metacritic用户分崩至2.x、Reddit万级声讨与删游潮齐发。官方在三天内以篝火夜谈坦诚认错、立新纲领并给1.1.1路线图，情绪缓和，但削弱未即时回退、活跃在后续逐步下滑。声量来自核心玩家、且有活跃下滑的公开旁证，倾向判定为真危机——最终是否动到留存/流水待内部数据定档。",
+    "headline": "倾向真危机：声量来自核心玩家、强抗议且有活跃下滑旁证（伤害待内部数据核）"
+   }
+  }
+ }
+}
