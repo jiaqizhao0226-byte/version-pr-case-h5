@@ -215,8 +215,8 @@ function renderStats(){
   const yMin = yrs.length ? Math.min(...yrs) : '', yMax = yrs.length ? Math.max(...yrs) : '';
   const tenc = all.filter(c => /腾讯/.test(c.company||'')).length;
   const nonTenc = all.length - tenc;
-  // 真危机：落点为 crisis（高声量 + 数据/综合伤害实质动了）
-  const crisis = all.filter(c => (c.resultCell||'') === 'crisis').length;
+  // 真危机：落点为 hh（高声量 × 高伤害），统一由 matrixCell() 从 volume×damage 实时计算
+  const crisis = all.filter(c => matrixCell(c) === 'hh').length;
   $('stats').innerHTML =
     `<div class="stat"><b>${yMin}–${yMax}</b><span>覆盖年份</span></div>`+
     `<div class="stat"><b>${list.length}</b><span>当前筛选案例（共 ${all.length}）</span></div>`+
@@ -905,7 +905,7 @@ function renderPrDamageChart(){
     <div class="chartInsights"><b>洞察：</b>
       <p style="margin:0 0 8px;">先看数据本身：四种处置方式与伤害档位之间并非随机分布，而是存在明显的匹配关系——说明官方并非"随便选一个应对方式"，处置选择与事件性质高度相关。</p>
       <ul>
-        <li><b>滑跪（含立刻滑跪和后期滑跪）</b>多出现在高伤害场景。这说明滑跪通常是<b>事件严重后的被动补救</b>，而非主动示好——不是"滑跪导致高伤害"，而是"高伤害才滑跪"（选择效应，非因果）。</li>
+        <li><b>滑跪（含立刻滑跪和后期滑跪）</b>的伤害分布比其它处置更偏向中 / 高档（合并后 13 例中，中高伤害 9 例、低伤害仅 1 例、无数据 3 例），且触及核心付费 / 契约的案例几乎都会滑跪。这说明滑跪更多是<b>事件已被判定为"动了根基"后的止损选择</b>——不是"滑跪导致高伤害"，而是"判断伤到核心才滑跪"（选择效应，非因果）。需注意：单看"立刻滑跪"一项，伤害分布其实较分散（高/中/低都有），滑跪速度本身是姿态选择，不能直接当作严重度信号。</li>
         <li><b>冷处理</b>集中在低伤害（7/10 为低伤害），说明它多用于官方判断"没动到核心盘"的场景。风险在于误判：如果实际已触及核心付费，冷处理会错过最佳窗口。</li>
         <li><b>正常处理</b>的案例伤害分布较均匀，是矛盾可控、诉求明确时的标准路径——按常规节奏公告说明即可。</li>
       </ul>
@@ -913,34 +913,8 @@ function renderPrDamageChart(){
     </div>`;
 }
 
-// 图4 · 结局落点分布（resultCell 汇总）
-function renderResultCellChart(){
-  const wrap = document.getElementById('resultCellChart');
-  if (!wrap) return;
-  const all = caseSummaries || [];
-  const META = {
-    crisis:  { label:'真危机',   sub:'高声量 · 高伤害', color:'#B85450' },
-    deficit: { label:'信任赤字', sub:'高声量 · 中伤害', color:'#D99A3E' },
-    silent:  { label:'沉默流失', sub:'低声量 · 高伤害', color:'#5B7DA6' },
-    noise:   { label:'真噪声',   sub:'低声量 · 低伤害', color:'#8A97A6' },
-  };
-  const order = ['crisis','deficit','silent','noise'];
-  const cnt = {}; order.forEach(k=>cnt[k]=0);
-  all.forEach(c=>{ if(cnt[c.resultCell]!=null) cnt[c.resultCell]++; });
-  const max = Math.max(1,...order.map(k=>cnt[k]));
-  const html = order.map(k=>{
-    const m=META[k]; const n=cnt[k]; const w=n/max*100;
-    return `<div class="mapBar">
-      <div>
-        <span class="mapBarLabel">${m.label}　<span style="color:var(--muted);font-weight:400">${m.sub}</span></span>
-        <div class="mapBarTrack"><div class="mapBarFill" style="width:${w}%;background:${m.color}"></div></div>
-      </div>
-      <span class="mapBarVal">${n}</span>
-    </div>`;
-  }).join('');
-  wrap.innerHTML = `<div class="mapBars">${html}</div>
-    <div class="chartInsights"><b>洞察：</b>真正需要紧急止损的真危机为 ${cnt.crisis} 例；中伤害案例应单独识别为信任赤字或短期冲击，不能并入高伤害，否则会把处置优先级判断做重。</div>`;
-}
+// 图4「结局落点分布」已废弃：落点统一由 matrixCell() 生成，并在 Mapping 页九宫格呈现，
+// 不再单独维护基于 resultCell 字段的分布图（原 renderResultCellChart 已移除）。
 
 
 function renderGrid(){
@@ -1255,13 +1229,20 @@ function renderBarTrend(ch,ds){
 function renderInsightV1(c){
   const n=c.insight||{};const q=c.impact||{};const quad=q.quadrant||{};const ca=c.cause||{};
 
-  // ① 案例定型：大字判定 + 小字归因解释 + 四象限
+  // ① 案例定型：大字判定 + 小字归因解释 + 一行落点标签
+  // 落点统一由 matrixCell(c) 从 volume×damage 实时计算，与 Mapping 页九宫格同源；
+  // 九宫格矩阵已在「全部案例 Mapping」页统一呈现，此处不再重复画格，仅标注本案落点。
   const pf=n.profile||{};
-  const pfHeadline=pf.headline?`<p class="pfVerdict lb-${esc(quad.resultCell||'noise')}">${esc(pf.headline)}</p>`:'';
+  const mcell=matrixCell(c);
+  const cellMeta=(typeof CELL_META!=='undefined'&&CELL_META[mcell])?CELL_META[mcell]:null;
+  const pfHeadline=pf.headline?`<p class="pfVerdict lb-${esc(mcell)}">${esc(pf.headline)}</p>`:'';
   const profileSummary=pf.summary?`<p class="pfSummary">${esc(pf.summary)}</p>`:'';
-  const cellFn=(key,name,desc)=>{const on=quad.resultCell===key;return `<div class="qmCell${on?' qmActive qm-'+key:''}"><b>${name}</b>${desc?`<small>${esc(desc)}</small>`:''}${on?'<span class="qmHere">← 本案落点</span>':''}</div>`;};
-  const matrix=quad.resultCell?`<div class="quadMatrix"><div class="qmCorner">声量 ↓ ／ 伤害 →</div><div class="qmColHead">低声量</div><div class="qmColHead">高声量</div><div class="qmRowHead">高伤害</div>${cellFn('silent','隐性流失','最易误判')}${cellFn('crisis','真危机','')}<div class="qmRowHead">中伤害</div>${cellFn('local','局部损伤','需观察')}${cellFn('deficit','信任赤字累积','短期冲击/延迟爆发')}<div class="qmRowHead">低伤害</div>${cellFn('routine','常规客诉','')}${cellFn('noise','真噪声','')}</div>`:'';
-  const profileBlock=(pfHeadline||profileSummary||matrix)?`<div class="block ctBlock"><h3>案例定型</h3>${pfHeadline}${profileSummary}${matrix}</div>`:'';
+  const landing = (mcell==='na')
+    ? `<p class="pfLanding pfLanding-na"><span class="pfLandingLabel">本案落点</span><b>伤害无数据 / 未收录</b><small>停运·未上架·数据源不覆盖，伤害无法量化，不纳入声量×伤害落点统计</small></p>`
+    : (cellMeta
+        ? `<p class="pfLanding lb-${esc(mcell)}"><span class="pfLandingLabel">本案落点</span><b>${esc(cellMeta.label)}</b><small>${esc(cellMeta.sub)}（完整九宫格见「全部案例 Mapping」页）</small></p>`
+        : '');
+  const profileBlock=(pfHeadline||profileSummary||landing)?`<div class="block ctBlock"><h3>案例定型</h3>${pfHeadline}${profileSummary}${landing}</div>`:'';
 
   // ② 这类游戏的玩家特征（从核心矛盾页迁来）
   const tBadge=t=>t?`<span class="ctType ct-${t==='稳态'?'stable':(t==='新出现'?'new':'up')}">${esc(t)}</span>`:'';

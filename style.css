@@ -1035,6 +1035,18 @@
 .v1deep .pfLand .lb-noise{color:var(--green)}
 .v1deep .pfLand .lb-deficit,.v1deep .pfLand .lb-silent{color:var(--blue)}
 
+/* 案例定型 · 一行落点标签（落点由 matrixCell 生成，九宫格完整版在 Mapping 页）*/
+.v1deep .pfLanding{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 10px;font-size:14px;margin:6px 0 12px;padding:10px 14px;background:var(--soft);border:1px solid var(--line);border-radius:12px;color:var(--muted)}
+.v1deep .pfLanding .pfLandingLabel{font-size:12px;color:var(--muted);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:1px 8px}
+.v1deep .pfLanding b{font-size:16px;font-weight:800}
+.v1deep .pfLanding small{color:var(--muted);font-size:12.5px}
+.v1deep .pfLanding-na b{color:var(--muted)}
+/* 九宫格键 → 落点配色（与 Mapping 页 CELL_META 对齐：高伤害红/蓝、中伤害琥珀、低伤害灰，高声量低伤害为舆论风暴琥珀）*/
+.v1deep .pfVerdict.lb-hh,.v1deep .pfLanding.lb-hh b{color:var(--red)}
+.v1deep .pfVerdict.lb-mh,.v1deep .pfVerdict.lb-lh,.v1deep .pfLanding.lb-mh b,.v1deep .pfLanding.lb-lh b{color:var(--blue)}
+.v1deep .pfVerdict.lb-hm,.v1deep .pfVerdict.lb-mm,.v1deep .pfVerdict.lb-hl,.v1deep .pfLanding.lb-hm b,.v1deep .pfLanding.lb-mm b,.v1deep .pfLanding.lb-hl b{color:var(--amber,#D99A3E)}
+.v1deep .pfVerdict.lb-ll,.v1deep .pfVerdict.lb-ml,.v1deep .pfVerdict.lb-lm,.v1deep .pfLanding.lb-ll b,.v1deep .pfLanding.lb-ml b,.v1deep .pfLanding.lb-lm b{color:var(--muted)}
+
 /* 案例卡片 chip：核心矛盾(琥珀金) / 公关应对(蓝灰) 双色区分 */
 .chip-conflict{background:var(--amberBg);color:var(--amber);border-color:#d9cdb8}
 .chip-pr{background:var(--blueBg);color:var(--blue);border-color:#c5cfdb;font-weight:600}

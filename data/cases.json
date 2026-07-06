@@ -30,7 +30,6 @@
       "pr_eval": "极佳 (24小时光速滑跪+史无前例10连抽)"
     },
     "caseFile": "./cases/yuanshen-longwang.json",
-    "resultCell": "noise",
     "theme": "二次元",
     "gameplay": "抽卡RPG"
   },
@@ -65,7 +64,6 @@
       "pr_eval": "灾难 (傲慢导致律师函警告)"
     },
     "caseFile": "./cases/lianyu-mechanic.json",
-    "resultCell": "deficit",
     "theme": "乙女向",
     "gameplay": "模拟/养成"
   },
@@ -102,7 +100,6 @@
       "pr_eval": "优秀 (稳坐钓鱼台，保护核心圈层)"
     },
     "caseFile": "./cases/lianyu-scale.json",
-    "resultCell": "noise",
     "theme": "乙女向",
     "gameplay": "模拟/养成"
   },
@@ -137,7 +134,6 @@
       "pr_eval": "极佳 (光速改底层规则，顺应玩家诉求)"
     },
     "caseFile": "./cases/oncehuman-season.json",
-    "resultCell": "noise",
     "theme": "写实/竞技",
     "gameplay": "开放世界"
   },
@@ -173,7 +169,6 @@
       "pr_eval": "灾难 (公关直言'想赚钱'，自毁长城)"
     },
     "caseFile": "./cases/shijiezhiwai-money.json",
-    "resultCell": "deficit",
     "theme": "乙女向",
     "gameplay": "模拟/养成"
   },
@@ -211,7 +206,6 @@
       "pr_eval": "有效 (卑微滑跪+自选五星强行续命)"
     },
     "caseFile": "./cases/mingchao-1.0.json",
-    "resultCell": "deficit",
     "theme": "二次元",
     "gameplay": "开放世界"
   },
@@ -247,7 +241,6 @@
       "pr_eval": "较差 (削本保日活正确，但用封号掩盖Bug傲慢)"
     },
     "caseFile": "./cases/dnf-mobile-dragon.json",
-    "resultCell": "noise",
     "theme": "情怀IP",
     "gameplay": "ARPG/动作"
   },
@@ -265,7 +258,7 @@
       "模拟/养成"
     ],
     "volume": "S",
-    "damage": "中",
+    "damage": "A",
     "status": "已深挖样例",
     "tags": [
       "付费内容贬值/不实",
@@ -287,7 +280,6 @@
       "pr_eval": "较差 (补偿失效，回应避重就轻)"
     },
     "caseFile": "./cases/luoke-s2.json",
-    "resultCell": "deficit",
     "theme": "情怀IP",
     "gameplay": "模拟/养成"
   },
@@ -322,7 +314,6 @@
       "pr_eval": "有效 (篝火夜谈真诚认错并改大纲)"
     },
     "caseFile": "./cases/diablo4-p11.json",
-    "resultCell": "crisis",
     "theme": "写实/竞技",
     "gameplay": "ARPG/动作"
   },
@@ -358,7 +349,6 @@
       "pr_eval": "被动 (全球差评后紧急妥协送翅膀)"
     },
     "caseFile": "./cases/yuanshen-1year.json",
-    "resultCell": "noise",
     "theme": "二次元",
     "gameplay": "抽卡RPG"
   },
@@ -393,7 +383,6 @@
       "pr_eval": "较差 (试探底线被差评轰炸后被迫撤回)"
     },
     "caseFile": "./cases/apex-bp.json",
-    "resultCell": "crisis",
     "theme": "写实/竞技",
     "gameplay": "射击"
   },
@@ -428,7 +417,6 @@
       "pr_eval": "狠辣 (全额退款换封号，切断法律风险)"
     },
     "caseFile": "./cases/fengzhigu-refund.json",
-    "resultCell": "crisis",
     "theme": "情怀IP",
     "gameplay": "模拟/养成"
   },
@@ -465,7 +453,6 @@
       "pr_eval": "较差 (冷处理导致不信任)"
     },
     "caseFile": "./cases/sanjiaozhou-jail.json",
-    "resultCell": "noise",
     "theme": "写实/竞技",
     "gameplay": "射击"
   },
@@ -500,7 +487,6 @@
       "pr_eval": "极差 (装死一个月，错失黄金公关期)"
     },
     "caseFile": "./cases/benghuai-rabbit.json",
-    "resultCell": "crisis",
     "theme": "二次元",
     "gameplay": "ARPG/动作"
   },
@@ -537,7 +523,6 @@
       "pr_eval": "双刃剑 (光速滑跪但催生了按闹分配的毒瘤生态)"
     },
     "caseFile": "./cases/yanyun-jiujian.json",
-    "resultCell": "noise",
     "theme": "武侠/国风",
     "gameplay": "开放世界"
   },
@@ -575,7 +560,6 @@
       "pr_eval": "被动 (试图两头讨好，最终两头挨骂)"
     },
     "caseFile": "./cases/yanyun-female.json",
-    "resultCell": "noise",
     "theme": "武侠/国风",
     "gameplay": "开放世界"
   },
@@ -610,7 +594,6 @@
       "pr_eval": "概率公示合规、四周年 BUG 处置诚恳，但商业化主争议搁置"
     },
     "caseFile": "./cases/codm-cn-launch.json",
-    "resultCell": "deficit",
     "theme": "写实/竞技",
     "gameplay": "射击"
   },
@@ -646,7 +629,6 @@
       "pr_eval": "被迫合规，补偿与文化损失错配"
     },
     "caseFile": "./cases/dnf-pc-harmony.json",
-    "resultCell": "deficit",
     "theme": "情怀IP",
     "gameplay": "ARPG/动作"
   },
@@ -681,7 +663,6 @@
       "pr_eval": "6 天快速道歉纠偏，姿态低"
     },
     "caseFile": "./cases/wzry-s40.json",
-    "resultCell": "deficit",
     "theme": "写实/竞技",
     "gameplay": "MOBA"
   },
@@ -717,7 +698,6 @@
       "pr_eval": "诚恳认错+实质优化，范本姿态"
     },
     "caseFile": "./cases/wzry-world-demo.json",
-    "resultCell": "deficit",
     "theme": "写实/竞技",
     "gameplay": "开放世界"
   },
@@ -753,7 +733,6 @@
       "pr_eval": "常规修复，处置错配退费难"
     },
     "caseFile": "./cases/moer-manor.json",
-    "resultCell": "silent",
     "theme": "情怀IP",
     "gameplay": "模拟/养成"
   },
@@ -790,7 +769,6 @@
       "pr_eval": "平衡侧调整治标，未正面回应逼氪"
     },
     "caseFile": "./cases/hpmagic-pay.json",
-    "resultCell": "silent",
     "theme": "情怀IP",
     "gameplay": "策略/塔防"
   },
@@ -826,7 +804,6 @@
       "pr_eval": "诚恳+制度整改但回应失焦放大损伤"
     },
     "caseFile": "./cases/gf2-daiyan.json",
-    "resultCell": "silent",
     "theme": "二次元",
     "gameplay": "策略/塔防"
   },
@@ -862,7 +839,6 @@
       "pr_eval": "响应快但解释牵强、补偿失衡"
     },
     "caseFile": "./cases/arknights-collab.json",
-    "resultCell": "deficit",
     "theme": "二次元",
     "gameplay": "策略/塔防"
   },
@@ -897,7 +873,6 @@
       "pr_eval": "回炉彻底但两头落空、无法逆转立项根因"
     },
     "caseFile": "./cases/shediao-bjd.json",
-    "resultCell": "silent",
     "theme": "武侠/国风",
     "gameplay": "开放世界"
   },
@@ -936,7 +911,6 @@
       "pr_eval": "被动部分调整，未正面回应核心诉求"
     },
     "caseFile": "./cases/bluearchive-cn.json",
-    "resultCell": "deficit",
     "theme": "二次元",
     "gameplay": "抽卡RPG"
   },
@@ -972,7 +946,6 @@
       "pr_eval": "诚恳致歉+加码福利，靠后续兑现"
     },
     "caseFile": "./cases/reverse1999-3rd.json",
-    "resultCell": "silent",
     "theme": "二次元",
     "gameplay": "抽卡RPG"
   },
@@ -1011,7 +984,6 @@
       "pr_eval": "三段式：6-28凌晨道歉回避核心诉求被判敷衍；6-29晚二次声明以「虚构占位/文案包装」轻描淡写、并强硬「追究到底」被斥战书2.0、避重就轻；6-30被迫取消上线+永久终止新男主+补偿加码至30抽（强力止血，但属被停氪维权与官媒压力倒逼的回退，且价值观争议至今未正面处理）。官方愿永久砍掉新男主产品线，反证基本盘真受损。"
     },
     "caseFile": "./cases/lianyu-aoyin.json",
-    "resultCell": "crisis",
     "theme": "乙女向",
     "gameplay": "模拟/养成"
   },
@@ -1046,7 +1018,6 @@
       "pr_eval": "快速撤回+主动担责，止损范本"
     },
     "caseFile": "./cases/helldivers2-psn.json",
-    "resultCell": "crisis",
     "theme": "写实/竞技",
     "gameplay": "射击"
   },
@@ -1082,7 +1053,6 @@
       "pr_eval": "认错+成体系60天计划止血，修复待兑现"
     },
     "caseFile": "./cases/helldivers2-nerf.json",
-    "resultCell": "deficit",
     "theme": "写实/竞技",
     "gameplay": "射击"
   },
@@ -1121,7 +1091,6 @@
       "pr_eval": "灰区联动埋雷+停服黑箱+重开单方面改付费权益，全程冷处理，补偿错位难修复付费信任"
     },
     "caseFile": "./cases/chenbai-forbidden.json",
-    "resultCell": "crisis",
     "theme": "二次元",
     "gameplay": "射击"
   }
