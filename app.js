@@ -266,7 +266,7 @@ function renderMatrixChart() {
   if (!container) return;
   const all = caseSummaries || [];
 
-  const groups = { hl:[], hr:[], ml:[], mr:[], ll:[], lr:[], na:[] };
+  const groups = { lh:[], mh:[], hh:[], lm:[], mm:[], hm:[], ll:[], ml:[], hl:[], na:[] };
   all.forEach(c => groups[matrixCell(c)].push(c));
 
   // 单个案例胶囊
