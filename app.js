@@ -189,19 +189,7 @@ function filtered(){
 
 
 function renderStats(){
-  const list = filtered();
-  const all = caseSummaries || [];
-  const yrs = all.map(c => parseInt((c.time||'').slice(0,4))).filter(y => y>0);
-  const yMin = yrs.length ? Math.min(...yrs) : '', yMax = yrs.length ? Math.max(...yrs) : '';
-  const tenc = all.filter(c => /腾讯/.test(c.company||'')).length;
-  const nonTenc = all.length - tenc;
-  // 真危机：落点为 hh（高声量 × 高伤害），统一由 matrixCell() 从 volume×damage 实时计算
-  const crisis = all.filter(c => matrixCell(c) === 'hh').length;
-  $('stats').innerHTML =
-    `<div class="stat"><b>${yMin}–${yMax}</b><span>覆盖年份</span></div>`+
-    `<div class="stat"><b>${list.length}</b><span>当前筛选案例（共 ${all.length}）</span></div>`+
-    `<div class="stat"><b>${tenc} / ${nonTenc}</b><span>腾讯系 / 非腾讯</span></div>`+
-    `<div class="stat"><b>${crisis}</b><span>真危机 · 落点</span></div>`;
+  // stats 已移除
 }
 
 // 每个案例在散点图中的相对坐标（x: 声量低→高 0-100；y: 伤害低→高 0-100）
