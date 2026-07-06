@@ -84,7 +84,7 @@ function fillFilters(){
       vals.map(v => `<button type="button" class="vnChip" data-vn="${esc(v)}" onclick="toggleVn(this)">${esc(v)}</button>`).join('');
   }
 
-  // Core Tags grouped（四族 9 标准标签，与校对表 + cases.json 核心矛盾完全对齐）
+  // Core Tags grouped（四族 11 标准标签，与校对表 + cases.json 核心矛盾完全对齐）
   const tagCategories = {
     '💰 商业化 / 付费': [
        '付费内容贬值/不实',
@@ -93,7 +93,8 @@ function fillFilters(){
     '🎮 数值 / 玩法 / 体验': [
        '数值/平衡争议',
        '体验/质量争议',
-       '自创玩法管控争议'
+       '自创玩法管控争议',
+       '产能/优先级排期'
     ],
     '🎭 内容与价值观': [
        '情感/价值观争议',
@@ -101,7 +102,8 @@ function fillFilters(){
     ],
     '👥 圈层矛盾': [
        '圈层矛盾-性别',
-       '圈层矛盾-竞品'
+       '圈层矛盾-竞品',
+       '圈层矛盾-内部'
     ]
   };
 
@@ -1098,7 +1100,7 @@ function renderEmotionTrend(stages){
   const pts=stages.map((s,i)=>`${x(i)},${y(s.emotionScore||0)}`).join(' ');
   const area=`${padL},${padT+ih} ${pts} ${padL+iw},${padT+ih}`;
   const grid=[0,25,50,75,100];
-  return `<div class="trendWrap"><svg class="emoTrend" viewBox="0 0 ${W} ${H}" role="img" aria-label="玩家情感强度趋势"><defs><linearGradient id="emoArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B85450" stop-opacity="0.18"/><stop offset="1" stop-color="#B85450" stop-opacity="0.02"/></linearGradient></defs>${grid.map(g=>`<line x1="${padL}" y1="${y(g)}" x2="${padL+iw}" y2="${y(g)}" class="tGrid"/><text x="${padL-12}" y="${y(g)+4}" class="tAxis" text-anchor="end">${g}</text>`).join('')}<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+ih}" class="tAxisLine"/><line x1="${padL}" y1="${padT+ih}" x2="${padL+iw}" y2="${padT+ih}" class="tAxisLine"/><text x="22" y="${padT+ih/2}" class="tAxisTitle" transform="rotate(-90 22 ${padT+ih/2})">玩家情感强度</text><polygon points="${area}" fill="url(#emoArea)"/><polyline points="${pts}" class="tLine" fill="none"/>${stages.map((s,i)=>{const sc=s.emotionScore||0;const cy=y(sc);const ly=sc>=75?cy+28:cy-26;return `<g class="tPoint" onclick="openStage(${i})"><line x1="${x(i)}" y1="${cy}" x2="${x(i)}" y2="${padT+ih}" class="tGuide"/><circle cx="${x(i)}" cy="${cy}" r="7"/><text x="${x(i)}" y="${cy-13}" class="tScore" text-anchor="middle">${esc(sc)}</text><text x="${x(i)}" y="${ly}" class="tCallout" text-anchor="middle">${esc(s.label)}</text><text x="${x(i)}" y="${padT+ih+26}" class="tStageNo" text-anchor="middle">阶段${sno(s,i)}</text><text x="${x(i)}" y="${padT+ih+45}" class="tDate" text-anchor="middle">${esc(s.chartDate||sd(s.time))}</text></g>`;}).join('')}</svg><div class="tHint">点击趋势图节点展开对应阶段（每次只展开一个）↓</div></div>`;
+  return `<div class="trendWrap"><svg class="emoTrend" viewBox="0 0 ${W} ${H}" role="img" aria-label="玩家情感强度趋势"><defs><linearGradient id="emoArea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#B85450" stop-opacity="0.18"/><stop offset="1" stop-color="#B85450" stop-opacity="0.02"/></linearGradient></defs>${grid.map(g=>`<line x1="${padL}" y1="${y(g)}" x2="${padL+iw}" y2="${y(g)}" class="tGrid"/>`).join('')}<line x1="${padL}" y1="${padT}" x2="${padL}" y2="${padT+ih}" class="tAxisLine"/><line x1="${padL}" y1="${padT+ih}" x2="${padL+iw}" y2="${padT+ih}" class="tAxisLine"/><text x="22" y="${padT+ih/2}" class="tAxisTitle" transform="rotate(-90 22 ${padT+ih/2})">玩家情感强度</text><polygon points="${area}" fill="url(#emoArea)"/><polyline points="${pts}" class="tLine" fill="none"/>${stages.map((s,i)=>{const sc=s.emotionScore||0;const cy=y(sc);const ly=sc>=75?cy+28:cy-26;return `<g class="tPoint" onclick="openStage(${i})"><line x1="${x(i)}" y1="${cy}" x2="${x(i)}" y2="${padT+ih}" class="tGuide"/><circle cx="${x(i)}" cy="${cy}" r="7"/><text x="${x(i)}" y="${ly}" class="tCallout" text-anchor="middle">${esc(s.label)}</text><text x="${x(i)}" y="${padT+ih+26}" class="tStageNo" text-anchor="middle">阶段${sno(s,i)}</text><text x="${x(i)}" y="${padT+ih+45}" class="tDate" text-anchor="middle">${esc(s.chartDate||sd(s.time))}</text></g>`;}).join('')}</svg><div class="tHint">点击趋势图节点展开对应阶段（每次只展开一个）↓</div></div>`;
 }
 
 function openStage(i){
