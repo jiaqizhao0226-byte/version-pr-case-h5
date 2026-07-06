@@ -373,6 +373,9 @@
   grid-template-rows: repeat(3, 1fr);
   gap: 12px;
 }
+.qquads-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
 .qcell {
   border: 1.5px solid var(--line);
   border-radius: 14px;
@@ -381,12 +384,19 @@
   display: flex;
   flex-direction: column;
 }
-.qcell-hr { background: rgba(184,84,80,0.07);   border-color: rgba(184,84,80,0.35); }
-.qcell-hl { background: rgba(72,106,136,0.06);  border-color: rgba(72,106,136,0.32); }
-.qcell-mr { background: rgba(217,154,62,0.08);  border-color: rgba(217,154,62,0.38); }
-.qcell-ml { background: rgba(91,125,166,0.06);  border-color: rgba(91,125,166,0.32); }
-.qcell-lr { background: rgba(124,94,56,0.06);   border-color: rgba(124,94,56,0.30); }
-.qcell-ll { background: rgba(86,100,114,0.055); border-color: rgba(86,100,114,0.28); }
+/* 3×3 矩阵格子背景色 */
+/* 高伤害行：红系 */
+.qcell-lh { background: rgba(72,106,136,0.06);  border-color: rgba(72,106,136,0.32); }
+.qcell-mh { background: rgba(91,125,166,0.06);   border-color: rgba(91,125,166,0.32); }
+.qcell-hh { background: rgba(184,84,80,0.07);    border-color: rgba(184,84,80,0.35); }
+/* 中伤害行：琥珀系 */
+.qcell-lm { background: rgba(91,125,166,0.05);  border-color: rgba(91,125,166,0.28); }
+.qcell-mm { background: rgba(217,154,62,0.06);   border-color: rgba(217,154,62,0.32); }
+.qcell-hm { background: rgba(217,154,62,0.08);   border-color: rgba(217,154,62,0.38); }
+/* 低伤害行：灰系 */
+.qcell-ll { background: rgba(86,100,114,0.055);  border-color: rgba(86,100,114,0.28); }
+.qcell-ml { background: rgba(86,100,114,0.04);  border-color: rgba(86,100,114,0.25); }
+.qcell-hl { background: rgba(124,94,56,0.06);    border-color: rgba(124,94,56,0.30); }
 .qcHead {
   display: flex;
   align-items: center;
@@ -492,7 +502,7 @@
 .qnaBody { display: flex; flex-wrap: wrap; gap: 7px; }
 
 @media (max-width: 720px) {
-  .qquads { grid-template-columns: 1fr; grid-template-rows: none; }
+  .qquads, .qquads-3 { grid-template-columns: 1fr; grid-template-rows: none; }
   .qaxis-y { display: none; }
   .qcell { min-height: auto; }
   .qaxis-x { padding-left: 4px; }
@@ -1291,3 +1301,15 @@
   .trajCorner{display:none}
   .redlineRow{grid-template-columns:1fr}
 }
+
+/* === 标签判定标准 折叠面板 === */
+.gradeDetails{margin-bottom:16px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--soft)}
+.gradeDetails > summary{list-style:none;cursor:pointer;padding:14px 18px;display:flex;align-items:center;gap:8px;transition:background .15s;user-select:none}
+.gradeDetails > summary::-webkit-details-marker{display:none}
+.gradeDetails > summary::before{content:"▶";font-size:11px;color:var(--muted);transition:transform .2s;display:inline-block}
+.gradeDetails[open] > summary::before{transform:rotate(90deg)}
+.gradeDetails > summary:hover{background:rgba(0,0,0,0.02)}
+.gradeDetails > summary h4{margin:0;font-size:15px;color:var(--text)}
+.gradeDetails > *:not(summary){padding:0 18px}
+.gradeDetails > *:not(summary):last-child{padding-bottom:16px}
+.gradeDetails[open] > summary{border-bottom:1px solid var(--line)}

@@ -228,29 +228,37 @@ function renderStats(){
 //   x 轴（声量）——按「声量强度实感」（含破圈广度）铺排，而非简单 S/A 档位；
 //                 破圈/全网级讨论的案例右推，真正未出圈的小众事件留左侧。
 // 结果：黄区（高声量·低/中伤害「舆论风暴」）为最大区块，印证「声量普遍高于实际伤害」。
-// 声量×伤害 2×3 分类矩阵：仅分类不量化，案例按格子归类后自动排布
-// 分类规则：声量 S=高、A=低；伤害 S=高、A/中=中、B=低；无数据/未收录 → 单独「数据缺失」托盘
+// 声量×伤害 3×3 分类矩阵：声量 S=高、A=中、B=低；伤害 S=高、A/中=中、B=低
+// 本案例库无 B 级（低声量）样本，低声量列保留框架但显示"无样本"
 function matrixCell(c) {
   const d = c.damage || '';
   if (d === '无数据' || d === '未收录') return 'na';
-  const highVol = /S/.test(c.volume || '');           // S=高声量, A=低声量
-  const highDmg = /S/.test(d);                         // S=高伤害
-  const midDmg = !highDmg && (/A/.test(d) || d === '中'); // A/中=中伤害
-  if (highVol && highDmg)  return 'hr'; // 高声量高伤害 → 核心危机
-  if (!highVol && highDmg) return 'hl'; // 低声量高伤害 → 隐性流失
-  if (highVol && midDmg)   return 'mr'; // 高声量中伤害 → 信任赤字
-  if (!highVol && midDmg)  return 'ml'; // 低声量中伤害 → 局部损伤
-  if (highVol)             return 'lr'; // 高声量低伤害 → 舆论风暴
-  return 'll';                          // 低声量低伤害 → 常规客诉
+  // 声量 3 档
+  let vol;
+  if (/S/.test(c.volume || '')) vol = 'h';      // S=高声量
+  else if (/A/.test(c.volume || '')) vol = 'm'; // A=中声量
+  else vol = 'l';                                // B=低声量
+  // 伤害 3 档
+  let dmg;
+  if (/S/.test(d)) dmg = 'h';                   // S=高伤害
+  else if (/A/.test(d) || d === '中') dmg = 'm'; // A/中=中伤害
+  else dmg = 'l';                                // B=低伤害
+  return vol + dmg;
 }
 
 const CELL_META = {
-  hl: { label: '隐性流失', sub: '低声量 · 高伤害', color: 'b-blue' },
-  hr: { label: '核心危机', sub: '高声量 · 高伤害', color: 'b-red'  },
-  ml: { label: '局部损伤', sub: '低声量 · 中伤害', color: 'b-midblue' },
-  mr: { label: '信任赤字', sub: '高声量 · 中伤害', color: 'b-midamber' },
+  // 高伤害行
+  lh: { label: '隐性流失', sub: '低声量 · 高伤害', color: 'b-blue' },
+  mh: { label: '局部危机', sub: '中声量 · 高伤害', color: 'b-midblue' },
+  hh: { label: '核心危机', sub: '高声量 · 高伤害', color: 'b-red'  },
+  // 中伤害行
+  lm: { label: '局部损伤', sub: '低声量 · 中伤害', color: 'b-midblue' },
+  mm: { label: '信任摩擦', sub: '中声量 · 中伤害', color: 'b-midamber' },
+  hm: { label: '信任赤字', sub: '高声量 · 中伤害', color: 'b-midamber' },
+  // 低伤害行
   ll: { label: '常规客诉', sub: '低声量 · 低伤害', color: 'b-gray' },
-  lr: { label: '舆论风暴', sub: '高声量 · 低伤害', color: 'b-amber'},
+  ml: { label: '圈内吐槽', sub: '中声量 · 低伤害', color: 'b-gray' },
+  hl: { label: '舆论风暴', sub: '高声量 · 低伤害', color: 'b-amber'},
 };
 
 function renderMatrixChart() {
@@ -291,16 +299,16 @@ function renderMatrixChart() {
 
   container.innerHTML = `
     <div class="qmatrix-wrap">
-      <div class="qmatrix-title">声量 × 伤害 2×3 分类矩阵<span class="qmatrix-note">按高 / 中 / 低伤害分类；案例落入对应格</span></div>
-      <div class="qmatrix-grid">
+      <div class="qmatrix-title">声量 × 伤害 3×3 分类矩阵<span class="qmatrix-note">声量 S=高 / A=中 / B=低；本案例库无 B 级样本，低声量列保留框架</span></div>
+      <div class="qmatrix-grid qmatrix-3x3">
         <div class="qaxis-y"><span>高伤害</span><span>中伤害</span><span>低伤害</span></div>
-        <div class="qquads">
-          ${quad('hl')}${quad('hr')}
-          ${quad('ml')}${quad('mr')}
-          ${quad('ll')}${quad('lr')}
+        <div class="qquads qquads-3">
+          ${quad('lh')}${quad('mh')}${quad('hh')}
+          ${quad('lm')}${quad('mm')}${quad('hm')}
+          ${quad('ll')}${quad('ml')}${quad('hl')}
         </div>
       </div>
-      <div class="qaxis-x"><span>低声量</span><span>高声量</span></div>
+      <div class="qaxis-x"><span>低声量</span><span>中声量</span><span>高声量</span></div>
       ${naBlock}
     </div>
   `;
@@ -342,77 +350,63 @@ function renderYearTrendChart() {
   all.forEach(c => caseTags(c).forEach(t => tagTotal[t]=(tagTotal[t]||0)+1));
   const topTags = Object.entries(tagTotal).sort((a,b)=>b[1]-a[1]).slice(0,6).map(e=>e[0]);
 
-  // 公关应对（校对后四类）
+  // 公关应对
   const prOrder = ['立刻滑跪','正常处理','前期冷处理+后期滑跪','冷处理'];
 
-  // 热力图渲染函数
-  // rows: [{label, values:[n1,n2,...]}], years, maxVal
-  function drawHeatmap(rows, years, maxVal, colorScale) {
-    const cellW = 70, cellH = 34, padL = 160, padT = 28;
-    const W = padL + years.length * cellW + 10;
-    const H = padT + rows.length * cellH + 10;
-    // 年份表头
-    const header = years.map((y, i) => {
-      const x = padL + i * cellW;
-      return `<text x="${x + cellW/2}" y="18" text-anchor="middle" font-size="12" fill="var(--muted)">${y}</text>`;
-    }).join('');
-    // 行
-    const rowEls = rows.map((r, ri) => {
-      const y = padT + ri * cellH;
-      // 行标签
-      const label = `<text x="${padL - 10}" y="${y + cellH/2 + 4}" text-anchor="end" font-size="11" fill="var(--text)">${esc(r.label)}</text>`;
-      // 单元格
-      const cells = r.values.map((v, ci) => {
-        const x = padL + ci * cellW;
-        const intensity = maxVal > 0 ? v / maxVal : 0;
-        const bg = v === 0 ? 'transparent' : colorScale(intensity);
-        const textColor = intensity > 0.5 ? '#fff' : 'var(--text)';
-        const border = v === 0 ? 'var(--line)' : 'transparent';
-        return `<rect x="${x+2}" y="${y+2}" width="${cellW-4}" height="${cellH-4}" rx="5" fill="${bg}" stroke="${border}" stroke-width="0.5"><title>${esc(r.label)} · ${years[ci]}: ${v}</title></rect>${v > 0 ? `<text x="${x + cellW/2}" y="${y + cellH/2 + 4}" text-anchor="middle" font-size="13" font-weight="600" fill="${textColor}">${v}</text>` : ''}`;
+  // 通用频次热力图渲染（跟公关应对×年份统一格式）
+  function drawFreqHeatmap(rows, cols, cells, rowTitle, colTitle, color) {
+    const maxVal = Math.max(...Object.values(cells), 1);
+    const colHeads = cols.map(c=>`<div class="thColHead">${esc(c)}</div>`).join('');
+    const body = rows.map(r=>{
+      const cellHtml = cols.map(c=>{
+        const n = cells[`${r}|||${c}`] || 0;
+        const intensity = n / maxVal;
+        const bg = n === 0 ? 'transparent' : `rgba(${color},${0.12 + intensity * 0.78})`;
+        const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
+        return `<div class="thCell" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${c}: ${n}">
+          ${n?`<b style="color:${txtColor}">${n}</b>`:''}
+        </div>`;
       }).join('');
-      return label + cells;
+      return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
     }).join('');
-    return `<svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:760px;height:auto"><g>${header}${rowEls}</g></svg>`;
+    const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(${color},${i});border-radius:2px"></span>`).join('');
+    return `<div class="triHeat">
+      <div class="triHeatAxis"><span>${esc(rowTitle)}</span><span>${esc(colTitle)}</span></div>
+      <div class="triHeatGrid" style="--th-cols:${cols.length}">
+        <div class="thCorner"></div>${colHeads}${body}
+      </div>
+      <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
+    </div>`;
   }
 
-  // 颜色渐变函数：intensity 0-1 → 浅到深（咨询风低饱和度）
-  function redScale(i) { return `rgba(184,84,80,${0.12 + i * 0.78})`; }
-  function blueScale(i) { return `rgba(44,62,92,${0.12 + i * 0.78})`; }
+  // 矛盾构成热力图（红色系）
+  const tagCells = {};
+  topTags.forEach(t=>years.forEach(y=>tagCells[`${t}|||${y}`]=yearMap[y].tags[t]||0));
+  const tagHeatmap = drawFreqHeatmap(topTags, years, tagCells, '核心矛盾', '年份', '184,84,80');
 
-  // 矛盾构成热力图
-  const tagMax = Math.max(...topTags.map(t => Math.max(...years.map(y => yearMap[y].tags[t]||0))), 1);
-  const tagRows = topTags.map(t => ({
-    label: t,
-    values: years.map(y => yearMap[y].tags[t]||0)
-  }));
-  const tagHeatmap = drawHeatmap(tagRows, years, tagMax, redScale);
-
-  // 公关应对热力图
-  const prMax = Math.max(...prOrder.map(p => Math.max(...years.map(y => yearMap[y].pr[p]||0))), 1);
-  const prRows = prOrder.map(p => ({
-    label: p,
-    values: years.map(y => yearMap[y].pr[p]||0)
-  }));
-  const prHeatmap = drawHeatmap(prRows, years, prMax, blueScale);
-
-  // 颜色图例
-  function legendBar(color, label) {
-    const stops = [0.15, 0.3, 0.5, 0.7, 1].map(i => `<span style="display:inline-block;width:14px;height:10px;background:${color(i)}"></span>`).join('');
-    return `<div class="heatLegend"><span style="font-size:11px;color:var(--muted)">${label}：</span>少${stops}多</div>`;
-  }
+  // 公关应对热力图（深靛蓝系）
+  const prCells = {};
+  prOrder.forEach(p=>years.forEach(y=>prCells[`${p}|||${y}`]=yearMap[y].pr[p]||0));
+  const prHeatmap = drawFreqHeatmap(prOrder, years, prCells, '公关应对', '年份', '44,62,92');
 
   wrap.innerHTML = `
     <div class="ytSection">
-      <div class="ytSectionTitle">矛盾构成热力图</div>
-      <div class="ytHeatWrap">${tagHeatmap}</div>
-      ${legendBar(redScale, '案例数')}
+      <div class="ytSectionTitle">矛盾构成年度趋势</div>
+      ${tagHeatmap}
     </div>
     <div class="ytSection">
-      <div class="ytSectionTitle">公关应对热力图</div>
-      <div class="ytHeatWrap">${prHeatmap}</div>
-      ${legendBar(blueScale, '案例数')}
+      <div class="ytSectionTitle">公关应对年度趋势</div>
+      ${prHeatmap}
     </div>
-    <div class="chartInsights"><b>洞察：</b>从当前样本看，情感/价值观争议在近年出现更集中，说明版本舆情不再只围绕数值、付费和体验，也越来越容易落到角色认同、内容表达和价值观判断上。</div>
+    <div class="chartInsights"><b>洞察：</b>
+      <ul>
+        <li><b>矛盾类型结构性迁移：</b>2020-2021 年以商业化契约和数值平衡争议为主，属于"功能性矛盾"；2023 年起情感/价值观争议和内容尺度/合规争议开始出现并持续增多，舆情重心从"钱和数值"转向"角色认同与价值观"——这一迁移与二次元抽卡、乙女向等强角色绑定品类的高声量案例集中爆发相关。</li>
+        <li><b>情感/价值观争议的上升趋势：</b>该类争议在 2020-2021 年为零，2023 年起逐年增加，到 2025-2026 年已成为最高频的矛盾类型之一。这类争议的特点是声量高但伤害不一定高——情绪向议题容易引发广泛讨论，但是否伤到核心付费盘取决于官方是否触及了玩家的情感契约底线。</li>
+        <li><b>冷处理的年度变化：</b>冷处理在 2025 年集中爆发（5 例），与当年情感/价值观类争议占比上升高度同步——说明官方面对这类"说不清谁对谁错"的争议时，更倾向于观望而非快速介入。但冷处理在 2026 年回落，可能意味着官方开始意识到冷处理在这类争议上的误判风险。</li>
+        <li><b>立刻滑跪的时效性：</b>2024 年是立刻滑跪出现最多的年份，且集中在多起高声量事件中。这一模式在 2025 年减少——可能与当年争议性质从"可回退的技术问题"转向"难以回退的价值观问题"有关，滑跪的成本和效果都在变化。</li>
+        <li><b>综合趋势：</b>近年舆情的核心变化不是"变多了"，而是"变复杂了"——从可量化的数值/付费争议，转向难以量化的情感/价值观争议。这对官方应对提出了更高要求：不仅要处理技术问题，还要管理情感契约和社群情绪，而后者没有标准答案，冷处理和滑跪都不是万能解。</li>
+      </ul>
+    </div>
   `;
 }
 
@@ -511,13 +505,13 @@ function renderOverviewCards(){
   );
 
   const genreCounter = {};
-  all.forEach(c=>(c.genre||[]).forEach(g=>genreCounter[g]=(genreCounter[g]||0)+1));
+  all.forEach(c=>{ if(c.theme) genreCounter[c.theme]=(genreCounter[c.theme]||0)+1; });
   renderMiniDistribution(
     'overviewGenreCard',
-    '品类分布',
-    'Top 6',
+    '题材分布',
+    '全 5 类',
     counterEntries(genreCounter, 6),
-    '放置 / 生存 / 单机买断等样本较少，暂不单独成结论。',
+    '按题材分 5 类：二次元 / 写实竞技 / 情怀IP / 乙女向 / 武侠国风。',
     warmColors
   );
 
@@ -642,51 +636,57 @@ function renderTriHeatmap({rows, cols, cells, rowTitle='', colTitle='', note='',
   </div>`;
 }
 
-// 核心矛盾 × 公关应对 × 伤害
-function renderCrossTagPrChart() {
-  const wrap = document.getElementById('crossTagPrChart');
-  if (!wrap) return;
-  const all = caseSummaries || [];
-  const tagTotal = {};
-  all.forEach(c => caseTags(c).forEach(t => tagTotal[t]=(tagTotal[t]||0)+1));
-  const rows = topNByCount(tagTotal, 8);
-  const cols = PR_ORDER.filter(p=>all.some(c=>(c.pr||'')===p));
-  const cells = matrixCells(rows, cols, c=>caseTags(c), c=>[c.pr||'其他']);
-  wrap.innerHTML = renderTriHeatmap({
-    rows, cols, cells,
-    rowTitle:'核心矛盾', colTitle:'官方应对',
-    conclusion:`<ol>
-      <li>这张图重点看“官方如何判断事件性质”：滑跪格子多为中高伤害，说明滑跪通常是事件严重后的被动止血，而不是伤害发生的原因。</li>
-      <li>冷处理的关键风险在误判：如果只是外部噪音或低伤害节奏，冷处理成本较低；但如果真实痛点已动到承重墙，冷处理会错过最佳止血窗口。</li>
-      <li>前期冷处理 + 后期滑跪是最值得复盘的类型：它往往意味着官方一开始没有识别出玩家核心诉求，等舆论升级后再回退，公关成本和信任损耗都会被抬高。</li>
-    </ol>`,
-  });
-}
-
 // 品类 × 核心矛盾 × 伤害
 function renderGenreDamageChart() {
   const wrap = document.getElementById('genreDamageChart');
   if (!wrap) return;
   const all = caseSummaries || [];
-  const genreTotal = {};
+  const themeTotal = {};
   const tagTotal = {};
   all.forEach(c=>{
-    (c.genre||[]).forEach(g=>genreTotal[g]=(genreTotal[g]||0)+1);
+    if (c.theme) themeTotal[c.theme]=(themeTotal[c.theme]||0)+1;
     caseTags(c).forEach(t=>tagTotal[t]=(tagTotal[t]||0)+1);
   });
-  const rows = topNByCount(genreTotal, 9, 2);
+  const rows = Object.keys(themeTotal).sort((a,b)=>themeTotal[b]-themeTotal[a]);
   const cols = topNByCount(tagTotal, 8);
-  const cells = matrixCells(rows, cols, c=>c.genre||[], c=>caseTags(c));
-  wrap.innerHTML = renderTriHeatmap({
-    rows, cols, cells,
-    rowTitle:'游戏品类', colTitle:'核心矛盾',
-    conclusion:`<ol>
-      <li>乙女向与二次元抽卡在情感/价值观争议上发生最多，也更容易出现中高伤害：这类品类的核心资产不是单纯功能，而是角色关系、情感契约和玩家认同。</li>
-      <li>二次元抽卡的付费内容贬值/商业化动机争议更突出，说明抽卡资产一旦被削弱、缩水或被认为“吃相难看”，很容易从普通吐槽升级为付费信任问题。</li>
-      <li>竞技射击/强对抗品类更要盯数值、公平和玩法生态；情怀 IP 则更容易在定位偏离、价值观或老玩家预期落差上受损。</li>
-    </ol>`,
-    note:'读法：格子数字为案例数，颜色按该组合中出现的最高伤害着色。红色不代表每个案例都高伤害，而代表该组合出现过高伤害样本。',
+  // 纯频次统计
+  const cells = {};
+  rows.forEach(r=>cols.forEach(c=>cells[`${r}|||${c}`]=0));
+  all.forEach(c=>{
+    if (c.theme && rows.includes(c.theme)) caseTags(c).forEach(t=>{
+      if (cols.includes(t)) cells[`${c.theme}|||${t}`]++;
+    });
   });
+  // 频次热力图（暖棕色系）
+  const maxVal = Math.max(...Object.values(cells), 1);
+  const colHeads = cols.map(c=>`<div class="thColHead">${esc(c)}</div>`).join('');
+  const body = rows.map(r=>{
+    const cellHtml = cols.map(c=>{
+      const n = cells[`${r}|||${c}`] || 0;
+      const intensity = n / maxVal;
+      const bg = n === 0 ? 'transparent' : `rgba(139,111,71,${0.12 + intensity * 0.78})`;
+      const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
+      return `<div class="thCell" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${c}: ${n}">
+        ${n?`<b style="color:${txtColor}">${n}</b>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
+  }).join('');
+  const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(139,111,71,${i});border-radius:2px"></span>`).join('');
+  wrap.innerHTML = `<div class="triHeat">
+    <div class="triHeatAxis"><span>游戏题材</span><span>核心矛盾</span></div>
+    <div class="triHeatGrid" style="--th-cols:${cols.length}">
+      <div class="thCorner"></div>${colHeads}${body}
+    </div>
+    <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
+    <div class="chartInsights"><b>洞察：</b>
+      <ul>
+        <li><b>角色驱动品类（乙女向、二次元抽卡）</b>的情感/价值观争议最密集——核心资产是角色关系与情感契约，一旦被冒犯容易引发广泛讨论。</li>
+        <li><b>二次元抽卡</b>的付费内容贬值/商业化动机争议突出——抽卡资产被削弱或缩水时，易引发付费信任争议。</li>
+        <li><b>竞技射击类</b>风险集中在数值公平与玩法生态；<b>情怀IP</b>则更易因定位偏离、价值观冲突或老玩家预期落差引发争议。</li>
+      </ul>
+    </div>
+  </div>`;
 }
 
 // —— 伤害分档辅助：S/A=中高，B=低，无数据/未收录=无（旧·两档，保留兼容）——
@@ -708,78 +708,106 @@ function dmgTier3(d){
 const mergeTag = t => (t||'').startsWith('圈层矛盾') ? '圈层矛盾' : (t||'');
 // 返回单个案例去重后的合并标签数组
 const caseTags = c => [...new Set((c.tags||[]).map(mergeTag).filter(Boolean))];
-// 图1 · 核心矛盾 × 伤害（哪些矛盾最伤大盘）— 三档：高/中/低
+// 图1 · 核心矛盾 × 伤害（频次热力图）
 function renderTagDamageChart(){
   const wrap = document.getElementById('tagDamageChart');
   if (!wrap) return;
   const all = caseSummaries || [];
-  const data = {};
-  all.forEach(c => {
+  // 收集标签和伤害档位
+  const tagTotal = {};
+  all.forEach(c => caseTags(c).forEach(t=>tagTotal[t]=(tagTotal[t]||0)+1));
+  const rows = topNByCount(tagTotal, 9);
+  const cols = ['高伤害(S)','中伤害(A)','低伤害(B)','无数据'];
+  const cells = {};
+  rows.forEach(r=>cols.forEach(c=>cells[`${r}|||${c}`]=0));
+  all.forEach(c=>{
     const tier = dmgTier3(c.damage);
-    caseTags(c).forEach(t => {
-      if (!data[t]) data[t] = { high:0, mid:0, low:0, na:0, total:0 };
-      data[t][tier]++; data[t].total++;
+    const tierName = tier==='high'?'高伤害(S)':tier==='mid'?'中伤害(A)':tier==='low'?'低伤害(B)':'无数据';
+    caseTags(c).forEach(t=>{
+      if (rows.includes(t)) cells[`${t}|||${tierName}`]++;
     });
   });
-  const rows = Object.entries(data).sort((a,b)=> (b[1].high-a[1].high) || (b[1].mid-a[1].mid) || (b[1].total-a[1].total));
-  if (!rows.length){ wrap.innerHTML='<p class="muted">无数据</p>'; return; }
-  const maxTotal = Math.max(...rows.map(([,d])=>d.total));
-  const C = DMG3_COLORS;
-  const html = rows.map(([t,d])=>{
-    const w = d.total/maxTotal*100;
-    const hi = d.total? d.high/d.total*100:0;
-    const mi = d.total? d.mid/d.total*100:0;
-    const lo = d.total? d.low/d.total*100:0;
-    const na = d.total? d.na/d.total*100:0;
-    return `<div class="gdRow">
-      <div class="gdGenre">${esc(t)} <span class="gdCount">${d.total}</span></div>
-      <div class="gdBars">
-        <div class="gdBarLine">
-          <span class="gdBarLabel">伤害</span>
-          <div class="gdBar" style="width:${w}%">
-            <div class="gdSeg" style="width:${hi}%;background:${C.high}" title="高伤害(S): ${d.high}"></div>
-            <div class="gdSeg" style="width:${mi}%;background:${C.mid}" title="中伤害(A): ${d.mid}"></div>
-            <div class="gdSeg" style="width:${lo}%;background:${C.low}" title="低伤害(B): ${d.low}"></div>
-            <div class="gdSeg" style="width:${na}%;background:${C.na}" title="无数据/未收录: ${d.na}"></div>
-          </div>
-          <span class="gdBarVal">${d.high}高 / ${d.mid}中 / ${d.low}低${d.na?` / ${d.na}无`:''}</span>
-        </div>
-      </div>
-    </div>`;
+  const maxVal = Math.max(...Object.values(cells), 1);
+  const colHeads = cols.map(c=>`<div class="thColHead">${esc(c)}</div>`).join('');
+  const body = rows.map(r=>{
+    const cellHtml = cols.map(c=>{
+      const n = cells[`${r}|||${c}`] || 0;
+      const intensity = n / maxVal;
+      const bg = n === 0 ? 'transparent' : `rgba(184,84,80,${0.12 + intensity * 0.78})`;
+      const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
+      return `<div class="thCell" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${c}: ${n}">
+        ${n?`<b style="color:${txtColor}">${n}</b>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
   }).join('');
-  const legend = `<div class="gdLegend">
-    <span class="gdLegendItem"><span class="gdDot" style="background:${C.high}"></span>高伤害</span>
-    <span class="gdLegendItem"><span class="gdDot" style="background:${C.mid}"></span>中伤害</span>
-    <span class="gdLegendItem"><span class="gdDot" style="background:${C.low}"></span>低伤害</span>
-    <span class="gdLegendItem"><span class="gdDot" style="background:${C.na}"></span>无数据/未收录</span>
+  const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(184,84,80,${i});border-radius:2px"></span>`).join('');
+  wrap.innerHTML = `<div class="triHeat">
+    <div class="triHeatAxis"><span>核心矛盾</span><span>伤害档位</span></div>
+    <div class="triHeatGrid" style="--th-cols:${cols.length}">
+      <div class="thCorner"></div>${colHeads}${body}
+    </div>
+    <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
+    <div class="chartInsights"><b>洞察：</b>
+      <ul>
+        <li>付费内容贬值/不实和商业化契约争议在高中伤害档分布较均匀，说明这类矛盾不论伤害高低都容易发生。</li>
+        <li>情感/价值观争议集中在低伤害档，说明这类议题声量虽大但多数未实质伤及核心盘——但一旦叠加公共红线或真实利益损失，风险会迅速上升。</li>
+        <li>数值/平衡争议在高伤害档有出现，说明技术性问题如果处理不当也可能升级为实质损害。</li>
+      </ul>
+    </div>
   </div>`;
-  wrap.innerHTML = `<div class="gdRows">${html}</div>${legend}
-    <div class="chartInsights"><b>洞察：</b>付费权益、商业化动机和体验质量更容易打出中高伤害；内容尺度和圈层矛盾本身未必直接伤大盘，但一旦叠加公共红线或真实利益损失，风险会迅速上升。</div>`;
 }
 
-// 图2 · 声量范围 × 核心矛盾 × 伤害
+// 图2 · 声量 × 核心矛盾（频次热力图）
 function renderScopeTagChart(){
   const wrap = document.getElementById('scopeTagChart');
   if (!wrap) return;
   const all = caseSummaries || [];
   const tagTotal = {};
   all.forEach(c => caseTags(c).forEach(t=>tagTotal[t]=(tagTotal[t]||0)+1));
-  const rows = ['破圈','圈内'];
+  const rows = ['高声量','中声量','低声量'];
   const cols = topNByCount(tagTotal, 7);
   const cells = {};
-  rows.forEach(r=>cols.forEach(c=>cells[`${r}|||${c}`]=[]));
+  rows.forEach(r=>cols.forEach(c=>cells[`${r}|||${c}`]=0));
   all.forEach(c=>{
-    const scope = c.volumeScope === '破圈' ? '破圈' : '圈内';
+    const vol = c.volume || '';
+    let scope;
+    if (/S/.test(vol)) scope = '高声量';
+    else if (/A/.test(vol)) scope = '中声量';
+    else scope = '低声量';
     caseTags(c).forEach(t=>{
-      if (cols.includes(t)) cells[`${scope}|||${t}`].push(c);
+      if (cols.includes(t)) cells[`${scope}|||${t}`]++;
     });
   });
-  wrap.innerHTML = renderTriHeatmap({
-    rows, cols, cells,
-    rowTitle:'声量范围', colTitle:'核心矛盾',
-    compact:true,
-    conclusion:'内容尺度、圈层矛盾和价值观议题更容易外溢到公共舆论场；但破圈不等于真伤害，真正伤到大盘通常还要同时踩中付费、体验、资源分配等真实痛点。',
-  });
+  const maxVal = Math.max(...Object.values(cells), 1);
+  const colHeads = cols.map(c=>`<div class="thColHead">${esc(c)}</div>`).join('');
+  const body = rows.map(r=>{
+    const cellHtml = cols.map(c=>{
+      const n = cells[`${r}|||${c}`] || 0;
+      const intensity = n / maxVal;
+      const bg = n === 0 ? 'transparent' : `rgba(44,62,92,${0.12 + intensity * 0.78})`;
+      const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
+      return `<div class="thCell" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${c}: ${n}">
+        ${n?`<b style="color:${txtColor}">${n}</b>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
+  }).join('');
+  const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(44,62,92,${i});border-radius:2px"></span>`).join('');
+  wrap.innerHTML = `<div class="triHeat">
+    <div class="triHeatAxis"><span>声量</span><span>核心矛盾</span></div>
+    <div class="triHeatGrid" style="--th-cols:${cols.length}">
+      <div class="thCorner"></div>${colHeads}${body}
+    </div>
+    <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
+    <div class="chartInsights"><b>洞察：</b>
+      <ul>
+        <li>内容尺度/合规争议和情感/价值观争议集中在高声量场景——这类议题容易引发跨平台讨论和破圈传播。</li>
+        <li>付费内容贬值和商业化契约争议在高/中声量均有分布，说明这类矛盾不论声量大小都可能发生。</li>
+        <li>低声量行暂无样本——本案例库偏重中高声量舆情，低声量"隐性流失"类不在分析范围内。</li>
+      </ul>
+    </div>
+  </div>`;
 }
 
 // 图3 · 公关应对 × 伤害（含选择效应说明）— 三档：高/中/低
@@ -820,8 +848,16 @@ function renderPrDamageChart(){
     <span class="gdLegendItem"><span class="gdDot" style="background:${C.na}"></span>无数据/未收录</span>
   </div>`;
   wrap.innerHTML = `<div class="gdRows">${html}</div>${legend}
-    <div class="chartInsights"><b>洞察：</b>立刻滑跪常出现在已伤承重墙的场景，冷处理更适合低伤害噪声；关键不是“跪不跪”，而是先判清楚事件有没有打到真实痛点和承重墙。</div>
-    <p class="mapNote"><strong>选择效应：</strong>滑跪案例伤害偏高，并不等于滑跪导致高伤害，而是事件严重到需要快速回退或补救。</p>`;
+    <div class="chartInsights"><b>洞察：</b>
+      <ul>
+        <li><b>立刻滑跪</b>的案例中高伤害占比最高——说明快速道歉通常不是"主动示好"，而是事件已经严重到不得不回退补救，是被动止血而非主动示好。</li>
+        <li><b>冷处理</b>集中在低中伤害场景，说明官方在判断"没动到核心盘"时倾向于观望；但一旦误判（实际已触及核心付费），冷处理会错过最佳窗口，后续被迫补救的代价更高。</li>
+        <li><b>正常处理</b>的案例伤害分布较均匀，说明这是最"标准"的应对路径——矛盾可控、诉求明确时，按常规节奏公告说明即可，多数能平稳平息。</li>
+        <li><b>前期冷处理+后期滑跪</b>是风险最高的模式：前期误判导致舆情升级，后期被迫补救时公关成本和信任损耗都被放大。</li>
+      </ul>
+      <b>关键结论：</b>处置方式本身没有绝对优劣，核心是先判断事件是否触及核心付费与留存——触及则快速止损，未触及则冷处理代价更低。
+    </div>
+    <p class="mapNote"><strong>选择效应说明：</strong>滑跪案例伤害偏高，并不等于"滑跪导致高伤害"，而是事件严重到需要快速回退或补救。这是相关性而非因果性，解读时需注意方向。</p>`;
 }
 
 // 图4 · 结局落点分布（resultCell 汇总）
@@ -853,7 +889,7 @@ function renderResultCellChart(){
     <div class="chartInsights"><b>洞察：</b>真正需要紧急止损的真危机为 ${cnt.crisis} 例；中伤害案例应单独识别为信任赤字或短期冲击，不能并入高伤害，否则会把处置优先级判断做重。</div>`;
 }
 
-// 图5 · 公关应对 × 时间 × 伤害
+// 图5 · 公关应对 × 年份（频次热力图）
 function renderPrTimeChart(){
   const wrap = document.getElementById('prTimeChart');
   if (!wrap) return;
@@ -861,18 +897,47 @@ function renderPrTimeChart(){
   const years = [...new Set(all.map(c=>(c.time||'').slice(0,4)).filter(Boolean))].sort();
   const rows = PR_ORDER.filter(p=>all.some(c=>(c.pr||'')===p));
   const cells = {};
-  rows.forEach(r=>years.forEach(y=>cells[`${r}|||${y}`]=[]));
+  rows.forEach(r=>years.forEach(y=>cells[`${r}|||${y}`]=0));
   all.forEach(c=>{
     const y=(c.time||'').slice(0,4);
     const p=c.pr||'其他';
-    if (rows.includes(p) && years.includes(y)) cells[`${p}|||${y}`].push(c);
+    if (rows.includes(p) && years.includes(y)) cells[`${p}|||${y}`]++;
   });
-  wrap.innerHTML = renderTriHeatmap({
-    rows, cols:years, cells,
-    rowTitle:'公关应对', colTitle:'年份',
-    conclusion:'近年样本里“前期冷处理+后期滑跪”值得重点关注：它往往不是一种成熟策略，而是前期误判后被动补救；真正的判断点仍是是否命中承重墙和公共红线。',
-    note:'读法：颜色表示该“应对 × 年份”组合中出现过的最高伤害，数字为案例数。样本量较小，趋势用于提示风险，不作严格预测。',
-  });
+  const maxVal = Math.max(...Object.values(cells), 1);
+
+  // 列头
+  const colHeads = years.map(y=>`<div class="thColHead">${y}</div>`).join('');
+  // 行
+  const body = rows.map(r=>{
+    const cellHtml = years.map(y=>{
+      const n = cells[`${r}|||${y}`] || 0;
+      const intensity = n / maxVal;
+      const bg = n === 0 ? 'transparent' : `rgba(44,62,92,${0.12 + intensity * 0.78})`;
+      const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
+      return `<div class="thCell" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${y}: ${n}">
+        ${n?`<b style="color:${txtColor}">${n}</b>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
+  }).join('');
+
+  // 图例
+  const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(44,62,92,${i});border-radius:2px"></span>`).join('');
+
+  wrap.innerHTML = `<div class="triHeat">
+    <div class="triHeatAxis"><span>公关应对</span><span>年份</span></div>
+    <div class="triHeatGrid" style="--th-cols:${years.length}">
+      <div class="thCorner"></div>${colHeads}${body}
+    </div>
+    <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
+    <div class="chartInsights"><b>洞察：</b>
+      <ul>
+        <li><b>立刻滑跪</b>在 2024 年集中出现最多——当年多起高声量事件促使官方选择快速回退止损。</li>
+        <li><b>冷处理</b>在 2025 年明显增多，可能与当年情感/价值观类争议占比上升有关——这类争议官方更倾向于观望而非直接介入。</li>
+        <li><b>前期冷处理+后期滑跪</b>近年才出现，说明随着舆情复杂度上升，官方判断难度增加，误判后被动补救的情况更频繁。</li>
+      </ul>
+    </div>
+  </div>`;
 }
 
 function renderGrid(){
@@ -883,7 +948,6 @@ function renderGrid(){
   renderPrChart();
   renderYearTrendChart();
   renderTagsChart();
-  renderCrossTagPrChart();
   renderGenreDamageChart();
   renderTagDamageChart();
   renderScopeTagChart();
