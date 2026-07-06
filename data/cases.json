@@ -719,42 +719,6 @@
     "gameplay": "开放世界"
   },
   {
-    "id": "genshin-zhongli",
-    "title": "原神-钟离强度争议·玩家联合抗议",
-    "game": "原神",
-    "company": "米哈游",
-    "market": "国内厂商×全球市场",
-    "time": "2020-12",
-    "lifecycle": "上线初期 (1.1版本)",
-    "type": "限定角色强度/付费预期争议",
-    "genre": [
-      "二次元",
-      "抽卡RPG"
-    ],
-    "volume": "S",
-    "damage": "A",
-    "status": "已收录",
-    "tags": [
-      "付费内容贬值/不实"
-    ],
-    "pr": "正常处理",
-    "volumeScope": "破圈",
-    "summary": "限定五星「钟离」上线强度过弱、与「付费即强力」预期落差，引爆「璃月人不需要摩拉」式玩梗抗议与差评；官方两次加强并建立座谈会沟通机制，钟离逆袭成强角，处置有效但长线伤害待核。",
-    "mapping": {
-      "voice_nature": [
-        "真实玩家声音",
-        "外部噪声"
-      ],
-      "core_exp": "否",
-      "core_tag": "数值/平衡调整争议, 付费数值不实",
-      "pr_eval": "加强+沟通机制，后期有效挽回"
-    },
-    "caseFile": "./cases/genshin-zhongli.json",
-    "resultCell": "deficit",
-    "theme": "二次元",
-    "gameplay": "抽卡RPG"
-  },
-  {
     "id": "moer-manor",
     "title": "摩尔庄园手游-上线bug/外挂/骗氪争议",
     "game": "摩尔庄园（手游）",

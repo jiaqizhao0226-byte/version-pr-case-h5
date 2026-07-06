@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260706-3" />
+  <link rel="stylesheet" href="./style.css?v=20260706-5" />
 </head>
 <body>
 <div class="app">
@@ -15,7 +15,7 @@
       <div class="logo"></div>
       <div>
         <h1>游戏版本舆情洞察与案例库</h1>
-        <div class="sub">32 个典型游戏舆情案例深挖与公关复盘</div>
+        <div class="sub">31 个典型游戏舆情案例深挖与公关复盘</div>
       </div>
     </div>
     <div class="pill">Dashboard / case detail / H5</div>
@@ -32,7 +32,7 @@
     <article class="docProse">
 
       <h2 class="docTitle">游戏版本舆情洞察与公关复盘</h2>
-      <p class="docLead">本案例库对 2020–2026 年国内游戏行业 32 起具有代表性的版本舆情危机进行结构化拆解，以「声量 × 伤害」二维矩阵为分级框架，结合玩家声音定性与官方应对复盘，提炼可复用的判断与执行参考。</p>
+      <p class="docLead">本案例库对 2021–2026 年国内游戏行业 31 起具有代表性的版本舆情危机进行结构化拆解，以「声量 × 伤害」二维矩阵为分级框架，结合玩家声音定性与官方应对复盘，提炼可复用的判断与执行参考。</p>
 
       <hr class="docSep"/>
 
@@ -54,14 +54,13 @@
         <li><strong>核心矛盾标签体系</strong>：统一打标——核心资产剥夺 / 情感背叛 OOC / 底层契约撕毁 / 教玩家玩游戏 / 价值观冲突。</li>
         <li><strong>官方应对复盘</strong>：按「认错时效 / 透明度 / 是否回退 / 补偿力度」四要素，评估每场公关是止血还是放大损伤。</li>
       </ol>
-      <p class="docNote">数据来源：玩家社区原话（B站 / NGA / 贴吧）、官方公告与公开信、媒体复盘报道。</p>
 
       <hr class="docSep"/>
 
       <h3>三、标签判定标准</h3>
       <p>案例库对每个案例统一打四类标签，量化维度与判定口径如下——<strong>声量</strong>（讨论热度与破圈广度）、<strong>伤害</strong>（是否实质损害付费留存根基）、<strong>核心矛盾</strong>（争议的核心性质）、<strong>官方应对</strong>（处置方式与时效）。四类标签共同支撑全站的矩阵、交叉图与结论。</p>
 
-      <details class="gradeDetails" open>
+      <details class="gradeDetails">
         <summary><h4>3.1　声量分级标准</h4></summary>
         <p>按「平台覆盖 × UGC 产出 × 破圈程度」三维度，将舆情声量分为 高 / 中 / 低 三档：</p>
         <table class="gradeTable">
@@ -92,7 +91,7 @@
             </tr>
           </tbody>
         </table>
-        <p class="docNote"><strong>说明：</strong>本案例库 32 个案例均为 中 / 高声量舆情，暂无「低声量」样本。低声量案例因传播范围窄、系统性记录不足，不纳入本次分析。分析结论适用于「中 / 高声量舆情」场景，对低声量「隐性流失」类不适用。</p>
+        <p class="docNote"><strong>说明：</strong>本案例库 31 个案例均为 中 / 高声量舆情，暂无「低声量」样本。低声量案例因传播范围窄、系统性记录不足，不纳入本次分析。分析结论适用于「中 / 高声量舆情」场景，对低声量「隐性流失」类不适用。</p>
       </details>
 
       <details class="gradeDetails">
@@ -225,7 +224,7 @@
   <main id="mapping" style="display:none">
     <section class="card heroMain" style="margin-bottom:20px;">
       <h2>全部案例 Mapping</h2>
-      <p class="muted">基于 32 个案例的横向 Mapping。重点不只统计"有多少"，而是通过 品类 × 核心矛盾、声量 × 核心矛盾、公关应对 × 年份 等图表，识别哪些矛盾更容易频发、哪些应对更常出现在高风险场景。所有图表基于全量案例，不随下方筛选变化。</p>
+      <p class="muted">基于 31 个案例的横向 Mapping。重点不只统计"有多少"，而是通过 品类 × 核心矛盾、声量 × 核心矛盾、公关应对 × 年份 等图表，识别哪些矛盾更容易频发、哪些应对更常出现在高风险场景。所有图表基于全量案例，不随下方筛选变化。</p>
     </section>
 
     <div class="mapFlowIntro">
@@ -262,6 +261,13 @@
       </section>
     </div>
 
+    <div class="mapRow mapRowSingle">
+      <section class="mapCard">
+        <div class="mapCardTitle">玩法 × 核心矛盾<span>用途：识别不同玩法最容易触发的矛盾类型</span></div>
+        <div id="gameplayTagChart"></div>
+      </section>
+    </div>
+
     <div class="mapSectionLabel">三、再看传播：破圈不等于真伤，但会抬高公关难度</div>
     <div class="mapRow mapRowSingle">
       <section class="mapCard">
@@ -275,13 +281,6 @@
       <section class="mapCard">
         <div class="mapCardTitle">公关应对 × 伤害结构（含选择效应）<span>用途：防止把处置动作误读成伤害原因</span></div>
         <div id="prDamageChart"></div>
-      </section>
-    </div>
-
-    <div class="mapRow mapRowSingle">
-      <section class="mapCard">
-        <div class="mapCardTitle">公关应对 × 年份<span>用途：观察官方处置选择的年度频次变化</span></div>
-        <div id="prTimeChart"></div>
       </section>
     </div>
 
@@ -301,101 +300,147 @@
   <main id="conclusions" style="display:none">
     <section class="card heroMain" style="margin-bottom:20px;">
       <h2>跨案例结论</h2>
-      <p class="muted">基于全部已收录案例的横向复盘，提炼可复用的判断与执行参考。分三层：① 偏宏观的规律性结论；② 少而精的执行 tips；③ 不同品类游戏的运营启发。结论以“机制与模式”为主，不作频率/趋势类断言。</p>
+      <p class="muted">基于 31 个案例的横向复盘，按「认知 → 归因 → 应对 → 生死」四层递进展开：先纠正对舆情的常见误判，再拆解什么决定伤害，然后给出处置边界，最后回答什么才真正让游戏衰退。结论以机制与模式为主，辅以样本数据佐证。</p>
     </section>
 
-    <!-- 板块一 · 宏观结论 -->
+    <!-- 核心论点 -->
+    <section class="card" style="padding:24px; margin-bottom:28px; border-left:5px solid var(--red); background:linear-gradient(135deg, rgba(184,84,80,0.04), transparent);">
+      <div style="font-size:13px; color:var(--red); font-weight:700; letter-spacing:.1em; margin-bottom:8px;">核心论点</div>
+      <h2 style="font-size:20px; margin:0 0 12px; line-height:1.5; color:var(--text);">舆情的本质不是「骂声大小」，而是「是否触及核心付费与留存」——声量决定关注度，伤害决定生死，两者经常错配。</h2>
+      <p style="font-size:14px; color:var(--muted); line-height:1.7; margin:0;">在 31 个案例中，声量与伤害的错配是普遍现象：<b>16 个高声量案例里，只有 4 个（25%）真正造成高伤害</b>。大量"热搜级"舆情其实是可恢复的口碑波动，而一些未破圈的"隐性失血"反而伤到了根基。把声量直接当成危机等级，是最常见的误判。</p>
+    </section>
+
+    <!-- 第一层 · 认知 -->
     <div style="margin:8px 2px 12px;">
-      <h2 style="font-size:18px; margin:0 0 4px;">一、宏观结论</h2>
-      <p class="muted" style="font-size:13px; margin:0;">关于“舆情到底意味着什么”的几条规律——本篇重点。</p>
+      <h2 style="font-size:18px; margin:0 0 4px;">第一层 · 认知：先纠正「声量 = 危机」的误判</h2>
+      <p class="muted" style="font-size:13px; margin:0;">舆情严重度不能只看讨论热度，要看是否动到收入、活跃、产品存续这三根支柱。</p>
     </div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
 
       <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 舆情声量普遍高于实际伤害</h3>
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 声量与伤害经常错配，高声量 ≠ 真危机</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          多数高声量舆情来自情感、价值观、暗改这类"情绪向"议题，讨论热度高却很少实质影响流水与留存；因为它们伤的是信任与口碑（多可恢复），而非核心付费与活跃群体。所以判断是否紧急止损，应将"讨论热度"与"对核心盘的实际伤害"分开评估，不宜将声量直接等同于伤害。
+          高声量舆情多来自情感、价值观、暗改这类"情绪向"议题，讨论热烈却很少实质影响流水与留存——它们伤的是信任与口碑（多可恢复），而非核心付费与活跃群体。判断是否紧急止损，应将"讨论热度"与"对核心盘的实际伤害"分开评估。
         </p>
         <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">声量 ≠ 伤害</span>
+          <span class="chip" style="background:#f5f5f5;">16 个高声量案例仅 4 个真高伤害</span>
         </div>
       </article>
 
-      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 情感 / 价值观向舆情，高度集中在特定品类</h3>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 真正的伤害，往往来自「隐性失血」而非「破圈大战」</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          性别议题、角色 OOC、内容尺度、情感背刺类舆情，几乎只出现在乙游 / 二游 / 情怀 IP；因为这些产品的核心盘与角色、价值观深度绑定，情感冲突更易被触发、烈度也更高。所以这些品类应把“情感 / 价值观风险”前置纳入版本评审，而非当作普通体验问题处理。
+          9 个高伤害案例中，有 5 个声量并未破圈（仅中声量）。这类事件没上过热搜，却因触及核心付费或产品定位，实质伤到了流水与留存。反而是一些全网刷屏的争议，热度退去后大盘毫发无伤。<b>越安静的伤害，越致命。</b>
         </p>
         <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">乙游 / 二游 / 情怀 IP 更易出情感向舆情</span>
-        </div>
-      </article>
-
-      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 性别议题相关舆情，集中在近两年</h3>
-        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          性别议题相关案例（约 5 例）最早见于 2024 年中、集中在 2025–2026，2020–2023 未见，且都落在强角色绑定品类——更可能反映近一两年该类议题在国内游戏舆论场的热度上升。强角色品类应对此类敏感信号保持更高警觉。
-        </p>
-        <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">性别议题相关案例集中在 2025 年后</span>
+          <span class="chip" style="background:#f5f5f5;">高伤害案例中过半未破圈</span>
         </div>
       </article>
 
     </div>
 
-    <!-- 板块二 · 执行 tips -->
+    <!-- 第二层 · 归因 -->
     <div style="margin:8px 2px 12px;">
-      <h2 style="font-size:18px; margin:0 0 4px;">二、执行 tips</h2>
-      <p class="muted" style="font-size:13px; margin:0;">少而精、跨多个案例成立的处置参考。</p>
+      <h2 style="font-size:18px; margin:0 0 4px;">第二层 · 归因：什么决定了伤害的深浅</h2>
+      <p class="muted" style="font-size:13px; margin:0;">不是声量、也不是矛盾类型本身，而是「是否触及了该品类玩家的核心契约」。</p>
+    </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 触及「核心契约」才是真伤害的分水岭</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          每类玩家都有一份隐性契约：乙游是情感专属、二游是付费资产保值、竞技是规则公平、情怀IP是原作忠诚。舆情是否伤到根基，取决于是否击穿了这份契约。同样是"削弱"，削的是付费角色（击穿契约）就高伤害，削的是大众机制（未击穿）就只是噪声。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">情感/契约类高伤害占比远高于体验类</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 情怀IP 的高伤害占比最高，因为「情感资产」不可逆</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          样本中情怀IP 的高伤害占比达 75%，高于二次元（38%）、乙女向（33%）和写实竞技（17%）。原因是情怀IP 玩家为"记忆"付费，已上线的命名、美术、角色都是情感资产——一旦定位偏离原作（幼态化、性别改造），就从"信任受损"升级为"信任崩塌"，且难以逆转。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">情怀IP 高伤害 75% · 写实竞技仅 17%</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 情感 / 价值观争议高度集中在强角色绑定品类</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          性别议题、角色 OOC、内容尺度、情感背刺类舆情，几乎只出现在乙游 / 二游 / 情怀 IP——这些产品的核心盘与角色、价值观深度绑定。这类品类应把"情感 / 价值观风险"前置纳入版本评审，而非当作普通体验问题处理。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">情感向舆情集中在角色驱动品类</span>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">4. 生态位决定容错空间，而非应对能力</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          品类头部（原神等）出事后多能靠快速道歉 + 大额补偿快速止血，玩家因无平替而回流；非头部产品容错空间小得多，同样的失误可能直接被替代。生态位不改变"该不该道歉"，但决定了"道歉后能不能救回来"。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">头部有平替护城河，尾部容错低</span>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- 第三层 · 应对 -->
+    <div style="margin:8px 2px 12px;">
+      <h2 style="font-size:18px; margin:0 0 4px;">第三层 · 应对：处置的安全边界</h2>
+      <p class="muted" style="font-size:13px; margin:0;">处置方式没有绝对优劣，关键是匹配事件性质；透明度与时效的权重高于补偿力度。</p>
     </div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
 
       <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 透明度 / 时效 / 直接沟通才是核心要素，补偿仅为道歉附加诚意</h3>
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 透明度 / 时效 / 直接沟通 &gt; 补偿力度</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          有效道歉通常需要四件事同时到位：① 认错不甩锅 ② 解释原因 / 决策链 ③ 实际回退或修复动作 ④ 补偿。其中透明度、时效与直接沟通（高层实名、公开信、直播认错、CEO 担责）才是玩家是否买账的关键，比匿名公告更有穿透力。补偿只是附带的诚意，单靠补偿、不认错不解释，往往被读成用福利换沉默，显得敷衍甚至傲慢。
+          有效道歉通常需要四件事同时到位：① 认错不甩锅 ② 解释原因 / 决策链 ③ 实际回退或修复 ④ 补偿。其中透明度、时效与直接沟通（高层实名、公开信、CEO 担责）才是玩家是否买账的关键。补偿只是附带诚意——单靠补偿不认错不解释，往往被读成"用福利换沉默"，反而显得傲慢。
         </p>
         <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">参考：洛克补偿两次未平息、公开信才转折</span>
+          <span class="chip" style="background:#f5f5f5;">洛克补偿两次未平息、公开信才转折</span>
         </div>
       </article>
 
       <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 核心付费/留存是否受损，决定冷处理 vs 快速道歉的安全边界</h3>
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 核心付费/留存是否受损，决定冷处理 vs 快速道歉</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          关键是看反弹的是否为核心付费 / 留存群体、有没有平替：核心付费盘受损时，冷处理会放大伤害，应快速道歉止损；若只是非核心群体的噪声，冷处理代价才低。先识别"谁在发声、是否触及核心付费与留存"，再决定是否快速道歉。
+          看反弹的是否为核心付费 / 留存群体、有没有平替：核心盘受损时，冷处理会放大伤害，应快速道歉止损；若只是非核心群体的噪声，冷处理代价才低。样本中冷处理案例 7/8 为低伤害，说明它多被用在小事上——但一旦误判，代价极高。
         </p>
         <div class="chips">
           <span class="chip" style="background:#f5f5f5;">先识别核心盘，再定处置力度</span>
         </div>
       </article>
 
-      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 改版优先级需考虑“玩家解读”，而非只看工作量与数值收益</h3>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 最危险的是「前期误判」——冷处理拖成后期滑跪</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          排改动不能只按工作量和数值收益排。有些功能上很小的改动，会被玩家解读成官方的“立场表态”（如迎合某圈层、改变角色定位）。这种“会被误读”的信号风险必须单列、前置评估——尤其在品牌定调期，它决定玩家对整个版本走向的信任，比改动本身的体验影响大得多。
+          "前期冷处理 + 后期滑跪"的案例 100% 落在高伤害档。它往往不是成熟策略，而是前期误判事件性质、观望错过窗口，等舆情升级后被迫补救——此时公关成本和信任损耗都被显著放大。早期的性质判断，比后期的补救动作更关键。
         </p>
         <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">信号风险单列评估，重于体验收益</span>
+          <span class="chip" style="background:#f5f5f5;">前期冷处理+后期滑跪 100% 高伤害</span>
         </div>
       </article>
 
-      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">4. 商业争议叠加红线会瞬间破圈</h3>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">4. 应对无统一趋势，是 case by case 的判断</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          当付费/资源分配争议叠加性别、民族历史或价值观红线时，事件会迅速脱离圈内语境，进入公共舆论场；若仍按普通商业争议处理，只做补偿、解释或冷处理，可能错过止血窗口，严重时相关角色、联动或版本方向会被迫下架、回退甚至直接掐断。上线前需做红线审查，爆发后优先正面认错、整改并切断风险源。
+          从年度分布看，四种处置方式交替出现，没有明显的行业级策略转向。这说明处置选择主要取决于具体事件的矛盾性质和严重程度，而非时间趋势或统一范式。所以每次舆情都要重新做性质判断，不能套用"上次怎么做"。
         </p>
         <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">红线先定性，再谈商业补偿</span>
+          <span class="chip" style="background:#f5f5f5;">处置方式不随年份呈趋势变化</span>
         </div>
       </article>
 
     </div>
 
-    <!-- 板块三 · 分品类启发 -->
+    <!-- 分品类风险速查（归因层补充）-->
     <div style="margin:8px 2px 12px;">
-      <h2 style="font-size:18px; margin:0 0 4px;">三、分品类启发</h2>
-      <p class="muted" style="font-size:13px; margin:0;">不同品类对应不同玩家群体，运营需要盯的“雷区”各有侧重。此处只收录库内样本充足、可下结论的四类；放置 / 生存 / 单机买断等样本不足，暂不单独成结论。</p>
+      <h4 style="font-size:15px; margin:0 0 4px; color:var(--text);">附：分品类核心契约与雷区速查</h4>
+      <p class="muted" style="font-size:13px; margin:0;">结合前述归因——每类玩家的"核心契约"不同，对应的雷区也不同。此处只收录库内样本充足、可下结论的四类；放置 / 生存 / 单机买断等样本不足，暂不单独成结论。</p>
     </div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 40px;">
 
@@ -449,10 +494,10 @@
 
     </div>
 
-    <!-- 板块四 · 主线模块：从起点到衰退 -->
+    <!-- 第四层 · 生死：从起点到衰退 -->
     <div style="margin:32px 2px 12px;">
-      <h2 style="font-size:18px; margin:0 0 4px;">四、从起点到衰退：一次舆情如何决定游戏生死</h2>
-      <p class="muted" style="font-size:13px; margin:0;">发行/关键节点的舆情走向，由两个变量决定：<b>根因是"设定级"还是"治理级"</b>（决定能不能救）× <b>官方应对质量</b>（决定救没救回）。下半部聚焦最严重的一格——将"实质衰退"用硬标准拆解。</p>
+      <h2 style="font-size:18px; margin:0 0 4px;">第四层 · 生死：什么才真正让游戏衰退</h2>
+      <p class="muted" style="font-size:13px; margin:0;">舆情走向由两个变量决定：<b>根因是"设定级"还是"治理级"</b>（决定能不能救）× <b>官方应对质量</b>（决定救没救回）。下半部聚焦最严重的一格——将"实质衰退"用硬标准拆解。</p>
     </div>
 
     <!-- 上半：走向四象限 -->
@@ -563,6 +608,6 @@
     <section id="tabContent"></section>
   </main>
 </div>
-<script src="./app.js?v=20260706-4"></script>
+<script src="./app.js?v=20260706-5"></script>
 </body>
 </html>

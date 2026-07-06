@@ -681,9 +681,63 @@ function renderGenreDamageChart() {
     <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
     <div class="chartInsights"><b>洞察：</b>
       <ul>
-        <li><b>角色驱动品类（乙女向、二次元抽卡）</b>的情感/价值观争议最密集——核心资产是角色关系与情感契约，一旦被冒犯容易引发广泛讨论。</li>
-        <li><b>二次元抽卡</b>的付费内容贬值/商业化动机争议突出——抽卡资产被削弱或缩水时，易引发付费信任争议。</li>
-        <li><b>竞技射击类</b>风险集中在数值公平与玩法生态；<b>情怀IP</b>则更易因定位偏离、价值观冲突或老玩家预期落差引发争议。</li>
+        <li><b>乙女向</b>的情感/价值观争议最密集——核心资产是角色关系与情感契约，一旦被冒犯容易引发广泛讨论。</li>
+        <li><b>二次元</b>的付费内容贬值/商业化动机争议突出——抽卡资产被削弱或缩水时，易引发付费信任争议。</li>
+        <li><b>写实/竞技</b>风险集中在数值公平与玩法生态——竞技属性强，平衡性调整和玩法管控是最敏感的触发点。</li>
+        <li><b>情怀IP</b>更易因定位偏离、价值观冲突或老玩家预期落差引发争议——老玩家对 IP 调性有固定期待，偏离即触发。</li>
+        <li><b>武侠/国风</b>样本集中在开放世界类，矛盾多为玩法平衡与内容争议。</li>
+      </ul>
+    </div>
+  </div>`;
+}
+
+// 玩法 × 核心矛盾（频次热力图）
+function renderGameplayTagChart(){
+  const wrap = document.getElementById('gameplayTagChart');
+  if (!wrap) return;
+  const all = caseSummaries || [];
+  const gameplayTotal = {};
+  const tagTotal = {};
+  all.forEach(c=>{
+    if (c.gameplay) gameplayTotal[c.gameplay]=(gameplayTotal[c.gameplay]||0)+1;
+    caseTags(c).forEach(t=>tagTotal[t]=(tagTotal[t]||0)+1);
+  });
+  const rows = Object.keys(gameplayTotal).sort((a,b)=>gameplayTotal[b]-gameplayTotal[a]);
+  const cols = topNByCount(tagTotal, 8);
+  const cells = {};
+  rows.forEach(r=>cols.forEach(c=>cells[`${r}|||${c}`]=0));
+  all.forEach(c=>{
+    if (c.gameplay && rows.includes(c.gameplay)) caseTags(c).forEach(t=>{
+      if (cols.includes(t)) cells[`${c.gameplay}|||${t}`]++;
+    });
+  });
+  const maxVal = Math.max(...Object.values(cells), 1);
+  const colHeads = cols.map(c=>`<div class="thColHead">${esc(c)}</div>`).join('');
+  const body = rows.map(r=>{
+    const cellHtml = cols.map(c=>{
+      const n = cells[`${r}|||${c}`] || 0;
+      const intensity = n / maxVal;
+      const bg = n === 0 ? 'transparent' : `rgba(91,123,166,${0.12 + intensity * 0.78})`;
+      const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
+      return `<div class="thCell" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${c}: ${n}">
+        ${n?`<b style="color:${txtColor}">${n}</b>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
+  }).join('');
+  const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(91,123,166,${i});border-radius:2px"></span>`).join('');
+  wrap.innerHTML = `<div class="triHeat">
+    <div class="triHeatAxis"><span>游戏玩法</span><span>核心矛盾</span></div>
+    <div class="triHeatGrid" style="--th-cols:${cols.length}">
+      <div class="thCorner"></div>${colHeads}${body}
+    </div>
+    <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
+    <div class="chartInsights"><b>洞察：</b>
+      <ul>
+        <li><b>模拟/养成</b>以情感/价值观争议和付费内容贬值为主要矛盾——这类玩法的核心是长线情感投入和持续付费，一旦角色或付费权益变动，玩家反应最强烈。</li>
+        <li><b>射击类</b>集中在数值公平与玩法生态争议——竞技属性强，平衡性调整和玩法管控是最敏感的触发点。</li>
+        <li><b>开放世界</b>矛盾类型较分散，但体验/质量争议相对突出——大世界对技术品质要求高，优化和bug问题容易成为导火索。</li>
+        <li><b>抽卡RPG</b>以商业化契约和付费内容贬值为主——抽卡资产的保值承诺是这类玩法的信任基石。</li>
       </ul>
     </div>
   </div>`;
@@ -717,12 +771,13 @@ function renderTagDamageChart(){
   const tagTotal = {};
   all.forEach(c => caseTags(c).forEach(t=>tagTotal[t]=(tagTotal[t]||0)+1));
   const rows = topNByCount(tagTotal, 9);
-  const cols = ['高伤害(S)','中伤害(A)','低伤害(B)','无数据'];
+  const cols = ['高伤害(S)','中伤害(A)','低伤害(B)'];
   const cells = {};
   rows.forEach(r=>cols.forEach(c=>cells[`${r}|||${c}`]=0));
   all.forEach(c=>{
     const tier = dmgTier3(c.damage);
-    const tierName = tier==='high'?'高伤害(S)':tier==='mid'?'中伤害(A)':tier==='low'?'低伤害(B)':'无数据';
+    if (tier === 'na') return; // 跳过无数据案例
+    const tierName = tier==='high'?'高伤害(S)':tier==='mid'?'中伤害(A)':'低伤害(B)';
     caseTags(c).forEach(t=>{
       if (rows.includes(t)) cells[`${t}|||${tierName}`]++;
     });
@@ -750,9 +805,10 @@ function renderTagDamageChart(){
     <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
     <div class="chartInsights"><b>洞察：</b>
       <ul>
-        <li>付费内容贬值/不实和商业化契约争议在高中伤害档分布较均匀，说明这类矛盾不论伤害高低都容易发生。</li>
-        <li>情感/价值观争议集中在低伤害档，说明这类议题声量虽大但多数未实质伤及核心盘——但一旦叠加公共红线或真实利益损失，风险会迅速上升。</li>
-        <li>数值/平衡争议在高伤害档有出现，说明技术性问题如果处理不当也可能升级为实质损害。</li>
+        <li><b>体验/质量争议</b>是高伤害占比最高的矛盾类型（80%）——基础品质出问题（bug、闪退、优化差）时，玩家流失直接而迅速，这类争议处理不当最容易实质伤到留存盘。</li>
+        <li><b>商业化契约/动机争议</b>高伤害占比也偏高（57%）——当玩家认为厂商"故意坑钱"时，信任受损会直接反映在付费意愿上。一旦涉及涨价或付费设计动机被质疑，需高度警惕。</li>
+        <li><b>情感/价值观争议</b>呈现两极分化：38% 走高伤害（触及情感契约底线时伤及留存），62% 停留低伤害（多数是情绪宣泄未伤及核心盘）。关键分水岭在于是否触及了玩家的情感契约——触及则高伤害，未触及则只是噪声。</li>
+        <li><b>数值/平衡争议</b>和<b>内容尺度/合规争议</b>以低伤害为主，但如果涉及核心角色削弱或监管介入，低伤害也可能升级为高伤害。</li>
       </ul>
     </div>
   </div>`;
@@ -765,7 +821,7 @@ function renderScopeTagChart(){
   const all = caseSummaries || [];
   const tagTotal = {};
   all.forEach(c => caseTags(c).forEach(t=>tagTotal[t]=(tagTotal[t]||0)+1));
-  const rows = ['高声量','中声量','低声量'];
+  const rows = ['高声量','中声量'];
   const cols = topNByCount(tagTotal, 7);
   const cells = {};
   rows.forEach(r=>cols.forEach(c=>cells[`${r}|||${c}`]=0));
@@ -804,7 +860,6 @@ function renderScopeTagChart(){
       <ul>
         <li>内容尺度/合规争议和情感/价值观争议集中在高声量场景——这类议题容易引发跨平台讨论和破圈传播。</li>
         <li>付费内容贬值和商业化契约争议在高/中声量均有分布，说明这类矛盾不论声量大小都可能发生。</li>
-        <li>低声量行暂无样本——本案例库偏重中高声量舆情，低声量"隐性流失"类不在分析范围内。</li>
       </ul>
     </div>
   </div>`;
@@ -856,8 +911,8 @@ function renderPrDamageChart(){
         <li><b>前期冷处理+后期滑跪</b>是风险最高的模式：前期误判导致舆情升级，后期被迫补救时公关成本和信任损耗都被放大。</li>
       </ul>
       <b>关键结论：</b>处置方式本身没有绝对优劣，核心是先判断事件是否触及核心付费与留存——触及则快速止损，未触及则冷处理代价更低。
-    </div>
-    <p class="mapNote"><strong>选择效应说明：</strong>滑跪案例伤害偏高，并不等于"滑跪导致高伤害"，而是事件严重到需要快速回退或补救。这是相关性而非因果性，解读时需注意方向。</p>`;
+      <br/><br/><b>选择效应说明：</b>滑跪案例伤害偏高，并不等于"滑跪导致高伤害"，而是事件严重到需要快速回退或补救。这是相关性而非因果性，解读时需注意方向。
+    </div>`;
 }
 
 // 图4 · 结局落点分布（resultCell 汇总）
@@ -889,56 +944,6 @@ function renderResultCellChart(){
     <div class="chartInsights"><b>洞察：</b>真正需要紧急止损的真危机为 ${cnt.crisis} 例；中伤害案例应单独识别为信任赤字或短期冲击，不能并入高伤害，否则会把处置优先级判断做重。</div>`;
 }
 
-// 图5 · 公关应对 × 年份（频次热力图）
-function renderPrTimeChart(){
-  const wrap = document.getElementById('prTimeChart');
-  if (!wrap) return;
-  const all = caseSummaries || [];
-  const years = [...new Set(all.map(c=>(c.time||'').slice(0,4)).filter(Boolean))].sort();
-  const rows = PR_ORDER.filter(p=>all.some(c=>(c.pr||'')===p));
-  const cells = {};
-  rows.forEach(r=>years.forEach(y=>cells[`${r}|||${y}`]=0));
-  all.forEach(c=>{
-    const y=(c.time||'').slice(0,4);
-    const p=c.pr||'其他';
-    if (rows.includes(p) && years.includes(y)) cells[`${p}|||${y}`]++;
-  });
-  const maxVal = Math.max(...Object.values(cells), 1);
-
-  // 列头
-  const colHeads = years.map(y=>`<div class="thColHead">${y}</div>`).join('');
-  // 行
-  const body = rows.map(r=>{
-    const cellHtml = years.map(y=>{
-      const n = cells[`${r}|||${y}`] || 0;
-      const intensity = n / maxVal;
-      const bg = n === 0 ? 'transparent' : `rgba(44,62,92,${0.12 + intensity * 0.78})`;
-      const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
-      return `<div class="thCell" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${y}: ${n}">
-        ${n?`<b style="color:${txtColor}">${n}</b>`:''}
-      </div>`;
-    }).join('');
-    return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
-  }).join('');
-
-  // 图例
-  const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(44,62,92,${i});border-radius:2px"></span>`).join('');
-
-  wrap.innerHTML = `<div class="triHeat">
-    <div class="triHeatAxis"><span>公关应对</span><span>年份</span></div>
-    <div class="triHeatGrid" style="--th-cols:${years.length}">
-      <div class="thCorner"></div>${colHeads}${body}
-    </div>
-    <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
-    <div class="chartInsights"><b>洞察：</b>
-      <ul>
-        <li><b>立刻滑跪</b>在 2024 年集中出现最多——当年多起高声量事件促使官方选择快速回退止损。</li>
-        <li><b>冷处理</b>在 2025 年明显增多，可能与当年情感/价值观类争议占比上升有关——这类争议官方更倾向于观望而非直接介入。</li>
-        <li><b>前期冷处理+后期滑跪</b>近年才出现，说明随着舆情复杂度上升，官方判断难度增加，误判后被动补救的情况更频繁。</li>
-      </ul>
-    </div>
-  </div>`;
-}
 
 function renderGrid(){
   renderStats();
@@ -949,10 +954,10 @@ function renderGrid(){
   renderYearTrendChart();
   renderTagsChart();
   renderGenreDamageChart();
+  renderGameplayTagChart();
   renderTagDamageChart();
   renderScopeTagChart();
   renderPrDamageChart();
-  renderPrTimeChart();
   const list=filtered();
   $('resultCount').textContent=`${list.length} / ${caseSummaries.length} 个案例`;
   $('caseGrid').innerHTML=list.map(c=>`<article class="card caseCard" onclick="openCase('${c.id}')"><div class="caseHead"><div><div class="caseTitle">${c.title}</div><div class="game">${c.game} / ${c.company}${(c.genre||[]).length?' / '+(c.genre||[]).join(' · '):''}</div></div><div class="caseBadges"><span class="badge ${levelClass(c.volume)}" title="声量等级">声量 ${gradeLevel(c.volume)}</span><span class="badge ${levelClass(c.damage)}" title="伤害等级">伤害 ${gradeLevel(c.damage)}</span></div></div><div class="desc">${c.summary}</div><div class="chips">${(c.tags||[]).map(t=>`<span class="chip chip-conflict">${t}</span>`).join('')}${c.pr?`<span class="chip chip-pr">${c.pr}</span>`:''}</div><div class="foot"><span>${c.market}</span><span>${c.time}</span></div></article>`).join('');
