@@ -1326,3 +1326,39 @@
   border-left:4px solid var(--red);
   line-height:1.4;
 }
+
+/* === 结论页数据高亮 & 案例链接 === */
+.conclStat{
+  display:inline-block;
+  font-size:16px;
+  font-weight:800;
+  color:#B85450;
+  background:rgba(184,84,80,0.08);
+  padding:4px 12px;
+  border-radius:6px;
+  letter-spacing:.02em;
+}
+.conclStat .statLabel{
+  font-size:11px;
+  font-weight:500;
+  color:var(--muted);
+  display:block;
+  margin-top:2px;
+  letter-spacing:.05em;
+}
+.conclCase{
+  display:inline-block;
+  font-size:13px;
+  font-weight:600;
+  color:#185FA5;
+  background:#E6F1FB;
+  padding:3px 10px;
+  border-radius:5px;
+  border:1px solid rgba(24,95,165,0.2);
+  cursor:pointer;
+  text-decoration:none;
+  transition:background .15s, border-color .15s;
+  margin:2px 4px 2px 0;
+}
+.conclCase:hover{background:#d4e8fa; border-color:rgba(24,95,165,0.4);}
+.conclCaseSep{color:var(--muted); font-size:11px; margin:0 2px;}
