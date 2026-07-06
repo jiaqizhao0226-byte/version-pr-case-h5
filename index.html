@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260706-8" />
+  <link rel="stylesheet" href="./style.css?v=20260706-9" />
 </head>
 <body>
 <div class="app">
@@ -356,8 +356,8 @@
 
     <!-- 第一层 · 认知 -->
     <div style="margin:8px 2px 12px;">
-      <h2 class="conclLayerTitle">第一层 · 认知：先纠正「声量 = 危机」的误判</h2>
-      <p class="muted" style="font-size:13px; margin:0;">舆情严重度不能只看讨论热度，要看是否动到收入、活跃、产品存续这三根支柱。</p>
+      <h2 class="conclLayerTitle">第一层 · 认知：声量不等于危机</h2>
+      <p class="muted" style="font-size:13px; margin:0;">舆情的本质不是「骂声大小」，而是「是否触及核心付费与留存」——声量决定关注度，伤害决定生死，两者经常错配。</p>
     </div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
 
@@ -369,15 +369,23 @@
         <div class="chips">
           <div class="conclStat">4 / 16<span class="statLabel">高声量案例中真高伤害数</span></div>
         </div>
+        <div style="margin-top:8px;">
+          <span style="font-size:12px; color:var(--muted);">高声量+高伤害案例：</span>
+          <a class="conclCase" onclick="openCase('lianyu-aoyin')">恋与深空-敖尹</a><a class="conclCase" onclick="openCase('chenbai-forbidden')">尘白</a><a class="conclCase" onclick="openCase('shijiezhiwai-money')">世界之外</a><a class="conclCase" onclick="openCase('fengzhigu-refund')">枫之谷</a>
+        </div>
       </article>
 
       <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 声量与伤害的错配：未破圈的事件也可能伤到核心</h3>
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 未破圈的事件也可能伤到核心</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
           9 个高伤害案例中，有 5 个声量并未破圈（仅中声量）。这类事件虽然没上热搜，却因触及核心付费或产品定位，实质影响到了流水与留存。而一些全网刷屏的争议，热度退去后大盘往往毫发无伤。<b>关键不在于声量大小，而在于是否伤到了核心活跃用户。</b>
         </p>
         <div class="chips">
           <div class="conclStat">5 / 9<span class="statLabel">高伤害案例中未破圈数</span></div>
+        </div>
+        <div style="margin-top:8px;">
+          <span style="font-size:12px; color:var(--muted);">高伤害但未破圈案例：</span>
+          <a class="conclCase" onclick="openCase('moer-manor')">摩尔庄园</a><a class="conclCase" onclick="openCase('hpmagic-pay')">哈利波特</a><a class="conclCase" onclick="openCase('gf2-daiyan')">少女前线2</a><a class="conclCase" onclick="openCase('shediao-bjd')">射雕</a><a class="conclCase" onclick="openCase('reverse1999-3rd')">重返未来</a>
         </div>
       </article>
 
@@ -393,38 +401,23 @@
       <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
         <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 触及「核心契约」才是真伤害的分水岭</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          每类玩家都有一份隐性契约：乙游是情感专属、二游是付费资产保值、竞技是规则公平、情怀IP是原作忠诚。舆情是否伤到根基，取决于是否击穿了这份契约。同样是"削弱"，削的是付费角色（击穿契约）就高伤害，削的是大众机制（未击穿）就只是噪声。
+          每类玩家都有一份隐性契约，舆情是否伤到根基，取决于是否击穿了这份契约：
         </p>
+        <ul style="font-size:13px; color:var(--muted); line-height:1.8; margin:0 0 12px; padding-left:20px;">
+          <li><b>情感/价值观争议</b>高度集中在强角色绑定品类（二次元、乙女向），核心契约是角色关系与情感专属——一旦角色 OOC 或情感背刺，直接伤及留存根基。</li>
+          <li><b>竞技/PVP 类</b>更注重公平与数值平衡，核心契约是规则公平——削弱、改既定契约、按闹分配是高频导火索。</li>
+          <li><b>情怀IP 类</b>更注重 IP 还原与原作忠诚，核心契约是"记忆"——已上线的命名、美术、角色都是情感资产，定位偏离即"信任崩塌"。情怀IP 高伤害占比达 75%，远高于写实竞技的 17%。</li>
+        </ul>
         <div class="chips">
-          <a class="conclCase" onclick="openCase('yuanshen-longwang')">原神-那维莱特</a><span class="conclCaseSep">/</span><a class="conclCase" onclick="openCase('lianyu-aoyin')">恋与深空-敖尹</a><span class="conclCaseSep">/</span><a class="conclCase" onclick="openCase('moer-manor')">摩尔庄园-bug</a>
-        </div>
-      </article>
-
-      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 情怀IP 的高伤害占比最高，因为「情感资产」不可逆</h3>
-        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          样本中情怀IP 的高伤害占比达 75%，高于二次元（38%）、乙女向（33%）和写实竞技（17%）。原因是情怀IP 玩家为"记忆"付费，已上线的命名、美术、角色都是情感资产——一旦定位偏离原作（幼态化、性别改造），就从"信任受损"升级为"信任崩塌"，且难以逆转。
-        </p>
-        <div class="chips">
-          <div class="conclStat">75% <span class="statLabel">情怀IP 高伤害占比</span></div>
-          <div class="conclStat" style="margin-left:8px">17% <span class="statLabel">写实竞技 高伤害占比</span></div>
-        </div>
-      </article>
-
-      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 情感 / 价值观争议高度集中在强角色绑定品类</h3>
-        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          性别议题、角色 OOC、内容尺度、情感背刺类舆情，几乎只出现在乙游 / 二游 / 情怀 IP——这些产品的核心盘与角色、价值观深度绑定。这类品类应把"情感 / 价值观风险"前置纳入版本评审，而非当作普通体验问题处理。
-        </p>
-        <div class="chips">
-          <a class="conclCase" onclick="openCase('lianyu-scale')">恋与深空</a><a class="conclCase" onclick="openCase('gf2-daiyan')">少女前线2</a><a class="conclCase" onclick="openCase('chenbai-forbidden')">尘白禁区</a>
+          <div class="conclStat">75%<span class="statLabel">情怀IP 高伤害占比</span></div>
+          <div class="conclStat" style="margin-left:8px">17%<span class="statLabel">写实竞技 高伤害占比</span></div>
         </div>
       </article>
 
       <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">4. 生态位决定容错空间，而非应对能力</h3>
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 生态位决定容错空间，而非应对能力</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          品类头部（原神等）出事后多能靠快速道歉 + 大额补偿快速止血，玩家因无平替而回流；非头部产品容错空间小得多，同样的失误可能直接被替代。生态位不改变"该不该道歉"，但决定了"道歉后能不能救回来"。
+          头部产品道歉后恢复快——玩家因无平替而回流，同样的失误在头部可能只是"一波节奏"；但中腰部产品同样失误可能直接被替代，玩家用脚投票的成本更低。生态位不改变"该不该道歉"，但决定了"道歉后能不能救回来"。
         </p>
         <div class="chips">
           <a class="conclCase" onclick="openCase('yuanshen-longwang')">原神-那维莱特 快速回血</a><span class="conclCaseSep">vs</span><a class="conclCase" onclick="openCase('shediao-bjd')">射雕 回炉仍衰退</a>
@@ -440,43 +433,24 @@
     </div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
 
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 冷处理 vs 快速道歉：看核心付费/留存是否受损</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          处置方式没有绝对优劣，关键是匹配事件性质。核心付费/留存受损时，冷处理会放大伤害，应快速道歉止损；若只是非核心群体的噪声，冷处理代价才低。样本中冷处理案例 7/10 为低伤害，说明它多被用在小事上。<b>最危险的是「前期误判」——冷处理拖成后期滑跪，100% 落在高伤害档。</b>
+        </p>
+        <div class="chips">
+          <div class="conclStat">7 / 10<span class="statLabel">冷处理案例中低伤害数</span></div>
+          <div class="conclStat" style="margin-left:8px">100%<span class="statLabel">前冷后跪 高伤害占比</span></div>
+        </div>
+      </article>
+
       <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 透明度 / 时效 / 直接沟通 &gt; 补偿力度</h3>
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 透明度 / 时效 / 直接沟通 &gt; 补偿力度</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
           有效道歉通常需要四件事同时到位：① 认错不甩锅 ② 解释原因 / 决策链 ③ 实际回退或修复 ④ 补偿。其中透明度、时效与直接沟通（高层实名、公开信、CEO 担责）才是玩家是否买账的关键。补偿只是附带诚意——单靠补偿不认错不解释，往往被读成"用福利换沉默"，反而显得傲慢。
         </p>
         <div class="chips">
           <a class="conclCase" onclick="openCase('luoke-s2')">洛克王国</a>
-        </div>
-      </article>
-
-      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 核心付费/留存是否受损，决定冷处理 vs 快速道歉</h3>
-        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          看反弹的是否为核心付费 / 留存群体、有没有平替：核心盘受损时，冷处理会放大伤害，应快速道歉止损；若只是非核心群体的噪声，冷处理代价才低。样本中冷处理案例 7/8 为低伤害，说明它多被用在小事上——但一旦误判，代价极高。
-        </p>
-        <div class="chips">
-          <div class="conclStat">7 / 10<span class="statLabel">冷处理案例中低伤害数</span></div>
-        </div>
-      </article>
-
-      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 最危险的是「前期误判」——冷处理拖成后期滑跪</h3>
-        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          "前期冷处理 + 后期滑跪"的案例 100% 落在高伤害档。它往往不是成熟策略，而是前期误判事件性质、观望错过窗口，等舆情升级后被迫补救——此时公关成本和信任损耗都被显著放大。早期的性质判断，比后期的补救动作更关键。
-        </p>
-        <div class="chips">
-          <div class="conclStat">100%<span class="statLabel">前冷后跪 高伤害占比</span></div>
-        </div>
-      </article>
-
-      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">4. 应对无统一趋势，是 case by case 的判断</h3>
-        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          从年度分布看，四种处置方式交替出现，没有明显的行业级策略转向。这说明处置选择主要取决于具体事件的矛盾性质和严重程度，而非时间趋势或统一范式。所以每次舆情都要重新做性质判断，不能套用"上次怎么做"。
-        </p>
-        <div class="chips">
-          <div class="conclStat">25%–35%<span class="statLabel">2024-2026 各处置方式占比区间</span></div>
         </div>
       </article>
 
@@ -491,9 +465,9 @@
 
       <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
         <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--amber); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">情怀 IP</span>
-        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">玩家为“情怀”付费，擅改或偏离原作易触雷</h3>
+        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">玩家为"情怀"付费，擅改或偏离原作易触雷</h3>
         <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0 0 12px;">
-          已上线的命名、美术、动作、角色都是玩家的“情感资产”——动的不是数据，是记忆。这群人沉没成本高、不易流失，伤害多落在信任层，可恢复但会累积；可一旦产品定位偏离原作（如幼态化、性别议题改造），就从“信任受损”升级为“信任崩塌”。<br>
+          已上线的命名、美术、动作、角色都是玩家的"情感资产"——动的不是数据，是记忆。这群人沉没成本高、不易流失，伤害多落在信任层，可恢复但会累积；可一旦产品定位偏离原作（如幼态化、性别议题改造），就从"信任受损"升级为"信任崩塌"。<br>
           <strong style="color:var(--text);">雷区：</strong>暗改既有内容、合规阉割、产品定位偏离。
         </p>
         <div class="chips">
@@ -503,9 +477,9 @@
 
       <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
         <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--red); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">乙游</span>
-        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">“付费 + 情感”双重契约，催生粘性最强、维权最组织化的核心盘</h3>
+        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">"付费 + 情感"双重契约，催生粘性最强、维权最组织化的核心盘</h3>
         <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0 0 12px;">
-          对纸片人有“情感专属”预期，男主 OOC、暧昧他人、尺度收缩都会被读作背叛。核心盘粘性极强，维权也最极端——律师函、集体停氪、组织化控评。其中“付费数值不实 / 突击涨价”这类硬伤，比情感争议更容易真打到流水。<br>
+          对纸片人有"情感专属"预期，男主 OOC、暧昧他人、尺度收缩都会被读作背叛。核心盘粘性极强，维权也最极端——律师函、集体停氪、组织化控评。其中"付费数值不实 / 突击涨价"这类硬伤，比情感争议更容易真打到流水。<br>
           <strong style="color:var(--text);">雷区：</strong>突击涨价、PV 与实装不符、男主 OOC / 尺度。
         </p>
         <div class="chips">
@@ -517,7 +491,7 @@
         <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--blue); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">竞技 / 射击</span>
         <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">玩家在意公平、契约与荣誉</h3>
         <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0 0 12px;">
-          玩家把“竞技公平、付费契约、自创玩法”当资产，对数值削弱、战令 / 经济规则变更、荣誉贬值极敏感；“教玩家怎么玩”“按闹分配”是高频导火索。涌现玩法宜引导转化而非一刀切。<br>
+          玩家把"竞技公平、付费契约、自创玩法"当资产，对数值削弱、战令 / 经济规则变更、荣誉贬值极敏感；"教玩家怎么玩""按闹分配"是高频导火索。涌现玩法宜引导转化而非一刀切。<br>
           <strong style="color:var(--text);">雷区：</strong>平衡削弱、改既定契约、战令 / 经济规则变更。
         </p>
         <div class="chips">
@@ -527,9 +501,9 @@
 
       <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
         <span style="display:inline-block; font-size:14px; font-weight:700; color:#fff; background:var(--green); padding:3px 12px; border-radius:6px; letter-spacing:.5px; margin-bottom:12px;">二游抽卡 / 卡牌</span>
-        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">玩家高净值，把角色当成已付费的“资产”</h3>
+        <h3 style="margin:0 0 10px; color:var(--text); font-size:16px; line-height:1.5;">玩家高净值，把角色当成已付费的"资产"</h3>
         <p style="font-size:13px; color:var(--muted); line-height:1.7; margin:0 0 12px;">
-          角色的数值、强度、人设都是已付费资产，对“实装后才改”零容忍——变相削弱、福利落差、OOC、区别对待都是雷区。头部（原神等）出事多快速道歉 + 大额“血包”（自选五星、原石）挽尊，止血力强；非头部容错空间小得多。<br>
+          角色的数值、强度、人设都是已付费资产，对"实装后才改"零容忍——变相削弱、福利落差、OOC、区别对待都是雷区。头部（原神等）出事多快速道歉 + 大额"血包"（自选五星、原石）挽尊，止血力强；非头部容错空间小得多。<br>
           <strong style="color:var(--text);">雷区：</strong>实装后变更 / 暗改、变相削弱、角色 OOC。
         </p>
         <div class="chips">
@@ -539,50 +513,39 @@
 
     </div>
 
-    <!-- 第四层 · 生死：什么才真正让游戏衰退 -->
+    <!-- 第四层 · 生死 -->
     <div style="margin:32px 2px 12px;">
-      <h2 class="conclLayerTitle">第四层 · 生死：什么才真正让游戏衰退</h2>
-      <p class="muted" style="font-size:13px; margin:0;">前三层讲"怎么判断、怎么归因、怎么应对"，这一层回答最根本的问题：哪些情况，舆情会从"可恢复的波动"变成"不可逆的衰退"。</p>
+      <h2 class="conclLayerTitle">第四层 · 生死：哪些情况，舆情会从"可恢复的波动"变成"不可逆的衰退"</h2>
     </div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
 
       <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 触及外部红线，无法自救</h3>
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 伤害了核心契约却死不悔改</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          合规问题（如擦边、涉监管内容）会触发外部强制干预——停服整改、下架、回炉重做。这是厂商无法靠道歉或补偿挽回的绝对死线，因为决定权不在自己手里。涉及内容尺度和合规边界的改动，上线前必须做红线审查。
+          当舆情已经触及该品类的核心契约（如乙游的情感专属、二游的付费资产保值），官方却态度傲慢、拒绝回退或敷衍补偿，玩家信任会不可逆地崩塌。这类衰退不是舆情应对的失误，而是对事件性质的根本误判——把"伤到根基"当成"普通吐槽"来处理。
         </p>
         <div class="chips">
-          <a class="conclCase" onclick="openCase('chenbai-forbidden')">尘白</a><a class="conclCase" onclick="openCase('shijiezhiwai-money')">世界之外</a>
+          <a class="conclCase" onclick="openCase('shijiezhiwai-money')">世界之外</a>
         </div>
       </article>
 
       <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 产品定位错位，回炉也救不回</h3>
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 触及外部红线，无法自救</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          有些衰退不是舆情应对的问题，而是产品定位本身就错了——比如写实武侠做幼态建模、乙游做"想赚钱"式表态。这类问题出在立项和定调阶段，即便后续认错、重做，先天伤害已经造成，难以逆转。定位决策的审慎度，比事后公关更能决定生死。
+          合规问题（如擦边、涉监管内容）会触发外部强制干预——停服整改、下架。这是厂商无法靠道歉或补偿挽回的绝对死线。但如果官方反应够快、态度够诚恳，有可能在监管介入前止住玩家端的极端行为，避免事态进一步恶化。
+        </p>
+        <div class="chips">
+          <a class="conclCase" onclick="openCase('chenbai-forbidden')">尘白（停服整改）</a><a class="conclCase" onclick="openCase('lianyu-scale')">恋与深空-夏以昼（快速滑跪止损）</a>
+        </div>
+      </article>
+
+      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 产品定位错位，回炉也救不回</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          有些衰退不是舆情应对的问题，而是产品定位本身就错了——比如写实武侠做幼态建模。这类问题出在立项和定调阶段，即便后续认错、重做，先天伤害已经造成，难以逆转。定位决策的审慎度，比事后公关更能决定生死。
         </p>
         <div class="chips">
           <a class="conclCase" onclick="openCase('shediao-bjd')">射雕</a>
-        </div>
-      </article>
-
-      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 情怀IP 的衰退更隐蔽，是慢性失血</h3>
-        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          情怀IP 玩家沉没成本高，短期不会流失，但信任受损会累积。这类产品不会"急性死亡"，而是长期低迷、靠情怀维持、回不到巅峰——这种慢性失血最难察觉，也最难逆转。情怀是缓冲垫，但不是安全垫。
-        </p>
-        <div class="chips">
-          <a class="conclCase" onclick="openCase('hpmagic-pay')">哈利波特</a><a class="conclCase" onclick="openCase('moer-manor')">摩尔庄园</a><a class="conclCase" onclick="openCase('gf2-daiyan')">少女前线2</a>
-        </div>
-      </article>
-
-      <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">4. 治理类问题，快速诚恳就能救</h3>
-        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          与前三条不同，因 bug、数值、机制这类"后天治理问题"引发的舆情，只要应对够快、够诚恳，活跃和口碑基本都能恢复。这类问题的生死分界线不在问题本身，而在应对速度——越快认错、越早回退，恢复概率越高。
-        </p>
-        <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">暗黑4 · 绝地潜兵2 · 七日世界</span>
         </div>
       </article>
 
@@ -621,6 +584,6 @@
     <section id="tabContent"></section>
   </main>
 </div>
-<script src="./app.js?v=20260706-8"></script>
+<script src="./app.js?v=20260706-9"></script>
 </body>
 </html>
