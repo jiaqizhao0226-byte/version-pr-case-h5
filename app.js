@@ -6,10 +6,10 @@ const esc=s=>(s==null?'':String(s));
 const uniq=a=>[...new Set(a.filter(Boolean))].sort();
 const splitType=v=>(v||'').split('/').map(x=>x.trim()).filter(Boolean);
 const sevClass=v=>typeof v==='string'?(v.includes('S')?'s':(v.includes('A')?'a':'s')):'s';
-// 声量/伤害等级 → 高/中/低（含 S=高，A=中，B=低；A/S、B/A 取更高/含A→中）
-const gradeLevel=g=>/S/.test(g||'')?'高':(/A/.test(g||'')?'中':'低');
-// 等级 → 徽章配色（高=红 / 中=琥珀 / 低=绿）
-const levelClass=g=>{const l=gradeLevel(g);return l==='高'?'lv-hi':(l==='中'?'lv-mid':'lv-lo');};
+// 声量/伤害等级 → 高/中/低（S=高，A=中，B=低；A/S、B/A 含A→中）；无数据/未收录 如实透传
+const gradeLevel=g=>{g=g||'';if(g==='无数据'||g==='未收录')return g;return /S/.test(g)?'高':(/A/.test(g)?'中':'低');};
+// 等级 → 徽章配色（高=红 / 中=琥珀 / 低=绿 / 无数据·未收录=灰）
+const levelClass=g=>{const l=gradeLevel(g);if(l==='无数据'||l==='未收录')return 'lv-na';return l==='高'?'lv-hi':(l==='中'?'lv-mid':'lv-lo');};
 
 function switchMainTab(tabId) {
   document.querySelectorAll('.mainNav button').forEach(b => b.classList.remove('active'));
@@ -63,7 +63,14 @@ async function init(){
 function fillFilters(){
   // Matrix
   const matrixEl = $('matrix');
-  ['高伤害 + 高声量 (核心危机)', '低伤害 + 高声量 (舆论风暴)', '高伤害 + 低声量 (隐性流失)', '低伤害 + 低声量 (常规客诉)'].forEach(x => {
+  [
+    '高伤害 + 高声量 (核心危机)',
+    '中伤害 + 高声量 (信任赤字)',
+    '低伤害 + 高声量 (舆论风暴)',
+    '高伤害 + 低声量 (隐性流失)',
+    '中伤害 + 低声量 (局部损伤)',
+    '低伤害 + 低声量 (常规客诉)'
+  ].forEach(x => {
     const o=document.createElement('option');o.value=x;o.textContent=x;matrixEl.appendChild(o);
   });
   
@@ -77,36 +84,24 @@ function fillFilters(){
       vals.map(v => `<button type="button" class="vnChip" data-vn="${esc(v)}" onclick="toggleVn(this)">${esc(v)}</button>`).join('');
   }
 
-  // Core Tags grouped（四族 21 标准标签，与 cases.json 核心矛盾完全对齐）
+  // Core Tags grouped（四族 9 标准标签，与校对表 + cases.json 核心矛盾完全对齐）
   const tagCategories = {
     '💰 商业化 / 付费': [
-       '商业化争议/变现动机质疑',
-       '核心付费内容贬值',
-       '付费数值不实',
-       '付费权益争议',
-       '商业契约变更'
+       '付费内容贬值/不实',
+       '商业化契约/动机争议'
     ],
-    '⚖️ 数值 / 体验 / 治理': [
-       '数值/平衡调整争议',
-       '体验质量与预期落差',
-       '养成负担争议',
-       '版本治理失序',
+    '🎮 数值 / 玩法 / 体验': [
+       '数值/平衡争议',
+       '体验/质量争议',
        '自创玩法管控争议'
     ],
-    '🎭 内容与价值观争议': [
-       '情感背叛/情怀受损',
-       '合规问题',
-       '内容尺度争议',
-       '性别议题争议',
-       '价值观/圈层冲突',
-       '产品定位/品类落差'
+    '🎭 内容与价值观': [
+       '情感/价值观争议',
+       '内容尺度/合规争议'
     ],
-    '⚔️ 官方处置 / 运营失当': [
-       '选择性回应',
-       '暗改',
-       '福利回馈落差',
-       '补偿错配',
-       '内容方向/资源分配争议'
+    '👥 圈层矛盾': [
+       '圈层矛盾-性别',
+       '圈层矛盾-竞品'
     ]
   };
 
@@ -140,16 +135,14 @@ function fillFilters(){
     tagEl.appendChild(optgroup);
   }
 
-  // 公关应对：六类固定枚举，按诚意/有效性高→低排序
+  // 公关应对：四类固定枚举（校对后），按诚意/有效性高→低排序
   const prEl = $('pr');
   if (prEl) {
     const prOrder = [
-      '光速滑跪+回退',
-      '认错+整改方案',
-      '被迫补偿+被动合规',
-      '敷衍回应+部分调整',
-      '仅公示+处置事故',
-      '冷处理+沉默装死',
+      '立刻滑跪',
+      '正常处理',
+      '前期冷处理+后期滑跪',
+      '冷处理',
     ];
     const present = new Set(caseSummaries.map(c => c.pr));
     prOrder.forEach(p => {
@@ -187,12 +180,16 @@ function filtered(){
       const vol = c.volume || '';
       const dmg = c.damage || '';
       const highVol = vol.includes('S') || vol.includes('A');
-      const highDmg = dmg.includes('S') || dmg === 'A' || dmg === 'A/S';
+      const highDmg = dmg.includes('S');
+      const midDmg = !highDmg && (dmg.includes('A') || dmg === '中');
+      const lowDmg = !highDmg && !midDmg;
 
       if (mx === '高伤害 + 高声量 (核心危机)' && !(highVol && highDmg)) return false;
-      if (mx === '低伤害 + 高声量 (舆论风暴)' && !(highVol && !highDmg)) return false;
+      if (mx === '中伤害 + 高声量 (信任赤字)' && !(highVol && midDmg)) return false;
+      if (mx === '低伤害 + 高声量 (舆论风暴)' && !(highVol && lowDmg)) return false;
       if (mx === '高伤害 + 低声量 (隐性流失)' && !(!highVol && highDmg)) return false;
-      if (mx === '低伤害 + 低声量 (常规客诉)' && !(!highVol && !highDmg)) return false;
+      if (mx === '中伤害 + 低声量 (局部损伤)' && !(!highVol && midDmg)) return false;
+      if (mx === '低伤害 + 低声量 (常规客诉)' && !(!highVol && lowDmg)) return false;
     }
 
     if (vnSel.length) {
@@ -216,13 +213,13 @@ function renderStats(){
   const yMin = yrs.length ? Math.min(...yrs) : '', yMax = yrs.length ? Math.max(...yrs) : '';
   const tenc = all.filter(c => /腾讯/.test(c.company||'')).length;
   const nonTenc = all.length - tenc;
-  // 真危机：声量达 S 且伤害达 A 及以上（声量伤害双高）
-  const crisis = all.filter(c => /S/.test(c.volume||'') && /[SA]/.test(c.damage||'')).length;
+  // 真危机：落点为 crisis（高声量 + 数据/综合伤害实质动了）
+  const crisis = all.filter(c => (c.resultCell||'') === 'crisis').length;
   $('stats').innerHTML =
     `<div class="stat"><b>${yMin}–${yMax}</b><span>覆盖年份</span></div>`+
     `<div class="stat"><b>${list.length}</b><span>当前筛选案例（共 ${all.length}）</span></div>`+
     `<div class="stat"><b>${tenc} / ${nonTenc}</b><span>腾讯系 / 非腾讯</span></div>`+
-    `<div class="stat"><b>${crisis}</b><span>真危机 · 声量伤害双高</span></div>`;
+    `<div class="stat"><b>${crisis}</b><span>真危机 · 落点</span></div>`;
 }
 
 // 每个案例在散点图中的相对坐标（x: 声量低→高 0-100；y: 伤害低→高 0-100）
@@ -231,90 +228,80 @@ function renderStats(){
 //   x 轴（声量）——按「声量强度实感」（含破圈广度）铺排，而非简单 S/A 档位；
 //                 破圈/全网级讨论的案例右推，真正未出圈的小众事件留左侧。
 // 结果：黄区（高声量·低/中伤害「舆论风暴」）为最大区块，印证「声量普遍高于实际伤害」。
-const MATRIX_POS = {
-  // —— 高声量 × 高伤害（核心危机 红）7 例 ——
-  'shijiezhiwai-money': { x: 84, y: 86 },
-  'diablo4-p11':        { x: 88, y: 81 },
-  'apex-bp':            { x: 92, y: 73 },
-  'benghuai-rabbit':    { x: 65, y: 88 },
-  'fengzhigu-refund':   { x: 71, y: 82 },
-  'luoke-s2':           { x: 78, y: 69 }, // A/S，伤害略低于纯 S
-  'lianyu-aoyin':       { x: 72, y: 63 }, // 官方永久终止新男主=基本盘受损铁证
-  // —— 低声量 × 高伤害（隐性流失 蓝）1 例 ——
-  'shediao-bjd':        { x: 40, y: 90 }, // 射雕停运，伤害最高但声量小众、未破圈
-  // —— 高声量 × 低/中伤害（舆论风暴 橙）18 例 —— 最大区块 ——
-  'yuanshen-longwang':  { x: 80, y: 32 },
-  'yuanshen-1year':     { x: 73, y: 22 },
-  'genshin-zhongli':    { x: 66, y: 38 },
-  'sanjiaozhou-jail':   { x: 84, y: 16 },
-  'helldivers2-psn':    { x: 88, y: 37 },
-  'mingchao-1.0':       { x: 76, y: 44 }, // 伤害中
-  'lianyu-mechanic':    { x: 70, y: 47 }, // 伤害中
-  'lianyu-scale':       { x: 62, y: 18 },
-  'yanyun-female':      { x: 56, y: 29 },
-  'helldivers2-nerf':   { x: 53, y: 47 }, // 伤害中
-  'gf2-daiyan':         { x: 59, y: 41 }, // 伤害中
-  'reverse1999-3rd':    { x: 62, y: 35 },
-  'dnf-pc-harmony':     { x: 72, y: 15 }, // 端游和谐，破圈
-  'dnf-mobile-dragon':  { x: 79, y: 8 },  // 起源，声量高、伤害小
-  'arknights-collab':   { x: 64, y: 13 },
-  'hpmagic-pay':        { x: 55, y: 11 },
-  'moer-manor':         { x: 67, y: 9 },
-  'wzry-world-demo':    { x: 52, y: 25 },
-  // —— 低/中声量 × 低伤害（常规客诉 灰）5 例 —— 未出圈的小众事件 ——
-  'codm-cn-launch':     { x: 30, y: 16 },
-  'bluearchive-cn':     { x: 34, y: 27 },
-  'wzry-s40':           { x: 42, y: 13 },
-  'yanyun-jiujian':     { x: 45, y: 33 },
-  'oncehuman-season':   { x: 47, y: 43 },
-};
-
-function matrixColor(x, y) {
-  if (x >= 50 && y >= 50) return 'b-red';   // 核心危机
-  if (x < 50 && y >= 50)  return 'b-blue';  // 隐性流失
-  if (x >= 50 && y < 50)  return 'b-amber'; // 舆论风暴
-  return 'b-gray';                          // 常规客诉
+// 声量×伤害 2×3 分类矩阵：仅分类不量化，案例按格子归类后自动排布
+// 分类规则：声量 S=高、A=低；伤害 S=高、A/中=中、B=低；无数据/未收录 → 单独「数据缺失」托盘
+function matrixCell(c) {
+  const d = c.damage || '';
+  if (d === '无数据' || d === '未收录') return 'na';
+  const highVol = /S/.test(c.volume || '');           // S=高声量, A=低声量
+  const highDmg = /S/.test(d);                         // S=高伤害
+  const midDmg = !highDmg && (/A/.test(d) || d === '中'); // A/中=中伤害
+  if (highVol && highDmg)  return 'hr'; // 高声量高伤害 → 核心危机
+  if (!highVol && highDmg) return 'hl'; // 低声量高伤害 → 隐性流失
+  if (highVol && midDmg)   return 'mr'; // 高声量中伤害 → 信任赤字
+  if (!highVol && midDmg)  return 'ml'; // 低声量中伤害 → 局部损伤
+  if (highVol)             return 'lr'; // 高声量低伤害 → 舆论风暴
+  return 'll';                          // 低声量低伤害 → 常规客诉
 }
+
+const CELL_META = {
+  hl: { label: '隐性流失', sub: '低声量 · 高伤害', color: 'b-blue' },
+  hr: { label: '核心危机', sub: '高声量 · 高伤害', color: 'b-red'  },
+  ml: { label: '局部损伤', sub: '低声量 · 中伤害', color: 'b-midblue' },
+  mr: { label: '信任赤字', sub: '高声量 · 中伤害', color: 'b-midamber' },
+  ll: { label: '常规客诉', sub: '低声量 · 低伤害', color: 'b-gray' },
+  lr: { label: '舆论风暴', sub: '高声量 · 低伤害', color: 'b-amber'},
+};
 
 function renderMatrixChart() {
   const container = document.getElementById('matrixChartContainer');
   if (!container) return;
-
-  // 始终用全量案例，不受筛选影响
   const all = caseSummaries || [];
 
-  const dots = all.map(c => {
-    const pos = MATRIX_POS[c.id] || { x: 50, y: 50 };
-    const color = matrixColor(pos.x, pos.y);
-    // 默认只显示游戏名；hover 展开完整 title（去掉「游戏名-」前缀的事件描述）
+  const groups = { hl:[], hr:[], ml:[], mr:[], ll:[], lr:[], na:[] };
+  all.forEach(c => groups[matrixCell(c)].push(c));
+
+  // 单个案例胶囊
+  const chip = (c, color) => {
     const parts = (c.title || '').split('-');
     const sub = parts.length > 1 ? parts.slice(1).join('-') : '';
-    return `<button type="button" class="sc-dot ${color}" style="left:${pos.x}%; bottom:${pos.y}%;"
-        onclick="openCase('${c.id}')"
+    return `<button type="button" class="qcase ${color}" onclick="openCase('${c.id}')"
         title="${esc(c.title)}&#10;声量 ${gradeLevel(c.volume)} / 伤害 ${gradeLevel(c.damage)}">
-        <span class="sc-mark"></span>
-        <span class="sc-label">
-          <span class="sc-name">${esc(c.game || '')}</span>
-          ${sub ? `<span class="sc-sub">${esc(sub)}</span>` : ''}
-        </span>
+        <span class="qcName">${esc(c.game || '')}</span>
+        ${sub ? `<span class="qcSub">${esc(sub)}</span>` : ''}
       </button>`;
-  }).join('');
+  };
+
+  // 单个象限格子
+  const quad = (key) => {
+    const m = CELL_META[key];
+    const list = groups[key];
+    return `<div class="qcell qcell-${key}">
+        <div class="qcHead"><span class="qcTitle ${m.color}">${m.label}</span><span class="qcMeta">${m.sub}</span><span class="qcCount">${list.length}</span></div>
+        <div class="qcBody">${list.map(c => chip(c, m.color)).join('') || '<span class="qcEmpty">—</span>'}</div>
+      </div>`;
+  };
+
+  const naList = groups.na;
+  const naBlock = naList.length ? `
+      <div class="qnaTray">
+        <div class="qnaHead"><span class="qnaTitle">数据缺失 · 未收录</span><span class="qcMeta">停运/未上架/数据源不覆盖，伤害无法量化，不参与上方分类</span><span class="qcCount">${naList.length}</span></div>
+        <div class="qnaBody">${naList.map(c => chip(c, 'b-na')).join('')}</div>
+      </div>` : '';
 
   container.innerHTML = `
-    <div class="matrix-chart-wrap">
-      <div class="matrix-y-axis"><span>高<br>伤<br>害</span><span>低<br>伤<br>害</span></div>
-      <div class="matrix-content">
-        <div class="scatter-plot">
-          <div class="sc-quad sc-tl"><span class="sc-qlabel">隐性流失</span></div>
-          <div class="sc-quad sc-tr"><span class="sc-qlabel">核心危机</span></div>
-          <div class="sc-quad sc-bl"><span class="sc-qlabel">常规客诉</span></div>
-          <div class="sc-quad sc-br"><span class="sc-qlabel">舆论风暴</span></div>
-          <div class="sc-axis-x"></div>
-          <div class="sc-axis-y"></div>
-          ${dots}
+    <div class="qmatrix-wrap">
+      <div class="qmatrix-title">声量 × 伤害 2×3 分类矩阵<span class="qmatrix-note">按高 / 中 / 低伤害分类；案例落入对应格</span></div>
+      <div class="qmatrix-grid">
+        <div class="qaxis-y"><span>高伤害</span><span>中伤害</span><span>低伤害</span></div>
+        <div class="qquads">
+          ${quad('hl')}${quad('hr')}
+          ${quad('ml')}${quad('mr')}
+          ${quad('ll')}${quad('lr')}
         </div>
-        <div class="matrix-x-axis"><span style="padding-left:20px;">低声量</span><span style="padding-right:20px;">高声量</span></div>
       </div>
+      <div class="qaxis-x"><span>低声量</span><span>高声量</span></div>
+      ${naBlock}
     </div>
   `;
 }
@@ -326,6 +313,8 @@ function renderPrChart() {
   const counter = {};
   (caseSummaries||[]).forEach(c => { const k = c.pr || '其他'; counter[k] = (counter[k]||0)+1; });
   renderBarChart('prChart', counter, ['#5B7B9A','#2C3E5C','#6C7B8B','#8B6F47','#B85450','#7B6B8A']);
+  const wrap = document.getElementById('prChart');
+  if (wrap) wrap.innerHTML += `<div class="chartInsights chartInsightsSub"><b>洞察：</b>这是基础计数，只能看处置口径分布；处置是否有效，需要回到“公关应对 × 伤害结构”和“核心矛盾 × 公关应对 × 伤害”。</div>`;
 }
 
 // 时间线分布
@@ -341,7 +330,7 @@ function renderYearTrendChart() {
     const y = (c.time||'').slice(0,4);
     if (!y) return;
     if (!yearMap[y]) yearMap[y] = { tags:{}, pr:{} };
-    (c.tags||[]).forEach(t => yearMap[y].tags[t] = (yearMap[y].tags[t]||0)+1);
+    caseTags(c).forEach(t => yearMap[y].tags[t] = (yearMap[y].tags[t]||0)+1);
     const p = c.pr || '其他';
     yearMap[y].pr[p] = (yearMap[y].pr[p]||0)+1;
   });
@@ -350,11 +339,11 @@ function renderYearTrendChart() {
 
   // Top 6 矛盾标签
   const tagTotal = {};
-  all.forEach(c => (c.tags||[]).forEach(t => tagTotal[t]=(tagTotal[t]||0)+1));
+  all.forEach(c => caseTags(c).forEach(t => tagTotal[t]=(tagTotal[t]||0)+1));
   const topTags = Object.entries(tagTotal).sort((a,b)=>b[1]-a[1]).slice(0,6).map(e=>e[0]);
 
-  // 公关应对
-  const prOrder = ['光速滑跪+回退','认错+整改方案','冷处理+沉默装死','敷衍回应+部分调整','被迫补偿+被动合规','仅公示+处置事故'];
+  // 公关应对（校对后四类）
+  const prOrder = ['立刻滑跪','正常处理','前期冷处理+后期滑跪','冷处理'];
 
   // 热力图渲染函数
   // rows: [{label, values:[n1,n2,...]}], years, maxVal
@@ -423,6 +412,7 @@ function renderYearTrendChart() {
       <div class="ytHeatWrap">${prHeatmap}</div>
       ${legendBar(blueScale, '案例数')}
     </div>
+    <div class="chartInsights"><b>洞察：</b>从当前样本看，情感/价值观争议在近年出现更集中，说明版本舆情不再只围绕数值、付费和体验，也越来越容易落到角色认同、内容表达和价值观判断上。</div>
   `;
 }
 
@@ -443,8 +433,8 @@ function renderQuadrantChart() {
   });
   // 按声量分组，每组堆叠伤害分布
   const groups = [
-    {label:'声量 S', filter:k=>k.startsWith('声量S'), color:'#B85450'},
-    {label:'声量 A', filter:k=>k.startsWith('声量A'), color:'#8B6F47'},
+    {label:'声量 高', filter:k=>k.startsWith('声量S'), color:'#B85450'},
+    {label:'声量 中', filter:k=>k.startsWith('声量A'), color:'#8B6F47'},
   ];
   const damageColors = {'S':'#B85450','A':'#8B6F47','B':'#5B7B9A'};
   const total = all.length;
@@ -460,7 +450,7 @@ function renderQuadrantChart() {
     return `<div class="quadStackRow"><div class="quadStackLabel">${g.label}</div><div class="quadStackBar">${segs}</div><div class="quadStackVal">${groupTotal}</div></div>`;
   }).join('')}</div>`;
   // 图例
-  const legend = `<div style="display:flex;gap:14px;margin-top:14px;font-size:12px;color:var(--muted)"><span><span style="display:inline-block;width:10px;height:10px;background:#B85450;border-radius:2px;margin-right:4px"></span>伤害 S</span><span><span style="display:inline-block;width:10px;height:10px;background:#8B6F47;border-radius:2px;margin-right:4px"></span>伤害 A</span><span><span style="display:inline-block;width:10px;height:10px;background:#5B7B9A;border-radius:2px;margin-right:4px"></span>伤害 B</span></div>`;
+  const legend = `<div style="display:flex;gap:14px;margin-top:14px;font-size:12px;color:var(--muted)"><span><span style="display:inline-block;width:10px;height:10px;background:#B85450;border-radius:2px;margin-right:4px"></span>伤害 高</span><span><span style="display:inline-block;width:10px;height:10px;background:#8B6F47;border-radius:2px;margin-right:4px"></span>伤害 中</span><span><span style="display:inline-block;width:10px;height:10px;background:#5B7B9A;border-radius:2px;margin-right:4px"></span>伤害 低</span></div>`;
   wrap.innerHTML += legend;
 }
 
@@ -477,176 +467,428 @@ function renderBarChart(containerId, counter, maxColors) {
   }).join('');
 }
 
+function renderMiniDistribution(containerId, title, meta, entries, note, colors){
+  const wrap = document.getElementById(containerId);
+  if (!wrap) return;
+  const max = Math.max(1, ...entries.map(e=>e.value));
+  const rows = entries.map((e,i)=>{
+    const w = Math.max(3, e.value / max * 100);
+    const color = colors[i % colors.length];
+    return `<div class="overviewMiniRow">
+      <span class="overviewMiniLabel">${esc(e.label)}</span>
+      <div class="overviewMiniTrack"><div class="overviewMiniFill" style="width:${w}%;background:${color}"></div></div>
+      <b>${esc(e.display || e.value)}</b>
+    </div>`;
+  }).join('');
+  wrap.innerHTML = `<div class="overviewMiniHead"><h3>${esc(title)}</h3>${meta?`<span>${esc(meta)}</span>`:''}</div>
+    <div class="overviewMiniRows">${rows}</div>
+    ${note?`<p>${esc(note)}</p>`:''}`;
+}
+
+function counterEntries(counter, limit=6){
+  return Object.entries(counter)
+    .sort((a,b)=>b[1]-a[1] || a[0].localeCompare(b[0]))
+    .slice(0, limit)
+    .map(([label,value])=>({label,value}));
+}
+
+function renderOverviewCards(){
+  const all = caseSummaries || [];
+  const colors = ['#2C3E5C','#8B6F47','#B85450','#5B7B9A','#6C7B8B','#7B6B8A'];
+  const warmColors = ['#8B6F47','#B85450','#2C3E5C','#5B7B9A','#6C7B8B','#7B6B8A'];
+
+  const yearCounter = {};
+  all.forEach(c=>{ const y=(c.time||'').slice(0,4); if(y) yearCounter[y]=(yearCounter[y]||0)+1; });
+  const years = Object.keys(yearCounter).sort();
+  const recent = ['2024','2025','2026'].reduce((s,y)=>s+(yearCounter[y]||0),0);
+  renderMiniDistribution(
+    'overviewTimeCard',
+    '时间分布',
+    `${all.length} 个案例 · ${years[0] || ''}–${years[years.length-1] || ''}`,
+    years.map(y=>({label:y,value:yearCounter[y]})),
+    `其中 2024–2026 占 ${recent} 个，以近年为主。`,
+    colors
+  );
+
+  const genreCounter = {};
+  all.forEach(c=>(c.genre||[]).forEach(g=>genreCounter[g]=(genreCounter[g]||0)+1));
+  renderMiniDistribution(
+    'overviewGenreCard',
+    '品类分布',
+    'Top 6',
+    counterEntries(genreCounter, 6),
+    '放置 / 生存 / 单机买断等样本较少，暂不单独成结论。',
+    warmColors
+  );
+
+  const marketCounter = {};
+  all.forEach(c=>{ const m=c.market || '未标注'; marketCounter[m]=(marketCounter[m]||0)+1; });
+  renderMiniDistribution(
+    'overviewMarketCard',
+    '市场分布',
+    '',
+    counterEntries(marketCounter, 6),
+    '',
+    ['#5B7B9A','#2C3E5C','#8B6F47','#6C7B8B','#B85450','#7B6B8A']
+  );
+
+  const tagCounter = {};
+  all.forEach(c=>caseTags(c).forEach(t=>tagCounter[t]=(tagCounter[t]||0)+1));
+  renderMiniDistribution(
+    'overviewTagCard',
+    '核心矛盾',
+    'Top 6',
+    counterEntries(tagCounter, 6),
+    '只表示出现频次，严重度以上方「核心矛盾 × 伤害」为准。',
+    ['#B85450','#8B6F47','#2C3E5C','#5B7B9A','#6C7B8B','#7B6B8A']
+  );
+
+  const prCounter = {};
+  all.forEach(c=>{ const p=c.pr || '未标注'; prCounter[p]=(prCounter[p]||0)+1; });
+  const prOrder = PR_ORDER.filter(p=>prCounter[p]).map(p=>({label:p,value:prCounter[p]}));
+  const prRest = counterEntries(prCounter, 6).filter(e=>!PR_ORDER.includes(e.label));
+  renderMiniDistribution(
+    'overviewPrCard',
+    '公关应对',
+    '',
+    prOrder.concat(prRest).slice(0,6),
+    '只表示处置口径分布，不直接代表处置效果。',
+    ['#5B7B9A','#2C3E5C','#8B6F47','#B85450','#6C7B8B','#7B6B8A']
+  );
+}
+
 // 品类分布条形图
 function renderGenreChart() {
   const counter = {};
   (caseSummaries||[]).forEach(c => (c.genre||[]).forEach(g => counter[g] = (counter[g]||0)+1));
   renderBarChart('genreChart', counter, ['#8B6F47','#2C3E5C','#B85450','#5B7B9A','#6C7B8B','#7B6B8A','#9C7A5A','#5A8B8B']);
+  const wrap = document.getElementById('genreChart');
+  if (wrap) wrap.innerHTML += `<div class="chartInsights chartInsightsSub"><b>洞察：</b>这是样本结构提示，二次元抽卡、乙女向、情怀 IP 等样本较多，后续品类结论更适用于这些样本充足的方向。</div>`;
 }
 
 // 核心矛盾聚类条形图
 function renderTagsChart() {
   const counter = {};
-  (caseSummaries||[]).forEach(c => (c.tags||[]).forEach(t => counter[t] = (counter[t]||0)+1));
+  (caseSummaries||[]).forEach(c => caseTags(c).forEach(t => counter[t] = (counter[t]||0)+1));
   renderBarChart('tagsChart', counter, ['#B85450','#8B6F47','#2C3E5C','#5B7B9A','#6C7B8B','#7B6B8A']);
+  const wrap = document.getElementById('tagsChart');
+  if (wrap) wrap.innerHTML += `<div class="chartInsights chartInsightsSub"><b>洞察：</b>这是基础计数，只回答“哪些矛盾更常见”，不直接回答“哪些更严重”；严重度以上方“核心矛盾 × 伤害”为准。</div>`;
 }
 
-// 矛盾类型 × 公关应对 交叉热力图
+// 三维热力图：横纵轴为分类，颜色为伤害，数字为案例数
+const PR_ORDER = ['立刻滑跪','正常处理','前期冷处理+后期滑跪','冷处理'];
+const DMG3_COLORS = { high:'#B85450', mid:'#D99A3E', low:'#7A93B5', na:'#E6E9ED' };
+const DMG3_LABELS = { high:'高', mid:'中', low:'低', na:'无' };
+const DMG3_RANK = { high:3, mid:2, low:1, na:0 };
+
+function damageLevelFromCase(c){ return dmgTier3(c.damage); }
+function highestDamage(cases){
+  if (!cases.length) return 'empty';
+  return cases.map(damageLevelFromCase).sort((a,b)=>(DMG3_RANK[b]||0)-(DMG3_RANK[a]||0))[0] || 'na';
+}
+function damageMix(cases){
+  const m={high:0,mid:0,low:0,na:0};
+  cases.forEach(c=>m[damageLevelFromCase(c)]++);
+  return m;
+}
+function caseShort(c){ return `${c.game||c.title}: ${(c.summary||c.type||'').slice(0,18)}${(c.summary||c.type||'').length>18?'...':''}`; }
+function topNByCount(counter, n, min=1){
+  return Object.entries(counter).filter(([,v])=>v>=min).sort((a,b)=>b[1]-a[1]).slice(0,n).map(([k])=>k);
+}
+function matrixCells(rows, cols, getRowVals, getColVals){
+  const cells={};
+  rows.forEach(r=>cols.forEach(c=>cells[`${r}|||${c}`]=[]));
+  (caseSummaries||[]).forEach(item=>{
+    getRowVals(item).filter(v=>rows.includes(v)).forEach(r=>{
+      getColVals(item).filter(v=>cols.includes(v)).forEach(c=>{
+        cells[`${r}|||${c}`].push(item);
+      });
+    });
+  });
+  return cells;
+}
+function heatLegend(){
+  return `<div class="triHeatLegend">
+    <span><i style="background:${DMG3_COLORS.high}"></i>出现高伤害</span>
+    <span><i style="background:${DMG3_COLORS.mid}"></i>以中伤害为主</span>
+    <span><i style="background:${DMG3_COLORS.low}"></i>低伤害</span>
+    <span><i style="background:${DMG3_COLORS.na}"></i>无数据/未收录</span>
+  </div>`;
+}
+function renderTriHeatmap({rows, cols, cells, rowTitle='', colTitle='', note='', conclusion='', compact=false}){
+  const colHeads = cols.map(c=>`<div class="thColHead">${esc(c)}</div>`).join('');
+  const body = rows.map(r=>{
+    const cellHtml = cols.map(c=>{
+      const list = cells[`${r}|||${c}`] || [];
+      const tier = highestDamage(list);
+      const mix = damageMix(list);
+      const cases = list.slice(0,6).map(caseShort).join('\n');
+      const count = list.length;
+      const detail = count ? `${r} × ${c}\n案例数：${count}\n伤害：${mix.high}高 / ${mix.mid}中 / ${mix.low}低${mix.na?` / ${mix.na}无`:''}\n${cases}` : `${r} × ${c}\n暂无案例`;
+      return `<div class="thCell th-${tier}" title="${esc(detail)}">
+        ${count?`<b>${count}</b><span>${mix.high?`${mix.high}高`:mix.mid?`${mix.mid}中`:mix.low?`${mix.low}低`:'无'}</span>`:''}
+      </div>`;
+    }).join('');
+    return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
+  }).join('');
+  return `<div class="triHeat${compact?' triHeatCompact':''}">
+    <div class="triHeatAxis"><span>${esc(rowTitle)}</span><span>${esc(colTitle)}</span></div>
+    <div class="triHeatGrid" style="--th-cols:${cols.length}">
+      <div class="thCorner"></div>${colHeads}${body}
+    </div>
+    ${heatLegend()}
+    ${conclusion?`<div class="chartInsights"><b>洞察：</b>${conclusion}</div>`:''}
+    ${note?`<p class="chartReadNote">${note}</p>`:''}
+  </div>`;
+}
+
+// 核心矛盾 × 公关应对 × 伤害
 function renderCrossTagPrChart() {
   const wrap = document.getElementById('crossTagPrChart');
   if (!wrap) return;
   const all = caseSummaries || [];
-
-  // 公关应对列
-  const prOrder = ['光速滑跪+回退','认错+整改方案','冷处理+沉默装死','敷衍回应+部分调整','被迫补偿+被动合规','仅公示+处置事故'];
-
-  // Top 8 矛盾标签（行）
   const tagTotal = {};
-  all.forEach(c => (c.tags||[]).forEach(t => tagTotal[t]=(tagTotal[t]||0)+1));
-  const topTags = Object.entries(tagTotal).sort((a,b)=>b[1]-a[1]).slice(0,8).map(e=>e[0]);
-
-  // 交叉统计：每个 tag × 每个 pr 的案例数
-  const matrix = topTags.map(tag => {
-    const row = prOrder.map(pr => {
-      return all.filter(c => (c.tags||[]).includes(tag) && (c.pr||'') === pr).length;
-    });
-    return { label: tag, values: row };
+  all.forEach(c => caseTags(c).forEach(t => tagTotal[t]=(tagTotal[t]||0)+1));
+  const rows = topNByCount(tagTotal, 8);
+  const cols = PR_ORDER.filter(p=>all.some(c=>(c.pr||'')===p));
+  const cells = matrixCells(rows, cols, c=>caseTags(c), c=>[c.pr||'其他']);
+  wrap.innerHTML = renderTriHeatmap({
+    rows, cols, cells,
+    rowTitle:'核心矛盾', colTitle:'官方应对',
+    conclusion:`<ol>
+      <li>这张图重点看“官方如何判断事件性质”：滑跪格子多为中高伤害，说明滑跪通常是事件严重后的被动止血，而不是伤害发生的原因。</li>
+      <li>冷处理的关键风险在误判：如果只是外部噪音或低伤害节奏，冷处理成本较低；但如果真实痛点已动到承重墙，冷处理会错过最佳止血窗口。</li>
+      <li>前期冷处理 + 后期滑跪是最值得复盘的类型：它往往意味着官方一开始没有识别出玩家核心诉求，等舆论升级后再回退，公关成本和信任损耗都会被抬高。</li>
+    </ol>`,
   });
-
-  const maxVal = Math.max(...matrix.flatMap(r => r.values), 1);
-
-  // 颜色渐变：暖棕色（区别于上面的红色和深靛蓝）
-  function cellColor(v) {
-    if (v === 0) return 'transparent';
-    const i = v / maxVal;
-    return `rgba(139,111,71,${0.12 + i * 0.78})`;
-  }
-
-  // SVG 渲染
-  const cellW = 90, cellH = 36, padL = 180, padT = 50;
-  const W = padL + prOrder.length * cellW + 10;
-  const H = padT + matrix.length * cellH + 10;
-
-  // 列头（公关应对）
-  const header = prOrder.map((p, i) => {
-    const x = padL + i * cellW;
-    // 简化标签：取核心词
-    const short = p.replace('+','\n').split('\n')[0];
-    return `<text x="${x + cellW/2}" y="20" text-anchor="middle" font-size="11" fill="var(--muted)">${esc(short)}</text>`;
-  }).join('');
-
-  // 行
-  const rows = matrix.map((r, ri) => {
-    const y = padT + ri * cellH;
-    const label = `<text x="${padL - 10}" y="${y + cellH/2 + 4}" text-anchor="end" font-size="11" fill="var(--text)">${esc(r.label)}</text>`;
-    const cells = r.values.map((v, ci) => {
-      const x = padL + ci * cellW;
-      const bg = cellColor(v);
-      const border = v === 0 ? 'var(--line)' : 'transparent';
-      const textColor = (v / maxVal) > 0.5 ? '#fff' : 'var(--text)';
-      return `<rect x="${x+2}" y="${y+2}" width="${cellW-4}" height="${cellH-4}" rx="5" fill="${bg}" stroke="${border}" stroke-width="0.5"><title>${esc(r.label)} × ${esc(prOrder[ci])}: ${v}</title></rect>${v > 0 ? `<text x="${x + cellW/2}" y="${y + cellH/2 + 4}" text-anchor="middle" font-size="13" font-weight="600" fill="${textColor}">${v}</text>` : ''}`;
-    }).join('');
-    return label + cells;
-  }).join('');
-
-  // 图例
-  const legendStops = [0.12, 0.3, 0.5, 0.7, 0.9].map(i => `<span style="display:inline-block;width:14px;height:10px;background:rgba(139,111,71,${i})"></span>`).join('');
-
-  wrap.innerHTML = `
-    <div class="ytHeatWrap" style="justify-content:center">
-      <svg viewBox="0 0 ${W} ${H}" style="width:100%;max-width:820px;height:auto"><g>${header}${rows}</g></svg>
-    </div>
-    <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
-  `;
 }
 
-// 品类 × 声量/伤害高低分布（双条并排）
+// 品类 × 核心矛盾 × 伤害
 function renderGenreDamageChart() {
   const wrap = document.getElementById('genreDamageChart');
   if (!wrap) return;
   const all = caseSummaries || [];
+  const genreTotal = {};
+  const tagTotal = {};
+  all.forEach(c=>{
+    (c.genre||[]).forEach(g=>genreTotal[g]=(genreTotal[g]||0)+1);
+    caseTags(c).forEach(t=>tagTotal[t]=(tagTotal[t]||0)+1);
+  });
+  const rows = topNByCount(genreTotal, 9, 2);
+  const cols = topNByCount(tagTotal, 8);
+  const cells = matrixCells(rows, cols, c=>c.genre||[], c=>caseTags(c));
+  wrap.innerHTML = renderTriHeatmap({
+    rows, cols, cells,
+    rowTitle:'游戏品类', colTitle:'核心矛盾',
+    conclusion:`<ol>
+      <li>乙女向与二次元抽卡在情感/价值观争议上发生最多，也更容易出现中高伤害：这类品类的核心资产不是单纯功能，而是角色关系、情感契约和玩家认同。</li>
+      <li>二次元抽卡的付费内容贬值/商业化动机争议更突出，说明抽卡资产一旦被削弱、缩水或被认为“吃相难看”，很容易从普通吐槽升级为付费信任问题。</li>
+      <li>竞技射击/强对抗品类更要盯数值、公平和玩法生态；情怀 IP 则更容易在定位偏离、价值观或老玩家预期落差上受损。</li>
+    </ol>`,
+    note:'读法：格子数字为案例数，颜色按该组合中出现的最高伤害着色。红色不代表每个案例都高伤害，而代表该组合出现过高伤害样本。',
+  });
+}
 
-  // 按品类统计：声量高低、伤害高低
-  // 声量 S=高，A=低；伤害 S+A=高，B=低
-  const genreData = {};
+// —— 伤害分档辅助：S/A=中高，B=低，无数据/未收录=无（旧·两档，保留兼容）——
+function dmgTier(d){
+  d = d || '';
+  if (d === '无数据' || d === '未收录') return 'na';
+  if (/S/.test(d) || d === 'A') return 'high';
+  return 'low';
+}
+// —— 伤害三档：S=高，A=中，B=低，无数据/未收录=无 ——
+function dmgTier3(d){
+  d = d || '';
+  if (d === '无数据' || d === '未收录') return 'na';
+  if (/S/.test(d) || d === '高') return 'high';
+  if (/A/.test(d) || d === '中') return 'mid';
+  return 'low';
+}
+// —— 核心矛盾标签合并：圈层矛盾-性别 / 圈层矛盾-竞品 统称「圈层矛盾」 ——
+const mergeTag = t => (t||'').startsWith('圈层矛盾') ? '圈层矛盾' : (t||'');
+// 返回单个案例去重后的合并标签数组
+const caseTags = c => [...new Set((c.tags||[]).map(mergeTag).filter(Boolean))];
+// 图1 · 核心矛盾 × 伤害（哪些矛盾最伤大盘）— 三档：高/中/低
+function renderTagDamageChart(){
+  const wrap = document.getElementById('tagDamageChart');
+  if (!wrap) return;
+  const all = caseSummaries || [];
+  const data = {};
   all.forEach(c => {
-    (c.genre||[]).forEach(g => {
-      if (!genreData[g]) genreData[g] = { volHigh:0, volLow:0, dmgHigh:0, dmgLow:0, total:0 };
-      genreData[g].total++;
-      const v = c.volume || '';
-      if (/S/.test(v)) genreData[g].volHigh++; else genreData[g].volLow++;
-      const d = c.damage || '';
-      if (/S/.test(d) || /A/.test(d)) genreData[g].dmgHigh++; else genreData[g].dmgLow++;
+    const tier = dmgTier3(c.damage);
+    caseTags(c).forEach(t => {
+      if (!data[t]) data[t] = { high:0, mid:0, low:0, na:0, total:0 };
+      data[t][tier]++; data[t].total++;
     });
   });
-
-  // 按案例数排序，取案例数>=2的品类
-  const genres = Object.entries(genreData)
-    .filter(([,d]) => d.total >= 2)
-    .sort((a,b) => b[1].total - a[1].total);
-
-  if (!genres.length) { wrap.innerHTML = '<p class="muted">无数据</p>'; return; }
-  const maxTotal = Math.max(...genres.map(([,d]) => d.total));
-
-  // 颜色
-  const volHighColor = '#2C3E5C'; // 深靛蓝
-  const volLowColor = '#A8B5C5';  // 浅蓝灰
-  const dmgHighColor = '#B85450'; // 砖红
-  const dmgLowColor = '#D8B5B0';  // 浅粉灰
-
-  const rows = genres.map(([g, d]) => {
-    const barWidth = d.total / maxTotal * 100;
-    // 声量条
-    const volHighW = d.total ? d.volHigh / d.total * 100 : 0;
-    const volLowW = d.total ? d.volLow / d.total * 100 : 0;
-    // 伤害条
-    const dmgHighW = d.total ? d.dmgHigh / d.total * 100 : 0;
-    const dmgLowW = d.total ? d.dmgLow / d.total * 100 : 0;
-
+  const rows = Object.entries(data).sort((a,b)=> (b[1].high-a[1].high) || (b[1].mid-a[1].mid) || (b[1].total-a[1].total));
+  if (!rows.length){ wrap.innerHTML='<p class="muted">无数据</p>'; return; }
+  const maxTotal = Math.max(...rows.map(([,d])=>d.total));
+  const C = DMG3_COLORS;
+  const html = rows.map(([t,d])=>{
+    const w = d.total/maxTotal*100;
+    const hi = d.total? d.high/d.total*100:0;
+    const mi = d.total? d.mid/d.total*100:0;
+    const lo = d.total? d.low/d.total*100:0;
+    const na = d.total? d.na/d.total*100:0;
     return `<div class="gdRow">
-      <div class="gdGenre">${esc(g)} <span class="gdCount">${d.total}</span></div>
+      <div class="gdGenre">${esc(t)} <span class="gdCount">${d.total}</span></div>
       <div class="gdBars">
         <div class="gdBarLine">
-          <span class="gdBarLabel">声量</span>
-          <div class="gdBar" style="width:${barWidth}%">
-            <div class="gdSeg" style="width:${volHighW}%;background:${volHighColor}" title="声量高(S): ${d.volHigh}"></div>
-            <div class="gdSeg" style="width:${volLowW}%;background:${volLowColor}" title="声量低(A): ${d.volLow}"></div>
-          </div>
-          <span class="gdBarVal">${d.volHigh}高 / ${d.volLow}低</span>
-        </div>
-        <div class="gdBarLine">
           <span class="gdBarLabel">伤害</span>
-          <div class="gdBar" style="width:${barWidth}%">
-            <div class="gdSeg" style="width:${dmgHighW}%;background:${dmgHighColor}" title="伤害高(S+A): ${d.dmgHigh}"></div>
-            <div class="gdSeg" style="width:${dmgLowW}%;background:${dmgLowColor}" title="伤害低(B): ${d.dmgLow}"></div>
+          <div class="gdBar" style="width:${w}%">
+            <div class="gdSeg" style="width:${hi}%;background:${C.high}" title="高伤害(S): ${d.high}"></div>
+            <div class="gdSeg" style="width:${mi}%;background:${C.mid}" title="中伤害(A): ${d.mid}"></div>
+            <div class="gdSeg" style="width:${lo}%;background:${C.low}" title="低伤害(B): ${d.low}"></div>
+            <div class="gdSeg" style="width:${na}%;background:${C.na}" title="无数据/未收录: ${d.na}"></div>
           </div>
-          <span class="gdBarVal">${d.dmgHigh}高 / ${d.dmgLow}低</span>
+          <span class="gdBarVal">${d.high}高 / ${d.mid}中 / ${d.low}低${d.na?` / ${d.na}无`:''}</span>
         </div>
       </div>
     </div>`;
   }).join('');
+  const legend = `<div class="gdLegend">
+    <span class="gdLegendItem"><span class="gdDot" style="background:${C.high}"></span>高伤害</span>
+    <span class="gdLegendItem"><span class="gdDot" style="background:${C.mid}"></span>中伤害</span>
+    <span class="gdLegendItem"><span class="gdDot" style="background:${C.low}"></span>低伤害</span>
+    <span class="gdLegendItem"><span class="gdDot" style="background:${C.na}"></span>无数据/未收录</span>
+  </div>`;
+  wrap.innerHTML = `<div class="gdRows">${html}</div>${legend}
+    <div class="chartInsights"><b>洞察：</b>付费权益、商业化动机和体验质量更容易打出中高伤害；内容尺度和圈层矛盾本身未必直接伤大盘，但一旦叠加公共红线或真实利益损失，风险会迅速上升。</div>`;
+}
 
-  // 图例
-  const legend = `
-    <div class="gdLegend">
-      <span class="gdLegendItem"><span class="gdDot" style="background:${volHighColor}"></span>声量高(S)</span>
-      <span class="gdLegendItem"><span class="gdDot" style="background:${volLowColor}"></span>声量低(A)</span>
-      <span class="gdLegendItem"><span class="gdDot" style="background:${dmgHighColor}"></span>伤害高(S+A)</span>
-      <span class="gdLegendItem"><span class="gdDot" style="background:${dmgLowColor}"></span>伤害低(B)</span>
-    </div>
-  `;
+// 图2 · 声量范围 × 核心矛盾 × 伤害
+function renderScopeTagChart(){
+  const wrap = document.getElementById('scopeTagChart');
+  if (!wrap) return;
+  const all = caseSummaries || [];
+  const tagTotal = {};
+  all.forEach(c => caseTags(c).forEach(t=>tagTotal[t]=(tagTotal[t]||0)+1));
+  const rows = ['破圈','圈内'];
+  const cols = topNByCount(tagTotal, 7);
+  const cells = {};
+  rows.forEach(r=>cols.forEach(c=>cells[`${r}|||${c}`]=[]));
+  all.forEach(c=>{
+    const scope = c.volumeScope === '破圈' ? '破圈' : '圈内';
+    caseTags(c).forEach(t=>{
+      if (cols.includes(t)) cells[`${scope}|||${t}`].push(c);
+    });
+  });
+  wrap.innerHTML = renderTriHeatmap({
+    rows, cols, cells,
+    rowTitle:'声量范围', colTitle:'核心矛盾',
+    compact:true,
+    conclusion:'内容尺度、圈层矛盾和价值观议题更容易外溢到公共舆论场；但破圈不等于真伤害，真正伤到大盘通常还要同时踩中付费、体验、资源分配等真实痛点。',
+  });
+}
 
-  wrap.innerHTML = `<div class="gdRows">${rows}</div>${legend}`;
+// 图3 · 公关应对 × 伤害（含选择效应说明）— 三档：高/中/低
+function renderPrDamageChart(){
+  const wrap = document.getElementById('prDamageChart');
+  if (!wrap) return;
+  const all = caseSummaries || [];
+  const order = ['立刻滑跪','正常处理','前期冷处理+后期滑跪','冷处理'];
+  const data = {}; order.forEach(p=> data[p]={high:0,mid:0,low:0,na:0,total:0});
+  all.forEach(c => {
+    const p = c.pr; if (!data[p]) return;
+    data[p][dmgTier3(c.damage)]++; data[p].total++;
+  });
+  const rows = order.filter(p=>data[p].total>0);
+  const maxTotal = Math.max(...rows.map(p=>data[p].total));
+  const C = DMG3_COLORS;
+  const html = rows.map(p=>{
+    const d=data[p]; const w=d.total/maxTotal*100;
+    const hi=d.total?d.high/d.total*100:0, mi=d.total?d.mid/d.total*100:0, lo=d.total?d.low/d.total*100:0, na=d.total?d.na/d.total*100:0;
+    return `<div class="gdRow">
+      <div class="gdGenre">${esc(p)} <span class="gdCount">${d.total}</span></div>
+      <div class="gdBars"><div class="gdBarLine">
+        <span class="gdBarLabel">伤害</span>
+        <div class="gdBar" style="width:${w}%">
+          <div class="gdSeg" style="width:${hi}%;background:${C.high}" title="高伤害(S): ${d.high}"></div>
+          <div class="gdSeg" style="width:${mi}%;background:${C.mid}" title="中伤害(A): ${d.mid}"></div>
+          <div class="gdSeg" style="width:${lo}%;background:${C.low}" title="低伤害(B): ${d.low}"></div>
+          <div class="gdSeg" style="width:${na}%;background:${C.na}" title="无数据/未收录: ${d.na}"></div>
+        </div>
+        <span class="gdBarVal">${d.high}高 / ${d.mid}中 / ${d.low}低${d.na?` / ${d.na}无`:''}</span>
+      </div></div>
+    </div>`;
+  }).join('');
+  const legend = `<div class="gdLegend">
+    <span class="gdLegendItem"><span class="gdDot" style="background:${C.high}"></span>高伤害</span>
+    <span class="gdLegendItem"><span class="gdDot" style="background:${C.mid}"></span>中伤害</span>
+    <span class="gdLegendItem"><span class="gdDot" style="background:${C.low}"></span>低伤害</span>
+    <span class="gdLegendItem"><span class="gdDot" style="background:${C.na}"></span>无数据/未收录</span>
+  </div>`;
+  wrap.innerHTML = `<div class="gdRows">${html}</div>${legend}
+    <div class="chartInsights"><b>洞察：</b>立刻滑跪常出现在已伤承重墙的场景，冷处理更适合低伤害噪声；关键不是“跪不跪”，而是先判清楚事件有没有打到真实痛点和承重墙。</div>
+    <p class="mapNote"><strong>选择效应：</strong>滑跪案例伤害偏高，并不等于滑跪导致高伤害，而是事件严重到需要快速回退或补救。</p>`;
+}
+
+// 图4 · 结局落点分布（resultCell 汇总）
+function renderResultCellChart(){
+  const wrap = document.getElementById('resultCellChart');
+  if (!wrap) return;
+  const all = caseSummaries || [];
+  const META = {
+    crisis:  { label:'真危机',   sub:'高声量 · 高伤害', color:'#B85450' },
+    deficit: { label:'信任赤字', sub:'高声量 · 中伤害', color:'#D99A3E' },
+    silent:  { label:'沉默流失', sub:'低声量 · 高伤害', color:'#5B7DA6' },
+    noise:   { label:'真噪声',   sub:'低声量 · 低伤害', color:'#8A97A6' },
+  };
+  const order = ['crisis','deficit','silent','noise'];
+  const cnt = {}; order.forEach(k=>cnt[k]=0);
+  all.forEach(c=>{ if(cnt[c.resultCell]!=null) cnt[c.resultCell]++; });
+  const max = Math.max(1,...order.map(k=>cnt[k]));
+  const html = order.map(k=>{
+    const m=META[k]; const n=cnt[k]; const w=n/max*100;
+    return `<div class="mapBar">
+      <div>
+        <span class="mapBarLabel">${m.label}　<span style="color:var(--muted);font-weight:400">${m.sub}</span></span>
+        <div class="mapBarTrack"><div class="mapBarFill" style="width:${w}%;background:${m.color}"></div></div>
+      </div>
+      <span class="mapBarVal">${n}</span>
+    </div>`;
+  }).join('');
+  wrap.innerHTML = `<div class="mapBars">${html}</div>
+    <div class="chartInsights"><b>洞察：</b>真正需要紧急止损的真危机为 ${cnt.crisis} 例；中伤害案例应单独识别为信任赤字或短期冲击，不能并入高伤害，否则会把处置优先级判断做重。</div>`;
+}
+
+// 图5 · 公关应对 × 时间 × 伤害
+function renderPrTimeChart(){
+  const wrap = document.getElementById('prTimeChart');
+  if (!wrap) return;
+  const all = caseSummaries || [];
+  const years = [...new Set(all.map(c=>(c.time||'').slice(0,4)).filter(Boolean))].sort();
+  const rows = PR_ORDER.filter(p=>all.some(c=>(c.pr||'')===p));
+  const cells = {};
+  rows.forEach(r=>years.forEach(y=>cells[`${r}|||${y}`]=[]));
+  all.forEach(c=>{
+    const y=(c.time||'').slice(0,4);
+    const p=c.pr||'其他';
+    if (rows.includes(p) && years.includes(y)) cells[`${p}|||${y}`].push(c);
+  });
+  wrap.innerHTML = renderTriHeatmap({
+    rows, cols:years, cells,
+    rowTitle:'公关应对', colTitle:'年份',
+    conclusion:'近年样本里“前期冷处理+后期滑跪”值得重点关注：它往往不是一种成熟策略，而是前期误判后被动补救；真正的判断点仍是是否命中承重墙和公共红线。',
+    note:'读法：颜色表示该“应对 × 年份”组合中出现过的最高伤害，数字为案例数。样本量较小，趋势用于提示风险，不作严格预测。',
+  });
 }
 
 function renderGrid(){
   renderStats();
   renderMatrixChart();
+  renderOverviewCards();
+  renderGenreChart();
   renderPrChart();
   renderYearTrendChart();
   renderTagsChart();
   renderCrossTagPrChart();
   renderGenreDamageChart();
+  renderTagDamageChart();
+  renderScopeTagChart();
+  renderPrDamageChart();
+  renderPrTimeChart();
   const list=filtered();
   $('resultCount').textContent=`${list.length} / ${caseSummaries.length} 个案例`;
   $('caseGrid').innerHTML=list.map(c=>`<article class="card caseCard" onclick="openCase('${c.id}')"><div class="caseHead"><div><div class="caseTitle">${c.title}</div><div class="game">${c.game} / ${c.company}${(c.genre||[]).length?' / '+(c.genre||[]).join(' · '):''}</div></div><div class="caseBadges"><span class="badge ${levelClass(c.volume)}" title="声量等级">声量 ${gradeLevel(c.volume)}</span><span class="badge ${levelClass(c.damage)}" title="伤害等级">伤害 ${gradeLevel(c.damage)}</span></div></div><div class="desc">${c.summary}</div><div class="chips">${(c.tags||[]).map(t=>`<span class="chip chip-conflict">${t}</span>`).join('')}${c.pr?`<span class="chip chip-pr">${c.pr}</span>`:''}</div><div class="foot"><span>${c.market}</span><span>${c.time}</span></div></article>`).join('');
@@ -858,7 +1100,16 @@ function renderImpactV1(c){
   const whyHtml=(ds.whyParts&&ds.whyParts.length)
     ? `<div class="dataWhyBox">${ds.whyParts.map(p=>`<p class="dataWhy"><b>${esc(p.label)}：</b>${esc(p.text)}</p>`).join('')}</div>`
     : (ds.why?`<p class="dataWhy">${esc(ds.why)}</p>`:'');
-  const dataPane=charts?`${verdict('数据结论',ds.verdict)}${dmgRow}${whyHtml}<div class="dataCharts">${charts}</div>${ds.caption?`<p class="muted dataCaption">${esc(ds.caption)}</p>`:''}`:'<p class="muted">暂无脱敏数据。</p>';
+  let dataPane;
+  if(charts){
+    dataPane=`${verdict('数据结论',ds.verdict)}${dmgRow}${whyHtml}<div class="dataCharts">${charts}</div>${ds.caption?`<p class="muted dataCaption">${esc(ds.caption)}</p>`:''}`;
+  }else if(ds.verdict||dmg.grade||ds.caption){
+    // 无脱敏图（无数据/未收录/无法量化）：优雅降级，仍展示数据结论 + 伤害评级 + 说明
+    const naBadge=`<div class="dataNaBadge dna-${esc(dmg.tone||'mute')}">${esc(gradeLevel(dmg.grade)||'无数据')} · 无脱敏图</div>`;
+    dataPane=`<div class="dataNaBox">${naBadge}${verdict('数据结论',ds.verdict)}${dmgRow}${whyHtml}${ds.caption?`<p class="muted dataCaption">${esc(ds.caption)}</p>`:''}</div>`;
+  }else{
+    dataPane='<p class="muted">暂无脱敏数据。</p>';
+  }
 
   const compNote=comp.valueNote?`<p class="muted dataCaption">估算依据：${esc(comp.valueNote)}（按游戏内正常购买价粗估，仅供横向对比）</p>`:'';
   const compHead=`<div class="verdict compVerdict"><span class="verdictLabel">补偿力度</span><span class="verdictText">${esc(comp.strength)}</span>${comp.value?ratePill('估算市值',comp.value,comp.tone):''}</div>`;
@@ -942,7 +1193,7 @@ function renderInsightV1(c){
   const pfHeadline=pf.headline?`<p class="pfVerdict lb-${esc(quad.resultCell||'noise')}">${esc(pf.headline)}</p>`:'';
   const profileSummary=pf.summary?`<p class="pfSummary">${esc(pf.summary)}</p>`:'';
   const cellFn=(key,name,desc)=>{const on=quad.resultCell===key;return `<div class="qmCell${on?' qmActive qm-'+key:''}"><b>${name}</b>${desc?`<small>${esc(desc)}</small>`:''}${on?'<span class="qmHere">← 本案落点</span>':''}</div>`;};
-  const matrix=quad.resultCell?`<div class="quadMatrix"><div class="qmCorner">声量 ↓ ／ 数据 →</div><div class="qmColHead">数据动了</div><div class="qmColHead">数据没动</div><div class="qmRowHead">声量来自<br>承重墙</div>${cellFn('crisis','真危机','')}${cellFn('deficit','信任赤字累积','延迟爆发')}<div class="qmRowHead">声量来自<br>非承重墙</div>${cellFn('silent','沉默流失','最易误判')}${cellFn('noise','真噪声','')}</div>`:'';
+  const matrix=quad.resultCell?`<div class="quadMatrix"><div class="qmCorner">声量 ↓ ／ 伤害 →</div><div class="qmColHead">低声量</div><div class="qmColHead">高声量</div><div class="qmRowHead">高伤害</div>${cellFn('silent','隐性流失','最易误判')}${cellFn('crisis','真危机','')}<div class="qmRowHead">中伤害</div>${cellFn('local','局部损伤','需观察')}${cellFn('deficit','信任赤字累积','短期冲击/延迟爆发')}<div class="qmRowHead">低伤害</div>${cellFn('routine','常规客诉','')}${cellFn('noise','真噪声','')}</div>`:'';
   const profileBlock=(pfHeadline||profileSummary||matrix)?`<div class="block ctBlock"><h3>案例定型</h3>${pfHeadline}${profileSummary}${matrix}</div>`:'';
 
   // ② 这类游戏的玩家特征（从核心矛盾页迁来）

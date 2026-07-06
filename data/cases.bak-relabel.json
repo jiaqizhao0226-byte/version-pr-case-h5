@@ -12,12 +12,13 @@
       "二次元抽卡"
     ],
     "volume": "S",
-    "damage": "A",
+    "damage": "B",
     "status": "已深挖样例",
     "tags": [
-      "付费内容贬值/不实"
+      "核心付费内容贬值",
+      "商业化争议/变现动机质疑"
     ],
-    "pr": "立刻滑跪",
+    "pr": "光速滑跪+回退",
     "volumeScope": "破圈",
     "summary": "官方在角色上线10个月后试图将“高速转圈”判定为Bug修复，被玩家视为商业欺诈和变相削弱，引发全网震怒。官方罕见在24小时内光速滑跪回退，并发放1600原石平息众怒。",
     "mapping": {
@@ -28,8 +29,7 @@
       "core_tag": "变相削弱",
       "pr_eval": "极佳 (24小时光速滑跪+史无前例10连抽)"
     },
-    "caseFile": "./cases/yuanshen-longwang.json",
-    "resultCell": "noise"
+    "caseFile": "./cases/yuanshen-longwang.json"
   },
   {
     "id": "lianyu-mechanic",
@@ -44,12 +44,13 @@
       "乙女向"
     ],
     "volume": "S",
-    "damage": "B",
+    "damage": "A",
     "status": "已深挖样例",
     "tags": [
-      "付费内容贬值/不实"
+      "付费数值不实",
+      "商业化争议/变现动机质疑"
     ],
-    "pr": "冷处理",
+    "pr": "冷处理+沉默装死",
     "volumeScope": "破圈",
     "summary": "昂贵新卡实装机制严重缺失（与前瞻PV不符），引发千万氪佬联合发起律师函维权，指控消费欺诈。",
     "mapping": {
@@ -60,8 +61,7 @@
       "core_tag": "商业欺诈, 核心机制缺失",
       "pr_eval": "灾难 (傲慢导致律师函警告)"
     },
-    "caseFile": "./cases/lianyu-mechanic.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/lianyu-mechanic.json"
   },
   {
     "id": "lianyu-scale",
@@ -79,10 +79,10 @@
     "damage": "B",
     "status": "已深挖样例",
     "tags": [
-      "情感/价值观争议",
-      "内容尺度/合规争议"
+      "价值观/圈层冲突",
+      "内容尺度争议"
     ],
-    "pr": "冷处理",
+    "pr": "冷处理+沉默装死",
     "volumeScope": "破圈",
     "summary": "官方发布的男主PV尺度过大带有性暗示，引发大众道德审判与核心圈层坚决护盘的剧烈价值观冲突。",
     "mapping": {
@@ -94,8 +94,7 @@
       "core_tag": "性别争议, 破圈反噬",
       "pr_eval": "优秀 (稳坐钓鱼台，保护核心圈层)"
     },
-    "caseFile": "./cases/lianyu-scale.json",
-    "resultCell": "noise"
+    "caseFile": "./cases/lianyu-scale.json"
   },
   {
     "id": "oncehuman-season",
@@ -110,12 +109,12 @@
       "开放世界生存"
     ],
     "volume": "A",
-    "damage": "无数据",
+    "damage": "B",
     "status": "已深挖样例",
     "tags": [
-      "商业化契约/动机争议"
+      "付费权益争议"
     ],
-    "pr": "立刻滑跪",
+    "pr": "认错+整改方案",
     "volumeScope": "",
     "summary": "公测初期由于赛季剧本“资产清零”规则未解释清导致流失焦虑，叠加付费外观“角色绑定”引发逼氪不满，官方迅速连发公告修改底层机制解毒。",
     "mapping": {
@@ -126,8 +125,7 @@
       "core_tag": "赛季清零, 资产安全感",
       "pr_eval": "极佳 (光速改底层规则，顺应玩家诉求)"
     },
-    "caseFile": "./cases/oncehuman-season.json",
-    "resultCell": "noise"
+    "caseFile": "./cases/oncehuman-season.json"
   },
   {
     "id": "shijiezhiwai-money",
@@ -142,12 +140,12 @@
       "乙女向"
     ],
     "volume": "S",
-    "damage": "中",
+    "damage": "S",
     "status": "已深挖样例",
     "tags": [
-      "商业化契约/动机争议"
+      "商业契约变更"
     ],
-    "pr": "冷处理",
+    "pr": "冷处理+沉默装死",
     "volumeScope": "破圈",
     "summary": "新卡池未公告突击涨价33%，官方非但未及时安抚，反而连发公告直言“想赚钱”，导致“发疯营销”遭到剧烈反噬，流水暴跌超90%。",
     "mapping": {
@@ -158,8 +156,7 @@
       "core_tag": "逼氪背刺, 官方发疯",
       "pr_eval": "灾难 (公关直言'想赚钱'，自毁长城)"
     },
-    "caseFile": "./cases/shijiezhiwai-money.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/shijiezhiwai-money.json"
   },
   {
     "id": "mingchao-1.0",
@@ -174,14 +171,13 @@
       "二次元抽卡"
     ],
     "volume": "S",
-    "damage": "B",
+    "damage": "A",
     "status": "已深挖样例",
     "tags": [
-      "付费内容贬值/不实",
-      "情感/价值观争议",
-      "圈层矛盾-竞品"
+      "体验质量与预期落差",
+      "价值观/圈层冲突"
     ],
-    "pr": "正常处理",
+    "pr": "认错+整改方案",
     "volumeScope": "破圈",
     "summary": "1.0公测除了底层性能灾难外，内测遗留的“雪豹抢人头”与“忌炎逃跑将军”等剧情雷点持续发酵，官方被迫用“自选五星”和海量资源暴力挽尊。",
     "mapping": {
@@ -193,8 +189,7 @@
       "core_tag": "开服灾难, 价值观错位",
       "pr_eval": "有效 (卑微滑跪+自选五星强行续命)"
     },
-    "caseFile": "./cases/mingchao-1.0.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/mingchao-1.0.json"
   },
   {
     "id": "dnf-mobile-dragon",
@@ -212,10 +207,10 @@
     "damage": "B",
     "status": "已深挖样例",
     "tags": [
-      "数值/平衡争议",
-      "情感/价值观争议"
+      "数值/平衡调整争议",
+      "价值观/圈层冲突"
     ],
-    "pr": "冷处理",
+    "pr": "冷处理+沉默装死",
     "volumeScope": "",
     "summary": "新副本首领雷龙上线前被削弱40%血量沦为“宝宝龙”，引发硬核与平民玩家的利益分歧；同时男机械因武器Bug秒怪霸榜却遭官方封号，激化了“解决提出问题的人”的矛盾。",
     "mapping": {
@@ -226,8 +221,7 @@
       "core_tag": "粗暴执法, 平民利益",
       "pr_eval": "较差 (削本保日活正确，但用封号掩盖Bug傲慢)"
     },
-    "caseFile": "./cases/dnf-mobile-dragon.json",
-    "resultCell": "noise"
+    "caseFile": "./cases/dnf-mobile-dragon.json"
   },
   {
     "id": "luoke-s2",
@@ -243,15 +237,15 @@
       "情怀IP"
     ],
     "volume": "S",
-    "damage": "中",
+    "damage": "A/S",
     "status": "已深挖样例",
     "tags": [
-      "付费内容贬值/不实",
-      "圈层矛盾-性别",
-      "体验/质量争议",
-      "情感/价值观争议"
+      "暗改",
+      "性别议题争议",
+      "选择性回应",
+      "版本治理失序"
     ],
-    "pr": "前期冷处理+后期滑跪",
+    "pr": "认错+整改方案",
     "volumeScope": "破圈",
     "summary": "S2上线后大量未公告调整叠加版本分支/回退问题，被玩家理解为透明度、情感资产与版本管理能力同时失守。",
     "mapping": {
@@ -263,8 +257,7 @@
       "core_tag": "核心机制剥夺, 透明度缺失",
       "pr_eval": "较差 (补偿失效，回应避重就轻)"
     },
-    "caseFile": "./cases/luoke-s2.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/luoke-s2.json"
   },
   {
     "id": "diablo4-p11",
@@ -279,12 +272,12 @@
       "刷子ARPG"
     ],
     "volume": "S",
-    "damage": "无数据",
+    "damage": "S",
     "status": "已深挖样例",
     "tags": [
-      "数值/平衡争议"
+      "数值/平衡调整争议"
     ],
-    "pr": "立刻滑跪",
+    "pr": "光速滑跪+回退",
     "volumeScope": "",
     "summary": "1.1补丁对全职业伤害、生存、减CD和经验获取进行无差别大砍，剥夺玩家割草爽感，遭抵制后官方开直播认错并承诺“再也不出这种补丁”。",
     "mapping": {
@@ -295,8 +288,7 @@
       "core_tag": "教玩家玩游戏, 无差别削弱",
       "pr_eval": "有效 (篝火夜谈真诚认错并改大纲)"
     },
-    "caseFile": "./cases/diablo4-p11.json",
-    "resultCell": "crisis"
+    "caseFile": "./cases/diablo4-p11.json"
   },
   {
     "id": "yuanshen-1year",
@@ -314,9 +306,9 @@
     "damage": "B",
     "status": "已深挖样例",
     "tags": [
-      "商业化契约/动机争议"
+      "福利回馈落差"
     ],
-    "pr": "立刻滑跪",
+    "pr": "被迫补偿+被动合规",
     "volumeScope": "破圈",
     "summary": "一周年仅送10连且缺乏仪式感，引发国内外玩家罕见的联合差评轰炸（谷歌降至1.8分），迫使官方紧急把计划售卖的198元音乐会限定翅膀转为免费全服发放以平息节奏。",
     "mapping": {
@@ -328,8 +320,7 @@
       "core_tag": "预期管理失败",
       "pr_eval": "被动 (全球差评后紧急妥协送翅膀)"
     },
-    "caseFile": "./cases/yuanshen-1year.json",
-    "resultCell": "noise"
+    "caseFile": "./cases/yuanshen-1year.json"
   },
   {
     "id": "apex-bp",
@@ -344,12 +335,12 @@
       "竞技射击"
     ],
     "volume": "S",
-    "damage": "A",
+    "damage": "S",
     "status": "已深挖样例",
     "tags": [
-      "商业化契约/动机争议"
+      "商业契约变更"
     ],
-    "pr": "立刻滑跪",
+    "pr": "光速滑跪+回退",
     "volumeScope": "",
     "summary": "官方试图取消战令“永动机”机制（用游戏金币续杯），强制玩家用现实法币购买，遭遇Steam“差评如潮”后被迫滑跪撤回改动。",
     "mapping": {
@@ -360,8 +351,7 @@
       "core_tag": "战令经济学, 强制氪金",
       "pr_eval": "较差 (试探底线被差评轰炸后被迫撤回)"
     },
-    "caseFile": "./cases/apex-bp.json",
-    "resultCell": "crisis"
+    "caseFile": "./cases/apex-bp.json"
   },
   {
     "id": "fengzhigu-refund",
@@ -379,9 +369,9 @@
     "damage": "S",
     "status": "已深挖样例",
     "tags": [
-      "付费内容贬值/不实"
+      "付费数值不实"
     ],
-    "pr": "前期冷处理+后期滑跪",
+    "pr": "被迫补偿+被动合规",
     "volumeScope": "",
     "summary": "游戏内付费洗练的核心属性被解包证实存在数值上限封锁及无效判定，官方被迫开启“全额退款但永久封号”的史无前例补救措施。",
     "mapping": {
@@ -392,8 +382,7 @@
       "core_tag": "数值欺诈",
       "pr_eval": "狠辣 (全额退款换封号，切断法律风险)"
     },
-    "caseFile": "./cases/fengzhigu-refund.json",
-    "resultCell": "crisis"
+    "caseFile": "./cases/fengzhigu-refund.json"
   },
   {
     "id": "sanjiaozhou-jail",
@@ -412,9 +401,10 @@
     "status": "已深挖样例",
     "tags": [
       "自创玩法管控争议",
-      "数值/平衡争议"
+      "商业化争议/变现动机质疑",
+      "版本治理失序"
     ],
-    "pr": "正常处理",
+    "pr": "冷处理+沉默装死",
     "volumeScope": "破圈",
     "summary": "国庆期间官方用撤离点5人限制和深蓝削弱瓦解玩家自发共享监狱生态，争议从单纯功能调整升级为玩家共创玩法与官方控制权的剧烈冲突。",
     "mapping": {
@@ -425,8 +415,7 @@
       "core_tag": "玩法契约破坏, 官方教玩游戏",
       "pr_eval": "较差 (冷处理导致不信任)"
     },
-    "caseFile": "./cases/sanjiaozhou-jail.json",
-    "resultCell": "noise"
+    "caseFile": "./cases/sanjiaozhou-jail.json"
   },
   {
     "id": "benghuai-rabbit",
@@ -441,12 +430,12 @@
       "二次元抽卡"
     ],
     "volume": "S",
-    "damage": "无数据",
+    "damage": "S",
     "status": "已深挖样例",
     "tags": [
-      "情感/价值观争议"
+      "情感背叛/情怀受损"
     ],
-    "pr": "冷处理",
+    "pr": "冷处理+沉默装死",
     "volumeScope": "",
     "summary": "国际服独占“兔女郎跳舞”福利引发国服玩家强烈的“情感背刺”与“区别对待”愤怒，官方装死一个月后才迟来道歉，导致国服流水当月暴跌。",
     "mapping": {
@@ -457,8 +446,7 @@
       "core_tag": "区别对待, 情感背叛/OOC",
       "pr_eval": "极差 (装死一个月，错失黄金公关期)"
     },
-    "caseFile": "./cases/benghuai-rabbit.json",
-    "resultCell": "crisis"
+    "caseFile": "./cases/benghuai-rabbit.json"
   },
   {
     "id": "yanyun-jiujian",
@@ -473,12 +461,12 @@
       "武侠开放世界"
     ],
     "volume": "A",
-    "damage": "A",
+    "damage": "B",
     "status": "已深挖样例",
     "tags": [
-      "数值/平衡争议"
+      "数值/平衡调整争议"
     ],
-    "pr": "立刻滑跪",
+    "pr": "光速滑跪+回退",
     "volumeScope": "",
     "summary": "平衡性调整中对高操作难度的“九剑”流派核心机制多重削弱，导致玩家炸服抗议。官方24小时内紧急滑跪撤回，却引发了“按闹分配”的不良生态。",
     "mapping": {
@@ -490,8 +478,7 @@
       "core_tag": "平衡调整, 按闹分配",
       "pr_eval": "双刃剑 (光速滑跪但催生了按闹分配的毒瘤生态)"
     },
-    "caseFile": "./cases/yanyun-jiujian.json",
-    "resultCell": "noise"
+    "caseFile": "./cases/yanyun-jiujian.json"
   },
   {
     "id": "yanyun-female",
@@ -509,11 +496,11 @@
     "damage": "B",
     "status": "已深挖样例",
     "tags": [
-      "圈层矛盾-性别",
-      "情感/价值观争议",
-      "内容尺度/合规争议"
+      "性别议题争议",
+      "内容尺度争议",
+      "情感背叛/情怀受损"
     ],
-    "pr": "冷处理",
+    "pr": "敷衍回应+部分调整",
     "volumeScope": "破圈",
     "summary": "曾打出“女性友好”标签的燕云在周年庆推出带有“擦边/软色情”元素的时装“飞白成诗”，引爆女性玩家关于“男凝”与“违背初心”的剧烈抗议。",
     "mapping": {
@@ -525,8 +512,7 @@
       "core_tag": "性别对立, 违背初心",
       "pr_eval": "被动 (试图两头讨好，最终两头挨骂)"
     },
-    "caseFile": "./cases/yanyun-female.json",
-    "resultCell": "noise"
+    "caseFile": "./cases/yanyun-female.json"
   },
   {
     "id": "codm-cn-launch",
@@ -534,7 +520,7 @@
     "game": "使命召唤手游（国服）",
     "company": "腾讯天美 / 动视暴雪",
     "market": "国内厂商×国内市场",
-    "time": "2023-11",
+    "time": "2020-12",
     "lifecycle": "国服上线期 / 转盘抽奖机制",
     "type": "商业化机制设计/开箱抽奖争议",
     "genre": [
@@ -545,9 +531,9 @@
     "damage": "B",
     "status": "已深挖样例",
     "tags": [
-      "商业化契约/动机争议"
+      "商业化争议/变现动机质疑"
     ],
-    "pr": "冷处理",
+    "pr": "仅公示+处置事故",
     "volumeScope": "",
     "summary": "买断制 FPS IP 国服化为「免费+开箱转盘抽奖」商业化，稀有掉率低（约 1.25%）、分梯队出货、集齐需数百至千元，被批玄学概率/赌博式；概率公示满足合规却消除不了赌博观感。官方擅长处置具体事故（四周年转盘 BUG 致歉+退券+补偿），却未触及商业化主争议——真实玩家怨气累积、未伤大盘，属信任赤字。",
     "mapping": {
@@ -558,8 +544,7 @@
       "core_tag": "商业化/抽奖争议, 商业动机质疑",
       "pr_eval": "概率公示合规、四周年 BUG 处置诚恳，但商业化主争议搁置"
     },
-    "caseFile": "./cases/codm-cn-launch.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/codm-cn-launch.json"
   },
   {
     "id": "dnf-pc-harmony",
@@ -575,13 +560,14 @@
       "情怀IP"
     ],
     "volume": "A",
-    "damage": "未收录",
+    "damage": "B",
     "status": "已深挖样例",
     "tags": [
-      "内容尺度/合规争议",
-      "情感/价值观争议"
+      "合规问题",
+      "情感背叛/情怀受损",
+      "补偿错配"
     ],
-    "pr": "正常处理",
+    "pr": "被迫补偿+被动合规",
     "volumeScope": "破圈",
     "summary": "为合规对名称/文本/美术大范围和谐（嗜血→饥渴、圣骑士→光明骑士），被嘲「宝宝巴士」；1 万代币券补偿被批答非所问。真实老玩家情怀受损，但基本盘韧性强、怒火部分归于审核环境——信任赤字。",
     "mapping": {
@@ -592,8 +578,7 @@
       "core_tag": "合规阉割/情怀受损, 补偿错配",
       "pr_eval": "被迫合规，补偿与文化损失错配"
     },
-    "caseFile": "./cases/dnf-pc-harmony.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/dnf-pc-harmony.json"
   },
   {
     "id": "wzry-s40",
@@ -611,10 +596,10 @@
     "damage": "B",
     "status": "已深挖样例",
     "tags": [
-      "体验/质量争议",
-      "数值/平衡争议"
+      "养成负担争议",
+      "数值/平衡调整争议"
     ],
-    "pr": "正常处理",
+    "pr": "认错+整改方案",
     "volumeScope": "",
     "summary": "S40 战力系统改版把「减负」做成「逼肝」（每周回收+保分压力），叠加荣誉称号贬值；官方 6 天内道歉承诺降肝度。真实核心玩家诉求、快速纠偏、大盘稳——轻度信任赤字。",
     "mapping": {
@@ -625,8 +610,7 @@
       "core_tag": "教玩家玩游戏/逼肝, 竞技公平/荣誉贬值",
       "pr_eval": "6 天快速道歉纠偏，姿态低"
     },
-    "caseFile": "./cases/wzry-s40.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/wzry-s40.json"
   },
   {
     "id": "wzry-world-demo",
@@ -642,12 +626,13 @@
       "大IP衍生"
     ],
     "volume": "A",
-    "damage": "未收录",
+    "damage": "B",
     "status": "已深挖样例",
     "tags": [
-      "体验/质量争议"
+      "体验质量与预期落差",
+      "产品定位/品类落差"
     ],
-    "pr": "立刻滑跪",
+    "pr": "认错+整改方案",
     "volumeScope": "破圈",
     "summary": "等待近五年的开放世界大作移动端开测，「剧情不可跳过/无小地图」被官方自认「自以为是」，立正道歉+实质优化排期+648 福利仍被狂喷。处置姿态积极有效止血，新作长线伤害待开服数据——信任赤字（存疑待核）。",
     "mapping": {
@@ -659,8 +644,7 @@
       "core_tag": "体验硬伤/预期管理失败, 大IP衍生/跨品类落差",
       "pr_eval": "诚恳认错+实质优化，范本姿态"
     },
-    "caseFile": "./cases/wzry-world-demo.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/wzry-world-demo.json"
   },
   {
     "id": "genshin-zhongli",
@@ -676,12 +660,13 @@
       "开放世界"
     ],
     "volume": "S",
-    "damage": "A",
+    "damage": "B",
     "status": "已收录",
     "tags": [
-      "付费内容贬值/不实"
+      "数值/平衡调整争议",
+      "付费数值不实"
     ],
-    "pr": "正常处理",
+    "pr": "认错+整改方案",
     "volumeScope": "破圈",
     "summary": "限定五星「钟离」上线强度过弱、与「付费即强力」预期落差，引爆「璃月人不需要摩拉」式玩梗抗议与差评；官方两次加强并建立座谈会沟通机制，钟离逆袭成强角，处置有效但长线伤害待核。",
     "mapping": {
@@ -693,8 +678,7 @@
       "core_tag": "数值/平衡调整争议, 付费数值不实",
       "pr_eval": "加强+沟通机制，后期有效挽回"
     },
-    "caseFile": "./cases/genshin-zhongli.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/genshin-zhongli.json"
   },
   {
     "id": "moer-manor",
@@ -710,12 +694,13 @@
       "情怀IP"
     ],
     "volume": "S",
-    "damage": "S",
+    "damage": "B",
     "status": "已收录",
     "tags": [
-      "体验/质量争议"
+      "体验质量与预期落差",
+      "商业化争议/变现动机质疑"
     ],
-    "pr": "正常处理",
+    "pr": "敷衍回应+部分调整",
     "volumeScope": "破圈",
     "summary": "上线8小时新增超600万用户的情怀爆款，却因bug频出修复慢、外挂泛滥、端午礼包被批骗氪、客服难找，情怀红利迅速转为差评与维权，长线留存/流水伤害待核。",
     "mapping": {
@@ -727,8 +712,7 @@
       "core_tag": "体验质量与预期落差, 商业化争议/变现动机质疑",
       "pr_eval": "常规修复，处置错配退费难"
     },
-    "caseFile": "./cases/moer-manor.json",
-    "resultCell": "silent"
+    "caseFile": "./cases/moer-manor.json"
   },
   {
     "id": "hpmagic-pay",
@@ -744,13 +728,13 @@
       "情怀IP"
     ],
     "volume": "A",
-    "damage": "S",
+    "damage": "B",
     "status": "已收录",
     "tags": [
-      "商业化契约/动机争议",
-      "数值/平衡争议"
+      "商业化争议/变现动机质疑",
+      "数值/平衡调整争议"
     ],
-    "pr": "正常处理",
+    "pr": "认错+整改方案",
     "volumeScope": "破圈",
     "summary": "哈利·波特IP情怀爆火登顶App Store，但「不氪打不过」与氪金破坏PVP平衡使TapTap评分从约9.6暴跌至6.1区间，情怀红利转为差评；官方以投票禁卡+持续平衡调整应对，未正面回应逼氪核心，长线伤害待核。",
     "mapping": {
@@ -762,8 +746,7 @@
       "core_tag": "商业化争议/变现动机质疑, 数值/平衡调整争议",
       "pr_eval": "平衡侧调整治标，未正面回应逼氪"
     },
-    "caseFile": "./cases/hpmagic-pay.json",
-    "resultCell": "silent"
+    "caseFile": "./cases/hpmagic-pay.json"
   },
   {
     "id": "gf2-daiyan",
@@ -779,13 +762,14 @@
       "二次元抽卡"
     ],
     "volume": "S",
-    "damage": "S",
+    "damage": "A",
     "status": "已收录",
     "tags": [
-      "情感/价值观争议",
-      "圈层矛盾-性别"
+      "情感背叛/情怀受损",
+      "价值观/圈层冲突",
+      "选择性回应"
     ],
-    "pr": "立刻滑跪",
+    "pr": "光速滑跪+回退",
     "volumeScope": "破圈",
     "summary": "人气角色「黛烟」与男性NPC暧昧剧情打破核心玩家的情感专属契约，被批NTR/情感背叛，引爆高粘性付费盘；官方三度道歉并回溯重构剧情，但回应失焦放大损伤，流水一度承压。",
     "mapping": {
@@ -796,8 +780,7 @@
       "core_tag": "情感背叛/OOC, 价值观/圈层冲突",
       "pr_eval": "诚恳+制度整改但回应失焦放大损伤"
     },
-    "caseFile": "./cases/gf2-daiyan.json",
-    "resultCell": "silent"
+    "caseFile": "./cases/gf2-daiyan.json"
   },
   {
     "id": "arknights-collab",
@@ -816,9 +799,11 @@
     "damage": "B",
     "status": "已收录",
     "tags": [
-      "付费内容贬值/不实"
+      "商业化争议/变现动机质疑",
+      "核心付费内容贬值",
+      "体验质量与预期落差"
     ],
-    "pr": "冷处理",
+    "pr": "敷衍回应+部分调整",
     "volumeScope": "破圈",
     "summary": "联动皮肤被批「逆天价格」叠加建模偷工（露娜口罩内塞眼球细节缺失），「高价低质」被高口碑护城河放大、消耗长期口碑；官方24小时热修复+少量补偿，对根本商业化质疑回应有限，单事件伤害待核。",
     "mapping": {
@@ -830,8 +815,7 @@
       "core_tag": "商业化争议/变现动机质疑, 核心付费内容贬值",
       "pr_eval": "响应快但解释牵强、补偿失衡"
     },
-    "caseFile": "./cases/arknights-collab.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/arknights-collab.json"
   },
   {
     "id": "shediao-bjd",
@@ -850,9 +834,10 @@
     "damage": "S",
     "status": "已收录",
     "tags": [
-      "体验/质量争议"
+      "产品定位/品类落差",
+      "体验质量与预期落差"
     ],
-    "pr": "立刻滑跪",
+    "pr": "光速滑跪+回退",
     "volumeScope": "破圈",
     "summary": "幼态BJD建模与武侠写实定位立项级错位致口碑崩盘，官方启动「回炉计划」全面改写实、投入超10亿仍未挽回，运营545天后于2025年宣布停运——确定性重大伤害。",
     "mapping": {
@@ -863,8 +848,7 @@
       "core_tag": "美术风格/产品定位错位, 体验质量与预期落差",
       "pr_eval": "回炉彻底但两头落空、无法逆转立项根因"
     },
-    "caseFile": "./cases/shediao-bjd.json",
-    "resultCell": "silent"
+    "caseFile": "./cases/shediao-bjd.json"
   },
   {
     "id": "bluearchive-cn",
@@ -883,12 +867,11 @@
     "damage": "B",
     "status": "已收录",
     "tags": [
-      "内容尺度/合规争议",
-      "情感/价值观争议",
-      "圈层矛盾-竞品",
-      "圈层矛盾-性别"
+      "合规问题",
+      "价值观/圈层冲突",
+      "情感背叛/情怀受损"
     ],
-    "pr": "冷处理",
+    "pr": "敷衍回应+部分调整",
     "volumeScope": "",
     "summary": "国服多角色立绘被和谐叠加雀魂联动企划公布数小时内被十几万愤怒评论淹没，玩家迫使「蔚蓝档案吧」与「碧蓝档案吧」切割；核心是内容和谐+联动选择背离核心二次元诉求，圈层内烈度极强但未大众破圈。",
     "mapping": {
@@ -900,8 +883,7 @@
       "core_tag": "内容和谐/联动选择争议, 价值观/圈层冲突",
       "pr_eval": "被动部分调整，未正面回应核心诉求"
     },
-    "caseFile": "./cases/bluearchive-cn.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/bluearchive-cn.json"
   },
   {
     "id": "reverse1999-3rd",
@@ -917,13 +899,14 @@
       "二次元抽卡"
     ],
     "volume": "A",
-    "damage": "S",
+    "damage": "B",
     "status": "已收录",
     "tags": [
-      "体验/质量争议",
-      "情感/价值观争议"
+      "福利回馈落差",
+      "体验质量与预期落差",
+      "情感背叛/情怀受损"
     ],
-    "pr": "正常处理",
+    "pr": "认错+整改方案",
     "volumeScope": "破圈",
     "summary": "三周年3.7版本内容/福利引发大规模不满，PV留言超240万条，制作组以长文正式致歉并加码福利；核心是版本与福利预期落差+核心玩家信任消耗，1999韧性较强、留存伤害待后续兑现。",
     "mapping": {
@@ -934,8 +917,7 @@
       "core_tag": "福利回馈落差, 体验质量与预期落差",
       "pr_eval": "诚恳致歉+加码福利，靠后续兑现"
     },
-    "caseFile": "./cases/reverse1999-3rd.json",
-    "resultCell": "silent"
+    "caseFile": "./cases/reverse1999-3rd.json"
   },
   {
     "id": "lianyu-aoyin",
@@ -954,23 +936,24 @@
     "damage": "S",
     "status": "已收录",
     "tags": [
-      "体验/质量争议",
-      "商业化契约/动机争议",
-      "情感/价值观争议"
+      "内容方向/资源分配争议",
+      "商业化争议/变现动机质疑",
+      "付费权益争议",
+      "价值观/圈层冲突",
+      "性别议题争议"
     ],
-    "pr": "前期冷处理+后期滑跪",
+    "pr": "光速滑跪+回退",
     "volumeScope": "破圈",
-    "summary": "最底层根因是产能不足：主线长期断更（部分超500天）、更新稀少，长期积压了从核心玩家到少氪/不氪玩家（含大盘）的共性不满；叠加版本治理失序——积怨未被及时预警、重大改动未试水即突击上线。第六男主敖尹突袭公布成为导火索，触发核心玩家组织化「停氪」维权，存量积怨同步被动员放大；随后「引狼入室」台词涉女性安全、旧剧情编号「A-0731」触碰民族历史红线被迅速发掘并聚合为全网声量、多家官媒点名连环破圈。官方两度回应被斥避重就轻，6-30晚被迫取消敖尹上线、永久终止新男主，直接回退原决策——数据面为收入短降近40%、活跃未变，但永久砍线属于不可逆战略让步，叠加公共议题外溢与情绪面广泛波及，综合判高伤害。",
+    "summary": "第六男主敖尹突袭公布、叠加老男主主线断更超500天与资源倾斜，触发核心付费玩家组织化「停氪」维权；随后又因「引狼入室」台词涉女性安全、旧剧情编号「A-0731」触碰民族历史红线连环破圈，多家官媒点名。官方两度回应被斥避重就轻，6-30晚被迫取消敖尹上线、永久终止新男主，直接回退原决策——这一不可逆让步本身即基本盘被实质动摇的铁证，伤害判高。",
     "mapping": {
       "voice_nature": [
         "真实玩家声音"
       ],
       "core_exp": "否",
-      "core_tag": "产能不足/主线断更(体验质量根因), 版本治理与舆情预警失序, 内容方向/资源分配争议, 价值观/历史红线破圈, 官媒下场, 极端维权, 官方回退原决策",
+      "core_tag": "内容方向/资源分配争议, 价值观/历史红线破圈, 官媒下场, 极端维权, 官方回退原决策",
       "pr_eval": "三段式：6-28凌晨道歉回避核心诉求被判敷衍；6-29晚二次声明以「虚构占位/文案包装」轻描淡写、并强硬「追究到底」被斥战书2.0、避重就轻；6-30被迫取消上线+永久终止新男主+补偿加码至30抽（强力止血，但属被停氪维权与官媒压力倒逼的回退，且价值观争议至今未正面处理）。官方愿永久砍掉新男主产品线，反证基本盘真受损。"
     },
-    "caseFile": "./cases/lianyu-aoyin.json",
-    "resultCell": "crisis"
+    "caseFile": "./cases/lianyu-aoyin.json"
   },
   {
     "id": "helldivers2-psn",
@@ -986,12 +969,13 @@
       "买断制"
     ],
     "volume": "S",
-    "damage": "S",
+    "damage": "B",
     "status": "已收录",
     "tags": [
-      "商业化契约/动机争议"
+      "商业契约变更",
+      "合规问题"
     ],
-    "pr": "立刻滑跪",
+    "pr": "光速滑跪+回退",
     "volumeScope": "破圈",
     "summary": "索尼要求Steam玩家强制绑定170余国不可用的PSN账号，引爆Steam史上最快差评潮之一并致数十国区下架；索尼数日内撤回止损、好评回流，属快速止损范本，长期伤害可控待核。",
     "mapping": {
@@ -1002,8 +986,7 @@
       "core_tag": "商业契约变更, 账号门槛/可玩性变更",
       "pr_eval": "快速撤回+主动担责，止损范本"
     },
-    "caseFile": "./cases/helldivers2-psn.json",
-    "resultCell": "crisis"
+    "caseFile": "./cases/helldivers2-psn.json"
   },
   {
     "id": "helldivers2-nerf",
@@ -1019,13 +1002,13 @@
       "买断制"
     ],
     "volume": "A",
-    "damage": "B",
+    "damage": "A",
     "status": "已收录",
     "tags": [
-      "付费内容贬值/不实",
-      "数值/平衡争议"
+      "核心付费内容贬值",
+      "数值/平衡调整争议"
     ],
-    "pr": "正常处理",
+    "pr": "光速滑跪+回退",
     "volumeScope": "破圈",
     "summary": "「逃逸速度」更新削弱多把热门武器、且部分为付费战争债券刚售卖即被砍，「卖完就削」点燃付费贬值背叛感，引发差评轰炸与活跃下滑；开发组道歉并承诺60天调整、回调部分削弱，修复待兑现。",
     "mapping": {
@@ -1036,8 +1019,7 @@
       "core_tag": "核心付费内容贬值, 数值/平衡调整争议",
       "pr_eval": "认错+成体系60天计划止血，修复待兑现"
     },
-    "caseFile": "./cases/helldivers2-nerf.json",
-    "resultCell": "deficit"
+    "caseFile": "./cases/helldivers2-nerf.json"
   },
   {
     "id": "chenbai-forbidden",
@@ -1062,7 +1044,7 @@
       "圈层矛盾-性别",
       "商业化契约/动机争议"
     ],
-    "pr": "冷处理",
+    "pr": "冷处理装死",
     "volumeScope": "破圈",
     "summary": "中国邮政联动因角色设计擦边引发集中举报与性别圈层战，3/2无限期停服整改66天；5/8重开后女角色布料拉满、付费皮肤触摸互动/语音被删、看板娘变木偶，核心付费卖点被抽干，#尘白禁区退钱#登热搜、黑猫集体投诉。收入停服归零且重开不回弹、周活跃腰斩——声量与伤害双高的真危机。",
     "mapping": {
@@ -1074,7 +1056,6 @@
       "core_tag": "内容尺度/合规争议, 付费内容贬值/不实, 圈层矛盾-性别, 商业化契约/动机争议",
       "pr_eval": "灰区联动埋雷+停服黑箱+重开单方面改付费权益，全程冷处理，补偿错位难修复付费信任"
     },
-    "caseFile": "./cases/chenbai-forbidden.json",
-    "resultCell": "crisis"
+    "caseFile": "./cases/chenbai-forbidden.json"
   }
 ]
