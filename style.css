@@ -1362,3 +1362,17 @@
 }
 .conclCase:hover{background:#d4e8fa; border-color:rgba(24,95,165,0.4);}
 .conclCaseSep{color:var(--muted); font-size:11px; margin:0 2px;}
+
+/* === 结论页卡片：案例链接贴底 === */
+#conclusions .card[style*="border-left"]{
+  display:flex;
+  flex-direction:column;
+}
+#conclusions .card[style*="border-left"] > .chips:last-child{
+  margin-top:auto;
+  padding-top:12px;
+}
+#conclusions .card[style*="border-left"] > div:last-child:not(.chips){
+  margin-top:auto;
+  padding-top:12px;
+}
