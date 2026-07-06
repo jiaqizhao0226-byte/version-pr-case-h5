@@ -273,12 +273,9 @@ function renderMatrixChart() {
 
   // 单个案例胶囊
   const chip = (c, color) => {
-    const parts = (c.title || '').split('-');
-    const sub = parts.length > 1 ? parts.slice(1).join('-') : '';
     return `<button type="button" class="qcase ${color}" onclick="openCase('${c.id}')"
         title="${esc(c.title)}&#10;声量 ${gradeLevel(c.volume)} / 伤害 ${gradeLevel(c.damage)}">
         <span class="qcName">${esc(c.game || '')}</span>
-        ${sub ? `<span class="qcSub">${esc(sub)}</span>` : ''}
       </button>`;
   };
 
@@ -287,7 +284,7 @@ function renderMatrixChart() {
     const m = CELL_META[key];
     const list = groups[key];
     return `<div class="qcell qcell-${key}">
-        <div class="qcHead"><span class="qcTitle ${m.color}">${m.label}</span><span class="qcMeta">${m.sub}</span><span class="qcCount">${list.length}</span></div>
+        <div class="qcHead"><span class="qcMeta">${m.sub}</span><span class="qcCount">${list.length}</span></div>
         <div class="qcBody">${list.map(c => chip(c, m.color)).join('') || '<span class="qcEmpty">—</span>'}</div>
       </div>`;
   };
