@@ -1314,3 +1314,15 @@
 .gradeDetails > *:not(summary){padding:0 18px}
 .gradeDetails > *:not(summary):last-child{padding-bottom:16px}
 .gradeDetails[open] > summary{border-bottom:1px solid var(--line)}
+
+/* === 结论页四层标题 === */
+.conclLayerTitle{
+  font-size:22px !important;
+  font-weight:800;
+  margin:0 0 6px !important;
+  color:var(--text);
+  letter-spacing:.02em;
+  padding-left:12px;
+  border-left:4px solid var(--red);
+  line-height:1.4;
+}

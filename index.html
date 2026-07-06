@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260706-5" />
+  <link rel="stylesheet" href="./style.css?v=20260706-6" />
 </head>
 <body>
 <div class="app">
@@ -310,9 +310,64 @@
       <p style="font-size:14px; color:var(--muted); line-height:1.7; margin:0;">在 31 个案例中，声量与伤害的错配是普遍现象：<b>16 个高声量案例里，只有 4 个（25%）真正造成高伤害</b>。大量"热搜级"舆情其实是可恢复的口碑波动，而一些未破圈的"隐性失血"反而伤到了根基。把声量直接当成危机等级，是最常见的误判。</p>
     </section>
 
+    <!-- 四层递进总览图 -->
+    <section class="card" style="padding:28px 24px; margin-bottom:28px;">
+      <div style="font-size:12px; color:var(--muted); font-weight:700; letter-spacing:.15em; margin-bottom:18px; text-transform:uppercase;">研究框架总览</div>
+      <svg viewBox="0 0 680 200" width="100%" style="max-width:640px; height:auto; display:block; margin:0 auto;" role="img">
+        <title>结论页四层递进框架</title>
+        <desc>认知 → 归因 → 应对 → 生死，四层递进</desc>
+        <defs>
+          <marker id="cArr2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+            <path d="M1 1L9 5L1 9" fill="none" stroke="#9aa3af" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
+        </defs>
+        <g font-family="-apple-system, system-ui, sans-serif">
+          <!-- 四个步骤圆 + 标题 -->
+          <!-- 1 认知 -->
+          <circle cx="80" cy="60" r="32" fill="#E6F1FB" stroke="#378ADD" stroke-width="1"/>
+          <text x="80" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="#0C447C">认知</text>
+          <text x="80" y="74" text-anchor="middle" font-size="9" fill="#378ADD">LAYER 1</text>
+          <text x="80" y="112" text-anchor="middle" font-size="10" fill="#6b7280">声量≠危机</text>
+          <text x="80" y="126" text-anchor="middle" font-size="9" fill="#9aa3af">纠正误判</text>
+
+          <!-- 箭头 -->
+          <line x1="118" y1="60" x2="182" y2="60" stroke="#cbd5e1" stroke-width="1.2" marker-end="url(#cArr2)"/>
+
+          <!-- 2 归因 -->
+          <circle cx="220" cy="60" r="32" fill="#FAEEDA" stroke="#EF9F27" stroke-width="1"/>
+          <text x="220" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="#633806">归因</text>
+          <text x="220" y="74" text-anchor="middle" font-size="9" fill="#BA7517">LAYER 2</text>
+          <text x="220" y="112" text-anchor="middle" font-size="10" fill="#6b7280">触及核心契约</text>
+          <text x="220" y="126" text-anchor="middle" font-size="9" fill="#9aa3af">拆解伤害</text>
+
+          <line x1="258" y1="60" x2="322" y2="60" stroke="#cbd5e1" stroke-width="1.2" marker-end="url(#cArr2)"/>
+
+          <!-- 3 应对 -->
+          <circle cx="360" cy="60" r="32" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1"/>
+          <text x="360" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="#085041">应对</text>
+          <text x="360" y="74" text-anchor="middle" font-size="9" fill="#0F6E56">LAYER 3</text>
+          <text x="360" y="112" text-anchor="middle" font-size="10" fill="#6b7280">透明度&gt;补偿</text>
+          <text x="360" y="126" text-anchor="middle" font-size="9" fill="#9aa3af">处置边界</text>
+
+          <line x1="398" y1="60" x2="462" y2="60" stroke="#cbd5e1" stroke-width="1.2" marker-end="url(#cArr2)"/>
+
+          <!-- 4 生死 -->
+          <circle cx="500" cy="60" r="32" fill="#FCEBEB" stroke="#E24B4A" stroke-width="1"/>
+          <text x="500" y="58" text-anchor="middle" font-size="13" font-weight="700" fill="#501313">生死</text>
+          <text x="500" y="74" text-anchor="middle" font-size="9" fill="#A32D2D">LAYER 4</text>
+          <text x="500" y="112" text-anchor="middle" font-size="10" fill="#6b7280">是否衰退</text>
+          <text x="500" y="126" text-anchor="middle" font-size="9" fill="#9aa3af">不可逆红线</text>
+
+          <!-- 底部红线区 -->
+          <rect x="48" y="155" width="484" height="3" rx="1.5" fill="#E24B4A" opacity="0.5"/>
+          <text x="290" y="178" text-anchor="middle" font-size="11" font-weight="600" fill="#A32D2D">前三层判断 · 最终都指向：会不会触及生死红线</text>
+        </g>
+      </svg>
+    </section>
+
     <!-- 第一层 · 认知 -->
     <div style="margin:8px 2px 12px;">
-      <h2 style="font-size:18px; margin:0 0 4px;">第一层 · 认知：先纠正「声量 = 危机」的误判</h2>
+      <h2 class="conclLayerTitle">第一层 · 认知：先纠正「声量 = 危机」的误判</h2>
       <p class="muted" style="font-size:13px; margin:0;">舆情严重度不能只看讨论热度，要看是否动到收入、活跃、产品存续这三根支柱。</p>
     </div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
@@ -333,7 +388,7 @@
           9 个高伤害案例中，有 5 个声量并未破圈（仅中声量）。这类事件没上过热搜，却因触及核心付费或产品定位，实质伤到了流水与留存。反而是一些全网刷屏的争议，热度退去后大盘毫发无伤。<b>越安静的伤害，越致命。</b>
         </p>
         <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">高伤害案例中过半未破圈</span>
+          <span class="chip" style="background:#f5f5f5;">9 个高伤害案例中 5 个未破圈</span>
         </div>
       </article>
 
@@ -341,7 +396,7 @@
 
     <!-- 第二层 · 归因 -->
     <div style="margin:8px 2px 12px;">
-      <h2 style="font-size:18px; margin:0 0 4px;">第二层 · 归因：什么决定了伤害的深浅</h2>
+      <h2 class="conclLayerTitle">第二层 · 归因：什么决定了伤害的深浅</h2>
       <p class="muted" style="font-size:13px; margin:0;">不是声量、也不是矛盾类型本身，而是「是否触及了该品类玩家的核心契约」。</p>
     </div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
@@ -352,7 +407,7 @@
           每类玩家都有一份隐性契约：乙游是情感专属、二游是付费资产保值、竞技是规则公平、情怀IP是原作忠诚。舆情是否伤到根基，取决于是否击穿了这份契约。同样是"削弱"，削的是付费角色（击穿契约）就高伤害，削的是大众机制（未击穿）就只是噪声。
         </p>
         <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">情感/契约类高伤害占比远高于体验类</span>
+          <span class="chip" style="background:#f5f5f5;">原神-那维莱特 / 恋与深空-敖尹 / 摩尔庄园-bug</span>
         </div>
       </article>
 
@@ -372,7 +427,7 @@
           性别议题、角色 OOC、内容尺度、情感背刺类舆情，几乎只出现在乙游 / 二游 / 情怀 IP——这些产品的核心盘与角色、价值观深度绑定。这类品类应把"情感 / 价值观风险"前置纳入版本评审，而非当作普通体验问题处理。
         </p>
         <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">情感向舆情集中在角色驱动品类</span>
+          <span class="chip" style="background:#f5f5f5;">恋与深空 / 少女前线2 / 尘白禁区</span>
         </div>
       </article>
 
@@ -382,7 +437,7 @@
           品类头部（原神等）出事后多能靠快速道歉 + 大额补偿快速止血，玩家因无平替而回流；非头部产品容错空间小得多，同样的失误可能直接被替代。生态位不改变"该不该道歉"，但决定了"道歉后能不能救回来"。
         </p>
         <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">头部有平替护城河，尾部容错低</span>
+          <span class="chip" style="background:#f5f5f5;">原神-那维莱特快速回血 vs 射雕回炉仍衰退</span>
         </div>
       </article>
 
@@ -390,7 +445,7 @@
 
     <!-- 第三层 · 应对 -->
     <div style="margin:8px 2px 12px;">
-      <h2 style="font-size:18px; margin:0 0 4px;">第三层 · 应对：处置的安全边界</h2>
+      <h2 class="conclLayerTitle">第三层 · 应对：处置的安全边界</h2>
       <p class="muted" style="font-size:13px; margin:0;">处置方式没有绝对优劣，关键是匹配事件性质；透明度与时效的权重高于补偿力度。</p>
     </div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
@@ -411,7 +466,7 @@
           看反弹的是否为核心付费 / 留存群体、有没有平替：核心盘受损时，冷处理会放大伤害，应快速道歉止损；若只是非核心群体的噪声，冷处理代价才低。样本中冷处理案例 7/8 为低伤害，说明它多被用在小事上——但一旦误判，代价极高。
         </p>
         <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">先识别核心盘，再定处置力度</span>
+          <span class="chip" style="background:#f5f5f5;">冷处理案例 10 例中 7 例为低伤害</span>
         </div>
       </article>
 
@@ -431,7 +486,7 @@
           从年度分布看，四种处置方式交替出现，没有明显的行业级策略转向。这说明处置选择主要取决于具体事件的矛盾性质和严重程度，而非时间趋势或统一范式。所以每次舆情都要重新做性质判断，不能套用"上次怎么做"。
         </p>
         <div class="chips">
-          <span class="chip" style="background:#f5f5f5;">处置方式不随年份呈趋势变化</span>
+          <span class="chip" style="background:#f5f5f5;">2024-2026 四种处置方式各占 25%-35%</span>
         </div>
       </article>
 
@@ -494,86 +549,54 @@
 
     </div>
 
-    <!-- 第四层 · 生死：从起点到衰退 -->
+    <!-- 第四层 · 生死：什么才真正让游戏衰退 -->
     <div style="margin:32px 2px 12px;">
-      <h2 style="font-size:18px; margin:0 0 4px;">第四层 · 生死：什么才真正让游戏衰退</h2>
-      <p class="muted" style="font-size:13px; margin:0;">舆情走向由两个变量决定：<b>根因是"设定级"还是"治理级"</b>（决定能不能救）× <b>官方应对质量</b>（决定救没救回）。下半部聚焦最严重的一格——将"实质衰退"用硬标准拆解。</p>
+      <h2 class="conclLayerTitle">第四层 · 生死：什么才真正让游戏衰退</h2>
+      <p class="muted" style="font-size:13px; margin:0;">前三层讲"怎么判断、怎么归因、怎么应对"，这一层回答最根本的问题：哪些情况，舆情会从"可恢复的波动"变成"不可逆的衰退"。</p>
     </div>
+    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
 
-    <!-- 上半：走向四象限 -->
-    <section class="card" style="padding:22px; margin-bottom:20px;">
-      <div class="trajGrid">
-        <div class="trajCorner">根因 ↓ ＼ 应对 →</div>
-        <div class="trajColHead trajBad">应对差（傲慢 / 迟缓）</div>
-        <div class="trajColHead trajGood">应对好（及时 / 诚恳）</div>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 触及外部红线，无法自救</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          合规问题（如擦边、涉监管内容）会触发外部强制干预——停服整改、下架、回炉重做。这是厂商无法靠道歉或补偿挽回的绝对死线，因为决定权不在自己手里。涉及内容尺度和合规边界的改动，上线前必须做红线审查。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">尘白 · 射雕 · 世界之外</span>
+        </div>
+      </article>
 
-        <div class="trajRowHead">设定级根因<span>先天 · 立项/定位/付费模型</span></div>
-        <div class="trajCell tc-die">
-          <div class="tcTag">必死格</div>
-          <div class="tcDesc">设定问题本就难救，叠加傲慢应对＝直接判死。</div>
-          <div class="tcCases"><span>世界之外</span><span>尘白</span><span>射雕</span></div>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--red);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 产品定位错位，回炉也救不回</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          有些衰退不是舆情应对的问题，而是产品定位本身就错了——比如写实武侠做幼态建模、乙游做"想赚钱"式表态。这类问题出在立项和定调阶段，即便后续认错、重做，先天伤害已经造成，难以逆转。定位决策的审慎度，比事后公关更能决定生死。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">射雕 · 世界之外</span>
         </div>
-        <div class="trajCell tc-hard">
-          <div class="tcTag">难救格</div>
-          <div class="tcDesc">即便认错整改、砸情怀，先天设定伤害仍在慢性失血。</div>
-          <div class="tcCases"><span>哈利波特</span><span>少女前线2/黛烟</span></div>
-        </div>
+      </article>
 
-        <div class="trajRowHead">治理级根因<span>后天 · bug/数值/机制/客服</span></div>
-        <div class="trajCell tc-drag">
-          <div class="tcTag">拖伤格</div>
-          <div class="tcDesc">问题可修，但应对迟缓/傲慢会把小事拖大、情怀转差评。</div>
-          <div class="tcCases"><span>摩尔庄园</span></div>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--amber);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">3. 情怀IP 的衰退更隐蔽，是慢性失血</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          情怀IP 玩家沉没成本高，短期不会流失，但信任受损会累积。这类产品不会"急性死亡"，而是长期低迷、靠情怀维持、回不到巅峰——这种慢性失血最难察觉，也最难逆转。情怀是缓冲垫，但不是安全垫。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">哈利波特 · 摩尔庄园 · 少女前线2</span>
         </div>
-        <div class="trajCell tc-save">
-          <div class="tcTag">抢救成功</div>
-          <div class="tcDesc">治理红线只要够快够诚恳，快速道歉后活跃/口碑基本能恢复。</div>
-          <div class="tcCases"><span>暗黑4</span><span>绝地潜兵2</span><span>七日世界</span></div>
-        </div>
-      </div>
-      <p class="mapNote" style="margin-top:16px;"><b>先天决定生死，后天决定快慢；傲慢是把"难救"变"必死"的催化剂；情怀是缓冲垫不是安全垫。</b>（对角线上射雕/哈利/少女=设定级，摩尔=治理级，正好是四个典型样本。走向框架为人工核定归类，鸣潮1.0 因 2.0 翻盘不计入衰退。）</p>
-    </section>
+      </article>
 
-    <!-- 下半：衰退标准 + 案例对照 -->
-    <section class="card" style="padding:22px; margin-bottom:40px;">
-      <h3 style="margin:0 0 6px; font-size:16px; color:var(--text);">衰退标准 · 案例对照</h3>
-      <p class="muted" style="font-size:13px; margin:0 0 14px;">用<b>可证伪的硬指标</b>分级，命中才算实质衰退——分急性（确定停运/实质衰退）与慢性（情怀维持但回不到巅峰）两级，并附"急性衰退但及时止损"的对照组。</p>
-      <table class="coldTable">
-        <thead><tr><th>档位</th><th>硬标准（命中任一）</th><th>命中案例</th><th>教训点</th></tr></thead>
-        <tbody>
-          <tr class="ct-die">
-            <td><b>急性 · 确定死亡</b></td>
-            <td>停运 / 停服整改 / 回炉停运</td>
-            <td><span class="ctCase">射雕</span><span class="ctCase">尘白</span></td>
-            <td>定位红线 + 合规红线，神仙难救</td>
-          </tr>
-          <tr class="ct-die">
-            <td><b>急性 · 实质衰退</b></td>
-            <td>流水暴跌且未恢复</td>
-            <td><span class="ctCase">世界之外</span></td>
-            <td>傲慢应对压垮情感契约</td>
-          </tr>
-          <tr class="ct-slow">
-            <td><b>慢性 · 失血</b></td>
-            <td>长期低迷、情怀维持、回不到巅峰（无翻盘版本）</td>
-            <td><span class="ctCase">哈利波特</span><span class="ctCase">摩尔庄园</span><span class="ctCase">少女前线2</span></td>
-            <td>情怀是缓冲垫不是安全垫</td>
-          </tr>
-          <tr class="ct-save">
-            <td><b>对照 · 抢救成功</b></td>
-            <td>急性衰退但及时止损 → 恢复</td>
-            <td><span class="ctCase">绝地潜兵2</span><span class="ctCase">暗黑4</span><span class="ctCase">七日世界</span></td>
-            <td>治理红线够快够诚就能救</td>
-          </tr>
-        </tbody>
-      </table>
-      <div class="redlineRow">
-        <div class="redlineCard rl-attitude"><div class="rlName">世界之外</div><div class="rlLine">背叛信任（态度红线）</div><div class="rlWhy">"想赚钱"公告撕毁乙女向情感契约，信仰崩塌不可重建。</div></div>
-        <div class="redlineCard rl-position"><div class="rlName">射雕</div><div class="rlLine">定位崩坏（定位红线）</div><div class="rlWhy">幼态 BJD 建模 × 武侠写实是立项定位错位，回炉重做仍救不回。</div></div>
-        <div class="redlineCard rl-policy"><div class="rlName">尘白</div><div class="rlLine">踩政策线（合规红线）</div><div class="rlWhy">邮政联动擦边触监管，外部强制停服整改，厂商无法自救。</div></div>
-      </div>
-      <p class="mapNote" style="margin-top:14px;">三条红线里，只有<b>合规红线</b>是"外部强制、厂商无法自救"的绝对死线；态度红线与定位红线本可通过更早、更真诚的应对挽回——这正是"实质衰退"即走向框架里<b>设定问题 + 傲慢应对</b>那一格的深度拆解。</p>
-    </section>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;">4. 治理类问题，快速诚恳就能救</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
+          与前三条不同，因 bug、数值、机制这类"后天治理问题"引发的舆情，只要应对够快、够诚恳，活跃和口碑基本都能恢复。这类问题的生死分界线不在问题本身，而在应对速度——越快认错、越早回退，恢复概率越高。
+        </p>
+        <div class="chips">
+          <span class="chip" style="background:#f5f5f5;">暗黑4 · 绝地潜兵2 · 七日世界</span>
+        </div>
+      </article>
+
+    </div>
   </main>
 
 
@@ -608,6 +631,6 @@
     <section id="tabContent"></section>
   </main>
 </div>
-<script src="./app.js?v=20260706-5"></script>
+<script src="./app.js?v=20260706-6"></script>
 </body>
 </html>
