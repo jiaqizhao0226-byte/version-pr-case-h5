@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260706-17" />
+  <link rel="stylesheet" href="./style.css?v=20260706-18" />
 </head>
 <body>
 <div class="app">
@@ -325,7 +325,7 @@
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
           10 个高伤害案例中，有 5 个声量并未达到最高档（仅中声量）。这类事件的讨论体量不算最大，却因触及核心付费或产品定位，实质影响到了流水与留存；反过来，一些声量顶格、全网刷屏的争议，热度退去后大盘往往毫发无伤。<b>关键不在于讨论体量大小，而在于是否伤到了核心活跃与付费用户。</b>（注：声量档看讨论体量，与"是否破圈"是两个维度，详见方法论 3.1）
         </p>
-        <div class="chips">
+        <div class="chips" style="text-align:center;">
           <div class="conclStat">5 / 10<span class="statLabel">高伤害案例中声量未达最高档</span></div>
         </div>
         <div style="margin-top:8px;">
@@ -354,7 +354,7 @@
           <li><b>竞技/射击</b> — 契约是"规则公平"，削弱/改契约即触雷。<a class="conclCase" onclick="openCase('sanjiaozhou-jail')">三角洲</a><a class="conclCase" onclick="openCase('apex-bp')">Apex</a></li>
           <li><b>二游抽卡</b> — 契约是"资产保值"，实装后改/暗改零容忍。<a class="conclCase" onclick="openCase('yuanshen-longwang')">原神</a><a class="conclCase" onclick="openCase('mingchao-1.0')">鸣潮</a></li>
         </ul>
-        <div class="chips">
+        <div class="chips" style="text-align:center;">
           <div class="conclStat">60%<span class="statLabel">情怀IP 高伤害占比</span></div>
           <div class="conclStat" style="margin-left:8px">17%<span class="statLabel">写实竞技 高伤害占比</span></div>
         </div>
@@ -384,7 +384,7 @@
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
           处置方式没有绝对优劣，关键是匹配事件性质。核心付费/留存受损时，冷处理会放大伤害，应快速道歉止损；若只是非核心群体的噪声，冷处理代价才低。样本中冷处理案例 7/10 为低伤害，说明它多被用在小事上。<b>最危险的是「前期误判」——冷处理拖成后期滑跪的 3 个案例，全部落在中 / 高伤害档、无一为低伤害，说明误判黄金窗口的代价极高。</b>
         </p>
-        <div class="chips">
+        <div class="chips" style="text-align:center;">
           <div class="conclStat">7 / 10<span class="statLabel">冷处理案例中低伤害数</span></div>
           <div class="conclStat" style="margin-left:8px">3 / 3<span class="statLabel">前冷后跪落在中高伤害档</span></div>
         </div>
@@ -444,11 +444,6 @@
 
     <main id="dashboard" style="display:none">
     <section class="hero">
-      <div class="card heroMain">
-        <h2>版本舆情案例Dashboard</h2>
-        <p>当前首页已接入多个已深挖案例，用于验证信息架构、对比阅读体验与跨案例复盘逻辑。后续可继续按同一模板扩展更多案例。</p>
-        <div class="notice">筛选器与案例卡片均已支持多案例浏览；后续扩展时，只需要新增 cases/*.json 并更新 data/cases.json。</div>
-      </div>
       <div class="stats" id="stats"></div>
     </section>
 
@@ -456,7 +451,6 @@
       <div class="filterGrid">
         <input id="q" class="control" placeholder="搜索案例、标签、游戏名" />
         <select id="matrix" class="control"><option value="">全部声量与伤害</option></select>
-        <div id="voiceNature" class="control vnFilter" title="声音构成（可多选）"></div>
         <select id="core_tag" class="control"><option value="">全部核心矛盾</option></select>
         <select id="pr" class="control"><option value="">全部公关应对</option></select>
       </div>
@@ -473,6 +467,6 @@
     <section id="tabContent"></section>
   </main>
 </div>
-<script src="./app.js?v=20260706-17"></script>
+<script src="./app.js?v=20260706-18"></script>
 </body>
 </html>

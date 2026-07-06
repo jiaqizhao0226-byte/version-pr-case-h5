@@ -73,16 +73,6 @@ function fillFilters(){
   ].forEach(x => {
     const o=document.createElement('option');o.value=x;o.textContent=x;matrixEl.appendChild(o);
   });
-  
-  // 声音构成（多选切换芯片）：真实玩家声音 / 外部噪声
-  const vnEl = $('voiceNature');
-  if (vnEl) {
-    const found = uniq(caseSummaries.flatMap(c => (c.mapping && c.mapping.voice_nature) || []));
-    const order = ['真实玩家声音','外部噪声'];
-    const vals = order.filter(v => found.includes(v)).concat(found.filter(v => !order.includes(v)));
-    vnEl.innerHTML = '<span class="vnLabel">声音构成</span>' +
-      vals.map(v => `<button type="button" class="vnChip" data-vn="${esc(v)}" onclick="toggleVn(this)">${esc(v)}</button>`).join('');
-  }
 
   // Core Tags grouped（四族 11 标准标签，与校对表 + cases.json 核心矛盾完全对齐）
   const tagCategories = {
@@ -162,14 +152,9 @@ function bindFilters(){
   ['q','matrix','core_tag','pr'].forEach(id=>$(id)&&$(id).addEventListener('input',renderGrid));
 }
 
-// 声音构成芯片：点击切换选中（多选），重新筛选
-function toggleVn(btn){btn.classList.toggle('active');renderGrid();}
-
 function filtered(){
   const q=$('q')?$('q').value.trim().toLowerCase():'';
   const mx=$('matrix')?$('matrix').value:'';
-  const vnEl=$('voiceNature');
-  const vnSel=vnEl?[...vnEl.querySelectorAll('.vnChip.active')].map(b=>b.dataset.vn):[];
   const ct=$('core_tag')?$('core_tag').value:'';
   const pr=$('pr')?$('pr').value:'';
 
@@ -192,11 +177,6 @@ function filtered(){
       if (mx === '高伤害 + 低声量 (隐性流失)' && !(!highVol && highDmg)) return false;
       if (mx === '中伤害 + 低声量 (局部损伤)' && !(!highVol && midDmg)) return false;
       if (mx === '低伤害 + 低声量 (常规客诉)' && !(!highVol && lowDmg)) return false;
-    }
-
-    if (vnSel.length) {
-      const arr = (c.mapping && c.mapping.voice_nature) || [];
-      if (!vnSel.some(v => arr.includes(v))) return false;
     }
 
     if (ct && !(c.tags || []).includes(ct)) return false;
@@ -273,9 +253,11 @@ function renderMatrixChart() {
 
   // 单个案例胶囊
   const chip = (c, color) => {
+    const parts = (c.title || '').split('-');
+    const sub = parts.length > 1 ? parts.slice(1).join('-').slice(0, 12) : '';
     return `<button type="button" class="qcase ${color}" onclick="openCase('${c.id}')"
         title="${esc(c.title)}&#10;声量 ${gradeLevel(c.volume)} / 伤害 ${gradeLevel(c.damage)}">
-        <span class="qcName">${esc(c.game || '')}</span>
+        <span class="qcName">${esc(c.game || '')}</span>${sub ? `<span class="qcSub">${esc(sub)}</span>` : ''}
       </button>`;
   };
 
@@ -1226,20 +1208,11 @@ function renderBarTrend(ch,ds){
 function renderInsightV1(c){
   const n=c.insight||{};const q=c.impact||{};const quad=q.quadrant||{};const ca=c.cause||{};
 
-  // ① 案例定型：大字判定 + 小字归因解释 + 一行落点标签
-  // 落点统一由 matrixCell(c) 从 volume×damage 实时计算，与 Mapping 页九宫格同源；
-  // 九宫格矩阵已在「全部案例 Mapping」页统一呈现，此处不再重复画格，仅标注本案落点。
+  // ① 案例定型：大字判定 + 小字归因解释
   const pf=n.profile||{};
-  const mcell=matrixCell(c);
-  const cellMeta=(typeof CELL_META!=='undefined'&&CELL_META[mcell])?CELL_META[mcell]:null;
-  const pfHeadline=pf.headline?`<p class="pfVerdict lb-${esc(mcell)}">${esc(pf.headline)}</p>`:'';
+  const pfHeadline=pf.headline?`<p class="pfVerdict">${esc(pf.headline)}</p>`:'';
   const profileSummary=pf.summary?`<p class="pfSummary">${esc(pf.summary)}</p>`:'';
-  const landing = (mcell==='na')
-    ? `<p class="pfLanding pfLanding-na"><span class="pfLandingLabel">本案落点</span><b>伤害无数据 / 未收录</b><small>停运·未上架·数据源不覆盖，伤害无法量化，不纳入声量×伤害落点统计</small></p>`
-    : (cellMeta
-        ? `<p class="pfLanding lb-${esc(mcell)}"><span class="pfLandingLabel">本案落点</span><b>${esc(cellMeta.label)}</b><small>${esc(cellMeta.sub)}（完整九宫格见「全部案例 Mapping」页）</small></p>`
-        : '');
-  const profileBlock=(pfHeadline||profileSummary||landing)?`<div class="block ctBlock"><h3>案例定型</h3>${pfHeadline}${profileSummary}${landing}</div>`:'';
+  const profileBlock=(pfHeadline||profileSummary)?`<div class="block ctBlock"><h3>案例定型</h3>${pfHeadline}${profileSummary}</div>`:'';
 
   // ② 这类游戏的玩家特征（从核心矛盾页迁来）
   const tBadge=t=>t?`<span class="ctType ct-${t==='稳态'?'stable':(t==='新出现'?'new':'up')}">${esc(t)}</span>`:'';

@@ -385,19 +385,19 @@
   display: flex;
   flex-direction: column;
 }
-/* 3×3 矩阵格子背景色 */
+/* 3×3 矩阵格子背景色：按伤害行分色，伤害越高越红 */
 /* 高伤害行：红系 */
-.qcell-lh { background: rgba(72,106,136,0.06);  border-color: rgba(72,106,136,0.32); }
-.qcell-mh { background: rgba(91,125,166,0.06);   border-color: rgba(91,125,166,0.32); }
-.qcell-hh { background: rgba(184,84,80,0.07);    border-color: rgba(184,84,80,0.35); }
+.qcell-lh { background: rgba(184,84,80,0.05);  border-color: rgba(184,84,80,0.20); }
+.qcell-mh { background: rgba(184,84,80,0.08);  border-color: rgba(184,84,80,0.28); }
+.qcell-hh { background: rgba(184,84,80,0.12);  border-color: rgba(184,84,80,0.38); }
 /* 中伤害行：琥珀系 */
-.qcell-lm { background: rgba(91,125,166,0.05);  border-color: rgba(91,125,166,0.28); }
-.qcell-mm { background: rgba(217,154,62,0.06);   border-color: rgba(217,154,62,0.32); }
-.qcell-hm { background: rgba(217,154,62,0.08);   border-color: rgba(217,154,62,0.38); }
+.qcell-lm { background: rgba(217,154,62,0.04);  border-color: rgba(217,154,62,0.18); }
+.qcell-mm { background: rgba(217,154,62,0.07);  border-color: rgba(217,154,62,0.25); }
+.qcell-hm { background: rgba(217,154,62,0.10);  border-color: rgba(217,154,62,0.35); }
 /* 低伤害行：灰系 */
-.qcell-ll { background: rgba(86,100,114,0.055);  border-color: rgba(86,100,114,0.28); }
-.qcell-ml { background: rgba(86,100,114,0.04);  border-color: rgba(86,100,114,0.25); }
-.qcell-hl { background: rgba(124,94,56,0.06);    border-color: rgba(124,94,56,0.30); }
+.qcell-ll { background: rgba(86,100,114,0.03);  border-color: rgba(86,100,114,0.15); }
+.qcell-ml { background: rgba(86,100,114,0.05);  border-color: rgba(86,100,114,0.20); }
+.qcell-hl { background: rgba(86,100,114,0.07);  border-color: rgba(86,100,114,0.25); }
 .qcHead {
   display: flex;
   align-items: center;
@@ -454,7 +454,8 @@
   transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
   min-width: 72px;
-  height: 24px;
+  height: auto;
+  min-height: 28px;
   font-size: 12.5px;
   font-weight: 700;
   color: var(--text);
@@ -463,6 +464,7 @@
 }
 .qcase:hover { transform: translateY(-1px); box-shadow: 0 4px 11px rgba(0,0,0,0.13); }
 .qcName { font-size: 12.5px; font-weight: 700; color: var(--text); line-height: 1; }
+.qcSub { font-size: 10px; font-weight: 400; color: var(--muted); line-height: 1; margin-left: 3px; }
 .qcase.b-red   { border-left-color: #A8423E; }
 .qcase.b-blue  { border-left-color: #486A88; }
 .qcase.b-midblue { border-left-color: #5B7DA6; }
@@ -1156,7 +1158,7 @@
 .triHeatLegend{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:12px;color:var(--muted);font-size:11px}
 .triHeatLegend span{display:inline-flex;align-items:center;gap:5px}
 .triHeatLegend i{width:10px;height:10px;border-radius:2px;display:inline-block;border:1px solid rgba(0,0,0,.08)}
-.chartInsights{margin:16px auto 0;max-width:1000px;padding:14px 16px;border:1px solid #D5DEE8;border-left:4px solid var(--blue);border-radius:10px;background:#F7FAFC;font-size:13px;line-height:1.75;color:#3F4A57}
+.chartInsights{margin:16px 0 0;padding:14px 16px;border:1px solid #D5DEE8;border-left:4px solid var(--blue);border-radius:10px;background:#F7FAFC;font-size:13px;line-height:1.75;color:#3F4A57;width:100%;box-sizing:border-box}
 .chartInsights b{color:var(--text)}
 .chartInsights ol{margin:6px 0 0 18px;padding:0}
 .chartInsights li{margin:5px 0;font-size:13px;line-height:1.7;color:#3F4A57}
@@ -1385,4 +1387,9 @@
 #conclusions .card[style*="border-left"] > div:last-child:not(.chips){
   margin-top:auto;
   padding-top:12px;
+}
+
+/* 结论页数据气泡居中 */
+#conclusions .chips:has(.conclStat){
+  justify-content:center;
 }
