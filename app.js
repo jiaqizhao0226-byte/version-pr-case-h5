@@ -445,7 +445,7 @@ function renderLifecycleDamageChart(){
     const a=agg[s]; const valid=a.high+a.mid+a.low;
     const rate = valid? Math.round(100*a.high/valid) : null;
     const rateTxt = valid ? (valid<=3? `n=${valid}（样本小）` : `n=${valid} · 高伤害 ${rate}%`) : 'n=0';
-    return `<div class="quadStackRow"><div class="quadStackLabel" style="width:112px">${esc(label[s])}</div><div class="quadStackBar" style="flex:1">${seg(a.high,'high')}${seg(a.mid,'mid')}${seg(a.low,'low')}</div><div class="quadStackVal" style="width:132px;text-align:right;font-size:12px;color:var(--muted)">${rateTxt}</div></div>`;
+    return `<div class="quadStackRow" style="display:flex;gap:10px;min-width:0"><div class="quadStackLabel" style="flex:0 0 112px">${esc(label[s])}</div><div class="quadStackBar" style="flex:1 1 auto;min-width:0">${seg(a.high,'high')}${seg(a.mid,'mid')}${seg(a.low,'low')}</div><div class="quadStackVal" style="flex:0 0 132px;text-align:right;font-size:12px;color:var(--muted)">${rateTxt}</div></div>`;
   }).join('');
   const legend = `<div style="display:flex;gap:14px;margin-top:12px;font-size:12px;color:var(--muted);flex-wrap:wrap"><span><i style="display:inline-block;width:10px;height:10px;background:${DMG3_COLORS.high};border-radius:2px;margin-right:4px"></i>高</span><span><i style="display:inline-block;width:10px;height:10px;background:${DMG3_COLORS.mid};border-radius:2px;margin-right:4px"></i>中</span><span><i style="display:inline-block;width:10px;height:10px;background:${DMG3_COLORS.low};border-radius:2px;margin-right:4px"></i>低</span><span>条长 = 案例数（无数据 / 未收录不计入）</span></div>`;
   const insight = `<div class="chartInsights"><b>洞察：</b>越靠近上线窗口，同样的舆情越容易真伤到核心盘——上线期高伤害率 58%（7/12），成长期降到 20%（2/10），成熟期为 0（0/3）。新游付费盘尚未夯实、又正处买量拉新峰值，一个坏的第一印象即结构性伤害；老游有稳固基本盘，同样的事更扛得住。</div>`;
