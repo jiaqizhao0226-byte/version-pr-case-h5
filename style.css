@@ -1350,19 +1350,20 @@ button { transition: all 0.2s ease; }
 }
 .conclCase{
   display:inline-block;
-  font-size:13px;
-  font-weight:600;
-  color:#185FA5;
-  background:#E6F1FB;
-  padding:3px 10px;
-  border-radius:5px;
-  border:1px solid rgba(24,95,165,0.2);
+  font-size:12px;
+  font-weight:500;
+  color:#5B6B7C;
+  background:var(--soft);
+  padding:2px 9px;
+  border-radius:999px;
+  border:1px solid var(--line);
   cursor:pointer;
   text-decoration:none;
-  transition:background .15s, border-color .15s;
+  transition:background .15s, border-color .15s, color .15s;
   margin:2px 4px 2px 0;
+  white-space:nowrap;
 }
-.conclCase:hover{background:#d4e8fa; border-color:rgba(24,95,165,0.4);}
+.conclCase:hover{background:#EAF1FB; border-color:#c5cfdb; color:#185FA5;}
 .conclCaseSep{color:var(--muted); font-size:11px; margin:0 2px;}
 
 /* === 结论页卡片：案例链接贴底 === */
