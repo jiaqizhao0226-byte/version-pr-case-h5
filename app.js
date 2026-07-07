@@ -347,16 +347,58 @@ function renderYearTrendChart() {
       <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
     </div>`;
   }
+  // 占比热力图：格子显示百分比，颜色按百分比深浅
+  function drawPctHeatmap(rows, cols, freqCells, pctCells, rowTitle, colTitle, color) {
+    const colHeads = cols.map(c=>`<div class="thColHead">${esc(c)}</div>`).join('');
+    const body = rows.map(r=>{
+      const cellHtml = cols.map(c=>{
+        const n = freqCells[`${r}|||${c}`] || 0;
+        const pct = pctCells[`${r}|||${c}`] || 0;
+        const intensity = pct / 100;
+        const bg = n === 0 ? 'transparent' : `rgba(${color},${0.12 + intensity * 0.78})`;
+        const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
+        return `<div class="thCell" data-row="${esc(r)}" data-col="${esc(c)}" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${c}: ${n}次 (${pct}%)">
+          ${n?`<b style="color:${txtColor}">${pct}%</b>`:''}
+        </div>`;
+      }).join('');
+      return `<div class="thRow"><div class="thRowHead" data-row="${esc(r)}">${esc(r)}</div>${cellHtml}</div>`;
+    }).join('');
+    const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(${color},${i});border-radius:2px"></span>`).join('');
+    return `<div class="triHeat">
+      <div class="triHeatAxis"><span>${esc(rowTitle)}</span><span>${esc(colTitle)}</span></div>
+      <div class="triHeatGrid" style="--th-cols:${cols.length}">
+        <div class="thCorner"></div>${colHeads}${body}
+      </div>
+      <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">占比：</span>低${legendStops}高</div>
+    </div>`;
+  }
 
-  // 矛盾构成热力图（红色系）
+  // 矛盾构成占比热力图（红色系）— 按年份归一化为占比
   const tagCells = {};
+  const tagPctCells = {};
   topTags.forEach(t=>years.forEach(y=>tagCells[`${t}|||${y}`]=yearMap[y].tags[t]||0));
-  const tagHeatmap = drawFreqHeatmap(topTags, years, tagCells, '核心矛盾', '年份', '184,84,80');
+  // 每年标签总数
+  years.forEach(y=>{
+    const yearTagTotal = topTags.reduce((s,t)=>s+(yearMap[y].tags[t]||0),0);
+    topTags.forEach(t=>{
+      const n = yearMap[y].tags[t]||0;
+      tagPctCells[`${t}|||${y}`] = yearTagTotal>0 ? Math.round(n/yearTagTotal*100) : 0;
+    });
+  });
+  const tagHeatmap = drawPctHeatmap(topTags, years, tagCells, tagPctCells, '核心矛盾', '年份', '184,84,80');
 
-  // 公关应对热力图（深靛蓝系）
+  // 公关应对占比热力图（深靛蓝系）— 按年份归一化为占比
   const prCells = {};
+  const prPctCells = {};
   prOrder.forEach(p=>years.forEach(y=>prCells[`${p}|||${y}`]=yearMap[y].pr[p]||0));
-  const prHeatmap = drawFreqHeatmap(prOrder, years, prCells, '公关应对', '年份', '44,62,92');
+  years.forEach(y=>{
+    const yearPrTotal = prOrder.reduce((s,p)=>s+(yearMap[y].pr[p]||0),0);
+    prOrder.forEach(p=>{
+      const n = yearMap[y].pr[p]||0;
+      prPctCells[`${p}|||${y}`] = yearPrTotal>0 ? Math.round(n/yearPrTotal*100) : 0;
+    });
+  });
+  const prHeatmap = drawPctHeatmap(prOrder, years, prCells, prPctCells, '公关应对', '年份', '44,62,92');
 
   wrap.innerHTML = `
     <div class="ytSection">
@@ -371,7 +413,6 @@ function renderYearTrendChart() {
       <ul>
         <li><b>矛盾类型结构性迁移：</b>2021 年以商业化契约和数值平衡争议为主，属于"功能性矛盾"；2023 年起情感/价值观争议和内容尺度/合规争议开始出现并持续增多，舆情重心从"钱和数值"转向"角色认同与价值观"——这一迁移与二次元抽卡、乙女向等强角色绑定品类的高声量案例集中爆发相关。</li>
         <li><b>情感/价值观争议的上升趋势：</b>该类争议在 2021 年为零，2023 年起逐年增加，到 2025-2026 年已成为最高频的矛盾类型之一。这类争议的特点是声量高但伤害不一定高——情绪向议题容易引发广泛讨论，但是否伤到核心付费盘取决于官方是否触及了玩家的情感契约底线。</li>
-        <li><b>综合趋势：</b>近年舆情的核心变化不是"变多了"，而是"变复杂了"——从可量化的数值/付费争议，转向难以量化的情感/价值观争议。这对官方应对提出了更高要求：不仅要处理技术问题，还要管理情感契约和社群情绪，而后者没有标准答案。</li>
       </ul>
     </div>
   `;
@@ -825,7 +866,6 @@ function renderScopeTagChart(){
     <div class="chartInsights"><b>洞察：</b>
       <ul>
         <li>内容尺度/合规争议和情感/价值观争议集中在高声量场景——这类议题容易引发跨平台讨论和破圈传播。</li>
-        <li>付费内容贬值和商业化契约争议在高/中声量均有分布，说明这类矛盾不论声量大小都可能发生。</li>
       </ul>
     </div>
   </div>`;
