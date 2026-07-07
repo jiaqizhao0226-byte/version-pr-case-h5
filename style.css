@@ -1388,3 +1388,63 @@ button { transition: all 0.2s ease; }
 .chartInsights li[data-tag] { cursor:default; transition:background .15s; border-radius:6px; padding:4px 8px; margin:4px -8px; }
 .chartInsights li[data-tag]:hover { background:rgba(192,57,43,0.06); }
 .gdRow.hl { background:rgba(192,57,43,0.06); border-radius:8px; }
+
+/* ============================================================
+   视觉一致性优化 · design polish pass
+   统一：阴影 / 等宽数字 / 交互过渡 / hover-active / 焦点环
+   仅给"可点击"元素加 hover 抬升，静态容器不动。
+   ============================================================ */
+:root{
+  /* 统一为同一冷灰色调、分层更清晰的阴影（替换早前偏浅/杂色的定义） */
+  --shadow: 0 1px 2px rgba(26,29,33,.05), 0 4px 14px rgba(26,29,33,.05);
+  --shadow-hover: 0 3px 8px rgba(26,29,33,.07), 0 14px 34px rgba(26,29,33,.09);
+  --ring: 0 0 0 3px rgba(59,89,152,.30);      /* 键盘焦点环，用主蓝 */
+  --ease: cubic-bezier(.4, 0, .2, 1);
+}
+
+html{ scroll-behavior:smooth; }
+
+/* 数据数字等宽对齐 —— 数据密集型站点的关键细节（表格列、统计、榜单对齐） */
+.stat b, .conclStat, .count, .badge, .side, .pill,
+.table td, .table th, .overviewMiniRow b,
+.qcCount, .gdLegendItem, .chartInsights b{
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum" 1;
+}
+
+/* 统一交互过渡曲线 */
+.caseCard, .tab, .back, .control, .conclCase, .qcase, .assessCard,
+.mainNav button{
+  transition: transform .18s var(--ease), box-shadow .2s var(--ease),
+              background-color .18s var(--ease), border-color .18s var(--ease),
+              color .18s var(--ease);
+}
+
+/* 可点击卡片 hover：一致的抬升 + 加深阴影 */
+.caseCard:hover{ box-shadow: var(--shadow-hover); border-color:#c5cfdb; }
+.caseCard:active{ transform: translateY(-1px); }
+
+/* 内层 tab：hover 反馈 + active 轻微阴影，统一手感 */
+.tab:hover:not(.active){ background:var(--soft); color:var(--text); border-color:#d7dbe2; }
+.tab:active{ transform: scale(.98); }
+.tab.active{ box-shadow: var(--shadow); }
+
+/* 案例链接 chip / 矩阵案例胶囊：hover 抬升 */
+.conclCase:active, .qcase:active{ transform: translateY(1px); }
+.qcase:hover{ box-shadow: var(--shadow); }
+
+/* 返回按钮 */
+.back:hover{ background:var(--soft); border-color:#d7dbe2; }
+.back:active{ transform: scale(.98); }
+
+/* 表单控件：统一 focus（下拉 / 搜索框） */
+.control:hover{ border-color:#d0d5dd; }
+.control:focus, .control:focus-visible{
+  outline:none; border-color:var(--blue); box-shadow: var(--ring);
+}
+
+/* 全局键盘可达性焦点环（一致、可见） */
+a:focus-visible, button:focus-visible, select:focus-visible,
+input:focus-visible{
+  outline:none; box-shadow: var(--ring); border-radius: var(--radius-sm);
+}

@@ -279,7 +279,7 @@ function renderMatrixChart() {
 function renderPrChart() {
   const counter = {};
   (caseSummaries||[]).forEach(c => { const k = c.pr || '其他'; counter[k] = (counter[k]||0)+1; });
-  renderBarChart('prChart', counter, ['#5B7B9A','#2C3E5C','#6C7B8B','#8B6F47','#B85450','#7B6B8A']);
+  renderBarChart('prChart', counter, DIST_RAMP);
   const wrap = document.getElementById('prChart');
   if (wrap) wrap.innerHTML += `<div class="chartInsights chartInsightsSub"><b>洞察：</b>这是基础计数，只能看处置口径分布；处置是否有效，需要回到“公关应对 × 伤害结构”和“核心矛盾 × 公关应对 × 伤害”。</div>`;
 }
@@ -516,10 +516,14 @@ function counterEntries(counter, limit=6){
     .map(([label,value])=>({label,value}));
 }
 
+// 计数分布图统一配色：同一墨蓝色系、由深到浅（bar 按数值降序，最大最深）。
+// 颜色不表意，只承担"同族一致感"；语义色（伤害档等）另见 DMG3_COLORS。
+const DIST_RAMP = ['#2F3E56','#3E5470','#4E6A8A','#6486A5','#8AA0B8','#B2C0CE','#C9D2DC','#DDE3EA'];
+
 function renderOverviewCards(){
   const all = caseSummaries || [];
-  const colors = ['#2C3E5C','#8B6F47','#B85450','#5B7B9A','#6C7B8B','#7B6B8A'];
-  const warmColors = ['#8B6F47','#B85450','#2C3E5C','#5B7B9A','#6C7B8B','#7B6B8A'];
+  const colors = DIST_RAMP;
+  const warmColors = DIST_RAMP;
 
   const yearCounter = {};
   all.forEach(c=>{ const y=(c.time||'').slice(0,4); if(y) yearCounter[y]=(yearCounter[y]||0)+1; });
@@ -553,7 +557,7 @@ function renderOverviewCards(){
     '',
     counterEntries(marketCounter, 6),
     '',
-    ['#5B7B9A','#2C3E5C','#8B6F47','#6C7B8B','#B85450','#7B6B8A']
+    DIST_RAMP
   );
 
   const tagCounter = {};
@@ -564,7 +568,7 @@ function renderOverviewCards(){
     'Top 6',
     counterEntries(tagCounter, 6),
     '只表示出现频次，严重度以上方「核心矛盾 × 伤害」为准。',
-    ['#B85450','#8B6F47','#2C3E5C','#5B7B9A','#6C7B8B','#7B6B8A']
+    DIST_RAMP
   );
 
   const prCounter = {};
@@ -577,7 +581,7 @@ function renderOverviewCards(){
     '',
     prOrder.concat(prRest).slice(0,6),
     '只表示处置口径分布，不直接代表处置效果。',
-    ['#5B7B9A','#2C3E5C','#8B6F47','#B85450','#6C7B8B','#7B6B8A']
+    DIST_RAMP
   );
 }
 
@@ -585,7 +589,7 @@ function renderOverviewCards(){
 function renderGenreChart() {
   const counter = {};
   (caseSummaries||[]).forEach(c => (c.genre||[]).forEach(g => counter[g] = (counter[g]||0)+1));
-  renderBarChart('genreChart', counter, ['#8B6F47','#2C3E5C','#B85450','#5B7B9A','#6C7B8B','#7B6B8A','#9C7A5A','#5A8B8B']);
+  renderBarChart('genreChart', counter, DIST_RAMP);
   const wrap = document.getElementById('genreChart');
   if (wrap) wrap.innerHTML += `<div class="chartInsights chartInsightsSub"><b>洞察：</b>这是样本结构提示，二次元抽卡、乙女向、情怀 IP 等样本较多，后续品类结论更适用于这些样本充足的方向。</div>`;
 }
@@ -594,7 +598,7 @@ function renderGenreChart() {
 function renderTagsChart() {
   const counter = {};
   (caseSummaries||[]).forEach(c => caseTags(c).forEach(t => counter[t] = (counter[t]||0)+1));
-  renderBarChart('tagsChart', counter, ['#B85450','#8B6F47','#2C3E5C','#5B7B9A','#6C7B8B','#7B6B8A']);
+  renderBarChart('tagsChart', counter, DIST_RAMP);
   const wrap = document.getElementById('tagsChart');
   if (wrap) wrap.innerHTML += `<div class="chartInsights chartInsightsSub"><b>洞察：</b>这是基础计数，只回答“哪些矛盾更常见”，不直接回答“哪些更严重”；严重度以上方“核心矛盾 × 伤害”为准。</div>`;
 }
