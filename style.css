@@ -1306,14 +1306,25 @@ button { transition: all 0.2s ease; }
 
 /* === 结论页四层标题 === */
 .conclLayerTitle{
-  font-size:22px !important;
+  font-size:28px !important;
   font-weight:800;
-  margin:0 0 6px !important;
+  margin:0 0 8px !important;
   color:var(--text);
-  letter-spacing:.02em;
-  padding-left:12px;
-  border-left:4px solid var(--red);
-  line-height:1.4;
+  letter-spacing:-.01em;
+  padding:2px 0 2px 16px;
+  border-left:6px solid var(--red);
+  line-height:1.22;
+}
+/* 层与层之间更强的分隔感 */
+#conclusions .conclLayerTitle{
+  padding-top:20px;
+  margin-top:8px !important;
+  border-top:1px solid var(--line);
+}
+#conclusions > div:first-of-type .conclLayerTitle{
+  padding-top:2px;
+  margin-top:0 !important;
+  border-top:none;
 }
 
 /* === 结论页数据高亮 & 案例链接 === */
