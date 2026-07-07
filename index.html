@@ -433,28 +433,56 @@
     <!-- 第三层 · 应对 -->
     <div style="margin:8px 2px 12px;">
       <h2 class="conclLayerTitle">第三层 · 应对：处置的安全边界</h2>
-      <p class="muted" style="font-size:13px; margin:0;"><b style="color:var(--text);">知道了尺子，该怎么处置？</b> —— 匹配事件性质：透明度与时效重于补偿力度，最怕误判黄金窗口。</p>
+      <p class="muted" style="font-size:13px; margin:0;"><b style="color:var(--text);">知道了尺子，该怎么处置？</b> —— 应对只有两个变量：<b style="color:var(--blue);">时机</b>（什么时候出手）× <b style="color:var(--green);">方式</b>（出手时怎么说）。方法本身没有优劣，成败全在<b style="color:var(--text);">匹配事件性质</b>。</p>
     </div>
     <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 16px; margin-bottom: 32px;">
 
-      <article class="card" style="padding:20px; border-left: 4px solid var(--blue);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">1. 冷处理不是错，误判黄金窗口才是——前冷后跪的代价最高</h3>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--blue); grid-column:1/-1;">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;"><span style="color:var(--blue); font-weight:700;">时机 ·</span> 方法无优劣，错配黄金窗口才致命</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          处置方式没有绝对优劣，关键是匹配事件性质。核心付费/留存受损时，冷处理会放大伤害，应快速道歉止损；若只是非核心群体的噪声，冷处理代价才低。样本中冷处理案例 5/7 为低伤害（另 1 例无数据），说明它多被用在小事上。<b>最危险的是「前期误判」——冷处理拖成后期滑跪的 3 个案例，全部落在中 / 高伤害档、无一为低伤害，说明误判黄金窗口的代价极高。</b>
+          单看数据很容易误读：冷处理的案例大多低伤、立刻滑跪的大多中高伤，好像"该冷处理、别急着道歉"。但这是<b>反向因果</b>——<b>不是冷处理让伤害变小，而是小事才敢冷处理；不是滑跪让伤害变大，而是严重的事才逼你立刻滑跪。</b>
         </p>
-        <div class="chips" style="text-align:center;">
-          <div class="conclStat">5 / 7<span class="statLabel">冷处理案例中低伤害数</span></div>
-          <div class="conclStat" style="margin-left:8px">3 / 3<span class="statLabel">前冷后跪落在中高伤害档</span></div>
+        <table class="table" style="margin:4px 0 12px;">
+          <thead><tr><th style="width:36%">应对方式</th><th>高伤</th><th>中伤</th><th>低伤</th><th style="width:20%">分布倾向</th></tr></thead>
+          <tbody>
+            <tr><td>冷处理</td><td>1</td><td>0</td><td style="color:var(--blue);font-weight:700">5</td><td style="color:var(--muted)">偏低伤</td></tr>
+            <tr><td>正常处理</td><td>3</td><td>0</td><td style="color:var(--blue);font-weight:700">6</td><td style="color:var(--muted)">偏低伤</td></tr>
+            <tr><td>立刻滑跪</td><td style="color:var(--red);font-weight:700">4</td><td>3</td><td>1</td><td style="color:var(--muted)">偏中高</td></tr>
+            <tr><td>前期冷处理 + 后期滑跪</td><td style="color:var(--red);font-weight:700">2</td><td>1</td><td>0</td><td style="color:var(--red);font-weight:600">全中高</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:14px; color:var(--muted); line-height:1.6; margin:0 0 10px;">
+          真正的代价来自<b>错配</b>：把冷处理用在核心契约被击穿的事上（<a class="conclCase" onclick="openCase('shijiezhiwai-money')">世界之外</a>是唯一的冷处理高伤），或前期误判、拖成后期被迫滑跪——<b>前冷后跪 3/3 全落中高档、无一低伤</b>，窗口一旦错过，信任已凉。
+        </p>
+        <div style="text-align:left;">
+          <span style="display:block; font-size:12px; color:var(--muted); margin-bottom:6px;">前冷后跪 · 误判窗口：</span>
+          <a class="conclCase" onclick="openCase('fengzhigu-refund')">枫之谷</a><a class="conclCase" onclick="openCase('lianyu-aoyin')">恋与深空-敖尹</a><a class="conclCase" onclick="openCase('luoke-s2')">洛克王国</a>
         </div>
+        <p style="font-size:12px; color:var(--muted); line-height:1.5; margin:10px 0 0;">注：按有伤害档记录的样本计（剔除无数据 / 未收录，共 26 例）；表为相关分布、非"方法优劣"的因果，样本偏小仅作方向性参考。</p>
       </article>
 
-      <article class="card" style="padding:20px; border-left: 4px solid var(--green);">
-        <h3 style="margin-top:0; color:var(--text); font-size:16px;">2. 透明度 / 时效 / 直接沟通 &gt; 补偿力度</h3>
+      <article class="card" style="padding:20px; border-left: 4px solid var(--green); grid-column:1/-1;">
+        <h3 style="margin-top:0; color:var(--text); font-size:16px;"><span style="color:var(--green); font-weight:700;">方式 ·</span> 透明度 / 时效 / 直接沟通 &gt; 补偿力度</h3>
         <p style="font-size:14px; color:var(--muted); line-height:1.6; margin-bottom:12px;">
-          有效道歉通常需要四件事同时到位：① 认错不甩锅 ② 解释原因 / 决策链 ③ 实际回退或修复 ④ 补偿。其中透明度、时效与直接沟通（高层实名、公开信、CEO 担责）才是玩家是否买账的关键。补偿只是附带诚意——单靠补偿不认错不解释，往往被读成"用福利换沉默"，反而显得傲慢。
+          有效道歉要四件事同时到位，但四件事的权重并不相等——真正决定玩家买不买账的是<b>透明与实质</b>（前三件），补偿只是附带诚意：
         </p>
-        <div class="chips">
-          <a class="conclCase" onclick="openCase('luoke-s2')">洛克王国</a>
+        <div style="display:grid; grid-template-columns:repeat(2,1fr); gap:8px; margin:0 0 14px;">
+          <div style="background:var(--greenBg); border:1px solid var(--line); border-radius:10px; padding:10px 12px;"><b style="color:var(--green); font-size:13px;">① 认错不甩锅</b><span style="display:block; font-size:11px; color:var(--muted); margin-top:2px;">态度 · 透明度</span></div>
+          <div style="background:var(--greenBg); border:1px solid var(--line); border-radius:10px; padding:10px 12px;"><b style="color:var(--green); font-size:13px;">② 解释原因 / 决策链</b><span style="display:block; font-size:11px; color:var(--muted); margin-top:2px;">透明度 · 直接沟通</span></div>
+          <div style="background:var(--greenBg); border:1px solid var(--line); border-radius:10px; padding:10px 12px;"><b style="color:var(--green); font-size:13px;">③ 实际回退 / 修复</b><span style="display:block; font-size:11px; color:var(--muted); margin-top:2px;">实质动作 · 时效</span></div>
+          <div style="background:var(--soft); border:1px dashed var(--line); border-radius:10px; padding:10px 12px;"><b style="color:var(--muted); font-size:13px;">④ 补偿</b><span style="display:block; font-size:11px; color:var(--muted); margin-top:2px;">附带诚意，不能单独顶用</span></div>
+        </div>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+          <div style="background:var(--greenBg); border:1px solid var(--line); border-radius:10px; padding:12px 14px;">
+            <b style="color:var(--green); font-size:13px;">✅ 止血：认错 + 回退 + 直接沟通</b>
+            <p style="font-size:13px; color:var(--muted); line-height:1.55; margin:6px 0 8px;">高层实名 / 公开信 / 快速回退，情绪明显回落。</p>
+            <a class="conclCase" onclick="openCase('luoke-s2')">洛克 公开信揽责</a><a class="conclCase" onclick="openCase('yuanshen-longwang')">那维莱特 快速回退</a><a class="conclCase" onclick="openCase('yuanshen-1year')">原神一周年 快速补偿</a>
+          </div>
+          <div style="background:var(--redBg); border:1px solid var(--line); border-radius:10px; padding:12px 14px;">
+            <b style="color:var(--red); font-size:13px;">❌ 火上浇油：回避 / 傲慢 / 只给补偿</b>
+            <p style="font-size:13px; color:var(--muted); line-height:1.55; margin:6px 0 8px;">不认错、避核心诉求，或用福利换沉默，反而激化。</p>
+            <a class="conclCase" onclick="openCase('shijiezhiwai-money')">世界之外 傲慢"想赚钱"</a><a class="conclCase" onclick="openCase('lianyu-aoyin')">敖尹 凌晨长文回避</a><a class="conclCase" onclick="openCase('gf2-daiyan')">少前2 三度道歉不解决核心</a>
+          </div>
         </div>
       </article>
 
