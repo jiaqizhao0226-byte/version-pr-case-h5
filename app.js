@@ -63,15 +63,17 @@ async function init(){
 function fillFilters(){
   // Matrix
   const matrixEl = $('matrix');
+  // value = matrixCell() 编码（声量+伤害：h高/m中/l低），与散点矩阵同一套标准分类。
+  // 本库声量仅 S(高)/A(中)，无 B(低)；故仅提供 高/中 声量两档。
   [
-    '高伤害 + 高声量 (核心危机)',
-    '中伤害 + 高声量 (信任赤字)',
-    '低伤害 + 高声量 (舆论风暴)',
-    '高伤害 + 低声量 (隐性流失)',
-    '中伤害 + 低声量 (局部损伤)',
-    '低伤害 + 低声量 (常规客诉)'
+    { v:'hh', t:'高伤害 + 高声量' },
+    { v:'hm', t:'中伤害 + 高声量' },
+    { v:'hl', t:'低伤害 + 高声量' },
+    { v:'mh', t:'高伤害 + 中声量' },
+    { v:'mm', t:'中伤害 + 中声量' },
+    { v:'ml', t:'低伤害 + 中声量' }
   ].forEach(x => {
-    const o=document.createElement('option');o.value=x;o.textContent=x;matrixEl.appendChild(o);
+    const o=document.createElement('option');o.value=x.v;o.textContent=x.t;matrixEl.appendChild(o);
   });
 
   // Core Tags grouped（四族 11 标准标签，与校对表 + cases.json 核心矛盾完全对齐）
@@ -163,21 +165,9 @@ function filtered(){
     
     if (q && !hay.includes(q)) return false;
 
-    if (mx) {
-      const vol = c.volume || '';
-      const dmg = c.damage || '';
-      const highVol = vol.includes('S') || vol.includes('A');
-      const highDmg = dmg.includes('S');
-      const midDmg = !highDmg && (dmg.includes('A') || dmg === '中');
-      const lowDmg = !highDmg && !midDmg;
-
-      if (mx === '高伤害 + 高声量 (核心危机)' && !(highVol && highDmg)) return false;
-      if (mx === '中伤害 + 高声量 (信任赤字)' && !(highVol && midDmg)) return false;
-      if (mx === '低伤害 + 高声量 (舆论风暴)' && !(highVol && lowDmg)) return false;
-      if (mx === '高伤害 + 低声量 (隐性流失)' && !(!highVol && highDmg)) return false;
-      if (mx === '中伤害 + 低声量 (局部损伤)' && !(!highVol && midDmg)) return false;
-      if (mx === '低伤害 + 低声量 (常规客诉)' && !(!highVol && lowDmg)) return false;
-    }
+    // 声量×伤害筛选：与散点矩阵同一套标准分类（matrixCell），
+    // 无数据/未收录（na）不落入任何声量×伤害档，仅在「全部」下出现。
+    if (mx && matrixCell(c) !== mx) return false;
 
     if (ct && !(c.tags || []).includes(ct)) return false;
 
@@ -218,17 +208,17 @@ function matrixCell(c) {
 
 const CELL_META = {
   // 高伤害行
-  lh: { label: '隐性流失', sub: '低声量 · 高伤害', color: 'b-blue' },
-  mh: { label: '局部危机', sub: '中声量 · 高伤害', color: 'b-midblue' },
-  hh: { label: '核心危机', sub: '高声量 · 高伤害', color: 'b-red'  },
+  lh: { sub: '低声量 · 高伤害', color: 'b-blue' },
+  mh: { sub: '中声量 · 高伤害', color: 'b-midblue' },
+  hh: { sub: '高声量 · 高伤害', color: 'b-red'  },
   // 中伤害行
-  lm: { label: '局部损伤', sub: '低声量 · 中伤害', color: 'b-midblue' },
-  mm: { label: '信任摩擦', sub: '中声量 · 中伤害', color: 'b-midamber' },
-  hm: { label: '信任赤字', sub: '高声量 · 中伤害', color: 'b-midamber' },
+  lm: { sub: '低声量 · 中伤害', color: 'b-midblue' },
+  mm: { sub: '中声量 · 中伤害', color: 'b-midamber' },
+  hm: { sub: '高声量 · 中伤害', color: 'b-midamber' },
   // 低伤害行
-  ll: { label: '常规客诉', sub: '低声量 · 低伤害', color: 'b-gray' },
-  ml: { label: '圈内吐槽', sub: '中声量 · 低伤害', color: 'b-gray' },
-  hl: { label: '舆论风暴', sub: '高声量 · 低伤害', color: 'b-amber'},
+  ll: { sub: '低声量 · 低伤害', color: 'b-gray' },
+  ml: { sub: '中声量 · 低伤害', color: 'b-gray' },
+  hl: { sub: '高声量 · 低伤害', color: 'b-amber'},
 };
 
 function renderMatrixChart() {
