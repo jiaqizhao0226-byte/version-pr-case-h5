@@ -1375,17 +1375,19 @@ button { transition: all 0.2s ease; }
   margin-top:auto;
   padding-top:12px;
 }
+/* 案例行紧跟数据气泡，不再单独贴底（贴底由数据气泡的 margin-top:auto 统一负责） */
 #conclusions .card[style*="border-left"] > div:last-child:not(.chips){
-  margin-top:auto;
-  padding-top:12px;
+  margin-top:6px;
+  padding-top:0;
 }
 
-/* 结论页数据气泡：左对齐，与卡片其余内容同一左边线 */
+/* 结论页数据气泡：左对齐 + 整个"底部区块"贴底，使并排卡片的数字与案例行对齐 */
 #conclusions .chips:has(.conclStat){
   justify-content:flex-start;
   text-align:left;
   gap:8px;
-  margin:2px 0 4px;
+  margin-top:auto;
+  margin-bottom:4px;
 }
 #conclusions .chips:has(.conclStat) .conclStat{ text-align:center; }
 
