@@ -206,19 +206,21 @@ function matrixCell(c) {
   return vol + dmg;
 }
 
+// 胶囊颜色按「伤害档」一行一色，与 DMG3_COLORS / 全站严重度色阶统一：
+// 高伤害→红(b-red)、中伤害→琥珀(b-amber)、低伤害→钢蓝(b-blue)。
 const CELL_META = {
   // 高伤害行
-  lh: { sub: '低声量 · 高伤害', color: 'b-blue' },
-  mh: { sub: '中声量 · 高伤害', color: 'b-midblue' },
-  hh: { sub: '高声量 · 高伤害', color: 'b-red'  },
+  lh: { sub: '低声量 · 高伤害', color: 'b-red' },
+  mh: { sub: '中声量 · 高伤害', color: 'b-red' },
+  hh: { sub: '高声量 · 高伤害', color: 'b-red' },
   // 中伤害行
-  lm: { sub: '低声量 · 中伤害', color: 'b-midblue' },
-  mm: { sub: '中声量 · 中伤害', color: 'b-midamber' },
-  hm: { sub: '高声量 · 中伤害', color: 'b-midamber' },
+  lm: { sub: '低声量 · 中伤害', color: 'b-amber' },
+  mm: { sub: '中声量 · 中伤害', color: 'b-amber' },
+  hm: { sub: '高声量 · 中伤害', color: 'b-amber' },
   // 低伤害行
-  ll: { sub: '低声量 · 低伤害', color: 'b-gray' },
-  ml: { sub: '中声量 · 低伤害', color: 'b-gray' },
-  hl: { sub: '高声量 · 低伤害', color: 'b-amber'},
+  ll: { sub: '低声量 · 低伤害', color: 'b-blue' },
+  ml: { sub: '中声量 · 低伤害', color: 'b-blue' },
+  hl: { sub: '高声量 · 低伤害', color: 'b-blue' },
 };
 
 function renderMatrixChart() {
