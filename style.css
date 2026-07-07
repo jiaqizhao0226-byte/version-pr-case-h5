@@ -409,13 +409,14 @@ button { transition: all 0.2s ease; }
   text-align: center;
   border-radius: 11px;
   padding: 2px 8px;
+  background: #AEB4BD; /* 兜底底色，保证任何格子的计数都可见 */
 }
-.qcell-hr .qcCount { background: #B85450; }
-.qcell-hl .qcCount { background: #7A93B5; }
-.qcell-mr .qcCount { background: #D99A3E; }
-.qcell-ml .qcCount { background: #7A93B5; }
-.qcell-lr .qcCount { background: #7A93B5; }
-.qcell-ll .qcCount { background: #7A93B5; }
+/* 计数徽标按「伤害行」上色，与格子/胶囊同一严重度色阶 */
+.qcell-lh .qcCount, .qcell-mh .qcCount, .qcell-hh .qcCount { background: #B85450; } /* 高伤害行 */
+.qcell-lm .qcCount, .qcell-mm .qcCount, .qcell-hm .qcCount { background: #D99A3E; } /* 中伤害行 */
+.qcell-ll .qcCount, .qcell-ml .qcCount, .qcell-hl .qcCount { background: #7A93B5; } /* 低伤害行 */
+/* 低声量列本案例库无样本（恒为 0），徽标弱化为浅灰、不喧宾夺主 */
+.qcell-lh .qcCount, .qcell-lm .qcCount, .qcell-ll .qcCount { background: #D4D8DE; color: #8A94A2; }
 .qcBody { display: flex; flex-wrap: wrap; gap: 4px; align-content: flex-start; }
 .qcEmpty { color: var(--muted); font-size: 13px; opacity: .5; }
 .qcase {
