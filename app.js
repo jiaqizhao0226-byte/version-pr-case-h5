@@ -667,18 +667,18 @@ function renderGenreDamageChart() {
   });
   // 频次热力图（暖棕色系）
   const maxVal = Math.max(...Object.values(cells), 1);
-  const colHeads = cols.map(c=>`<div class="thColHead">${esc(c)}</div>`).join('');
+  const colHeads = cols.map(c=>`<div class="thColHead" data-col="${esc(c)}">${esc(c)}</div>`).join('');
   const body = rows.map(r=>{
     const cellHtml = cols.map(c=>{
       const n = cells[`${r}|||${c}`] || 0;
       const intensity = n / maxVal;
       const bg = n === 0 ? 'transparent' : `rgba(139,111,71,${0.12 + intensity * 0.78})`;
       const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
-      return `<div class="thCell" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${c}: ${n}">
+      return `<div class="thCell" data-row="${esc(r)}" data-col="${esc(c)}" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${esc(c)}: ${n}">
         ${n?`<b style="color:${txtColor}">${n}</b>`:''}
       </div>`;
     }).join('');
-    return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
+    return `<div class="thRow"><div class="thRowHead" data-row="${esc(r)}">${esc(r)}</div>${cellHtml}</div>`;
   }).join('');
   const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(139,111,71,${i});border-radius:2px"></span>`).join('');
   wrap.innerHTML = `<div class="triHeat">
@@ -689,11 +689,11 @@ function renderGenreDamageChart() {
     <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
     <div class="chartInsights"><b>洞察：</b>
       <ul>
-        <li><b>乙女向</b>的情感/价值观争议最密集——核心资产是角色关系与情感契约，一旦被冒犯容易引发广泛讨论。</li>
-        <li><b>二次元</b>的付费内容贬值/商业化动机争议突出——抽卡资产被削弱或缩水时，易引发付费信任争议。</li>
-        <li><b>写实/竞技</b>风险集中在数值公平与玩法生态——竞技属性强，平衡性调整和玩法管控是最敏感的触发点。</li>
-        <li><b>情怀IP</b>更易因定位偏离、价值观冲突或老玩家预期落差引发争议——老玩家对 IP 调性有固定期待，偏离即触发。</li>
-        <li><b>武侠/国风</b>样本集中在开放世界类，矛盾多为玩法平衡与内容争议。</li>
+        <li data-tag="乙女向"><b>乙女向</b>的情感/价值观争议最密集——核心资产是角色关系与情感契约，一旦被冒犯容易引发广泛讨论。</li>
+        <li data-tag="二次元"><b>二次元</b>的付费内容贬值/商业化动机争议突出——抽卡资产被削弱或缩水时，易引发付费信任争议。</li>
+        <li data-tag="写实/竞技"><b>写实/竞技</b>风险集中在数值公平与玩法生态——竞技属性强，平衡性调整和玩法管控是最敏感的触发点。</li>
+        <li data-tag="情怀IP"><b>情怀IP</b>更易因定位偏离、价值观冲突或老玩家预期落差引发争议——老玩家对 IP 调性有固定期待，偏离即触发。</li>
+        <li data-tag="武侠/国风"><b>武侠/国风</b>样本集中在开放世界类，矛盾多为玩法平衡与内容争议。</li>
       </ul>
     </div>
   </div>`;
@@ -720,18 +720,18 @@ function renderGameplayTagChart(){
     });
   });
   const maxVal = Math.max(...Object.values(cells), 1);
-  const colHeads = cols.map(c=>`<div class="thColHead">${esc(c)}</div>`).join('');
+  const colHeads = cols.map(c=>`<div class="thColHead" data-col="${esc(c)}">${esc(c)}</div>`).join('');
   const body = rows.map(r=>{
     const cellHtml = cols.map(c=>{
       const n = cells[`${r}|||${c}`] || 0;
       const intensity = n / maxVal;
       const bg = n === 0 ? 'transparent' : `rgba(91,123,166,${0.12 + intensity * 0.78})`;
       const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
-      return `<div class="thCell" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${c}: ${n}">
+      return `<div class="thCell" data-row="${esc(r)}" data-col="${esc(c)}" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${esc(c)}: ${n}">
         ${n?`<b style="color:${txtColor}">${n}</b>`:''}
       </div>`;
     }).join('');
-    return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
+    return `<div class="thRow"><div class="thRowHead" data-row="${esc(r)}">${esc(r)}</div>${cellHtml}</div>`;
   }).join('');
   const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(91,123,166,${i});border-radius:2px"></span>`).join('');
   wrap.innerHTML = `<div class="triHeat">
@@ -742,10 +742,10 @@ function renderGameplayTagChart(){
     <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
     <div class="chartInsights"><b>洞察：</b>
       <ul>
-        <li><b>模拟/养成</b>以情感/价值观争议和付费内容贬值为主要矛盾——这类玩法的核心是长线情感投入和持续付费，一旦角色或付费权益变动，玩家反应最强烈。</li>
-        <li><b>射击类</b>集中在数值公平与玩法生态争议——竞技属性强，平衡性调整和玩法管控是最敏感的触发点。</li>
-        <li><b>开放世界</b>矛盾类型较分散，但体验/质量争议相对突出——大世界对技术品质要求高，优化和bug问题容易成为导火索。</li>
-        <li><b>抽卡RPG</b>以商业化契约和付费内容贬值为主——抽卡资产的保值承诺是这类玩法的信任基石。</li>
+        <li data-tag="模拟/养成"><b>模拟/养成</b>以情感/价值观争议和付费内容贬值为主要矛盾——这类玩法的核心是长线情感投入和持续付费，一旦角色或付费权益变动，玩家反应最强烈。</li>
+        <li data-tag="射击类"><b>射击类</b>集中在数值公平与玩法生态争议——竞技属性强，平衡性调整和玩法管控是最敏感的触发点。</li>
+        <li data-tag="开放世界"><b>开放世界</b>矛盾类型较分散，但体验/质量争议相对突出——大世界对技术品质要求高，优化和bug问题容易成为导火索。</li>
+        <li data-tag="抽卡RPG"><b>抽卡RPG</b>以商业化契约和付费内容贬值为主——抽卡资产的保值承诺是这类玩法的信任基石。</li>
       </ul>
     </div>
   </div>`;
@@ -843,18 +843,18 @@ function renderScopeTagChart(){
     });
   });
   const maxVal = Math.max(...Object.values(cells), 1);
-  const colHeads = cols.map(c=>`<div class="thColHead">${esc(c)}</div>`).join('');
+  const colHeads = cols.map(c=>`<div class="thColHead" data-col="${esc(c)}">${esc(c)}</div>`).join('');
   const body = rows.map(r=>{
     const cellHtml = cols.map(c=>{
       const n = cells[`${r}|||${c}`] || 0;
       const intensity = n / maxVal;
       const bg = n === 0 ? 'transparent' : `rgba(44,62,92,${0.12 + intensity * 0.78})`;
       const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
-      return `<div class="thCell" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${c}: ${n}">
+      return `<div class="thCell" data-row="${esc(r)}" data-col="${esc(c)}" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${esc(c)}: ${n}">
         ${n?`<b style="color:${txtColor}">${n}</b>`:''}
       </div>`;
     }).join('');
-    return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
+    return `<div class="thRow"><div class="thRowHead" data-row="${esc(r)}">${esc(r)}</div>${cellHtml}</div>`;
   }).join('');
   const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(44,62,92,${i});border-radius:2px"></span>`).join('');
   wrap.innerHTML = `<div class="triHeat">
@@ -865,7 +865,7 @@ function renderScopeTagChart(){
     <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
     <div class="chartInsights"><b>洞察：</b>
       <ul>
-        <li>内容尺度/合规争议和情感/价值观争议集中在高声量场景——这类议题容易引发跨平台讨论和破圈传播。</li>
+        <li data-tag="内容尺度/合规争议,情感/价值观争议">内容尺度/合规争议和情感/价值观争议集中在高声量场景——这类议题容易引发跨平台讨论和破圈传播。</li>
       </ul>
     </div>
   </div>`;
@@ -888,7 +888,7 @@ function renderPrDamageChart(){
   const html = rows.map(p=>{
     const d=data[p]; const w=d.total/maxTotal*100;
     const hi=d.total?d.high/d.total*100:0, mi=d.total?d.mid/d.total*100:0, lo=d.total?d.low/d.total*100:0, na=d.total?d.na/d.total*100:0;
-    return `<div class="gdRow">
+    return `<div class="gdRow" data-row="${esc(p)}">
       <div class="gdGenre">${esc(p)} <span class="gdCount">${d.total}</span></div>
       <div class="gdBars"><div class="gdBarLine">
         <span class="gdBarLabel">伤害</span>
@@ -912,9 +912,9 @@ function renderPrDamageChart(){
     <div class="chartInsights"><b>洞察：</b>
       <p style="margin:0 0 8px;">先看数据本身：四种处置方式与伤害档位之间并非随机分布，而是存在明显的匹配关系——说明官方并非"随便选一个应对方式"，处置选择与事件性质高度相关。</p>
       <ul>
-        <li><b>滑跪（含立刻滑跪和后期滑跪）</b>的伤害分布比其它处置更偏向中 / 高档（合并后 13 例中，中高伤害 9 例、低伤害仅 1 例、无数据 3 例），且触及核心付费 / 契约的案例几乎都会滑跪。这说明滑跪更多是<b>事件已被判定为"动了根基"后的止损选择</b>——不是"滑跪导致高伤害"，而是"判断伤到核心才滑跪"（选择效应，非因果）。需注意：单看"立刻滑跪"一项，伤害分布其实较分散（高/中/低都有），滑跪速度本身是姿态选择，不能直接当作严重度信号。</li>
-        <li><b>冷处理</b>集中在低伤害（7/10 为低伤害），说明它多用于官方判断"没动到核心盘"的场景。风险在于误判：如果实际已触及核心付费，冷处理会错过最佳窗口。</li>
-        <li><b>正常处理</b>的案例伤害分布较均匀，是矛盾可控、诉求明确时的标准路径——按常规节奏公告说明即可。</li>
+        <li data-tag="立刻滑跪,前期冷处理+后期滑跪"><b>滑跪（含立刻滑跪和后期滑跪）</b>的伤害分布比其它处置更偏向中 / 高档（合并后 13 例中，中高伤害 9 例、低伤害仅 1 例、无数据 3 例），且触及核心付费 / 契约的案例几乎都会滑跪。这说明滑跪更多是<b>事件已被判定为"动了根基"后的止损选择</b>——不是"滑跪导致高伤害"，而是"判断伤到核心才滑跪"（选择效应，非因果）。需注意：单看"立刻滑跪"一项，伤害分布其实较分散（高/中/低都有），滑跪速度本身是姿态选择，不能直接当作严重度信号。</li>
+        <li data-tag="冷处理"><b>冷处理</b>集中在低伤害（7/10 为低伤害），说明它多用于官方判断"没动到核心盘"的场景。风险在于误判：如果实际已触及核心付费，冷处理会错过最佳窗口。</li>
+        <li data-tag="正常处理"><b>正常处理</b>的案例伤害分布较均匀，是矛盾可控、诉求明确时的标准路径——按常规节奏公告说明即可。</li>
       </ul>
       <p style="margin:8px 0 0;"><b>一句话结论：</b>处置方式没有绝对优劣，关键是匹配事件性质——触及核心付费就快速止损，没触及就冷处理，判断对了比选哪个更重要。</p>
     </div>`;
@@ -1318,20 +1318,26 @@ function renderInsight(c){
 }
 
 init().then(()=>{
-  // 洞察 hover 高亮：hover <li data-tag="..."> 时高亮热力图对应行
+  // 洞察 hover 高亮：hover <li data-tag="..."> 时高亮热力图对应行/列和条形图行
   document.addEventListener('mouseover', e=>{
     const li = e.target.closest('.chartInsights li[data-tag]');
     if(!li) return;
     const tags = li.dataset.tag.split(',');
-    document.querySelectorAll('.thRowHead, .thColHead, .thCell').forEach(el=>el.classList.remove('hl'));
+    document.querySelectorAll('.thRowHead, .thColHead, .thCell, .gdRow').forEach(el=>el.classList.remove('hl'));
     tags.forEach(tag=>{
+      // 高亮热力图行（thRowHead + thCell）
       document.querySelectorAll(`.thRowHead[data-row="${tag}"]`).forEach(el=>el.classList.add('hl'));
       document.querySelectorAll(`.thCell[data-row="${tag}"]`).forEach(el=>el.classList.add('hl'));
+      // 高亮热力图列（thColHead + thCell）
+      document.querySelectorAll(`.thColHead[data-col="${tag}"]`).forEach(el=>el.classList.add('hl'));
+      document.querySelectorAll(`.thCell[data-col="${tag}"]`).forEach(el=>el.classList.add('hl'));
+      // 高亮条形图行（gdRow）
+      document.querySelectorAll(`.gdRow[data-row="${tag}"]`).forEach(el=>el.classList.add('hl'));
     });
   });
   document.addEventListener('mouseout', e=>{
     if(e.target.closest('.chartInsights li[data-tag]')){
-      document.querySelectorAll('.thRowHead.hl, .thColHead.hl, .thCell.hl').forEach(el=>el.classList.remove('hl'));
+      document.querySelectorAll('.thRowHead.hl, .thColHead.hl, .thCell.hl, .gdRow.hl').forEach(el=>el.classList.remove('hl'));
     }
   });
 }).catch(err=>{

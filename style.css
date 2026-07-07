@@ -1376,3 +1376,4 @@ button { transition: all 0.2s ease; }
 .thCell.hl { outline:2px solid var(--red); outline-offset:-1px; z-index:1; box-shadow:0 0 0 2px rgba(192,57,43,0.3); }
 .chartInsights li[data-tag] { cursor:default; transition:background .15s; border-radius:6px; padding:4px 8px; margin:4px -8px; }
 .chartInsights li[data-tag]:hover { background:rgba(192,57,43,0.06); }
+.gdRow.hl { background:rgba(192,57,43,0.06); border-radius:8px; }
