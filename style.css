@@ -356,9 +356,9 @@ button { transition: all 0.2s ease; }
 }
 .qcell {
   border: 1.5px solid var(--line);
-  border-radius: 10px;
-  padding: 6px 8px;
-  min-height: 64px;
+  border-radius: 8px;
+  padding: 4px 6px;
+  min-height: 44px;
   display: flex;
   flex-direction: column;
 }
@@ -378,9 +378,9 @@ button { transition: all 0.2s ease; }
 .qcHead {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin-bottom: 5px;
-  padding-bottom: 4px;
+  gap: 4px;
+  margin-bottom: 3px;
+  padding-bottom: 2px;
   border-bottom: 1px solid rgba(0,0,0,0.06);
   flex-wrap: wrap;
 }
@@ -416,7 +416,7 @@ button { transition: all 0.2s ease; }
 .qcell-ml .qcCount { background: #5B7DA6; }
 .qcell-lr .qcCount { background: #7C5E38; }
 .qcell-ll .qcCount { background: #566472; }
-.qcBody { display: flex; flex-wrap: wrap; gap: 7px; align-content: flex-start; }
+.qcBody { display: flex; flex-wrap: wrap; gap: 4px; align-content: flex-start; }
 .qcEmpty { color: var(--muted); font-size: 13px; opacity: .5; }
 .qcase {
   display: inline-flex;
@@ -425,15 +425,15 @@ button { transition: all 0.2s ease; }
   background: #fff;
   border: 1px solid var(--line);
   border-left: 3px solid var(--line);
-  border-radius: 8px;
-  padding: 4px 10px;
+  border-radius: 6px;
+  padding: 2px 8px;
   cursor: pointer;
   transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-  min-width: 72px;
+  min-width: 68px;
   height: auto;
-  min-height: 28px;
-  font-size: 12.5px;
+  min-height: 22px;
+  font-size: 12px;
   font-weight: 700;
   color: var(--text);
   line-height: 1;
@@ -1370,3 +1370,9 @@ button { transition: all 0.2s ease; }
 #conclusions .chips:has(.conclStat){
   justify-content:center;
 }
+
+/* 热力图 hover 高亮 */
+.thRowHead.hl, .thColHead.hl { font-weight:800; color:var(--text)!important; }
+.thCell.hl { outline:2px solid var(--red); outline-offset:-1px; z-index:1; box-shadow:0 0 0 2px rgba(192,57,43,0.3); }
+.chartInsights li[data-tag] { cursor:default; transition:background .15s; border-radius:6px; padding:4px 8px; margin:4px -8px; }
+.chartInsights li[data-tag]:hover { background:rgba(192,57,43,0.06); }

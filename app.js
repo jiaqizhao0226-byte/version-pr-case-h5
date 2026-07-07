@@ -750,18 +750,18 @@ function renderTagDamageChart(){
     });
   });
   const maxVal = Math.max(...Object.values(cells), 1);
-  const colHeads = cols.map(c=>`<div class="thColHead">${esc(c)}</div>`).join('');
+  const colHeads = cols.map(c=>`<div class="thColHead" data-col="${esc(c)}">${esc(c)}</div>`).join('');
   const body = rows.map(r=>{
     const cellHtml = cols.map(c=>{
       const n = cells[`${r}|||${c}`] || 0;
       const intensity = n / maxVal;
       const bg = n === 0 ? 'transparent' : `rgba(184,84,80,${0.12 + intensity * 0.78})`;
       const txtColor = intensity > 0.5 ? '#fff' : 'var(--text)';
-      return `<div class="thCell" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${c}: ${n}">
+      return `<div class="thCell" data-row="${esc(r)}" data-col="${esc(c)}" style="background:${bg};${n===0?'border:1px solid var(--line)':''}" title="${esc(r)} × ${esc(c)}: ${n}">
         ${n?`<b style="color:${txtColor}">${n}</b>`:''}
       </div>`;
     }).join('');
-    return `<div class="thRow"><div class="thRowHead">${esc(r)}</div>${cellHtml}</div>`;
+    return `<div class="thRow"><div class="thRowHead" data-row="${esc(r)}">${esc(r)}</div>${cellHtml}</div>`;
   }).join('');
   const legendStops = [0.12,0.3,0.5,0.7,0.9].map(i=>`<span style="display:inline-block;width:14px;height:10px;background:rgba(184,84,80,${i});border-radius:2px"></span>`).join('');
   wrap.innerHTML = `<div class="triHeat">
@@ -772,9 +772,9 @@ function renderTagDamageChart(){
     <div class="heatLegend" style="justify-content:center"><span style="font-size:11px;color:var(--muted)">案例数：</span>少${legendStops}多</div>
     <div class="chartInsights"><b>洞察：</b>
       <ul>
-        <li><b>商业化契约/动机争议</b>和<b>体验/质量争议</b>的高伤害占比最高（分别 62% 和 67%）——前者是玩家认为厂商"故意坑钱"时信任受损，后者是基础品质问题直接导致流失。这两类矛盾最容易实质伤到留存盘。</li>
-        <li><b>情感/价值观争议</b>两极分化（50% 高 / 50% 低）——触及情感契约底线则伤及留存，未触及则只是情绪宣泄。</li>
-        <li><b>数值/平衡争议</b>以低伤害为主（17%），多数可通过后续调整修复。</li>
+        <li data-tag="商业化契约/动机争议,体验/质量争议"><b>商业化契约/动机争议</b>和<b>体验/质量争议</b>的高伤害占比最高（分别 62% 和 67%）——前者是玩家认为厂商"故意坑钱"时信任受损，后者是基础品质问题直接导致流失。这两类矛盾最容易实质伤到留存盘。</li>
+        <li data-tag="情感/价值观争议"><b>情感/价值观争议</b>两极分化（50% 高 / 50% 低）——触及情感契约底线则伤及留存，未触及则只是情绪宣泄。</li>
+        <li data-tag="数值/平衡争议"><b>数值/平衡争议</b>以低伤害为主（17%），多数可通过后续调整修复。</li>
       </ul>
     </div>
   </div>`;
@@ -1277,7 +1277,24 @@ function renderInsight(c){
   return `<div class="block"><p class="muted">旧版数据，请升级至新模板。</p></div>`;
 }
 
-init().catch(err=>{
+init().then(()=>{
+  // 洞察 hover 高亮：hover <li data-tag="..."> 时高亮热力图对应行
+  document.addEventListener('mouseover', e=>{
+    const li = e.target.closest('.chartInsights li[data-tag]');
+    if(!li) return;
+    const tags = li.dataset.tag.split(',');
+    document.querySelectorAll('.thRowHead, .thColHead, .thCell').forEach(el=>el.classList.remove('hl'));
+    tags.forEach(tag=>{
+      document.querySelectorAll(`.thRowHead[data-row="${tag}"]`).forEach(el=>el.classList.add('hl'));
+      document.querySelectorAll(`.thCell[data-row="${tag}"]`).forEach(el=>el.classList.add('hl'));
+    });
+  });
+  document.addEventListener('mouseout', e=>{
+    if(e.target.closest('.chartInsights li[data-tag]')){
+      document.querySelectorAll('.thRowHead.hl, .thColHead.hl, .thCell.hl').forEach(el=>el.classList.remove('hl'));
+    }
+  });
+}).catch(err=>{
   console.error("Initialization error:", err);
   document.body.innerHTML=`<div class="app"><div class="block"><h3 style="color:red;">页面加载失败</h3><p class="muted">如果在本地访问，请使用 HTTP 服务器 (如 VSCode Live Server) 打开，直接双击文件会因为 CORS 被拦截。</p><p style="color:red; font-family:monospace; background:#f5f5f5; padding:10px;">${err.message}</p><p>请打开 F12 控制台查看详细报错。</p></div></div>`;
 });
