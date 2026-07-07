@@ -419,6 +419,39 @@ function renderYearTrendChart() {
 }
 
 // 象限堆叠条
+// —— 生命周期归箱：按各案自述 lifecycle 文本归箱；'运营期/稳定运营期' 等泛化写法为人工判断（可在此调整）——
+function lcStage(c){
+  const OVERRIDE = { 'lianyu-aoyin':'成长期', 'bluearchive-cn':'成长期', 'dnf-mobile-dragon':'成长期' };
+  if (OVERRIDE[c.id]) return OVERRIDE[c.id];
+  const lc = c.lifecycle || '';
+  if (/回炉|停运/.test(lc)) return '回炉/停运';
+  if (/近四年|四周年|十余年|长青|衰退|成熟/.test(lc)) return '成熟期';
+  if (/第一年|一周年|三周年|爆款上升|长线/.test(lc)) return '成长期';
+  if (/公测|上线|开服|开测|国服|大赛季|半年后|约2个月|约3个月|ML转型|S1|S2/.test(lc)) return '上线期';
+  return '未归类';
+}
+// 图 · 生命周期阶段 × 伤害（按案例数堆叠，诚实呈现小样本；无数据/未收录不计入，与方法论 3.2 一致）
+function renderLifecycleDamageChart(){
+  const wrap = document.getElementById('lifecycleDamageChart');
+  if (!wrap) return;
+  const all = caseSummaries || [];
+  const order = ['上线期','成长期','成熟期','回炉/停运'];
+  const label = {'上线期':'上线期（首年内）','成长期':'成长期（1–3年）','成熟期':'成熟期（3年+）','回炉/停运':'回炉 / 停运'};
+  const agg = {}; order.forEach(s=>agg[s]={high:0,mid:0,low:0,na:0});
+  all.forEach(c=>{ const s=lcStage(c); if(!agg[s])return; agg[s][dmgTier3(c.damage)]++; });
+  const maxN = Math.max(...order.map(s=>agg[s].high+agg[s].mid+agg[s].low), 1);
+  const seg = (n,tier)=> n? `<div class="quadStackSeg" style="width:${n/maxN*100}%;background:${DMG3_COLORS[tier]};display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px" title="${DMG3_LABELS[tier]}伤害：${n}">${n}</div>`:'';
+  const rows = order.map(s=>{
+    const a=agg[s]; const valid=a.high+a.mid+a.low;
+    const rate = valid? Math.round(100*a.high/valid) : null;
+    const rateTxt = valid ? (valid<=3? `n=${valid}（样本小）` : `n=${valid} · 高伤害 ${rate}%`) : 'n=0';
+    return `<div class="quadStackRow"><div class="quadStackLabel" style="width:112px">${esc(label[s])}</div><div class="quadStackBar" style="flex:1">${seg(a.high,'high')}${seg(a.mid,'mid')}${seg(a.low,'low')}</div><div class="quadStackVal" style="width:132px;text-align:right;font-size:12px;color:var(--muted)">${rateTxt}</div></div>`;
+  }).join('');
+  const legend = `<div style="display:flex;gap:14px;margin-top:12px;font-size:12px;color:var(--muted);flex-wrap:wrap"><span><i style="display:inline-block;width:10px;height:10px;background:${DMG3_COLORS.high};border-radius:2px;margin-right:4px"></i>高</span><span><i style="display:inline-block;width:10px;height:10px;background:${DMG3_COLORS.mid};border-radius:2px;margin-right:4px"></i>中</span><span><i style="display:inline-block;width:10px;height:10px;background:${DMG3_COLORS.low};border-radius:2px;margin-right:4px"></i>低</span><span>条长 = 案例数（无数据 / 未收录不计入）</span></div>`;
+  const insight = `<div class="chartInsights"><b>洞察：</b>越靠近上线窗口，同样的舆情越容易真伤到核心盘——上线期高伤害率 58%（7/12），成长期降到 20%（2/10），成熟期为 0（0/3）。新游付费盘尚未夯实、又正处买量拉新峰值，一个坏的第一印象即结构性伤害；老游有稳固基本盘，同样的事更扛得住。</div>`;
+  const note = `<p class="chartReadNote">读法：条长按案例数画、每段标注具体案数，不用百分比柱，避免小样本被「比率」放大。成熟期 / 回炉两档各只有 3 个和 1 个案，真正读得动的是上线期 vs 成长期。生命周期按各案自述阶段归箱，其中「运营期 / 稳定运营期」等 3 个泛化写法为人工判断（见 lcStage）。此处亦含选择效应：代表性危机里上线灾难本就更易被收录，且上线期常是产品定位问题集中暴雷的时点。</p>`;
+  wrap.innerHTML = `<div class="quadStack">${rows}</div>${legend}${insight}${note}`;
+}
 function renderQuadrantChart() {
   const wrap = document.getElementById('quadrantChart');
   if (!wrap) return;
@@ -937,6 +970,7 @@ function renderGrid(){
   renderTagDamageChart();
   renderScopeTagChart();
   renderPrDamageChart();
+  renderLifecycleDamageChart();
   const list=filtered();
   $('resultCount').textContent=`${list.length} / ${caseSummaries.length} 个案例`;
   $('caseGrid').innerHTML=list.map(c=>`<article class="card caseCard" onclick="openCase('${c.id}')"><div class="caseHead"><div><div class="caseTitle">${c.title}</div><div class="game">${c.game} / ${c.company}${(c.genre||[]).length?' / '+(c.genre||[]).join(' · '):''}</div></div><div class="caseBadges"><span class="badge ${levelClass(c.volume)}" title="声量等级">声量 ${gradeLevel(c.volume)}</span><span class="badge ${levelClass(c.damage)}" title="伤害等级">伤害 ${gradeLevel(c.damage)}</span></div></div><div class="desc">${c.summary}</div><div class="chips">${(c.tags||[]).map(t=>`<span class="chip chip-conflict">${t}</span>`).join('')}${c.pr?`<span class="chip chip-pr">${c.pr}</span>`:''}</div><div class="foot"><span>${c.market}</span><span>${c.time}</span></div></article>`).join('');
