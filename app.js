@@ -439,8 +439,7 @@ function renderLifecycleDamageChart(){
   }).join('');
   const legend = `<div style="display:flex;gap:14px;margin-top:12px;font-size:12px;color:var(--muted);flex-wrap:wrap"><span><i style="display:inline-block;width:10px;height:10px;background:${DMG3_COLORS.high};border-radius:2px;margin-right:4px"></i>高</span><span><i style="display:inline-block;width:10px;height:10px;background:${DMG3_COLORS.mid};border-radius:2px;margin-right:4px"></i>中</span><span><i style="display:inline-block;width:10px;height:10px;background:${DMG3_COLORS.low};border-radius:2px;margin-right:4px"></i>低</span><span>条长 = 案例数（无数据 / 未收录不计入）</span></div>`;
   const insight = `<div class="chartInsights"><b>洞察：</b>越靠近上线窗口，同样的舆情越容易真伤到核心盘——上线期高伤害率 58%（7/12），成长期降到 20%（2/10），成熟期为 0（0/3）。新游付费盘尚未夯实、又正处买量拉新峰值，一个坏的第一印象即结构性伤害；老游有稳固基本盘，同样的事更扛得住。</div>`;
-  const note = `<p class="chartReadNote">读法：条长按案例数画、每段标注具体案数，不用百分比柱，避免小样本被「比率」放大。成熟期 / 回炉两档各只有 3 个和 1 个案，真正读得动的是上线期 vs 成长期。生命周期按各案自述阶段归箱，其中「运营期 / 稳定运营期」等 3 个泛化写法为人工判断（见 lcStage）。此处亦含选择效应：代表性危机里上线灾难本就更易被收录，且上线期常是产品定位问题集中暴雷的时点。</p>`;
-  wrap.innerHTML = `<div class="quadStack">${rows}</div>${legend}${insight}${note}`;
+  wrap.innerHTML = `<div class="quadStack">${rows}</div>${legend}${insight}`;
 }
 function renderQuadrantChart() {
   const wrap = document.getElementById('quadrantChart');
