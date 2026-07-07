@@ -1375,21 +1375,24 @@ button { transition: all 0.2s ease; }
   margin-top:auto;
   padding-top:12px;
 }
-/* 案例行紧跟数据气泡，不再单独贴底（贴底由数据气泡的 margin-top:auto 统一负责） */
+/* 案例行紧跟数据气泡、居中；不再单独贴底（贴底由数据气泡的 margin-top:auto 统一负责） */
 #conclusions .card[style*="border-left"] > div:last-child:not(.chips){
   margin-top:6px;
   padding-top:0;
+  text-align:center;
 }
 
-/* 结论页数据气泡：左对齐 + 整个"底部区块"贴底，使并排卡片的数字与案例行对齐 */
+/* 结论页数据气泡：居中 + 整个"底部区块"贴底，使并排卡片的数字与案例行对齐 */
 #conclusions .chips:has(.conclStat){
-  justify-content:flex-start;
-  text-align:left;
+  justify-content:center;
+  text-align:center;
   gap:8px;
   margin-top:auto;
   margin-bottom:4px;
 }
 #conclusions .chips:has(.conclStat) .conclStat{ text-align:center; }
+/* 独立案例胶囊行（无数据气泡的卡片，如生态位/透明度/第四层）也居中 */
+#conclusions .card[style*="border-left"] > .chips:not(:has(.conclStat)){ justify-content:center; }
 
 /* 热力图 hover 高亮 */
 .thRowHead.hl, .thColHead.hl { font-weight:800; color:var(--text)!important; }
