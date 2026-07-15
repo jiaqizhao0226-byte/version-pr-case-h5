@@ -1,0 +1,610 @@
+{
+ "id": "helldivers2-nerf",
+ "title": "绝地潜兵2-「卖完就砍」武器削弱争议",
+ "data": {
+  "recap": {
+   "background": "《Helldivers 2》是 Arrowhead 开发的 PVE 合作射击买断制游戏，含付费战争债券（Warbond）售卖武器。2024-08 的「逃逸速度（Escalation of Freedom）」更新削弱了火焰喷射器等热门武器、上调敌人难度，且削弱时点紧邻火焰主题付费债券「自由之焰」发售，引发「卖完就砍/付费内容贬值」争议与差评。",
+   "timeline": [
+    {
+     "segment": "① 事发前 · 铺垫",
+     "phase": "T-180至T-1",
+     "side": "official",
+     "time": "2024 上半年",
+     "name": "削弱热门武器的旧账与「不再乱削」承诺",
+     "event": "此前 Arrowhead 多次因「哪把武器热门就削哪把」遭批，时任总监 Pilestedt 曾道歉并表态会谨慎对待平衡、不再随意削弱热门武器。",
+     "impact": "为本次削弱预埋「食言」的信任落差。",
+     "tags": [
+      "削弱旧账",
+      "平衡承诺"
+     ]
+    },
+    {
+     "segment": "② 爆发与升级",
+     "phase": "T0",
+     "side": "official",
+     "time": "2024-08-06",
+     "name": "「逃逸速度」更新削弱火焰武器、上调难度",
+     "event": "更新加入新任务与敌人，同时削弱 FLAM-40 火焰喷射器（火焰机制改为不再穿透充能虫硬壳）、燃烧霰弹枪（Breaker Incendiary，加后坐力、减弹匣），并上调敌人难度。",
+     "impact": "热门武器手感与强度骤降，体验受损。",
+     "tags": [
+      "火焰武器削弱",
+      "难度上调"
+     ],
+     "links": [
+      {
+       "label": "Digital Trends·CEO apologizes for fire weapon changes",
+       "url": "https://www.digitaltrends.com/gaming/helldivers-2-ceo-apology-fire-weapon-changes"
+      }
+     ]
+    },
+    {
+     "segment": "② 爆发与升级",
+     "phase": "T0",
+     "side": "official",
+     "time": "2024-08-08",
+     "name": "火焰付费债券「自由之焰」发售",
+     "event": "削弱火焰武器仅两天后，含大量火焰主题武器的付费战争债券「自由之焰（Freedom's Flame）」上线发售。",
+     "impact": "「先砍火焰、再卖火焰」的时点坐实「卖完就砍/付费贬值」质疑。",
+     "tags": [
+      "付费债券",
+      "时点敏感"
+     ]
+    },
+    {
+     "segment": "② 爆发与升级",
+     "phase": "T0",
+     "side": "player",
+     "time": "2024-08 上旬",
+     "name": "差评轰炸、活跃下滑、呼吁抵制",
+     "event": "玩家批评「卖完就削、付费内容贬值」「每次有趣的东西都被削」，Steam 遭差评轰炸、近期评价跌至「差评/多半差评」，subreddit 出现抵制呼声，在线活跃下滑。",
+     "impact": "继 PSN 风波后再遭差评轰炸，活跃度承压。",
+     "tags": [
+      "差评轰炸",
+      "活跃下滑"
+     ],
+     "links": [
+      {
+       "label": "PCGamer·recent Steam reviews slump to Mostly Negative",
+       "url": "https://www.pcgamer.com/games/third-person-shooter/helldivers-2-game-director-says-a-chargers-rework-and-an-update-to-fire-damage-are-part-of-a-60-day-update-plan-what-matters-most-now-is-action-not-talk/"
+      }
+     ]
+    },
+    {
+     "segment": "③ 官方处置与玩家观察",
+     "phase": "T0",
+     "side": "official",
+     "time": "2024-08-09 前后",
+     "name": "CEO 道歉但仍为削弱解释",
+     "event": "CEO Shams Jorjani 在 Discord 道歉「这事搞砸了是我的错，我应给出数据背后的更多背景而非直接抛出」，但同时解释燃烧霰弹枪因「30% 虫族任务都在用」而调整，被部分玩家视为仍在为削弱开脱。",
+     "impact": "道歉姿态有诚意，但夹带辩解，未完全平息不满。",
+     "tags": [
+      "CEO道歉",
+      "夹带解释"
+     ],
+     "links": [
+      {
+       "label": "Digital Trends·CEO apology fire weapon changes",
+       "url": "https://www.digitaltrends.com/gaming/helldivers-2-ceo-apology-fire-weapon-changes"
+      }
+     ]
+    },
+    {
+     "segment": "③ 官方处置与玩家观察",
+     "phase": "T0",
+     "side": "official",
+     "time": "2024-08-13",
+     "name": "总监公布 60 天调整计划",
+     "event": "游戏总监 Mikael Eriksson 在 Reddit/Steam/Discord 发文承认「这次更新没达到目标」，公布 60 天计划：重审平衡哲学（平衡应有趣）、调整火焰伤害机制、减少过度击倒、重做主武器设计与充能兽、优先修 bug、提性能，并建立 Beta 测试环境与定期问卷。",
+     "impact": "用「行动而非空谈」的成体系计划接住情绪。",
+     "tags": [
+      "60天计划",
+      "回调削弱"
+     ],
+     "links": [
+      {
+       "label": "PCGamer·60-day update plan: action not talk",
+       "url": "https://www.pcgamer.com/games/third-person-shooter/helldivers-2-game-director-says-a-chargers-rework-and-an-update-to-fire-damage-are-part-of-a-60-day-update-plan-what-matters-most-now-is-action-not-talk/"
+      }
+     ]
+    },
+    {
+     "segment": "③ 官方处置与玩家观察",
+     "phase": "T0之后",
+     "side": "player",
+     "time": "计划公布后 观察期",
+     "name": "认可态度、要求兑现",
+     "event": "玩家认可「行动而非空谈」的诚意与回调火焰削弱的承诺，但强调要看后续 60 天是否真正兑现平衡哲学的改变，态度与成品评价分账。",
+     "impact": "情绪缓和，落差弥合留待后续版本兑现。",
+     "tags": [
+      "态度认可",
+      "观察兑现"
+     ]
+    }
+   ]
+  },
+  "cause": {
+   "catalysts": [
+    "削弱火焰武器仅两天后即发售火焰付费债券，坐实「卖完就砍/付费内容贬值」",
+    "「哪把热门削哪把」的平衡策略累积旧账，叠加此前「不再乱削」承诺被视为食言",
+    "削弱同时上调敌人难度，热门玩法被双重削弱、乐趣下降"
+   ],
+   "journey": [
+    {
+     "label": "事发前",
+     "stageNo": "0",
+     "title": "存量底色：削弱旧账 + 平衡承诺",
+     "time": "2024 上半年",
+     "chartDate": "2024-H1",
+     "emotion": "积累·警惕",
+     "emotionScore": 50,
+     "summary": "Arrowhead 此前多次因削弱热门武器遭批、并曾承诺谨慎对待平衡，玩家对「削弱热门」已高度警惕——这放大了本次削弱叠加付费债券的反弹。",
+     "econ": [
+      {
+       "title": "信任旧账",
+       "text": "「哪把热门削哪把」累积不满，曾有「不再乱削」承诺。"
+      },
+      {
+       "title": "付费结构",
+       "text": "付费战争债券售卖武器，付费内容强度敏感。"
+      }
+     ],
+     "nature": "海外厂商×全球市场：声量主体是真实付费玩家，因付费内容贬值与体验受损而维权。",
+     "platform": "Steam（差评）+ Reddit（抵制/调查）+ Discord（官方互动）+ 全球游戏媒体（破圈）。"
+    },
+    {
+     "label": "落差爆发",
+     "stageNo": "一",
+     "title": "「先砍火焰、再卖火焰」点燃付费贬值质疑",
+     "time": "2024-08-06/08",
+     "chartDate": "08-06",
+     "emotion": "愤怒·背叛",
+     "emotionScore": 78,
+     "summary": "更新削弱火焰武器仅两天后即发售火焰付费债券，叠加难度上调，玩家认定「卖完就砍、付费内容贬值」，差评轰炸、呼吁抵制。",
+     "coreQuestion": "你先把火焰武器砍了，转头就卖火焰债券，这不是割韭菜是什么？",
+     "psychology": "核心痛点是「付费/将付费内容被官方主动削弱贬值」+「热门玩法乐趣被反复削弱」，叠加旧账与食言感，背叛情绪强烈。",
+     "playerDemand": "回调过度削弱、改变「削热门」的平衡哲学、保障付费内容价值。",
+     "trigger": "火焰武器削弱 + 两天后火焰债券发售 + 难度上调。",
+     "evidence": [
+      {
+       "platform": "X（Twitter）",
+       "time": "2024",
+       "sourceType": "媒体引述",
+       "playerId": "Johan Pilestedt（时任总监）",
+       "text": "I think we've gone too far in some areas ... It feels like every time someone finds something fun, the fun is removed.（我们在某些方面做得过头了……感觉每次有人发现点有趣的东西，乐趣就被拿走。）",
+       "heat": "多平台传播",
+       "url": "https://www.digitaltrends.com/gaming/helldivers-2-ceo-apology-fire-weapon-changes",
+       "note": "为官方人士此前对削弱的反思原话，经 Digital Trends 引述，附中文释义；玩家逐字高赞原话暂留待补，禁止编造。"
+      }
+     ]
+    },
+    {
+     "label": "止损期",
+     "stageNo": "二",
+     "title": "道歉 + 60 天计划：认可态度、观察兑现",
+     "time": "2024-08-09/13",
+     "chartDate": "08-13",
+     "emotion": "缓和·观望",
+     "emotionScore": 55,
+     "summary": "CEO 道歉（夹带解释）后，总监公布「行动而非空谈」的 60 天计划、承诺回调火焰削弱与重审平衡哲学，玩家认可诚意但要求后续兑现，态度与成品分账。",
+     "coreQuestion": "道歉和计划我接受，但 60 天后你们真的会改变削热门的做法吗？",
+     "psychology": "玩家区分「态度」与「成品」：认可「行动而非空谈」的姿态，但对平衡哲学能否真改持观望，需后续版本兑现。",
+     "playerDemand": "把 60 天计划落到实处，真正改变平衡哲学、回调过度削弱。",
+     "trigger": "CEO 道歉 + 总监 60 天计划 + 回调火焰削弱承诺。",
+     "evidence": [
+      {
+       "platform": "Reddit/Steam/Discord",
+       "time": "2024-08-13",
+       "sourceType": "官方声明",
+       "playerId": "Mikael Eriksson（游戏总监）",
+       "text": "We didn't hit our target with the latest update ... what matters most now is action. Not talk.（最新更新没达到目标……现在最重要的是行动，而非空谈。）",
+       "heat": "全球头条",
+       "url": "https://www.pcgamer.com/games/third-person-shooter/helldivers-2-game-director-says-a-chargers-rework-and-an-update-to-fire-damage-are-part-of-a-60-day-update-plan-what-matters-most-now-is-action-not-talk/"
+      }
+     ]
+    }
+   ],
+   "demandFunnel": {
+    "surface": [
+     {
+      "t": "回调削弱",
+      "d": "把过度削弱的火焰武器等回调到可用强度。"
+     },
+     {
+      "t": "兑现计划",
+      "d": "把 60 天计划的平衡与体验调整落到实处。"
+     }
+    ],
+    "middle": [
+     {
+      "t": "保障付费价值",
+      "d": "付费/将付费内容不应被官方主动削弱贬值。"
+     },
+     {
+      "t": "平衡要有趣",
+      "d": "别为平衡而平衡、别一削就削热门玩法的乐趣。"
+     }
+    ],
+    "deep": [
+     {
+      "t": "信任兑付",
+      "d": "兑现「不再乱削热门」的承诺，修复食言旧账。"
+     },
+     {
+      "t": "玩法尊重",
+      "d": "希望开发组尊重玩家偏好的玩法，而非反复削弱。"
+     }
+    ]
+   },
+   "ownership": "买断制 + 付费债券玩家对「付费内容的强度与乐趣」抱有强烈所有权——他们认为自己付费或将付费购买的武器不应被官方主动削弱贬值，尤其反感「卖完就砍」与「削热门」反复消耗游玩乐趣。",
+   "topics": [
+    {
+     "eyebrow": "买断制×付费债券",
+     "title": "「卖完就砍」：付费内容贬值如何点燃买断制玩家的背叛感",
+     "lead": "本案核心不是单纯数值平衡，而是「先削火焰武器、两天后卖火焰付费债券」的时点，叠加「削热门」旧账，让玩家认定付费内容被官方主动贬值。",
+     "chain": [
+      {
+       "name": "削弱热门",
+       "text": "火焰武器被削、难度上调，热门玩法乐趣下降。"
+      },
+      {
+       "name": "时点敏感",
+       "text": "两天后即卖火焰付费债券，坐实「卖完就砍」。"
+      },
+      {
+       "name": "道歉+计划",
+       "text": "CEO 道歉、总监 60 天计划承诺回调与重审平衡。"
+      }
+     ],
+     "takeaway": "付费/将付费内容的削弱时点极度敏感——「先削后卖」会被解读为割韭菜；平衡调整须管好与商业化节奏的关系，并兑现「行动而非空谈」。",
+     "evidence": [
+      {
+       "platform": "Digital Trends",
+       "time": "2024-08",
+       "sourceType": "媒体报道",
+       "playerId": "Digital Trends",
+       "text": "These used to be great against charger terminids, but were patched ... before a fire-based premium warbond no less.（这些武器原本对充能虫很强，却在一个火焰付费债券发售前被削。）",
+       "heat": "全球头条",
+       "url": "https://www.digitaltrends.com/gaming/helldivers-2-development-plan-player-feedback"
+      }
+     ]
+    }
+   ],
+   "coreConflicts": [
+    {
+     "title": "核心付费内容贬值",
+     "desc": "削弱火焰武器仅两天后即发售火焰付费战争债券，「先砍火焰、再卖火焰」让玩家认定付费/将付费内容被官方主动削弱贬值，触碰付费内容价值底线。"
+    },
+    {
+     "title": "数值/平衡调整争议",
+     "desc": "「哪把热门削哪把」的平衡哲学叠加难度上调，使热门玩法乐趣下降，被视为「为平衡而平衡」，与此前「不再乱削」承诺形成食言落差。"
+    }
+   ],
+   "cognitionLead": "Helldivers 2 是含付费战争债券的买断制 PVE 射击游戏：玩家对付费内容强度与游玩乐趣高度敏感，对「卖完就砍」的商业化时点与「削热门」的平衡哲学零容忍，并具备高效的差评维权能力。",
+   "cognitionTraits": [
+    {
+     "trait": "付费内容贬值敏感（买断制+战争债券付费特征）",
+     "type": "新强化",
+     "text": "买断制叠加付费债券的玩家，把付费/将付费武器的强度视为已购价值的一部分；官方主动削弱、尤其「先削后卖」的时点，会被解读为付费内容贬值与割韭菜。这是买断制+付费债券混合付费模式玩家的衍生特征。"
+    },
+    {
+     "trait": "差评维权高效组织（Steam 买断制玩家特征）",
+     "type": "新强化",
+     "text": "Steam 买断制玩家把差评与抵制视为对厂商最直接的施压杠杆，组织化、反应极快——本案再度触发差评轰炸、近期评价跌至差评，是 Steam 买断制玩家群体的典型维权特征。"
+    }
+   ]
+  },
+  "official": {
+   "summary": "面对「卖完就砍」削弱争议，CEO Jorjani 先在 Discord 道歉「搞砸了是我的错」，但夹带「30% 虫族任务都在用」等解释被视为开脱；随后游戏总监 Eriksson 公布「行动而非空谈」的 60 天计划，承认更新未达目标，承诺重审平衡哲学（平衡应有趣）、回调火焰伤害机制、重做主武器与充能兽、优先修 bug、并建立 Beta 测试与定期问卷。处置从「夹带辩解的道歉」升级为「成体系的行动计划」，姿态转正、有效接住情绪；但平衡哲学能否真改需 60 天兑现。",
+   "keyJudgement": "「先削后卖」的商业化时点是本案根因，CEO 夹带辩解一度激化；真正止血的是总监「行动而非空谈」的 60 天计划——但承诺能否兑现、平衡哲学能否真改，决定长线信任修复。",
+   "turnElements": [
+    {
+     "tag": "认错担责",
+     "text": "CEO 与总监均承认更新未达目标、揽责不甩锅。"
+    },
+    {
+     "tag": "行动计划",
+     "text": "60 天计划列出平衡、性能、测试环境等具体行动。"
+    },
+    {
+     "tag": "回调削弱",
+     "text": "承诺调整火焰伤害机制、重审「削热门」平衡哲学。"
+    }
+   ],
+   "stages": [
+    {
+     "kind": "触发动作",
+     "quality": "bad",
+     "qualityLabel": "点燃背叛 · 卖完就砍",
+     "name": "削弱火焰武器 + 两天后卖火焰债券",
+     "time": "2024-08-06/08",
+     "source": "Digital Trends",
+     "sourceUrl": "https://www.digitaltrends.com/gaming/helldivers-2-ceo-apology-fire-weapon-changes",
+     "elements": [
+      "FLAM-40、燃烧霰弹枪等火焰武器削弱 + 难度上调",
+      "削弱两天后即发售火焰付费债券「自由之焰」"
+     ],
+     "officialExcerpt": [
+      "燃烧霰弹枪被改是因为约 30% 的虫族任务都在用它。"
+     ],
+     "valuable": [
+      "无——属付费内容贬值 + 削热门争议。"
+     ],
+     "lowValue": [
+      "削弱与付费债券发售的时点失管",
+      "与「不再乱削热门」承诺形成食言"
+     ],
+     "effect": "差评轰炸、近期评价跌至差评、呼吁抵制、活跃下滑。"
+    },
+    {
+     "kind": "正式回应",
+     "quality": "good",
+     "qualityLabel": "升级止血 · 行动而非空谈",
+     "name": "CEO 道歉 + 总监 60 天计划",
+     "time": "2024-08-09/13",
+     "source": "PCGamer",
+     "sourceUrl": "https://www.pcgamer.com/games/third-person-shooter/helldivers-2-game-director-says-a-chargers-rework-and-an-update-to-fire-damage-are-part-of-a-60-day-update-plan-what-matters-most-now-is-action-not-talk/",
+     "elements": [
+      "CEO 道歉揽责（夹带数据解释被指开脱）",
+      "总监承认未达目标、公布 60 天行动计划",
+      "承诺重审平衡哲学、回调火焰、建 Beta 测试环境"
+     ],
+     "officialExcerpt": [
+      "I'll own this screwup ... I should have provided more context.（搞砸了是我的错……我应给出更多背景。）",
+      "What matters most now is action. Not talk.（现在最重要的是行动，而非空谈。）"
+     ],
+     "valuable": [
+      "认错揽责、姿态低",
+      "60 天计划具体、成体系",
+      "承诺回调削弱、重审平衡哲学并建测试环境"
+     ],
+     "lowValue": [
+      "CEO 初期夹带辩解一度激化情绪",
+      "平衡哲学能否真改需 60 天兑现"
+     ],
+     "effect": "把对抗拉回对话、有效止血，长线信任修复待兑现。"
+    }
+   ],
+   "caution": "道歉与 60 天计划反映官方重视，但不能直接证明核心付费盘受损或长线留存伤害；活跃度下滑与差评轰炸是负面信号，但实际留存/流水伤害须开发方内部数据定档。",
+   "pros": [
+    {
+     "group": "态度",
+     "sub": "道歉质量",
+     "items": [
+      {
+       "tag": "认错担责",
+       "text": "CEO 与总监均承认未达目标、揽责不甩锅。"
+      },
+      {
+       "tag": "行动计划",
+       "text": "60 天计划列出平衡、性能、测试环境等具体行动。"
+      }
+     ]
+    },
+    {
+     "group": "产品",
+     "sub": "实质调整",
+     "items": [
+      {
+       "tag": "回调削弱",
+       "text": "承诺调整火焰伤害机制、重审「削热门」平衡哲学。"
+      }
+     ]
+    }
+   ],
+   "cons": [
+    {
+     "group": "触发",
+     "sub": "点燃背叛的原始动作",
+     "items": [
+      {
+       "tag": "卖完就砍",
+       "text": "削弱火焰武器两天后即卖火焰付费债券，时点失管。"
+      },
+      {
+       "tag": "夹带辩解",
+       "text": "CEO 道歉时夹带「30% 在用」等解释，被指为削弱开脱。"
+      }
+     ]
+    }
+   ]
+  },
+  "impact": {
+   "headline": "「卖完就砍」削弱争议引发差评轰炸（近期评价跌至差评/多半差评）与活跃度下滑；CEO 道歉、总监公布 60 天计划并承诺回调，长线伤害待数据核验",
+   "headlineSub": "声量高、全球破圈，声量主体是因付费内容贬值与体验受损的真实付费玩家；处置升级为行动计划有效止血，实质留存/流水伤害待核。",
+   "volumeLevel": "A",
+   "volumeConfidence": "待核（先给倾向，等数据定）",
+   "volumeMetrics": [
+    {
+     "value": "近期评价转差",
+     "label": "Steam 评价",
+     "note": "更新后遭差评轰炸，近期评价一度跌至「差评/多半差评（Mostly Negative）」，subreddit 现抵制呼声（具体差评量待核）"
+    },
+    {
+     "value": "活跃度下滑",
+     "label": "在线/活跃",
+     "note": "媒体报道在线活跃与玩家留存承压，具体 DAU/在线峰值待核"
+    },
+    {
+     "value": "全球 · 头条",
+     "label": "媒体破圈",
+     "note": "PCGamer、Digital Trends、Eurogamer 等全球游戏媒体密集报道，含中文媒体转载"
+    }
+   ],
+   "emotionAction": {
+    "summary": "声量主体是因付费内容贬值与玩法乐趣受损的真实付费玩家，情绪由「卖完就砍」的背叛感引爆差评与抵制，60 天计划后转为「认可态度、观望兑现」的分化状态。",
+    "phases": [
+     {
+      "phase": "爆发",
+      "tone": "hot",
+      "name": "付费贬值的背叛感",
+      "tag": "差评轰炸 + 抵制",
+      "quotes": [
+       "It feels like every time someone finds something fun, the fun is removed.（感觉每次发现点有趣的，乐趣就被拿走。）"
+      ],
+      "actions": [
+       "差评轰炸、近期评价转差",
+       "subreddit 呼吁抵制"
+      ]
+     },
+     {
+      "phase": "计划后",
+      "tone": "calm",
+      "name": "认可态度、观望兑现",
+      "tag": "态度成品分账",
+      "quotes": [
+       "What matters most now is action. Not talk.（现在最重要的是行动，而非空谈。）"
+      ],
+      "actions": [
+       "认可 60 天计划诚意",
+       "要求后续真正改变平衡哲学"
+      ]
+     }
+    ],
+    "note": "官方人士原话经 PCGamer/Digital Trends 报道引述，附中文释义；玩家逐字高赞原话暂留待补，禁止编造。",
+    "caution": "声量高且全球破圈，但差评轰炸与活跃下滑能否转化为实质长线留存/流水伤害，须开发方内部数据核验；处置升级为行动计划，先给伤害中等倾向、存疑。"
+   },
+   "productImpact": [
+    {
+     "name": "短期口碑",
+     "level": "中",
+     "text": "差评轰炸 + 近期评价转差，短期口碑受损。"
+    },
+    {
+     "name": "活跃/留存",
+     "level": "中",
+     "text": "媒体报道活跃度下滑，热门玩法乐趣受损影响留存意愿。"
+    },
+    {
+     "name": "商业数据伤害（留存/流水）",
+     "level": "内部待补充",
+     "text": "活跃下滑与抵制呼声是负面信号，但 60 天计划接住情绪，长线伤害需开发方内部 DAU/留存/流水核验。"
+    }
+   ],
+   "quadrant": {
+    "axis1": "声量高、全球破圈至游戏媒体",
+    "axis2": "声量主体是因付费贬值与体验受损的真实付费玩家——是真实信号",
+    "axis3": "活跃下滑、近期评价转差，长线伤害待核",
+    "result": "声量来自真实付费贬值与乐趣受损、诉求正当，60 天计划止血但平衡哲学待兑现——倾向信任赤字，存疑待核",
+    "resultCell": "deficit",
+    "doubt": true
+   },
+   "sideEvidence": [
+    "Steam 近期评价跌至差评/多半差评、subreddit 现抵制呼声",
+    "CEO 道歉揽责、总监公布成体系的 60 天计划",
+    "承诺回调火焰削弱、重审「削热门」平衡哲学"
+   ],
+   "valueConclusion": "本案是「付费内容贬值类争议的处置升级范本」：触发端「先削火焰、两天后卖火焰债券」的时点失管，叠加「削热门」旧账，点燃买断制+付费债券玩家的背叛感；CEO 初期夹带辩解一度激化，但总监「行动而非空谈」的 60 天计划成体系接住情绪。它说明——付费/将付费内容的削弱时点须与商业化节奏严格协同，否则会被解读为割韭菜；而长线信任修复取决于计划兑现而非道歉本身。",
+   "audience": {
+    "from": "全球真实付费玩家为主，尤以购买/将购买火焰付费债券的活跃玩家为核心。",
+    "why": "被触犯的核心利益：付费/将付费内容的强度价值与游玩乐趣，叠加「不再乱削」承诺被视为食言。",
+    "verdict": "真实付费用户（核心活跃盘）；长线伤害待开发方数据定档（存疑）。"
+   },
+   "dataSection": {
+    "caption": "本案仅有月粒度数据、无可用脱敏曲线；差评与活跃下滑是否转化为实质留存/流水伤害难精确判定，倾向低。",
+    "rangeStart": "",
+    "rangeEnd": "",
+    "markers": [],
+    "verdict": "仅月粒度数据、伤害难判定——倾向低",
+    "charts": [
+     {
+      "metric": "在线/活跃 DAU",
+      "values": [],
+      "eventIdx": 0
+     },
+     {
+      "metric": "Steam 近期好评率",
+      "values": [],
+      "eventIdx": 0
+     }
+    ],
+    "damage": {
+     "grade": "B",
+     "tone": "cool",
+     "note": "低：卖完就砍、武器削弱，仅有每月粒度数据、伤害无法精确判定，倾向低。"
+    },
+    "barEvents": [],
+    "monthTicks": [],
+    "whyParts": []
+   },
+   "volumeVerdict": "声量高、全球破圈，再度触发 Steam 差评轰炸",
+   "cardTags": {
+    "vol": {
+     "tag": "高声量 · 全球破圈",
+     "tone": "hot"
+    },
+    "player": {
+     "tag": "真实付费玩家维权",
+     "tone": "warn"
+    },
+    "data": {
+     "tag": "月粒度 · 倾向低",
+     "tone": "cool"
+    }
+   },
+   "compensation": {
+    "strength": "无",
+    "tone": "warn",
+    "tag": "无补偿 · 以回调+计划止损",
+    "summary": "本案未发放实质补偿，处置以 CEO/总监道歉、60 天调整计划、回调火焰削弱、重审平衡哲学为主。",
+    "text": "争议根因是平衡哲学与商业化时点，官方选择用「回调削弱 + 系统性 60 天计划」直接修复产品体验，而非发放补偿。对「付费内容贬值」类争议，回调内容本身的价值修复比物质补偿更对症，但需以兑现为前提。",
+    "value": "无",
+    "valueNote": "未见官方面向玩家的实质补偿；处置以回调削弱与调整计划为主。补偿力度判定为「无」。"
+   }
+  },
+  "insight": {
+   "keyInsights": [
+    {
+     "title": "削弱时点必须与商业化节奏严格协同",
+     "text": "「先削火焰武器、两天后卖火焰付费债券」的时点，是把普通平衡调整升级为「卖完就砍/付费贬值」争议的关键。付费/将付费内容的削弱时点极度敏感，平衡调整须与商业化发售节奏严格协同，避免被解读为割韭菜——这是含付费内容游戏的运营铁律。"
+    },
+    {
+     "title": "「削热门」平衡哲学会持续消耗信任",
+     "text": "反复「哪把热门削哪把」会让玩家觉得「每次有趣的都被削」，叠加「不再乱削」承诺食言，持续消耗信任。平衡应服务于乐趣而非「为平衡而平衡」；提升弱势项优于削弱强势项，否则每次削弱都是一次信任提款。"
+    }
+   ],
+   "coreInsight": "本案的核心风险是「平衡哲学与商业化时点的双重失管」：削热门旧账 + 先削后卖的时点，把一次平衡调整放大为付费内容贬值的背叛争议。CEO 夹带辩解一度激化，最终靠总监「行动而非空谈」的 60 天计划止血——这说明含付费内容游戏的平衡调整，既要管哲学（服务乐趣）也要管时点（协同商业化），而信任修复取决于计划兑现而非道歉本身。",
+   "cognitionCoordinate": "2024 / 海外厂商×全球市场 / 买断制+付费债券玩家",
+   "cognitionTraits": [
+    {
+     "trait": "付费内容贬值敏感（买断制+战争债券付费特征）",
+     "type": "新强化",
+     "text": "买断制叠加付费债券的玩家，把付费/将付费武器的强度视为已购价值的一部分；官方主动削弱、尤其「先削后卖」的时点，会被解读为付费内容贬值与割韭菜。这是买断制+付费债券混合付费模式玩家的衍生特征。"
+    },
+    {
+     "trait": "差评维权高效组织（Steam 买断制玩家特征）",
+     "type": "新强化",
+     "text": "Steam 买断制玩家把差评与抵制视为对厂商最直接的施压杠杆，组织化、反应极快——本案再度触发差评轰炸、近期评价跌至差评，是 Steam 买断制玩家群体的典型维权特征。"
+    }
+   ],
+   "governance": [
+    {
+     "name": "削弱-商业化时点协同",
+     "text": "平衡削弱与付费内容发售须排期协同，避免「先削后卖」同品类内容引发付费贬值质疑。"
+    },
+    {
+     "name": "平衡哲学：服务乐趣",
+     "text": "确立「平衡应有趣、优先提升弱势项而非削热门」的原则，并通过 Beta 测试环境与玩家问卷前置验证。"
+    }
+   ],
+   "transferable": [
+    {
+     "scenario": "含付费内容的平衡调整",
+     "value": "适合分析削弱时点与付费内容发售节奏失管如何引发付费贬值争议。"
+    },
+    {
+     "scenario": "长线运营的平衡哲学治理",
+     "value": "适合分析「削热门 vs 提弱势」的平衡哲学如何影响长线信任与活跃。"
+    }
+   ],
+   "crossCase": "与「绝地潜兵2-强制绑定PSN风波」同属本作、同遭 Steam 差评轰炸，但 PSN 案根因是单一可撤回的发行政策、可快速止损；本案根因是平衡哲学与付费时点，需 60 天成体系的产品调整，信任修复更慢。本案为「海外×全球市场×买断制+付费债券」提供数据点：付费内容贬值敏感是该混合付费模式玩家的衍生特征。",
+   "profile": {
+    "trigger": "削弱火焰武器两天后即卖火焰付费债券，叠加难度上调与「削热门」旧账，引发付费贬值与背叛感。",
+    "voiceFrom": "全球真实付费玩家为主，购买/将购买付费债券的活跃玩家为核心。",
+    "voiceScope": "高声量、全球破圈，再度触发 Steam 差评轰炸。",
+    "damageProfile": "短期口碑/活跃受损，60 天计划接住情绪；长线留存/流水待开发方数据定档（存疑）。",
+    "summary": "本次事件主要围绕「卖完就砍」的付费内容贬值与平衡哲学争议引发争端。声量主体是因付费贬值与乐趣受损的真实付费玩家；CEO 道歉夹带辩解一度激化，总监「行动而非空谈」的 60 天计划与回调承诺有效止血。长线信任修复取决于计划兑现，伤害待数据验证。",
+    "headline": "信任赤字：声量来自真实付费贬值与乐趣受损，仅月粒度数据、伤害难精确判定，60 天计划止血、平衡哲学待兑现"
+   }
+  }
+ }
+}
