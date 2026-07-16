@@ -1,0 +1,905 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>游戏版本舆情洞察与案例库</title>
+  <link rel="stylesheet" href="./style.css?v=20260716-46" />
+</head>
+<body>
+<div class="app">
+  <header class="top">
+        <div class="brand" style="cursor: pointer;" onclick="goHome()">
+      <div class="logo"></div>
+      <div>
+        <h1>游戏版本舆情洞察与案例库</h1>
+        <div class="sub">31 个典型游戏舆情案例深挖与公关复盘</div>
+      </div>
+    </div>
+  </header>
+
+  <nav class="mainNav">
+    <button onclick="switchMainTab('overview')" id="nav-overview" class="active">研究概况</button>
+    <button onclick="switchMainTab('dashboard')" id="nav-dashboard">案例库大盘</button>
+    <button onclick="switchMainTab('conclusions2')" id="nav-conclusions2">量化洞察</button>
+    <button onclick="switchMainTab('conclusions3')" id="nav-conclusions3">综合研判</button>
+  </nav>
+
+  <main id="overview">
+
+    <!-- Hero -->
+    <section class="card heroMain" style="margin-bottom:20px;">
+      <h2>游戏版本舆情洞察与公关复盘</h2>
+      <p class="muted">本案例库对 2021–2026 年国内外游戏行业 31 起具有代表性的版本舆情危机进行结构化拆解，以「声量 × 伤害」二维矩阵为分级框架，结合玩家声音定性与官方应对复盘，提炼可复用的判断与执行参考。</p>
+    </section>
+
+    <!-- 一、研究目的 -->
+    <div class="mapSectionLabel">一、研究目的：回答三个问题</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:14px; margin-bottom:24px;">
+      <article class="card" style="padding:20px; border-left:4px solid var(--red);">
+        <h3 style="margin:0 0 8px; font-size:15px; color:var(--text);">多严重？</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.7; margin:0;">用「声量 × 伤害」二维定位，而非仅看热搜热度——声量高不等于实质伤害到流水留存。</p>
+      </article>
+      <article class="card" style="padding:20px; border-left:4px solid var(--blue);">
+        <h3 style="margin:0 0 8px; font-size:15px; color:var(--text);">怎么应对？</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.7; margin:0;">先判断「核心付费 / 留存是否受损」，再决定快速道歉还是冷处理——而非依据情绪烈度做决策。</p>
+      </article>
+      <article class="card" style="padding:20px; border-left:4px solid var(--amber);">
+        <h3 style="margin:0 0 8px; font-size:15px; color:var(--text);">哪些品类易踩哪些雷？</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.7; margin:0;">按品类区分风险类型——乙游关注情感契约、竞技关注公平契约、情怀 IP 关注定位偏离，而非一刀切。</p>
+      </article>
+    </div>
+
+    <!-- 二、研究方法 -->
+    <div class="mapSectionLabel">二、研究方法：四个维度拆解每个案例</div>
+    <div style="display:grid; grid-template-columns:repeat(2, 1fr); gap:14px; margin-bottom:24px;">
+      <article class="card" style="padding:20px; border-left:4px solid var(--blue);">
+        <h3 style="margin:0 0 8px; font-size:15px; color:var(--text);">1. 声量 × 伤害矩阵</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.7; margin:0;">横轴声量，纵轴伤害，按高 / 中 / 低拆成 3×3 九格，避免把中伤害误判为高伤害。</p>
+      </article>
+      <article class="card" style="padding:20px; border-left:4px solid var(--blue);">
+        <h3 style="margin:0 0 8px; font-size:15px; color:var(--text);">2. 玩家声音定性</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.7; margin:0;">区分「真实痛点」（数值、金钱、体验受损）和「圈层噪音 / 道德审判」（性别对立、云玩家抵制），决定该顺从还是切割。</p>
+      </article>
+      <article class="card" style="padding:20px; border-left:4px solid var(--blue);">
+        <h3 style="margin:0 0 8px; font-size:15px; color:var(--text);">3. 核心矛盾标签体系</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.7; margin:0;">统一打标——核心资产剥夺 / 情感背叛 OOC / 底层契约撕毁 / 教玩家玩游戏 / 价值观冲突。</p>
+      </article>
+      <article class="card" style="padding:20px; border-left:4px solid var(--blue);">
+        <h3 style="margin:0 0 8px; font-size:15px; color:var(--text);">4. 官方应对复盘</h3>
+        <p style="font-size:14px; color:var(--muted); line-height:1.7; margin:0;">按「认错时效 / 透明度 / 是否回退 / 补偿力度」四要素，评估每场公关是止血还是放大损伤。</p>
+      </article>
+    </div>
+
+    <div class="mapSectionLabel">声量 × 伤害矩阵</div>
+    <div class="mapRow mapRowSingle overviewMatrixEvidence">
+      <section id="matrixChartContainer" class="mapCard"></section>
+    </div>
+
+    <!-- 三、标签判定标准 -->
+    <div class="mapSectionLabel">三、标签判定标准</div>
+    <p style="font-size:14px; color:var(--muted); line-height:1.7; margin:0 2px 14px;">案例库对每个案例统一打四类标签——<strong style="color:var(--text);">声量</strong>（讨论热度与破圈广度）、<strong style="color:var(--text);">伤害</strong>（是否实质损害付费留存根基）、<strong style="color:var(--text);">核心矛盾</strong>（争议的核心性质）、<strong style="color:var(--text);">官方应对</strong>（处置方式与时效）。四类标签共同支撑全站的矩阵、交叉图与结论。</p>
+
+    <div class="ovStandardsGrid">
+      <details class="gradeDetails">
+        <summary><h4>3.1　声量分级标准</h4></summary>
+        <p>按「平台覆盖 × UGC 产出 × 破圈程度」三维度，将舆情声量分为 高 / 中 / 低 三档：</p>
+        <table class="gradeTable">
+          <thead>
+            <tr><th>等级</th><th>平台覆盖</th><th>UGC 产出</th><th>破圈程度</th><th>典型特征</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="gradeS">高</td>
+              <td>3+ 平台全网发酵<br>（B站 + 微博 + 贴吧 + 抖音…）</td>
+              <td>大量二创 + 梗传播<br>长文分析 / 复盘视频</td>
+              <td>主流财经 / 社会媒体报道<br>（环球网、新浪财经、观察者网…）<br>消协 / 律师函 / 警方介入</td>
+              <td>「出圈」事件<br>圈外人也知道</td>
+            </tr>
+            <tr>
+              <td class="gradeA">中</td>
+              <td>2-3 平台<br>（B站 + 微博 / 贴吧）</td>
+              <td>中等 UGC<br>有长文复盘</td>
+              <td>游戏媒体 + 科技媒体报道<br>（17173、游民星空、GameLook…）</td>
+              <td>圈内大事件<br>圈外偶尔听说</td>
+            </tr>
+            <tr>
+              <td class="gradeB">低</td>
+              <td>单平台为主<br>（贴吧 / NGA）</td>
+              <td>少量讨论帖</td>
+              <td>无外部媒体报道</td>
+              <td>圈内小范围讨论</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="docNote"><strong>说明：</strong>本案例库 31 个案例均为 中 / 高声量舆情，暂无「低声量」样本。低声量案例因传播范围窄、系统性记录不足，不纳入本次分析。分析结论适用于「中 / 高声量舆情」场景，对低声量「隐性流失」类不适用；后文声量×伤害矩阵中的「低声量」列因此为已知盲区、当前为空，保留仅用于呈现完整框架。</p>
+        <p class="docNote"><strong>声量 ≠ 破圈：</strong>「声量」衡量的是<strong>讨论体量与烈度</strong>（S=高 / A=中），而「破圈」标记的是<strong>是否惊动大众与主流媒体、走出玩家圈层</strong>——二者是两个独立维度。因此会出现「中声量却已破圈」的案例（如情怀 IP 因大众关注度高，讨论体量未必最大却容易出圈）。全站矩阵、结论按<strong>声量档</strong>分类，破圈与否单列标注，请勿混为一谈。</p>
+      </details>
+
+      <details class="gradeDetails">
+        <summary><h4>3.2　伤害分级标准</h4></summary>
+        <p>伤害看的是「核心付费与留存是否受损」——舆情是否真正伤到<strong>收入、活跃、产品存续</strong>，而非讨论热度。按对流水 / 活跃 / 结局的实际冲击分 高 / 中 / 低 三档：</p>
+        <table class="gradeTable">
+          <thead>
+            <tr><th>等级</th><th>收入 / 流水</th><th>活跃 / 留存</th><th>结局信号</th><th>典型特征</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="gradeS">高</td>
+              <td>跌幅深且跨版本 / 多次活动持续<br>后续收入不及同期预期<br>不随道歉补偿回升</td>
+              <td>DAU 肉眼可见下降<br>处理后未回补</td>
+              <td>停服 / 停运<br>大规模退款潮<br>永久砍产品线<br>（命中任一即判高）</td>
+              <td>影响不可逆<br>或根因在产品定位 / 设定层</td>
+            </tr>
+            <tr>
+              <td class="gradeA">中</td>
+              <td>爆发期环比明显下降<br>或下个卡池 / 角色收入走低<br>补偿·下版本后回升</td>
+              <td>基本无变化<br>影响主要落在收入侧</td>
+              <td>无高档硬信号<br>短期内即修复回归</td>
+              <td>影响可逆<br>不跨版本</td>
+            </tr>
+            <tr>
+              <td class="gradeB">低</td>
+              <td>数据上看不出影响<br>或仅轻微波动很快回归<br>甚至逢周年庆仍处峰值</td>
+              <td>无变化</td>
+              <td>无任何持续 / 不可逆信号<br>处理前后曲线基本重合</td>
+              <td>仅口碑波动<br>大盘数据无感</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="docNote"><strong>说明：</strong>部分案例因数据源不覆盖事件期或未纳入量化收录，伤害记为「无数据 / 未收录」，以定性判定为准，不参与伤害档统计。<strong>声量 ≠ 伤害</strong>是本库的核心命题：高声量可能只是「低」档噪声，低声量也可能是「高」档隐性失血。</p>
+      </details>
+
+      <details class="gradeDetails">
+        <summary><h4>3.3　核心矛盾标签体系</h4></summary>
+        <p>核心矛盾，是剥开情绪与声量后玩家真正在意的那个「被侵犯的东西」——它回答的不是「发生了什么事」，而是「这件事动了玩家的哪一样东西」。据此归为 <strong>4 大类 11 个标签</strong>，每个案例可打一个或多个。全库统一的划分主线是<strong>按「被侵犯的对象」切，而非按表面导火索切</strong>：同一个动作（如「削弱」），削的是你花钱买的东西即归付费类，削的是大众游戏机制即归数值类。</p>
+        <table class="gradeTable">
+          <thead>
+            <tr><th>大类</th><th>标签</th><th>定义</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="tagGroupCell" rowspan="2"><span class="tagGroupName">💰 商业化 / 付费</span><span class="tagGroupJudge">「我花的钱 / 要花的钱被坑了」</span></td>
+              <td class="tagName">付费内容贬值/不实</td>
+              <td class="tagDef">指玩家已付费所得内容，因后续改动或宣传不符而缩水、贬值的争议。<span class="tagIncl">（限定卡缩水、限定变常驻、付费战令武器被砍、宣传与实物不符）</span></td>
+            </tr>
+            <tr>
+              <td class="tagName">商业化契约/动机争议</td>
+              <td class="tagDef">指厂商的收费方式或商业化姿态本身引发的信任争议。<span class="tagIncl">（涨价逼氪、「想赚钱」式表态、付费设计动机被质疑、收费方式引发反感）</span></td>
+            </tr>
+            <tr>
+              <td class="tagGroupCell" rowspan="4"><span class="tagGroupName">🎮 数值 / 玩法 / 体验</span><span class="tagGroupJudge">「我玩的东西 / 花的精力被搞坏了」</span></td>
+              <td class="tagName">数值/平衡争议</td>
+              <td class="tagDef">指游戏机制层的强度、平衡与公平性争议。<span class="tagIncl">（强度失衡、逼氪数值、全职业平衡补丁、削弱补偿不到位）</span></td>
+            </tr>
+            <tr>
+              <td class="tagName">体验/质量争议</td>
+              <td class="tagDef">指基础品质与服务层面「做得烂 / 坏了」的争议。<span class="tagIncl">（性能卡顿、bug、优化差、闪退、客服失灵）</span></td>
+            </tr>
+            <tr>
+              <td class="tagName">自创玩法管控争议</td>
+              <td class="tagDef">指官方限制或管控玩家自创玩法、被批「教玩家玩游戏」的自由度争议。<span class="tagIncl">（强制玩法、封禁自创流派、管控二创 / 玩法自由）</span></td>
+            </tr>
+            <tr>
+              <td class="tagName">产能/优先级排期</td>
+              <td class="tagDef">指版本更新节奏、内容产出优先级或资源分配不公引发的争议。<span class="tagIncl">（主线断更、资源倾斜新角色、版本分支混乱、积压的更新诉求长期未回应）</span></td>
+            </tr>
+            <tr>
+              <td class="tagGroupCell" rowspan="2"><span class="tagGroupName">🎭 内容与价值观</span><span class="tagGroupJudge">「我认同的角色 / 价值观被冒犯了」</span></td>
+              <td class="tagName">情感/价值观争议</td>
+              <td class="tagDef">指剧情、角色或价值观输出冒犯玩家情感认同、击穿内部情感契约的争议。<span class="tagIncl">（OOC、角色崩坏、暧昧剧情、价值观输出引发争议）</span></td>
+            </tr>
+            <tr>
+              <td class="tagName">内容尺度/合规争议</td>
+              <td class="tagDef">指内容擦边、尺度或联动触碰监管与大众道德线的争议。<span class="tagIncl">（擦边立绘、联动踩线、尺度越界、涉监管举报）</span></td>
+            </tr>
+            <tr>
+              <td class="tagGroupCell" rowspan="3"><span class="tagGroupName">👥 圈层矛盾</span><span class="tagGroupJudge">「这是在针对 / 撕裂我们这群人」</span></td>
+              <td class="tagName">圈层矛盾-性别</td>
+              <td class="tagDef">指争议主线演变成男女玩家立场对立的冲突形态。<span class="tagIncl">（性别对立、男女立场互撕、拉踩引战）</span></td>
+            </tr>
+            <tr>
+              <td class="tagName">圈层矛盾-竞品</td>
+              <td class="tagDef">指争议演变成粉丝 / 竞品阵营站队互撕的冲突形态。<span class="tagIncl">（竞品阵营对立、粉丝站队、云玩家抵制）</span></td>
+            </tr>
+            <tr>
+              <td class="tagName">圈层矛盾-内部</td>
+              <td class="tagDef">指同一游戏内部玩家群体因利益分化而对立的冲突形态。<span class="tagIncl">（硬核 vs 平民、老玩家 vs 新玩家、流派间利益冲突、共创玩家 vs 独狼）</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="docNote"><strong>说明：</strong>核心矛盾标签<strong>可叠加</strong>——一个事件常同时侵犯多样东西（如「擦边联动」既踩合规线又撕性别圈层）。打标时先抓<strong>最主要的被侵犯对象</strong>定主标签，再补叠加标签。「圈层矛盾」三个标签多为<strong>叠加态</strong>，它标记冲突「打成了什么形态」，而非最初「因什么而起」。应对上，「真实痛点」（付费 / 数值 / 体验 / 情感契约）通常需顺应，「圈层噪音 / 道德审判」则需审慎切割、避免被裹挟。</p>
+      </details>
+
+      <details class="gradeDetails">
+        <summary><h4>3.4　官方应对分类</h4></summary>
+        <p>官方应对按<strong>认错时效 × 诚意 / 有效性</strong>归为 4 类，从高到低排序——它决定一场舆情是被止血还是被放大：</p>
+        <table class="gradeTable">
+          <thead>
+            <tr><th>类型</th><th>行为特征</th><th>适用 / 效果</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="prName prSlide">立刻滑跪</td>
+              <td>第一时间认错、快速回退 / 加码补偿，姿态低、动作快</td>
+              <td>面对已击穿契约的高伤害舆情，及时止血、争取恢复窗口</td>
+            </tr>
+            <tr>
+              <td class="prName prNormal">正常处理</td>
+              <td>按常规节奏公告说明、给出方案，不卑不亢</td>
+              <td>矛盾可控、诉求明确时的标准动作，多数能平稳平息</td>
+            </tr>
+            <tr>
+              <td class="prName prMix">前期冷处理<br>+后期滑跪</td>
+              <td>初期观望 / 沉默，舆情升级后被迫认错回退</td>
+              <td>误判烈度导致错过最佳窗口，道歉成本被抬高</td>
+            </tr>
+            <tr>
+              <td class="prName prCold">冷处理</td>
+              <td>不回应 / 淡化 / 拖过热度，等舆情自然消退</td>
+              <td>对圈层噪音 / 道德审判类可用；若用错在真实痛点上会放大损伤</td>
+            </tr>
+          </tbody>
+        </table>
+      </details>
+    </div>
+
+  </main>
+
+  <!-- ================= 量化洞察· 样本数据呈现的规律 ================= -->
+  <main id="conclusions2" style="display:none">
+
+    <!-- 第一章 · 伤害判断 -->
+    <div class="c2Block c2ChapterBlock isDamage"><span>01</span><div><b>伤害判断</b><small>哪些问题、什么阶段更容易伤大盘</small></div></div>
+    <div class="c2Grid">
+
+      <!-- 卡1：真实痛点与实质伤害 -->
+      <article class="c2Card" style="border-left-color:var(--red); grid-column:1/-1">
+        <div class="c2Point c2PointNum"><span class="c2Num" style="color:var(--red)">1</span><span class="c2PointHead"><span class="c2Aspect aRed">伤害</span>真实痛点更容易伤大盘：体验质量与商业化契约风险最高</span></div>
+        <div class="c2Body">
+          <div class="c2DamageMain">
+            <div class="c2DamageChartCol"><div class="c2DamageChartWide"><div id="c2TagDamageChart"></div></div></div>
+            <div class="c2DamageSide">
+              <section class="c2DamageSection">
+                <div class="c2DamageSectionHead"><b>看致伤率</b><span>发生后转化为中高伤害的可能性</span></div>
+                <div class="c2DamageSummary c2DamageSummaryRate">
+                  <section><b><span>83%</span> 体验 / 质量争议</b><p>6 案中 4 高、1 中。基础可用性或服务质量受损，会直接冲击留存与产品口碑。</p><div class="c2DamageCardCases" data-damage-tag="体验/质量争议"></div></section>
+                  <section><b><span>75%</span> 商业化契约 / 动机争议</b><p>8 案中 5 高、1 中。收费规则、付费动机或契约失信，会直接击穿消费信任。</p><div class="c2DamageCardCases" data-damage-tag="商业化契约/动机争议"></div></section>
+                  <section class="isCompare"><b><span>33%</span> 数值 / 平衡争议</b><p>6 案中仅 1 高、1 中。容易形成高讨论度，但多数仍可通过后续平衡迭代修复。</p><div class="c2DamageCardCases" data-damage-tag="数值/平衡争议"></div></section>
+                </div>
+              </section>
+              <section class="c2DamageSection">
+                <div class="c2DamageSectionHead"><b>看样本数量</b><span>反复进入版本舆情的矛盾</span></div>
+                <div class="c2DamageSummary c2DamageSummaryCount">
+                  <section class="isFrequent"><b><span>10例</span> 情感 / 价值观争议</b><p>样本数最多，中高伤害率 60%。既反复进入舆情，也有较高概率触及角色关系与情感契约。</p><div class="c2DamageCardCases" data-damage-tag="情感/价值观争议"></div></section>
+                  <section class="isCompare"><b><span>10例</span> 圈层矛盾</b><p>样本数最多，中高伤害率 40%。传播与治理负担较高，但是否伤及大盘取决于背后的原始矛盾。</p><div class="c2DamageCardCases" data-damage-tag="圈层矛盾"></div></section>
+                </div>
+              </section>
+            </div>
+          </div>
+          <div class="c2Insight"><b>洞察：</b>样本数量最多的未必最伤，致伤率最高的也未必最常见。<b>体验 / 质量争议少而高危，商业化契约兼具较多样本与高致伤率；情感 / 圈层议题反复出现，但能否伤及大盘，取决于是否进一步击中体验、付费或情感契约。</b></div>
+        </div>
+      </article>
+
+      <!-- 卡2（打横一行：左生命周期柱 / 右上线期根因，底部合并洞察） -->
+      <article class="c2Card" style="border-left-color:var(--amber); grid-column:1/-1">
+        <div class="c2Point c2PointNum"><span class="c2Num" style="color:var(--amber)">2</span><span class="c2PointHead"><span class="c2Aspect aAmber">生命周期</span>新游戏尚未建立稳定用户群与生态位，定位错位最易在上线期演变为高伤</span></div>
+        <div class="c2SplitBody">
+          <div class="c2SplitL">
+            <div class="c2ChartTitle">上线半年内的高伤害率仍显著高于成长/成熟期</div>
+            <div class="c2ChartFill"><div id="c2LifecycleChart"></div></div>
+          </div>
+          <div class="c2SplitR">
+            <div class="c2ChartTitle">上线期高伤 6 案的根因：定位错位占据半数</div>
+            <div class="c2ChartFill"><div id="c2LaunchRoots"></div></div>
+          </div>
+        </div>
+        <div class="c2Insight c2LifecycleInsight" style="border-left-color:var(--amber)">
+          <b>洞察：</b>
+          <ul>
+            <li><b>上线期易高伤：</b>产品仍处于核心用户筛选与口碑定型阶段，稳定用户群、沉没成本与品牌信任尚未形成，玩家离开成本低，首轮失误更容易直接转化为流失。样本中上线期高伤害率为 <b>60%（6/10）</b>，成长阶段降至 33%（4/12）。</li>
+            <li><b>产品定位错误集中：</b>6 个上线期高伤案例中，<b>产品定位错位占 3 个</b>，是最集中的根因。上线前应优先验证<b>“为谁服务、提供什么核心价值、能否稳定兑现”</b>。</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- 第二章 · 契约边界 -->
+    <div class="c2Block c2ChapterBlock isMechanism"><span>02</span><div><b>契约边界</b><small>不同品类的核心承诺，决定触线后的伤害与修复空间</small></div></div>
+
+    <div class="c2Grid c2ContractGrid">
+      <!-- 卡3（占满整行·品类核心契约红线） -->
+      <article class="c2Card" style="border-left-color:var(--red); grid-column:1/-1">
+        <div class="c2Point"><span class="c2Aspect aRed">契约边界</span>品类核心契约界定风险边界，触碰基础承诺更易转化为实质伤害</div>
+        <div class="c2Body">
+          <div class="c2ChartTitle">不同品类的核心承诺、主要冲突方式与样本中高伤害率</div>
+          <div id="c2RedlineChart"></div>
+        </div>
+        <div class="c2Insight c2ContractInsight">
+          <b>洞察：品类容错差异的核心，在于核心资产受损后是否可逆。</b>
+          <ul>
+            <li><b>竞技 / 射击类：</b>玩家对常态化平衡调整已有稳定预期。当规则公开、影响对称且能够回滚时，争议通常仍属于竞技环境的持续校准。</li>
+            <li><b>情怀 IP / 情感陪伴类：</b>游戏承载着长期积累的角色记忆、关系连续性与专属感。OOC、角色关系改写或情感承诺破坏会改变玩家对既有内容的理解，难以通过数值回调或补偿完整修复，因此触线后的容错空间更小。</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+
+    <!-- 第三章 · 官方处置 -->
+    <div class="c2Block c2ChapterBlock isResponse"><span>03</span><div><b>官方处置</b><small>风险何时被识别，误判如何推高补救成本</small></div></div>
+    <div class="c2Grid">
+
+      <!-- 卡5：危机识别与黄金窗口 -->
+      <article class="c2Card" style="border-left-color:var(--green); grid-column:1/-1">
+        <div class="c2Point"><span class="c2Aspect aGreen">危机识别</span>官方处置强度取决于风险判断，误判会错过黄金响应窗口</div>
+        <div class="c2Body">
+          <div class="c2CrisisTop">
+            <section class="c2CrisisChart">
+              <div class="c2OfficialSectionHead">
+                <span>01</span>
+                <div><b>数据发现：处置强度随事件风险升级，识别越晚，补救成本越高</b><small>公关应对 × 最终伤害</small></div>
+              </div>
+              <div class="c2ChartFill"><div id="c2PrChart"></div></div>
+              <div class="c2CrisisTakeaway">处置强度反映官方当时判断的风险等级；“前期冷处理＋后期滑跪”案例全部达到高伤，说明首轮误判容易拖过黄金响应窗口。</div>
+            </section>
+            <section class="c2MisjudgeReview">
+            <div class="c2OfficialSectionHead">
+              <span>02</span>
+              <div><b>五案误判复盘：首轮只处理表层问题，如何推高后续处置成本</b><small>首轮按什么问题处理 → 玩家认为真正受损的是什么 → 争议如何升级</small></div>
+            </div>
+            <div class="c2MisjudgeTable" role="table" aria-label="官方风险误判案例复盘">
+              <div class="isHead" role="row"><b>案例</b><b>首轮按什么问题处理</b><b>玩家认为真正受损的是</b><b>争议如何升级 / 最终处理</b></div>
+              <div role="row">
+                <a onclick="openCase('shijiezhiwai-money')">世界之外</a>
+                <span>按“卡池定价过高”处理，先发放低价值补偿。</span>
+                <span class="c2MisjudgeLoss"><i>抽卡定价规则未经预告调整</i><i>付费知情权与消费信任受损</i></span>
+                <span class="c2MisjudgeOutcome"><i><b>风险升级</b>低价值补偿与 6 天沉默继续放大不满。</i><i><b>最终处理</b>深夜道歉并追加补丁。</i></span>
+              </div>
+              <div role="row">
+                <a onclick="openCase('luoke-s2')">洛克王国 S2</a>
+                <span>按“局部体验不佳”处理，用补偿和自定义功能回应。</span>
+                <span class="c2MisjudgeLoss"><i>未公告暗改熟悉角色资产</i><i>少数圈层偏好直接进入全服改动</i></span>
+                <span class="c2MisjudgeOutcome"><i><b>风险升级</b>解释不足让代表性与性别争议持续扩大。</i><i><b>最终处理</b>逐项回退并由主策承担责任。</i></span>
+              </div>
+              <div role="row">
+                <a onclick="openCase('fengzhigu-refund')">枫之谷</a>
+                <span>按“商品编码或描述错误”处理，先做技术修正。</span>
+                <span class="c2MisjudgeLoss"><i>付费属性与实际效果不符</i><i>已知问题披露不足，引发消费欺诈质疑</i></span>
+                <span class="c2MisjudgeOutcome"><i><b>风险升级</b>付费属性与信息披露问题促使管理层介入。</i><i><b>最终处理</b>全额退款并整改上架流程。</i></span>
+              </div>
+              <div role="row">
+                <a onclick="openCase('benghuai-rabbit')">崩坏3</a>
+                <span>按“不同区服的活动差异”处理，近一个月没有正式回应。</span>
+                <span class="c2MisjudgeLoss"><i>国服与外服内容差别待遇</i><i>核心玩家的长期支持未获同等尊重</i></span>
+                <span class="c2MisjudgeOutcome"><i><b>风险升级</b>长时间沉默使差别待遇感持续发酵。</i><i><b>最终处理</b>道歉、下架相关内容并补偿。</i></span>
+              </div>
+              <div role="row">
+                <a onclick="openCase('lianyu-aoyin')">恋与深空·敖尹</a>
+                <span>按“新角色接受度与宣发节奏”处理，重点放在谣言管理。</span>
+                <span class="c2MisjudgeLoss"><i>老角色主线内容长期断供</i><i>有限产能优先投入新角色</i></span>
+                <span class="c2MisjudgeOutcome"><i><b>风险升级</b>沉默与强硬追责放大了资源分配与组织化反弹。</i><i><b>最终处理</b>取消角色并停止新增男主。</i></span>
+              </div>
+            </div>
+            <div class="c2MisjudgeConclusion"><b>共同机制：</b>五案的首轮处理都聚焦价格、技术错误、活动差异或局部体验等表层问题，对玩家认为受损的既有承诺识别滞后。低价值补偿、沉默或只修复表层问题继续放大不信任；争议触及付费承诺、角色关系或核心用户身份后，处置成本迅速上升。</div>
+          </section>
+          </div>
+        </div>
+      </article>
+
+    </div>
+
+    <div style="margin:8px 2px 32px; padding:14px 18px; background:var(--soft); border:1px dashed var(--line); border-radius:10px;">
+      <p style="font-size:12px; color:var(--muted); line-height:1.6; margin:0;">数据说明：本页规律基于全库 31 个案例的结构化标签统计；无数据/未收录案例不计入相关伤害比例。</p>
+    </div>
+  </main>
+
+  <!-- 综合研判内容源：仅供正式页面动态生成，不作为独立页面展示 -->
+  <div id="conclusions3Source" hidden aria-hidden="true">
+
+    <!-- 近期趋势 -->
+    <div class="c2Block">趋势、机制与风险</div>
+    <div class="c2Grid">
+
+      <!-- 用户趋势：性别议题的增量与传播放大效应 -->
+      <article class="c2Card c2GenderAnalysis" style="border-left-color:var(--red); grid-column:1/-1">
+        <div class="c2Point"><span class="c2Aspect aRed">用户趋势</span>性别议题增多，并逐渐成为“传播放大器”</div>
+        <div class="c2Body">
+          <div class="c2GenderSectionHead">
+            <span>01</span>
+            <div><b>数据发现</b><small>出现时间 × 传播结果</small></div>
+          </div>
+          <div class="c2GenderCharts">
+            <section class="c2GenderChartPanel">
+              <div class="c2GenderFindingTitle"><span>发现 A · 出现时间：</span><b>性别议题案例在 2025 年后集中出现</b></div>
+              <div id="c2GenderTrendChart"></div>
+              <p class="c2GenderChartDesc">样本从 2021–2024 年的 0 例，上升到 2025 年 2 例、2026 年 3 例。它反映的是案例库中的集中出现，不等同于全行业发生率。</p>
+            </section>
+            <section class="c2GenderChartPanel">
+              <div class="c2GenderFindingTitle"><span>发现 B · 传播结果：</span><b>性别议题更稳定地放大传播</b></div>
+              <div id="c2GenderImpactChart"></div>
+              <p class="c2GenderChartDesc">5 起案例全部达到高声量，但只有 2 起高伤害、1 起中伤害：它稳定放大传播，却不必然造成产品重伤。</p>
+            </section>
+          </div>
+
+          <div class="c2GenderBridge">
+            <span>数据结论</span>
+            <p><b>性别议题在 2025 年后集中进入版本舆情，并表现出稳定的声量放大效应；但声量放大不等于必然造成产品重伤。</b></p>
+          </div>
+
+          <section class="c2GenderAmplifier">
+            <div class="c2GenderSectionHead c2GenderTypesHead">
+              <span>02</span>
+              <div><b>案例分型</b><small>同样涉及性别议题，进入冲突的路径并不相同</small></div>
+            </div>
+            <div class="c2GenderRoutes">
+              <div>
+                <span>原生型</span>
+                <p><b>性别表达本身就是矛盾。</b>角色定位、审美承诺或性别呈现直接触发争议。</p>
+                <div class="c2GenderRepresentative"><b>代表案例：</b><a onclick="openCase('yanyun-female')">燕云·飞白成诗</a></div>
+                <details class="c2GenderCaseDetails">
+                  <summary><small>展开案例描述</small></summary>
+                  <div class="c2GenderCaseDesc"><a class="c2GenderCaseLink" onclick="openCase('yanyun-female')">燕云·飞白成诗</a><p>“女性友好”定位下推出被指男凝 / 擦边的女装，性别表达本身直接构成争议。</p></div>
+                </details>
+              </div>
+              <div>
+                <span>叠加型</span>
+                <p><b>原始矛盾在传播中被性别化重述。</b>议题由尺度、暗改、资源或治理问题扩展到公共语境。</p>
+                <div class="c2GenderRepresentative"><b>代表案例：</b><a onclick="openCase('lianyu-scale')">恋与·夏以昼</a><a onclick="openCase('luoke-s2')">洛克王国 S2</a><a onclick="openCase('chenbai-forbidden')">尘白禁区</a><a onclick="openCase('lianyu-aoyin')">恋与·敖尹</a></div>
+                <details class="c2GenderCaseDetails">
+                  <summary><small>展开案例描述</small></summary>
+                  <div class="c2GenderCaseDesc"><a class="c2GenderCaseLink" onclick="openCase('lianyu-scale')">恋与·夏以昼</a><p>PV 尺度争议被进一步转译为成年女性消费权与“乙游被双标”之争。</p></div>
+                  <div class="c2GenderCaseDesc"><a class="c2GenderCaseLink" onclick="openCase('luoke-s2')">洛克王国 S2</a><p>暗改叠加官方采纳特定社区意见，被质疑性别站队与反馈代表性失衡。</p></div>
+                  <div class="c2GenderCaseDesc"><a class="c2GenderCaseLink" onclick="openCase('chenbai-forbidden')">尘白禁区</a><p>擦边内容进入公共品牌场景，性别与女性形象争议进一步放大监管暴露。</p></div>
+                  <div class="c2GenderCaseDesc"><a class="c2GenderCaseLink" onclick="openCase('lianyu-aoyin')">恋与·敖尹</a><p>资源分配维权中，“引狼入室”台词被解读为女性安全问题，推动事件破圈。</p></div>
+                </details>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="c2Insight"><b>核心观察：</b>性别议题提供了更易跨圈层理解的公共叙事，因此更稳定地放大传播；但它不是伤害的充分条件，<b>最终是否伤及大盘，仍取决于原始矛盾是否击中付费、体验或情感契约，以及官方能否及时止损。</b></div>
+      </article>
+
+      <!-- 卡7a：女性向 / 乙游圈层的情绪强度与行动能力 -->
+      <article class="c2Card c2PressureCard" style="border-left-color:var(--red); grid-column:1/-1">
+        <div class="c2Point"><span class="c2Aspect aRed">圈层研判</span>高情感投入与饭圈化组织技术共同放大乙游圈层行动力</div>
+        <div class="c2Body">
+          <section class="c2PressureConclusion">
+            <span>核心结论</span>
+            <p>乙游的高强度亲密关系放大情绪，饭圈化组织技术放大行动。两者叠加，使圈层诉求更容易形成持续声量，并推动企业、平台或外部机构作出现实响应。</p>
+          </section>
+
+          <div class="c2PressureModel" aria-label="乙游圈层形成高声势与现实压力的两项条件">
+            <section class="c2PressurePillar isEmotion">
+              <header><span>01 · 情绪强度</span><h3>乙游将角色消费转化为以玩家为主体的持续性亲密关系投入</h3></header>
+              <div class="c2PressurePoints">
+                <article><span>01 · 关系主体化</span><b>玩家成为亲密关系的直接主体</b><p>第一人称叙事、直视镜头、专属称呼与定向互动，将玩家置于被凝视、被回应和被选择的位置，使情感投入指向“角色与自己之间的关系”。</p><small class="c2PressureCompare"><em>典型二游</em>情感纽带更多分布于角色偏好、群像关系与世界观认同</small></article>
+                <article><span>02 · 情感确认</span><b>高确定性的情感回应持续确认玩家价值</b><p>角色持续提供关注、理解、支持与专属选择，形成稳定且理想化的情感反馈，同时承载被重视、被尊重和被坚定选择的自我价值确认。</p><small class="c2PressureCompare"><em>典型二游</em>角色情感与剧情、收集、养成及玩法体验共同构成投入回报</small></article>
+                <article><span>03 · 日常沉淀</span><b>日常互动将内容消费沉淀为连续的关系历史</b><p>电话、短信、朋友圈、纪念日与长期剧情，将情感体验从版本节点延伸至日常生活；时间、付费和共同记忆持续累积，形成具有连续性的“相处史”。</p><small class="c2PressureCompare"><em>典型二游</em>情感投入更多集中于角色获取、剧情节点与版本内容</small></article>
+              </div>
+              <div class="c2PressurePillarResult"><b>结果</b><span>普通版本不满更容易升级为高强度群体情绪</span></div>
+            </section>
+
+            <section class="c2PressurePillar isTools">
+              <header><span>02 · 行动能力</span><h3>饭圈成熟的组织机制被迁移到乙游社群，使玩家能够被快速动员、分工执行并持续放大</h3></header>
+              <div class="c2PressureLegacyCases">
+                <b>饭圈组织技术参照</b>
+                <a href="https://tech.sina.com.cn/i/2020-03-03/doc-iimxyqvz7510961.shtml" target="_blank" rel="noopener"><span>2020 · 肖战“227”事件 ↗</span><small>圈内争议经集中举报扩展为跨圈层对抗</small></a>
+                <a href="https://news.cctv.com/2021/05/07/ARTIpfCLX2QcopPByc4aDSoT210507.shtml" target="_blank" rel="noopener"><span>2021 ·《青春有你3》倒奶打投 ↗</span><small>购买、扫码与集中打投被组织成可量化任务</small></a>
+              </div>
+              <div class="c2PressurePoints">
+                <article><span>01 · 指挥中枢</span><b>大号与核心群体先定调，统一全体对外口径</b><p>超话主持人、社群大号和群管理员汇总意见，确定事件性质、传播关键词、核心诉求与对外文案。</p><ul><li>形成统一事件定性与诉求清单</li><li>规定主推关键词、话题和对外话术</li></ul></article>
+                <article><span>02 · 分工网络</span><b>不同成员按任务分组，形成可复制的行动网络</b><p>资料、传播、投诉和对外联络分别由不同成员承担，再通过群聊和任务表协调进度。</p><ul><li>资料组整理时间线、证据包和媒体名单</li><li>投诉组制作模板，传播组组织集中投放</li></ul></article>
+                <article><span>03 · 协同放大</span><b>统一时间、平台与目标集中行动，并持续复盘效果</b><p>社群在固定窗口组织停氪、退款、评分与跨平台传播，再根据热度和回应调整下一轮行动。</p><ul><li>同步调用超话、视频、评分、消保和律师函</li><li>点名媒体、品牌、平台及有关部门</li><li>把圈内诉求转译为消费权益、女性权益、未保或品牌风险</li></ul></article>
+              </div>
+              <div class="c2PressurePillarResult"><b>结果</b><span>个人不满被转化为统一目标、可复制动作与持续外部压力</span></div>
+            </section>
+          </div>
+
+          <section class="c2PressureCases">
+            <header>
+              <div><span>案例验证</span><h3>同为“大尺度”争议，为何处置结果不同？</h3></div>
+              <p>案例只辅助验证“风险翻译 × 制度接口”，不把不同结果简单归因为举报人数或性别强弱。</p>
+            </header>
+
+            <div class="c2PressureCaseGrid">
+              <article class="c2PressureCase isPrivate">
+                <div class="c2PressureCaseTag">私域内容 / 核心玩家防守</div>
+                <a class="c2PressureCaseTitle" onclick="openCase('lianyu-scale')">恋与深空 · 夏以昼 PV</a>
+                <p>争议主要发生在成年向游戏的核心消费场景。核心玩家将诉求翻译为<b>成年女性内容选择权 / 反对性别双标</b>，厂商也有保护核心卖点与付费用户的商业动力。</p>
+                <div class="c2PressureCaseResult"><span>结果</span><b>引发热搜与客服回应，未见正式内容调整</b></div>
+              </article>
+
+              <div class="c2PressureVs">VS</div>
+
+              <article class="c2PressureCase isPublic">
+                <div class="c2PressureCaseTag">公共场景 / 外部圈层进攻</div>
+                <a class="c2PressureCaseTitle" onclick="openCase('chenbai-forbidden')">尘白禁区 · 中国邮政联动</a>
+                <p>争议被转换为<b>成人向内容是否适合进入公共服务品牌与线下空间</b>，直接接入品牌形象、未成年人、合作审查等中国邮政必须响应的风险接口。</p>
+                <div class="c2PressureCaseResult"><span>结果</span><b>联动终止；后续停服与举报的直接因果仍待核</b></div>
+              </article>
+            </div>
+            <div class="c2PressureCaseTakeaway"><b>验证结果：</b>圈层行动能否转化为现实处置，关键不是“骂得多凶”，而是能否把诉求接入目标机构必须响应的风险接口；同时也取决于内容发生在私域还是公共空间、目标让步成本及核心付费盘态度。</div>
+          </section>
+        </div>
+        <div class="c2Insight">
+          <b>运营预警：</b>真正的升级信号不是负面评论变多，而是<b>诉求开始标准化、行动开始工具化、风险开始公共化</b>。一旦出现统一诉求清单、证据包、投诉模板，并开始点名平台、媒体、合作品牌或有关部门，事件已从社区沟通问题进入制度化施压阶段。
+        </div>
+      </article>
+
+      <!-- 卡7c：版本优先级与玩家代表性 -->
+      <article class="c2Card" style="border-left-color:var(--amber); grid-column:1/-1">
+        <div class="c2Point"><span class="c2Aspect aAmber">决策研判</span>识别「真实反馈」与「噪声」：判断哪些问题值得进入版本计划</div>
+        <div class="c2Body">
+          <div class="c2ChartTitle">游戏内外的声音具有不同决策权重，需求代表性决定声音进入版本排期、测试观察或风险处置。</div>
+
+          <div class="c2PriorityCases">
+            <section>
+              <header><span>选错需求</span><b>洛克王国 S2：需求代表性未经验证</b><a class="conclCase" onclick="openCase('luoke-s2')">查看案例</a></header>
+              <p>系统 Bug、版本质量等共性问题尚未解决，却先调整动作、表情等既有情感资产；玩家进一步质疑特定平台/圈层的反馈为何能直接进入全量版本。</p>
+              <div class="c2PriorityRead"><b>玩家解读</b><span>“共性问题尚未解决，官方却优先采纳特定圈层偏好”，版本决策因此被解读为在玩家群体之间“站队”。</span></div>
+              <div class="c2PriorityFix"><b>决策修正</b><span>先验证覆盖面与核心盘影响；审美/圈层偏好优先采用开关、自定义或灰度方案。</span></div>
+            </section>
+            <section>
+              <header><span>忽视需求</span><b>恋与深空：长期内容债未被优先偿还</b><a class="conclCase" onclick="openCase('lianyu-aoyin')">查看案例</a></header>
+              <p>五位老男主主线长期断更，部分超过 500 天；有限产能却优先用于新男主开发与整套宣发，让玩家把新增内容理解为“有产能变现、没产能还旧账”。</p>
+              <div class="c2PriorityRead"><b>玩家解读</b><span>“有产能开发和宣发新男主，却长期不补老男主主线”，玩家因此认为官方更看重新增变现，而非回应存量需求。</span></div>
+              <div class="c2PriorityFix"><b>决策修正</b><span>先补主线与牵绊内容、公开更新节点，再评估新增角色与增长型内容。</span></div>
+            </section>
+          </div>
+
+          <section class="c2PrioritySignal">
+            <div class="c2PrioritySectionTitle">玩家如何解读版本顺序</div>
+            <div class="c2PriorityFlow">
+              <div><span>1</span><b>产能投向</b><small>先修什么、先做什么</small></div><i>→</i>
+              <div><span>2</span><b>优先服务对象</b><small>谁的需求先被满足</small></div><i>→</i>
+              <div><span>3</span><b>代表性判断</b><small>谁被官方视为“玩家”</small></div><i>→</i>
+              <div><span>4</span><b>版本信任</b><small>是否继续相信后续规划</small></div>
+            </div>
+          </section>
+
+          <div class="c2PriorityDecision">
+            <section>
+              <div class="c2PrioritySectionTitle">需求进入版本池前：先过三道门</div>
+              <div class="c2PriorityGates">
+                <div><b>覆盖面</b><span>影响多少活跃玩家，是否覆盖核心循环</span></div>
+                <div><b>代表性</b><span>社区反馈、分层调研与行为数据能否相互印证</span></div>
+                <div><b>改动风险</b><span>是否覆盖既有资产、违背承诺或产生不可逆影响</span></div>
+              </div>
+            </section>
+            <section>
+              <div class="c2PrioritySectionTitle">有限产能默认排序</div>
+              <ol class="c2PriorityStack">
+                <li><b>P0 基础安全线</b><span>合规、安全、性能、阻断核心循环的问题</span></li>
+                <li><b>P1 存量契约债</b><span>已承诺内容、长期断更与已上线资产风险</span></li>
+                <li><b>P2 高覆盖需求</b><span>经多渠道与行为数据共同验证的共性体验问题</span></li>
+                <li><b>P3 增量与偏好</b><span>新角色、增长型内容及特定圈层偏好</span></li>
+              </ol>
+            </section>
+          </div>
+        </div>
+        <div class="c2Insight"><b>核心观察：</b>洛克的问题是把代表性未经验证的偏好直接升级为全量改动；恋与深空的问题是长期忽视已经反复验证的核心需求。<b>版本优先级不应由单一平台声量或短期变现决定：先守基础体验，再偿还存量承诺，之后处理高覆盖需求，最后投入增量内容与圈层偏好。</b></div>
+      </article>
+
+      <!-- 卡7d：回应质量与止血要素 -->
+      <article class="c2Card" style="border-left-color:var(--green); grid-column:1/-1">
+        <div class="c2Point"><span class="c2Aspect aGreen">处置研判</span>回应质量：透明度 / 时效 / 实际动作 &gt; 补偿力度</div>
+        <div class="c2Body">
+          <div class="c2ChartTitle">有效回应不是四项并列打分：前三项决定能否止血，补偿主要修复可量化损失。</div>
+          <div class="c2ResponsePillars">
+            <section>
+              <header><span>1</span><b>认错不甩锅</b></header>
+              <p>明确责任主体，避免把问题推给“玩家误解”、谣言或抽象的沟通不足。</p>
+              <div class="c2ResponseLinks"><em>正例 · 代表回应</em>
+                <div><a onclick="openCaseResponse('luoke-s2',3)">洛克·主策公开信</a><span>主策实名担责，承认决策与流程问题</span></div>
+                <div><a onclick="openCaseResponse('diablo4-p11',1)">暗黑4·篝火夜谈</a><span>开发团队正面认错，承诺调整补丁原则</span></div>
+                <div><a onclick="openCaseResponse('helldivers2-psn',1)">绝地潜兵2·CEO担责</a><span>CEO 公开承担责任，回应玩家核心诉求</span></div>
+              </div>
+              <div class="c2ResponseCounter isBad"><b>反例</b><div><a onclick="openCaseResponse('lianyu-aoyin',2)">恋与深空·强硬追责</a><span>将真实诉求与谣言治理混在一起，进一步加深对立</span></div></div>
+            </section>
+            <section>
+              <header><span>2</span><b>解释原因 / 决策链</b></header>
+              <p>不只说“怎么改”，还要交代“为什么发生、依据是什么、以后如何防止重演”。</p>
+              <div class="c2ResponseLinks"><em>正例 · 代表回应</em>
+                <div><a onclick="openCaseResponse('luoke-s2',3)">洛克·流程归因</a><span>说明需求采纳失真与版本决策链</span></div>
+                <div><a onclick="openCaseResponse('diablo4-p11',1)">暗黑4·公布新原则</a><span>解释改动失误并公开后续平衡原则</span></div>
+              </div>
+              <div class="c2ResponseCounter isBad"><b>反例</b><div><a onclick="openCaseResponse('shijiezhiwai-money',2)">世界之外·“想赚钱”</a><span>表达商业目的，却未解释涨价依据与契约变更</span></div></div>
+            </section>
+            <section>
+              <header><span>3</span><b>实际回退 / 修复</b></header>
+              <p>是否停止争议动作，通常比道歉措辞更能决定止血效果。</p>
+              <div class="c2ResponseLinks"><em>正例 · 代表回应</em>
+                <div><a onclick="openCaseResponse('yuanshen-longwang',1)">那维莱特·24h回退</a><span>24 小时内撤回削弱并恢复原机制</span></div>
+                <div><a onclick="openCaseResponse('helldivers2-psn',1)">绝地潜兵2·撤回绑定</a><span>取消 PSN 强制绑定要求</span></div>
+                <div><a onclick="openCaseResponse('luoke-s2',2)">洛克·逐项修复</a><span>按争议点逐项回退并明确修复节点</span></div>
+              </div>
+              <div class="c2ResponseCounter isBad"><b>反例 · 迟来的高成本回退</b>
+                <div><a onclick="openCaseResponse('lianyu-aoyin',3)">恋与深空·永久停止新增男主</a><span>延迟至危机爆发后才作不可逆砍线</span></div>
+                <div><a onclick="openCaseResponse('benghuai-rabbit',2)">崩坏3·下架活动</a><span>冷处理近一个月后才下架活动</span></div>
+              </div>
+            </section>
+            <section class="isCompensation">
+              <header><span>4</span><b>补偿：修复对价，不替代方向</b></header>
+              <p>当原始争议就是权益数量，补偿本身可以是实际动作；当争议是方向、信任或契约，补偿只能附加。</p>
+              <div class="c2ResponseLinks"><em>正例 · 有效前提</em>
+                <div><a onclick="openCaseResponse('yuanshen-1year',2)">原神一周年·补回福利</a><span>争议即福利不足，补偿直接修复权益</span></div>
+                <div><a onclick="openCaseResponse('yuanshen-longwang',1)">那维莱特·回退后补偿</a><span>先恢复机制，再补偿受影响玩家</span></div>
+              </div>
+              <div class="c2ResponseCounter isBad"><b>反例 · 只给补偿</b>
+                <div><a onclick="openCaseResponse('shijiezhiwai-money',1)">世界之外·5抽</a><span>未解释涨价依据与契约变化</span></div>
+                <div><a onclick="openCaseResponse('lianyu-aoyin',1)">恋与深空·20抽</a><span>未回应长期内容债与资源分配</span></div>
+                <div><a onclick="openCaseResponse('luoke-s2',1)">洛克·2颗棱镜球</a><span>未解释需求代表性与决策依据</span></div>
+              </div>
+            </section>
+          </div>
+        </div>
+        <div class="c2Insight"><b>核心观察：</b>有效回应可以概括为<b>“正确定性 × 黄金窗口 × 可验证动作 + 对价修复”</b>。补偿是否有效，不取决于数量大小，而取决于它是否补回了真正受损的权益。</div>
+      </article>
+
+      <!-- 卡8：监管风险双路径 -->
+      <article class="c2Card c2RegulatoryCard" style="border-left-color:var(--red); grid-column:1/-1">
+        <div class="c2Point"><span class="c2Aspect aRed">监管研判</span>强陪伴型乙游/二游的内容合规容错空间正在收窄</div>
+        <div class="c2Body">
+          <div class="c2ChartTitle">风险既可能由公共舆情触发，也可能来自直接内容审查，最终都可能影响经营连续性</div>
+
+          <div class="c2RuleStrip">
+            <span class="c2RuleTime">2016起</span>
+            <b>制度底线</b>
+            <span>网络游戏不得含有庸俗、低俗、媚俗等内容；涉及禁止内容且情节严重时，可责令停业整顿。</span>
+            <span class="c2RuleLinks"><a class="conclCase" href="https://www.nppa.gov.cn/bsfw/xksx/cbfxl/wlcbfwspsx/202210/t20221013_600725.html" target="_blank" rel="noopener">审批要求 ↗</a><a class="conclCase" href="https://www.nppa.gov.cn/xxfb/zcfg/bmgz/201602/t20160206_4403.html" target="_blank" rel="noopener">管理规定 ↗</a></span>
+          </div>
+
+          <div class="c2RiskLanes">
+            <section class="c2RiskLane lanePublic">
+              <div class="c2RiskLaneHead"><span>A</span><div><b>舆情触发型</b><small>圈内争议在公共化后扩大监管暴露</small></div></div>
+              <div class="c2RiskFlow">
+                <div class="c2RiskNode"><b>圈内争议</b><p>付费、资源分配或内容尺度问题</p></div>
+                <span class="c2RiskArrow">→</span>
+                <div class="c2RiskNode"><b>公共议题化</b><p>被转译为擦边、性别或价值观议题</p></div>
+                <span class="c2RiskArrow">→</span>
+                <div class="c2RiskNode"><b>监管暴露扩大</b><p>跨平台传播、集中投诉或公共品牌卷入</p></div>
+                <span class="c2RiskArrow">→</span>
+                <div class="c2RiskNode"><b>超额止损</b><p>数据尚未崩塌，企业已先消除尾部风险</p></div>
+              </div>
+              <div class="c2RiskEvidenceTitle">案例证据</div>
+              <div class="c2Timeline c2RiskTimeline">
+                <div class="c2TlItem"><span class="c2TlYear">2026-02</span><span class="c2TlDot"></span><div><a class="conclCase" onclick="openCase('chenbai-forbidden')">尘白禁区</a><p>邮政联动将原本面向特定受众的擦边内容带入公共品牌与线下场景；争议与投诉扩散后联动终止，游戏随后停服 66 天并大范围调整内容。</p></div></div>
+                <div class="c2TlItem"><span class="c2TlYear">2026-06</span><span class="c2TlDot"></span><div><a class="conclCase" onclick="openCase('lianyu-aoyin')">恋与深空</a><p>事件起点是产能/资源分配与新男主争议，部分舆论参与者进一步借女性安全、历史等公共议题放大声量。按本项目现有数据，流水/活跃未出现同等幅度恶化，但官方仍以“永久不新增男主”消除潜在整改/中断风险，属不可逆战略回退。</p></div></div>
+              </div>
+            </section>
+
+            <section class="c2RiskLane laneReview">
+              <div class="c2RiskLaneHead"><span>B</span><div><b>直接审查型</b><small>存量或新增内容直接进入政策/审查整改</small></div></div>
+              <div class="c2RiskFlow threeNodes">
+                <div class="c2RiskNode"><b>内容触及要求</b><p>角色、皮肤或互动内容进入审查范围</p></div>
+                <span class="c2RiskArrow">→</span>
+                <div class="c2RiskNode"><b>政策/主管要求</b><p>企业收到相关政策或上级整改要求</p></div>
+                <span class="c2RiskArrow">→</span>
+                <div class="c2RiskNode"><b>渠道/服务中断</b><p>通过停服维护或关闭下载完成整改</p></div>
+              </div>
+              <div class="c2RiskEvidenceTitle">案例证据</div>
+              <div class="c2Timeline c2RiskTimeline">
+                <div class="c2TlItem"><span class="c2TlYear">2021-05</span><span class="c2TlDot"></span><div><a class="conclCase" href="https://www.taptap.cn/app/91949/topic" target="_blank" rel="noopener">双生视界 ↗</a><p>官方明确称为“响应有关部门相关政策”，随后长时间停服，并紧急下架/调整部分角色卡牌；显示内容审查可直接进入服务中断阶段。</p></div></div>
+                <div class="c2TlItem"><span class="c2TlYear">2026-07</span><span class="c2TlDot"></span><div><a class="conclCase" href="https://www.gamersky.com/news/202607/2170531.shtml" target="_blank" rel="noopener">吉星派对 ↗</a><p>官方明确表示响应上级主管部门指令，暂时关闭全渠道下载并调整内容，待审核通过后再恢复下载。</p></div></div>
+              </div>
+            </section>
+          </div>
+
+          <div class="c2RiskOutcome"><b>共同落点：经营连续性风险</b><span>停服整改</span><span>关闭下载</span><span>内容资产缩水</span><span>不可逆战略回退</span></div>
+        </div>
+        <div class="c2Insight">
+          <b>洞察：</b>强陪伴型乙游/二游的合规风险存在两条触发路径：圈内争议可能在公共议题化后扩大监管暴露，存量或新增内容也可能直接进入审查整改。两条路径最终都可能越过普通公关范畴，升级为服务或渠道中断。<b>经营数据尚未明显恶化并不代表风险可控，合规风险可能先于流水和留存变化发生。</b>
+        </div>
+      </article>
+
+    </div>
+
+    <div style="margin:8px 2px 32px; padding:14px 18px; background:var(--soft); border:1px dashed var(--line); border-radius:10px;">
+      <p style="font-size:12px; color:var(--muted); line-height:1.6; margin:0;">研判说明：本页结论由样本趋势、典型案例深挖与外部行业/监管信息综合推导，属于定性研判，不等同于全库量化因果结论。</p>
+    </div>
+  </div>
+
+  <!-- ================= 综合研判· 折叠式观点总览 ================= -->
+  <main id="conclusions3" style="display:none">
+    <div id="conclusions3Content"></div>
+    <p class="c4MethodNote">研判说明：本页结论由样本趋势、典型案例深挖与外部行业 / 监管信息综合推导，属于定性研判，不等同于全库量化因果结论。</p>
+  </main>
+
+  <!-- 仅供“综合研判”使用 -->
+  <template id="c4-cocreate-template">
+    <div class="c2Body">
+      <div class="c2CoCreateSectionTitle">两种玩法供给路径</div>
+      <div class="c2DomesticCoCreate">
+        <section class="c2DomesticPath">
+          <div class="c2CoCreateModeNo">01</div>
+          <header><span>涌现玩法共创</span><b>玩家在既有机制中创造新的社群规则</b></header>
+          <p>玩家通过重复协作，将偶发行为发展为稳定的社群玩法；当玩法形成规模后，官方需要评估其生态影响，并决定承接、引导还是限制。</p>
+          <div class="c2DomesticFlow" aria-label="涌现玩法共创路径"><b>既有机制</b><i>→</i><b>玩家协作</b><i>→</i><b>社群规则</b><i>→</i><b>官方治理</b></div>
+          <article class="c2DomesticCase isDelta">
+            <span>库内案例</span>
+            <a class="conclCase" onclick="openCase('sanjiaozhou-jail')">三角洲·共享监狱</a>
+            <small class="c2GameType">战术射击 / 搜打撤</small>
+            <p>玩家自发形成“不交火、互助护送、多人共享撤离”的合作规则，并将其视为共同创造的玩法资产。</p>
+          </article>
+        </section>
+
+        <section class="c2DomesticPath isUgc">
+          <div class="c2CoCreateModeNo">02</div>
+          <header><span>平台化 UGC</span><b>官方开放工具、发布、分发与激励体系</b></header>
+          <p>官方将部分开发能力开放给玩家，使玩家能够制作、发布和持续运营玩法；编辑器解决“能不能做”，分发与推荐解决“能不能被看见”，激励与商业化支撑持续生产。</p>
+          <div class="c2DomesticFlow" aria-label="平台化UGC路径"><b>编辑工具</b><i>→</i><b>作品发布</b><i>→</i><b>平台分发</b><i>→</i><b>激励 / 商业化</b></div>
+          <div class="c2UgcCases">
+            <article>
+              <span>高自由度玩法开发</span>
+              <a href="https://gp.qq.com/developer/index.shtml" target="_blank" rel="noopener">和平精英·绿洲启元 ↗</a>
+              <small class="c2GameType">战术竞技射击</small>
+              <p>开放 PC / 手机编辑器，玩家可调用场景、模式、物资、技能与 Lua 能力开发并发布独立玩法。</p>
+            </article>
+            <article>
+              <span>大众化低门槛创作</span>
+              <a href="https://www.eggyparty.com/hmt/news/announcement/20250619/38892_1241688.html" target="_blank" rel="noopener">蛋仔派对·蛋仔工坊 ↗</a>
+              <small class="c2GameType">休闲竞技 / 派对游戏</small>
+              <p>玩家制作关卡、剧情和多关卡玩法，作品进入乐园消费，并通过游玩表现与玩家赞助获得激励。</p>
+            </article>
+            <article>
+              <span>创作扶持与版权保护</span>
+              <a href="https://ymzx.qq.com/web202312/plan4.html" target="_blank" rel="noopener">元梦之星·星世界 ↗</a>
+              <small class="c2GameType">休闲竞技 / 派对游戏</small>
+              <p>将地图编辑、创作课程、作品分发、创作者扶持与原创版权保护组成平台化生态。</p>
+            </article>
+          </div>
+        </section>
+      </div>
+    </div>
+    <div class="c2Insight">
+      <b>核心观察：</b>国内游戏的玩家共创正在形成两种机制：<b>社群在既有机制中自发创造玩法规则，以及厂商通过编辑器、分发和激励体系规模化引入玩家内容。</b>前者考验官方如何识别和治理涌现玩法，后者考验工具能力、内容审核、流量分配、版权保护与创作者收益机制。
+    </div>
+  </template>
+
+  <!-- 仅供“综合研判”使用：生态位与官方处置姿态 -->
+  <template id="c4-niche-template">
+    <div class="c2Body">
+      <div class="c2NicheLead">
+        <b>产品替代性越低、用户沉淀越深、核心玩法越稳定，越能通过迁移成本与稳定基本盘吸收争议，官方也越倾向观察或局部处置；付费契约、核心玩法或长期情感承诺受损时，生态位缓冲会迅速减弱。</b>
+      </div>
+      <div class="c2NicheCompare" aria-label="生态位缓冲与承重墙受损案例对照">
+        <section class="isBuffer">
+          <header><span>生态位缓冲</span><b>恋与深空·暗蚀国王</b><a class="conclCase" onclick="openCase('lianyu-mechanic')">查看案例</a></header>
+          <div class="c2NicheCommon">付费内容不实：PV 宣传机制与实装不符</div>
+          <div class="c2NicheDimension"><span>乙游位置</span><b>恋与深空 ＞ 世界之外：3D 沉浸式乙游头部，同等规格替代产品稀缺</b></div>
+          <div class="c2NicheDimension"><span>官方姿态</span><b>冷处理</b></div>
+          <div class="c2NicheDimension"><span>受损范围</span><b>集中于单一男主限定套装与沈星回单推付费群体</b></div>
+          <div class="c2NicheResult"><span>舆情结果</span><strong>高声量 · 低伤害</strong><p>用户迁移成本与产品稀缺性吸收了短期冲击，伤害沉淀为信任赤字。</p></div>
+        </section>
+        <section class="isBreak">
+          <header><span>承重墙受损</span><b>世界之外·召唤之王</b><a class="conclCase" onclick="openCase('shijiezhiwai-money')">查看案例</a></header>
+          <div class="c2NicheCommon">付费内容贬值：统一抽卡价格未经预告上涨 33%</div>
+          <div class="c2NicheDimension"><span>乙游位置</span><b>世界之外 ＜ 恋与深空：无限流女性向头部，2D 剧情卡牌赛道替代选择更多</b></div>
+          <div class="c2NicheDimension"><span>官方姿态</span><b>回应继续放大矛盾</b></div>
+          <div class="c2NicheDimension"><span>受损范围</span><b>统一定价锚点被打破，覆盖全体付费玩家与后续卡池预期</b></div>
+          <div class="c2NicheResult"><span>舆情结果</span><strong>高声量 · 高伤害</strong><p>全局付费契约受损直接穿透核心付费盘，并快速传导至流水。</p></div>
+        </section>
+      </div>
+    </div>
+    <div class="c2Insight"><b>核心观察：</b><b>生态位影响承压能力，受损范围决定冲击能否穿透缓冲。同为头部乙游，也同样触及付费内容价值；《恋与深空》的产品稀缺性与单角色局部受损支撑了低伤害结果；《世界之外》的全局定价锚点破裂直接作用于整个付费盘。官方处置强度需同时考虑产品替代性、用户迁移成本与受损覆盖范围。</b></div>
+  </template>
+
+  <!-- 仅供“综合研判”使用：先展示解读逻辑，再展开单案分析 -->
+  <template id="c4-priority-template">
+    <div class="c2Body">
+      <section class="c2VoiceClassification" aria-label="游戏内外声音四象限分类">
+        <div class="c2VoiceSteps" aria-label="声音研判的三个步骤">
+          <section class="c2VoiceStep">
+            <span>01</span>
+            <div><b>识别发声群体与需求代表性</b><p>区分核心用户、圈内细分群体、圈外参与者与外部机构，判断代表范围与产品关联度。</p></div>
+          </section>
+          <section class="c2VoiceStep">
+            <span>02</span>
+            <div><b>了解群体特征并预判升级路径</b><p>结合历史行为、组织能力、跨圈传播与风险转译方式，预估用户反应并做好预期管理。</p></div>
+          </section>
+          <section class="c2VoiceStep">
+            <span>03</span>
+            <div><b>综合配置版本排期与产能优先级</b><p>统筹需求价值与升级风险，决定验证方式、发布范围、产能投入与沟通节奏。</p></div>
+          </section>
+        </div>
+        <div class="c2VoiceMatrix">
+          <div class="c2VoiceCorner"></div>
+          <div class="c2VoiceColHead">圈内声音</div>
+          <div class="c2VoiceColHead">圈外声音</div>
+          <div class="c2VoiceRowHead">高决策价值</div>
+          <article class="c2VoiceQuadrant isCore"><span>圈内 × 高代表性</span><h4>核心需求</h4><p>核心用户反复提出，并得到行为数据、跨平台反馈与长期需求印证。</p><div class="c2VoiceCases"><small>代表案例</small><a onclick="openCase('wzry-s40')">王者荣耀 S40·战力系统改版</a></div><b>进入版本排期</b></article>
+          <article class="c2VoiceQuadrant isExternal"><span>圈外 × 实质风险</span><h4>外部约束</h4><p>合规、品牌、合作机构或公共议题形成可识别的经营与治理风险。</p><div class="c2VoiceCases"><small>代表案例</small><a href="https://www.taptap.cn/app/91949/topic" target="_blank" rel="noopener">双生视界·政策响应 ↗</a></div><b>进入风险处置</b></article>
+          <div class="c2VoiceRowHead">局部 / 待验证</div>
+          <article class="c2VoiceQuadrant isSegment"><span>圈内 × 局部代表性</span><h4>圈内分层诉求</h4><p>角色厨、玩法群体或单一平台用户的真实偏好，覆盖范围集中于特定人群。</p><div class="c2VoiceCases"><small>代表案例</small><a onclick="openCase('sanjiaozhou-jail')">三角洲·共享监狱</a><a onclick="openCase('luoke-s2')">洛克王国 S2·特定圈层反馈</a></div><b>分层调研 / 灰度验证</b></article>
+          <article class="c2VoiceQuadrant isNoise"><span>圈外 × 低产品相关</span><h4>圈外噪声</h4><p>非核心用户参与、短期议题扩散，与实际使用体验及核心产品契约关联较弱。</p><div class="c2VoiceCases"><small>代表案例</small><a onclick="openCase('chenbai-forbidden')">尘白禁区·邮政联动圈外舆论</a><a onclick="openCase('lianyu-scale')">恋与深空·夏以昼尺度争议</a></div><b>进入观察池</b></article>
+        </div>
+      </section>
+
+      <div class="c2PrioritySectionTitle c2PriorityCasesTitle">案例验证：需求代表性与群体升级能力的误判</div>
+      <div class="c2PriorityCases">
+        <section>
+          <header><span>局部诉求被高估</span><b>洛克王国 S2：圈内分层诉求被直接升级为全量改动</b><a class="conclCase" onclick="openCase('luoke-s2')">查看案例</a></header>
+          <p>系统 Bug、版本质量等共性问题尚未解决，却先调整动作、表情等既有情感资产；玩家进一步质疑特定平台 / 圈层的反馈为何能直接进入全量版本。</p>
+          <div class="c2CaseEscalation isLuoke" aria-label="洛克王国 S2 需求误判路径">
+            <b>圈层偏好未验证</b><i>→</i><b>被解读为“立场表态”</b>
+          </div>
+          <div class="c2PriorityRead"><b>识别偏差</b><span>特定平台与圈层的偏好缺少覆盖面验证，却获得了全量版本的决策权重。</span></div>
+        </section>
+        <section>
+          <header><span>圈层行动力被低估</span><b>恋与深空：圈内分层诉求经组织化行动升级为外部风险</b><a class="conclCase" onclick="openCase('lianyu-aoyin')">查看案例</a></header>
+          <p>第六男主争议最初集中于老男主资源分配与主线内容获取；停氪、集中投诉和跨平台传播推动议题破圈，价值观与历史风险进一步接入外部机构。</p>
+          <div class="c2CaseEscalation" aria-label="恋与深空第六男主争议升级路径">
+            <b>圈内分层诉求</b><i>→</i><b>圈外噪声</b><i>→</i><b>外部约束 <em>风险</em></b>
+          </div>
+          <div class="c2PriorityRead"><b>识别偏差</b><span>初始判断聚焦需求覆盖面，低估了圈层的组织动员、跨圈传播与公共风险转译能力。</span></div>
+        </section>
+      </div>
+    </div>
+    <div class="c2Insight"><b>核心观察：</b><b>需求代表性决定版本权重，群体升级能力决定响应优先级。</b>官方需先识别发声群体、代表范围与产品关联度，再结合组织动员、跨圈传播和公共风险转译能力预估升级路径，最终配置版本排期、产能优先级、发布范围与沟通节奏。</div>
+  </template>
+
+  <!-- 仅供“综合研判”使用：问题修复的常态版本闭环 -->
+  <template id="c4-repair-loop-template">
+    <div class="c2Body">
+      <div class="c2RepairLead">
+        <b>玩家对官方诚意的判断，最终落在问题是否进入排期、是否持续调整、是否公开验证。</b>
+      </div>
+      <div class="c2RepairLoop" aria-label="问题确认、纳入排期、版本修正与效果复盘组成的修复闭环">
+        <article>
+          <span>01</span>
+          <h4>问题确认</h4>
+          <p>明确受损对象、影响范围与修复目标，将已验证问题列入公开清单。</p>
+        </article>
+        <i aria-hidden="true">→</i>
+        <article>
+          <span>02</span>
+          <h4>纳入排期</h4>
+          <p>给出优先级、预计版本与阶段目标，让玩家能够追踪处理进度。</p>
+        </article>
+        <i aria-hidden="true">→</i>
+        <article>
+          <span>03</span>
+          <h4>版本修正</h4>
+          <p>通过正常更新持续交付可验证动作，将回应落实为实际产品变化。</p>
+        </article>
+        <i aria-hidden="true">→</i>
+        <article>
+          <span>04</span>
+          <h4>效果复盘</h4>
+          <p>结合行为数据与玩家反馈验证效果，继续调整并说明后续安排。</p>
+        </article>
+      </div>
+      <div class="c2RepairProof">
+        <b>公告负责明确责任与止血，版本更新负责证明问题确实得到修正。</b>
+        <span>修复清单 / 版本排期 / 更新说明 / 效果复盘</span>
+      </div>
+    </div>
+    <div class="c2Insight"><b>核心观察：</b>固定修复闭环让版本调整建立在问题价值与验证结果上，降低“谁声量大谁先改”的印象，并把一次舆情处理沉淀为长期版本信任。</div>
+  </template>
+
+    <main id="dashboard" style="display:none">
+
+    <section class="panel filters">
+      <div class="filterGrid">
+        <input id="q" class="control" placeholder="搜索案例、标签、游戏名" />
+        <select id="matrix" class="control"><option value="">全部声量与伤害</option></select>
+        <select id="core_tag" class="control"><option value="">全部核心矛盾</option></select>
+        <select id="pr" class="control"><option value="">全部公关应对</option></select>
+      </div>
+    </section>
+
+    <div class="sectionTitle"><h2>案例浏览</h2><div class="count" id="resultCount"></div></div>
+    <section class="caseGrid" id="caseGrid"></section>
+  </main>
+
+  <main id="detail" class="detail">
+    <button class="back" onclick="goHome()">返回Dashboard</button>
+    <section class="card detailHero" id="detailHero"></section>
+    <nav class="tabs" id="tabs"></nav>
+    <section id="tabContent"></section>
+  </main>
+</div>
+<script src="./app.js?v=20260716-32"></script>
+</body>
+</html>
