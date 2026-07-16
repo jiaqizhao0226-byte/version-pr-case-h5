@@ -1832,6 +1832,7 @@ input:focus-visible{
 .c2CoCreateSectionTitle{margin:0 0 11px;padding-left:10px;border-left:4px solid var(--blue);font-size:14px;font-weight:850;line-height:1.4;color:var(--text)}
 .c2CoCreateModeNo{position:absolute;top:10px;right:12px;color:#E7ECF2;font-size:30px;font-weight:900;line-height:1}
 .c2DomesticCoCreate{display:grid;grid-template-columns:minmax(0,.82fr) minmax(0,1.55fr);gap:16px;align-items:stretch}
+.c2DomesticCoCreate.isSingle{grid-template-columns:1fr}
 .c2DomesticPath{position:relative;min-width:0;padding:17px 18px;border:1px solid #D9E2EC;border-top:4px solid var(--blue);border-radius:10px;background:#FBFCFE}
 .c2DomesticPath.isUgc{border-top-color:#5E9485;background:#FBFDFD}
 .c2DomesticPath>header{display:flex;align-items:flex-start;flex-direction:column;gap:7px;padding-right:34px}
@@ -1855,6 +1856,21 @@ input:focus-visible{
 .c2UgcCases>article{min-width:0;padding:12px;border:1px solid #D7E4E0;border-radius:8px;background:#fff}
 @media(max-width:1100px){.c2DomesticCoCreate{grid-template-columns:1fr}.c2UgcCases{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:760px){.c2UgcCases{grid-template-columns:1fr}.c2DomesticPath{padding:15px}.c2DomesticFlow{justify-content:flex-start}}
+
+/* 综合研判：规则接受者走向规则共创者 */
+.c2CoCreateBody{display:grid;gap:17px}
+.c2CoCreateJourney{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}
+.c2CoCreateJourney>article{position:relative;display:flex;min-width:0;flex-direction:column;padding:17px 18px 16px;border:1px solid #D8E2ED;border-top:4px solid var(--blue);border-radius:10px;background:linear-gradient(180deg,#FAFCFF 0%,#F7FAFD 100%)}
+.c2CoCreateJourney>article:not(:last-child)::after{content:'→';position:absolute;z-index:2;top:50%;right:-12px;display:grid;width:22px;height:22px;place-items:center;transform:translateY(-50%);border:1px solid #D8E2ED;border-radius:50%;background:#fff;color:#8D9BAC;font-size:12px;font-weight:900}
+.c2CoCreateStageHead{display:flex;min-height:23px;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:10px}
+.c2CoCreateStageHead>span{display:block;color:var(--blue);font-size:10.5px;font-weight:850;letter-spacing:.03em}
+.c2CoCreateStageHead>.conclCase{flex:0 0 auto;margin:0;padding:2px 7px;color:var(--blue);font-size:9.5px;font-weight:850;line-height:1.35;cursor:pointer;text-decoration:none}
+.c2CoCreateJourney>article>b{display:block;color:var(--text);font-size:14px;line-height:1.5}
+.c2CoCreateJourney>article>p{margin:8px 0 0!important;color:#596A7D!important;font-size:11.5px!important;line-height:1.7!important}
+.c2CoCreateStageCase{box-sizing:border-box;min-height:76px;margin-top:auto;padding-top:13px;border-top:1px dashed #D7E1EC}
+.c2CoCreateStageCase>span{display:inline-flex;margin-bottom:7px;padding:3px 7px;border-radius:5px;background:#EAF1FB;color:var(--blue);font-size:9.5px;font-weight:850;line-height:1.35}
+.c2CoCreateStageCase>p{margin:0!important;color:#44576C!important;font-size:11px!important;line-height:1.68!important}
+@media(max-width:900px){.c2CoCreateJourney{grid-template-columns:1fr}.c2CoCreateJourney>article:not(:last-child)::after{content:'↓';top:auto;right:50%;bottom:-12px;transform:translateX(50%)}.c2CoCreateStageCase{min-height:0}}
 
 /* 综合研判：改版优先级与玩家代表性 */
 .c2PriorityCases{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:17px}

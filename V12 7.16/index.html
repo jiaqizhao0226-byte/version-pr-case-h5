@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>游戏版本舆情洞察与案例库</title>
-  <link rel="stylesheet" href="./style.css?v=20260716-46" />
+  <link rel="stylesheet" href="./style.css?v=20260716-53" />
 </head>
 <body>
 <div class="app">
@@ -708,52 +708,27 @@
 
   <!-- 仅供“综合研判”使用 -->
   <template id="c4-cocreate-template">
-    <div class="c2Body">
-      <div class="c2CoCreateSectionTitle">两种玩法供给路径</div>
-      <div class="c2DomesticCoCreate">
-        <section class="c2DomesticPath">
-          <div class="c2CoCreateModeNo">01</div>
-          <header><span>涌现玩法共创</span><b>玩家在既有机制中创造新的社群规则</b></header>
-          <p>玩家通过重复协作，将偶发行为发展为稳定的社群玩法；当玩法形成规模后，官方需要评估其生态影响，并决定承接、引导还是限制。</p>
-          <div class="c2DomesticFlow" aria-label="涌现玩法共创路径"><b>既有机制</b><i>→</i><b>玩家协作</b><i>→</i><b>社群规则</b><i>→</i><b>官方治理</b></div>
-          <article class="c2DomesticCase isDelta">
-            <span>库内案例</span>
-            <a class="conclCase" onclick="openCase('sanjiaozhou-jail')">三角洲·共享监狱</a>
-            <small class="c2GameType">战术射击 / 搜打撤</small>
-            <p>玩家自发形成“不交火、互助护送、多人共享撤离”的合作规则，并将其视为共同创造的玩法资产。</p>
-          </article>
-        </section>
-
-        <section class="c2DomesticPath isUgc">
-          <div class="c2CoCreateModeNo">02</div>
-          <header><span>平台化 UGC</span><b>官方开放工具、发布、分发与激励体系</b></header>
-          <p>官方将部分开发能力开放给玩家，使玩家能够制作、发布和持续运营玩法；编辑器解决“能不能做”，分发与推荐解决“能不能被看见”，激励与商业化支撑持续生产。</p>
-          <div class="c2DomesticFlow" aria-label="平台化UGC路径"><b>编辑工具</b><i>→</i><b>作品发布</b><i>→</i><b>平台分发</b><i>→</i><b>激励 / 商业化</b></div>
-          <div class="c2UgcCases">
-            <article>
-              <span>高自由度玩法开发</span>
-              <a href="https://gp.qq.com/developer/index.shtml" target="_blank" rel="noopener">和平精英·绿洲启元 ↗</a>
-              <small class="c2GameType">战术竞技射击</small>
-              <p>开放 PC / 手机编辑器，玩家可调用场景、模式、物资、技能与 Lua 能力开发并发布独立玩法。</p>
-            </article>
-            <article>
-              <span>大众化低门槛创作</span>
-              <a href="https://www.eggyparty.com/hmt/news/announcement/20250619/38892_1241688.html" target="_blank" rel="noopener">蛋仔派对·蛋仔工坊 ↗</a>
-              <small class="c2GameType">休闲竞技 / 派对游戏</small>
-              <p>玩家制作关卡、剧情和多关卡玩法，作品进入乐园消费，并通过游玩表现与玩家赞助获得激励。</p>
-            </article>
-            <article>
-              <span>创作扶持与版权保护</span>
-              <a href="https://ymzx.qq.com/web202312/plan4.html" target="_blank" rel="noopener">元梦之星·星世界 ↗</a>
-              <small class="c2GameType">休闲竞技 / 派对游戏</small>
-              <p>将地图编辑、创作课程、作品分发、创作者扶持与原创版权保护组成平台化生态。</p>
-            </article>
-          </div>
-        </section>
+    <div class="c2Body c2CoCreateBody">
+      <div class="c2CoCreateJourney" aria-label="玩家从规则接受走向规则共创的过程">
+        <article>
+          <div class="c2CoCreateStageHead"><span>01 · 玩法试验</span></div>
+          <b>玩家在既有机制中试出新的合作方式</b>
+          <p>偶发互动被反复尝试，逐渐形成可复现、可传播的玩法雏形。</p>
+          <div class="c2CoCreateStageCase"><span>三角洲对应阶段</span><p>玩家在“共享监狱”中尝试以“不交火”换取共同撤离机会。</p></div>
+        </article>
+        <article>
+          <div class="c2CoCreateStageHead"><span>02 · 社群固化</span></div>
+          <b>群体采纳让协作默契沉淀为共同规则</b>
+          <p>越来越多玩家遵循同一套约定，并通过社群传播维护玩法秩序。</p>
+          <div class="c2CoCreateStageCase"><span>三角洲对应阶段</span><p>“互助护送、多人共享撤离”被反复采用，逐渐成为社群默认的合作秩序。</p></div>
+        </article>
+        <article>
+          <div class="c2CoCreateStageHead"><span>03 · 官方治理</span><a class="conclCase" onclick="openCase('sanjiaozhou-jail')">查看完整案例</a></div>
+          <b>社群规则开始进入正式的玩法治理范围</b>
+          <p>官方评估覆盖范围、生态影响与公平边界，再决定承接、引导或限制。</p>
+          <div class="c2CoCreateStageCase"><span>三角洲对应阶段</span><p>玩法规模扩大后影响不同玩家的收益与撤离生态，官方采取限制措施并引发共创边界争议。</p></div>
+        </article>
       </div>
-    </div>
-    <div class="c2Insight">
-      <b>核心观察：</b>国内游戏的玩家共创正在形成两种机制：<b>社群在既有机制中自发创造玩法规则，以及厂商通过编辑器、分发和激励体系规模化引入玩家内容。</b>前者考验官方如何识别和治理涌现玩法，后者考验工具能力、内容审核、流量分配、版权保护与创作者收益机制。
     </div>
   </template>
 
@@ -900,6 +875,6 @@
     <section id="tabContent"></section>
   </main>
 </div>
-<script src="./app.js?v=20260716-32"></script>
+<script src="./app.js?v=20260716-34"></script>
 </body>
 </html>
